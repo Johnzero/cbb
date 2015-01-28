@@ -1,0 +1,73 @@
+<!doctype html>
+<html xmlns:ng="http://angularjs.org">
+	<head>
+		<title>{$name} {$seo_title} {$site_name}</title>
+		<meta name="keywords" content="{$seo_keywords}" />
+		<meta name="description" content="{$seo_description}">
+		<tc_include file=":config"/>
+		<base href="/"> 
+		<meta name="author" content="wangsong">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':8080/livereload.js?snipver=1"></' + 'script>')</script>
+		<!-- HTML5 shim for IE8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<![endif]-->
+		<link href="__TMPL__Public/css/slippry/slippry.css" rel="stylesheet">
+		<link rel="icon" href="__TMPL__Public/images/favicon.ico" mce_href="__TMPL__Public/images/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="__TMPL__Public/images/favicon.ico" mce_href="__TMPL__Public/images/favicon.ico" type="image/x-icon">
+		<link href="__TMPL__Public/simpleboot/themes/cmf/theme.min.css" rel="stylesheet">
+		<link href="__TMPL__Public/simpleboot/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="__TMPL__Public/simpleboot/font-awesome/4.2.0/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
+		<!--[if IE 7]>
+		<link rel="stylesheet" href="__TMPL__Public/simpleboot/font-awesome/4.2.0/css/font-awesome-ie7.min.css">
+		<![endif]-->
+		<link href="__TMPL__Public/css/style.css" rel="stylesheet">
+		<style>
+			/*html{filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);-webkit-filter: grayscale(1);}*/
+			#backtotop{position: fixed;bottom: 50px;right:20px;display: none;cursor: pointer;font-size: 50px;z-index: 9999;}
+			#backtotop:hover{color:#333;}
+			.caption-wraper{position: absolute;left:50%;bottom:2em;}
+			.caption-wraper .caption{
+			position: relative;left:-50%;
+			background-color: rgba(0, 0, 0, 0.54);
+			padding: 0.4em 1em;
+			color:#fff;
+			-webkit-border-radius: 1.2em;
+			-moz-border-radius: 1.2em;
+			-ms-border-radius: 1.2em;
+			-o-border-radius: 1.2em;
+			border-radius: 1.2em;
+			}
+			@media (max-width: 767px){
+				.sy-box{margin: 12px -20px 0 -20px;}
+				.caption-wraper{left:0;bottom: 0.4em;}
+				.caption-wraper .caption{
+				left: 0;
+				padding: 0.2em 0.4em;
+				font-size: 0.92em;
+				-webkit-border-radius: 0;
+				-moz-border-radius: 0;
+				-ms-border-radius: 0;
+				-o-border-radius: 0;
+				border-radius: 0;}
+			}
+		</style>
+		<script type="text/javascript">
+			//全局变量
+			var GV = {
+			DIMAUB: "__ROOT__/",
+			JS_ROOT: "statics/js/",
+			TOKEN: ""
+			};
+		</script>
+		<script src="__ROOT__/statics/js/jquery.js"></script>
+		<script src="__TMPL__Public/simpleboot/bootstrap/js/bootstrap.min.js"></script>
+		<script src="__ROOT__/statics/js/wind.js"></script>
+		<script src="__ROOT__/statics/js/frontend.js"></script>
+
+	</head>
+	<body ng-app="cultural" class="ng-app:cultural" id="ng-app">
+		<tc_include file="Public:nav" />

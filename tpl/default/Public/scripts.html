@@ -1,0 +1,89 @@
+<!-- Javascript -->
+<script src="__ROOT__/statics/js/angular/angular.js"></script>
+<script src="__ROOT__/statics/js/angular/angular-animate.js"></script>
+<script src="__ROOT__/statics/js/angular/angular-ui-router.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('body').on('touchstart.dropdown', '.dropdown-menu', function (e) { e.stopPropagation(); });
+	
+	;(function($){
+		$.fn.totop=function(opt){
+			var scrolling=false;
+			return this.each(function(){
+				var $this=$(this);
+				$(window).scroll(function(){
+					if(!scrolling){
+						var sd=$(window).scrollTop();
+						if(sd>100){
+							$this.fadeIn();
+						}else{
+							$this.fadeOut();
+						}
+					}
+				});
+				
+				$this.click(function(){
+					scrolling=true;
+					$('html, body').animate({
+						scrollTop : 0
+					}, 500,function(){
+						scrolling=false;
+						$this.fadeOut();
+					});
+				});
+			});
+		};
+	})(jQuery);
+	
+	$("#backtotop").totop();
+	
+});
+</script>
+<script type="text/javascript">
+	var cultural = angular.module('cultural', ['ui.router','ngAnimate']);
+	cultural.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
+		$urlRouterProvider.when("", "/index");
+		// Now set up the states
+		$stateProvider
+		.state("index", {
+			url: "/index",
+			templateUrl: "/index"
+		})
+		.state("list", {
+
+			url: "/list/index/id/:listId.html",
+			templateUrl: function ($stateParams){
+			    return '/list/index/id/' + $stateParams.listId + '.html';
+			}
+
+		})
+		$locationProvider.html5Mode(true);
+		$httpProvider.defaults.headers.common['X-Requested-With'] = 'application/angularjs';
+		
+	});
+	$scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+	    if (toState.resolve) {
+	        $scope.showSpinner();
+	    }
+	});
+	$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+	    if (toState.resolve) {
+	        $scope.hideSpinner();
+	    }
+	});
+
+</script>
+<script src="__TMPL__Public/js/slippry.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	var demo1 = $("#homeslider").slippry({
+		transition: 'fade',
+		useCSS: true,
+		captions: false,
+		speed: 1000,
+		pause: 3000,
+		auto: true,
+		preload: 'visible'
+	});
+})
+</script>
