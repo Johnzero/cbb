@@ -20,11 +20,11 @@ class ListController extends HomeBaseController {
 		$navcatname="文章分类";
 		$datas=sp_get_terms("field:term_id,name");
 		$navrule=array(
-				"action"=>"List/index",
-				"param"=>array(
-						"id"=>"term_id"
-				),
-				"label"=>"name");
+			"action"=>"List/index",
+			"param"=>array(
+					"id"=>"term_id"
+			),
+			"label"=>"name");
 		exit(sp_get_nav4admin($navcatname,$datas,$navrule));
 		
 	}

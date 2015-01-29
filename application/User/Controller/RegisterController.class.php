@@ -7,7 +7,7 @@ use Common\Controller\HomeBaseController;
 class RegisterController extends HomeBaseController {
 	
 	function index(){
-		$this->display(":register");
+		$this->render(":register");
 	}
 	
 	function doregister(){

@@ -17,7 +17,7 @@ class CenterController extends MemberbaseController {
 		$userid=sp_get_current_userid();
 		$user=$this->users_model->where(array("id"=>$userid))->find();
 		$this->assign($user);
-    	$this->display(':center');
+    	$this->render(':center');
     }
 }
 ?>

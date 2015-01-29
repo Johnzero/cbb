@@ -758,9 +758,11 @@ function sp_getad($ad){
  * @return array;
  */
 function sp_getslide($slide){
+	
 	$slide_obj= M("SlideCat");
 	$join = "".C('DB_PREFIX').'slide as b on '.C('DB_PREFIX').'slide_cat.cid =b.slide_cid';
-	return $slide_obj->join($join)->where("cat_idname='$slide' and slide_status=1")->order("listorder ASC")->select();
+	$slides = $slide_obj->join($join)->where("cat_idname='$slide' and slide_status=1")->order("listorder ASC")->select();
+	return $slides;
 
 }
 

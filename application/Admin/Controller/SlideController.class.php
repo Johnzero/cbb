@@ -15,7 +15,7 @@ class SlideController extends AdminbaseController{
 	
 	function index(){
 		$cates=array(
-				array("cid"=>"0","cat_name"=>"默认分类"),
+			array("cid"=>"0","cat_name"=>"默认分类"),
 		);
 		$categorys=$this->slidecat_obj->field("cid,cat_name")->where("cat_status!=0")->select();
 		if($categorys){

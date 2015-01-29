@@ -2,6 +2,58 @@
 <script src="__ROOT__/statics/js/angular/angular.js"></script>
 <script src="__ROOT__/statics/js/angular/angular-animate.js"></script>
 <script src="__ROOT__/statics/js/angular/angular-ui-router.js"></script>
+<script src="__ROOT__/statics/js/angular/loading-bar.js"></script>
+<link href='__ROOT__/statics/js/angular/loading-bar.css' rel='stylesheet' />
+
+<script type="text/javascript">
+	var cultural = angular.module('cultural', ['ui.router','angular-loading-bar','ngAnimate']);
+	cultural.config(function(cfpLoadingBarProvider,$stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
+
+		$urlRouterProvider.when("", "/")
+		.otherwise(function($injector, $location){
+			$injector.invoke(['$state', function($state) {
+    			window.location = $location['$$absUrl'];
+  			}]);
+  		});
+
+		$stateProvider
+		.state("/", {
+			url: "/",
+			templateUrl: "/"
+		})
+		.state("user", {
+			url: "/user/:actionName/:tplName.html",
+			templateUrl: function ($stateParams){
+			    return '/user/' + $stateParams.actionName + '/' + $stateParams.tplName + '.html';
+			}
+		})
+		.state("list", {
+			url: "/list/index/id/:listId.html",
+			templateUrl: function ($stateParams){
+			    return '/list/index/id/' + $stateParams.listId + '.html';
+			}
+		})
+
+		cfpLoadingBarProvider.includeSpinner = true;
+		$locationProvider.html5Mode(true);
+		$httpProvider.defaults.headers.common['X-Requested-With'] = 'application/angularjs';
+		
+	});
+
+	cultural.run(function($rootScope){
+	    $rootScope
+	        .$on('$stateChangeStart', 
+	            function(event, toState, toParams, fromState, fromParams){ 
+	                $("#layout").html("<div class='tf-spin' ng-show='loading'><i class='fa fa-spinner fa-3x fa-spin'></i><p>数据加载中</p></div>");
+	        });
+	    $rootScope
+	        .$on('$stateChangeSuccess',
+	            function(event, toState, toParams, fromState, fromParams){ 
+	                $("#layout").remove(".tf-spin");
+	        });
+
+	});
+</script>
 <script type="text/javascript">
 $(function(){
 	$('body').on('touchstart.dropdown', '.dropdown-menu', function (e) { e.stopPropagation(); });
@@ -38,52 +90,4 @@ $(function(){
 	$("#backtotop").totop();
 	
 });
-</script>
-<script type="text/javascript">
-	var cultural = angular.module('cultural', ['ui.router','ngAnimate']);
-	cultural.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
-		$urlRouterProvider.when("", "/index");
-		// Now set up the states
-		$stateProvider
-		.state("index", {
-			url: "/index",
-			templateUrl: "/index"
-		})
-		.state("list", {
-
-			url: "/list/index/id/:listId.html",
-			templateUrl: function ($stateParams){
-			    return '/list/index/id/' + $stateParams.listId + '.html';
-			}
-
-		})
-		$locationProvider.html5Mode(true);
-		$httpProvider.defaults.headers.common['X-Requested-With'] = 'application/angularjs';
-		
-	});
-	$scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-	    if (toState.resolve) {
-	        $scope.showSpinner();
-	    }
-	});
-	$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-	    if (toState.resolve) {
-	        $scope.hideSpinner();
-	    }
-	});
-
-</script>
-<script src="__TMPL__Public/js/slippry.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function () {
-	var demo1 = $("#homeslider").slippry({
-		transition: 'fade',
-		useCSS: true,
-		captions: false,
-		speed: 1000,
-		pause: 3000,
-		auto: true,
-		preload: 'visible'
-	});
-})
 </script>

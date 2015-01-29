@@ -1,6 +1,5 @@
 <php>
-	$home_slides=sp_getslide("portal_index");
-	$home_slides=empty($home_slides)?$default_home_slides:$home_slides;
+	$home_slides=sp_getslide("sliders");
 </php>
 <ul id="homeslider" class="unstyled">
 	<foreach name="home_slides" item="vo">
@@ -81,3 +80,19 @@
 	</div>
 </div>
 </div>
+
+<link href="__TMPL__Public/css/slippry/slippry.css" rel="stylesheet">
+<script src="__TMPL__Public/js/slippry.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	var demo1 = $("#homeslider").slippry({
+		transition: 'fade',
+		useCSS: true,
+		captions: false,
+		speed: 1000,
+		pause: 3000,
+		auto: true,
+		preload: 'visible'
+	});
+})
+</script>

@@ -1,5 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit();?>
-<div class="container tc-main">
+<?php if (!defined('THINK_PATH')) exit();?><div class="container tc-main">
 	
 	<div class="pg-opt pin">
 		<div class="container">
@@ -119,5 +118,3 @@
 		</div>
 	</div>
 </div>
-
-<!-- JavaScript -->

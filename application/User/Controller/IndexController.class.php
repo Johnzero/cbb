@@ -18,7 +18,7 @@ class IndexController extends HomeBaseController {
 			$this->error("查无此人！");
 		}
 		$this->assign($user);
-		$this->display(":index");
+		$this->render(":index");
 
     }
 

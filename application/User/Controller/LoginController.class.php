@@ -12,7 +12,7 @@ class LoginController extends HomeBaseController {
 	
 	function active(){
 		$this->check_login();
-		$this->display(":active");
+		$this->render(":active");
 	}
 	
 	function doactive(){
@@ -22,7 +22,7 @@ class LoginController extends HomeBaseController {
 	}
 	
 	function forgot_password(){
-		$this->display(":forgot_password");
+		$this->render(":forgot_password");
 	}
 	
 	
@@ -91,7 +91,7 @@ hello;
 	
 	
 	function password_reset(){
-		$this->display(":password_reset");
+		$this->render(":password_reset");
 	}
 	
 	function dopassword_reset(){

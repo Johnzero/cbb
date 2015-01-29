@@ -18,7 +18,7 @@ class ProfileController extends MemberbaseController {
 		$userid=sp_get_current_userid();
 		$user=$this->users_model->where(array("id"=>$userid))->find();
 		$this->assign($user);
-    	$this->display();
+    	$this->render();
     }
     
     public function edit_post() {
@@ -44,7 +44,7 @@ class ProfileController extends MemberbaseController {
     	$userid=sp_get_current_userid();
     	$user=$this->users_model->where(array("id"=>$userid))->find();
     	$this->assign($user);
-    	$this->display();
+    	$this->render();
     }
     
     public function password_post() {
@@ -94,14 +94,14 @@ class ProfileController extends MemberbaseController {
     		$new_oauths[strtolower($oa['from'])]=$oa;
     	}
     	$this->assign("oauths",$new_oauths);
-    	$this->display();
+    	$this->render();
     }
     
     function avatar(){
     	$userid=sp_get_current_userid();
 		$user=$this->users_model->where(array("id"=>$userid))->find();
 		$this->assign($user);
-    	$this->display();
+    	$this->render();
     }
     
     function avatar_upload(){

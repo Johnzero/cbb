@@ -1,4 +1,4 @@
-<style type="text/css">
+<?php if (!defined('THINK_PATH')) exit();?><style type="text/css">
 .tab-content{overflow: visible;}
 .uploaded_avatar_area{
 	margin-top: 20px;
@@ -11,7 +11,14 @@
 <div class="container tc-main">
 	<div class="row">
 		<div class="span3">
-			<tc_include file="Public:usernav"/>
+			<div class="list-group">
+	<a class="list-group-item" href="<?php echo u('user/profile/edit');?>"><i class="fa fa-list-alt"></i> 修改资料</a>
+	<a class="list-group-item" href="<?php echo u('user/profile/password');?>"><i class="fa fa-lock"></i> 修改密码</a>
+	<a class="list-group-item" href="<?php echo u('user/profile/avatar');?>"><i class="fa fa-user"></i> 编辑头像</a>
+	<a class="list-group-item" href="<?php echo u('user/profile/bang');?>"><i class="fa fa-exchange"></i> 绑定账号</a>
+	<a class="list-group-item" href="<?php echo u('user/favorite/index');?>"><i class="fa fa-star-o"></i> 我的收藏</a>
+	<a class="list-group-item" href="<?php echo u('comment/comment/index');?>"><i class="fa fa-comments-o"></i> 我的评论</a>
+</div>
 		</div>
 		<div class="span9">
 			<div class="tabs">
@@ -20,11 +27,9 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="one">
-						<if condition="empty($avatar)">
-						<img src="__TMPL__/Public/images/headicon_128.png" class="headicon"/>
-						<else/>
-						<img src="{:sp_get_user_avatar_url($avatar)}" class="headicon"/>
-						</if>
+						<?php if(empty($avatar)): ?><img src="/tpl/default//Public/images/headicon_128.png" class="headicon"/>
+						<?php else: ?>
+						<img src="<?php echo sp_get_user_avatar_url($avatar);?>" class="headicon"/><?php endif; ?>
 						<input type="file" onchange="avatar_upload(this)" id="avatar_uploder"  name="file"/>
 						<div class="uploaded_avatar_area">
 							
@@ -42,7 +47,7 @@
 <script type="text/javascript">
 	function update_avatar(){
 		var area=$(".uploaded_avatar_area img").data("area");
-		$.post("{:U('profile/avatar_update')}",area,
+		$.post("<?php echo U('profile/avatar_update');?>",area,
 				function(data){
 			if(data.status==1){
 				reloadPage(window);
@@ -61,7 +66,7 @@
 		Wind.css("jcrop");
 		Wind.use("ajaxfileupload","jcrop","noty",function(){
 			$.ajaxFileUpload({
-				url:"{:U('profile/avatar_upload')}",
+				url:"<?php echo U('profile/avatar_upload');?>",
 				secureuri:false,
 				fileElementId:"avatar_uploder",
 				dataType: 'json',
@@ -71,7 +76,7 @@
 						$("#avatar_uploder").hide();
 						var $uploaded_area=$(".uploaded_avatar_area");
 						$uploaded_area.find("img").remove();
-						var $img=$("<img/>").attr("src","__UPLOAD__/avatar/"+data.data.file);
+						var $img=$("<img/>").attr("src","/data/upload//avatar/"+data.data.file);
 						$img.prependTo($uploaded_area);
 						$(".uploaded_avatar_btns").show();
 						$img.Jcrop({

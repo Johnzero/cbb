@@ -8,7 +8,7 @@ class FavoriteController extends MemberbaseController{
 		$user_favorites_model=M("UserFavorites");
 		$favorites=$user_favorites_model->where("uid=$uid")->select();
 		$this->assign("favorites",$favorites);
-		$this->display(":favorite");
+		$this->render(":favorite");
 	}
 	
 	function do_favorite(){
