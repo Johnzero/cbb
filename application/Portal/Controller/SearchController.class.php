@@ -15,7 +15,7 @@ class SearchController extends HomeBaseController {
 			$this -> error("关键词不能为空！请重新输入！");
 		}
 		$this -> assign("keyword", $k);
-		$this -> display(":search");
+		$this -> render(":search");
     }
     
     

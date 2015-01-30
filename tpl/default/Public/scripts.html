@@ -32,14 +32,14 @@
 	            } else {
 
 	                $scope.message = data.message;
-	                
+
 	            }
 	        });
         };
     });
 
 
-	cultural.config(function(cfpLoadingBarProvider,$stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
+	cultural.config(function($rootScope,cfpLoadingBarProvider,$stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
 
 		$urlRouterProvider.when("", "/")
 		.otherwise(function($injector, $location){
@@ -47,11 +47,15 @@
     			window.location = $location['$$absUrl'];
   			}]);
   		});
-
+		// $rootScope.$viewHistory.backView = null;
 		$stateProvider
 		.state("/", {
 			url: "/",
 			templateUrl: "/"
+		})
+		.state("search", {
+			url: "/search/index.html",
+			templateUrl: "/search/index.html"
 		})
 		.state("user", {
 			url: "/user/:actionName/:tplName.html",
