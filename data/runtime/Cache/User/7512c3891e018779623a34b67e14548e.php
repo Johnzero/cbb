@@ -20,7 +20,7 @@
 	<a class="list-group-item" href="<?php echo u('comment/comment/index');?>"><i class="fa fa-comments-o"></i> 我的评论</a>
 </div>
 		</div>
-		<div class="span9">
+		<div class="span9" >
 			<div class="tabs">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#one" data-toggle="tab"><i class="fa fa-user"></i> 修改头像</a></li>

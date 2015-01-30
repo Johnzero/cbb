@@ -7,7 +7,7 @@ use Common\Controller\HomeBaseController;
 class LoginController extends HomeBaseController {
 	
 	function index(){
-		$this->display(":login");
+		$this->render(":login");
 	}
 	
 	function active(){

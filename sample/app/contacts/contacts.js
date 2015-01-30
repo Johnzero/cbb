@@ -135,6 +135,7 @@ angular.module('uiRouterSample.contacts', [
                   return '<hr><small class="muted">Contact ID: ' + $stateParams.contactId + '</small>';
                 }]
             }
+            
           }
         })
 
