@@ -129,11 +129,10 @@ hello;
 	
     //登录验证
     function dologin(){
-
-    	if($_SESSION['_verify_']['verify']!=strtolower($_POST['verify'])){
-    		$this->error("验证码错误！");
+        
+    	if( $_SESSION['_verify_']['verify'] != strtolower($_POST['verify']) ){
+    		$this->error("验证码错误！",U('user/login/index'));
     	}
-    	
     	$users_model=M("Users");
     	$rules = array(
     			//array(验证字段,验证规则,错误提示,验证条件,附加规则,验证时间)
@@ -143,7 +142,7 @@ hello;
     	
     	);
     	if($users_model->validate($rules)->create()===false){
-    		$this->error($users_model->getError());
+    		$this->error($users_model->getError(),U('user/login/index'));
     	}
     	
     	extract($_POST);
@@ -197,13 +196,13 @@ hello;
     										"-5"=>"Email不允许注册",
     										"-6"=>"该Email已经被注册",
     								);
-    								$this->error("同步用户失败--".$uc_register_errors[$uc_uid2]);
+    								$this->error("同步用户失败--".$uc_register_errors[$uc_uid2],U('user/login/index'));
     	
     	
     							}
     							$uc_uid=$uc_uid2;
     						}else{
-    							$this->error("密码错误！");
+    							$this->error("密码错误！",U('user/login/index'));
     						}
     					}
     						
@@ -213,16 +212,16 @@ hello;
     						if($result['user_pass'] == sp_password($password)){//本应用已经有这个用户,且密码正确，同步用户
     							$uc_user_edit_status=uc_user_edit($username,"",$password,"",1);
     							if($uc_user_edit_status<=0){
-    								$this->error("登陆错误！");
+    								$this->error("登陆错误！",U('user/login/index'));
     							}
     							list($uc_uid2)=uc_get_user($username);
     							$uc_uid=$uc_uid2;
     							$ucenter_old_user_login=true;
     						}else{
-    							$this->error("密码错误！");
+    							$this->error("密码错误！",U('user/login/index'));
     						}
     					}else{
-    						$this->error("密码错误！");
+    						$this->error("密码错误！",U('user/login/index'));
     					}
     	
     					break;
@@ -254,10 +253,10 @@ hello;
     				
     			$this->success("登录验证成功！", $redirect);
     		}else{
-    			$this->error("密码错误！");
+    			$this->error("密码错误！",U('user/login/index'));
     		}
     	}else{
-    		$this->error("用户名不存在！");
+    		$this->error("用户名不存在！",U('user/login/index'));
     	}
     	 
     }

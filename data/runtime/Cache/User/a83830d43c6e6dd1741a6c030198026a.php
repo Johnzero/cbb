@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="input-user_url">个人网址</label>
+                                <label class="control-label" for="input-user_url">公司网址</label>
                                 <div class="controls">
                                     <?php echo ((isset($user_url) && ($user_url !== ""))?($user_url):'未填写'); ?>
                                 </div>

@@ -97,7 +97,6 @@ class HomeBaseController extends AppframeController {
 	 * @return mixed
 	 */
 	public function display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') {
-		//echo $this->parseTemplate($templateFile);
 		parent::display($this->parseTemplate($templateFile), $charset, $contentType);
 	}
 	
@@ -161,6 +160,15 @@ class HomeBaseController extends AppframeController {
 		}
 		
 		$file=THEME_PATH.$module.$template.C('TMPL_TEMPLATE_SUFFIX');
+
+		if(strpos($template,'@error') ){ // 跨模块调用模版文件
+			$file = C('TMPL_ACTION_ERROR');
+		}
+
+		if(strpos($template,'@success') ){ // 跨模块调用模版文件
+			$file = C('TMPL_ACTION_SUCCESS');
+		}
+
 		if(!is_file($file)) E(L('_TEMPLATE_NOT_EXIST_').':'.$file);
 		return $file;
 	}

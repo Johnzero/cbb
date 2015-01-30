@@ -7,6 +7,38 @@
 
 <script type="text/javascript">
 	var cultural = angular.module('cultural', ['ui.router','angular-loading-bar','ngAnimate']);
+
+	cultural.directive('goBack', function($window){
+	  return function($scope, $element){
+	    $element.on('click', function(){
+	      $window.history.back();
+	    })
+	  }
+	});
+
+	cultural.controller("formController", function ($scope, $http) {
+        $scope.formData = {};
+        $scope.processForm = function() {
+ 			$http({
+		        method  : 'POST',
+		        url     : "{:u('user/login/dologin')}",
+		        data    : $.param($scope.formData),  // pass in data as strings
+		        headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  
+		    })
+	        .success(function(data) {
+	            console.log(data);
+	            if (!data.success) {
+	               
+	            } else {
+
+	                $scope.message = data.message;
+	                
+	            }
+	        });
+        };
+    });
+
+
 	cultural.config(function(cfpLoadingBarProvider,$stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
 
 		$urlRouterProvider.when("", "/")
@@ -33,9 +65,23 @@
 			    return '/list/index/id/' + $stateParams.listId + '.html';
 			}
 		})
+		.state("article", {
+			url: "/article/index/id/:articleId.html",
+			templateUrl: function ($stateParams){
+			    return '/article/index/id/' + $stateParams.articleId + '.html';
+			}
+		})
+		.state("comment", {
+			url: "/comment/comment/:tplName.html",
+			templateUrl: function ($stateParams){
+			    return '/comment/comment/' + $stateParams.tplName + '.html';
+			}
+		})
+		
 
 		cfpLoadingBarProvider.includeSpinner = true;
 		$locationProvider.html5Mode(true);
+		$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 		$httpProvider.defaults.headers.common['X-Requested-With'] = 'application/angularjs';
 		
 	});

@@ -41,44 +41,32 @@ var GV = {
 	</style><?php endif; ?>
 <body class="J_scroll_fixed">
 <div class="wrap jj">
-   <ul class="nav nav-tabs">
-     <li class="active"><a href="<?php echo U('slidecat/index');?>">幻灯片分类</a></li>
-     <li><a href="<?php echo U('slidecat/add');?>">添加幻灯片分类 </a></li>
+  <ul class="nav nav-tabs">
+     <li class="active"><a href="<?php echo U('AdminTerm/index');?>">分类管理</a></li>
+     <li><a href="<?php echo U('AdminTerm/add');?>">添加分类</a></li>
   </ul>
   <div class="common-form">
-    <form method="post" class="J_ajaxForm" action="<?php echo U('term/listorders');?>">
+    <form method="post" class="J_ajaxForm" action="<?php echo U('AdminTerm/listorders');?>">
       <div class="table_list">
 	    <table width="100%" class="table table-hover">
 	        <thead>
 	          <tr>
-	            <th width="50">ID</th>
+	            <th width="80">排序</th>
+	            <th width="100">ID</th>
 	            <th>分类名称</th>
-	            <th>分类标识</th>
-	            <th>描述</th>
-	            <th width="120">操作</th>
+	            <th>分类类型</th>
+	            <th align='center'>访问</th>
+	            <th>操作</th>
 	          </tr>
 	        </thead>
 	        <tbody>
-	        	<tr>
-		            <td>0</td>
-		            <td>默认分类</td>
-		            <td></td>
-		            <td>默认分类</td>
-		            <td>不允许修改</td>
-	          </tr>
-	        	<?php if(is_array($slidecats)): foreach($slidecats as $key=>$vo): ?><tr>
-		            <td><?php echo ($vo["cid"]); ?></td>
-		            <td><?php echo ($vo["cat_name"]); ?></td>
-		            <td><?php echo ($vo["cat_idname"]); ?></td>
-		            <td><?php echo ($vo["cat_remark"]); ?></td>
-		            <td>
-		            	<a href="<?php echo U('slidecat/edit',array('id'=>$vo['cid']));?>" >修改</a>|
-			            <a href="<?php echo U('slidecat/delete',array('id'=>$vo['cid']));?>" class="J_ajax_del" >删除</a>
-			        </td>
-	          	</tr><?php endforeach; endif; ?>
+	        	<?php echo ($taxonomys); ?>
 			</tbody>
 	      </table>
   </div>
+  		<div class="form-actions">
+            <button type="submit" class="btn btn-primary btn_submit J_ajax_submit_btn">排序</button>
+      </div>
     </form>
   </div>
 </div>

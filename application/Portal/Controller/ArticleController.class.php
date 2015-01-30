@@ -10,6 +10,7 @@ class ArticleController extends HomeBaseController {
     public function index() {
     	$id=intval($_GET['id']);
     	$article=sp_sql_post($id,'');
+        $table = 'posts';
     	$termid=$article['term_id'];
     	$term_obj= M("Terms");
     	$term=$term_obj->where("term_id='$termid'")->find();
@@ -21,9 +22,6 @@ class ArticleController extends HomeBaseController {
     		$posts_model=M("Posts");
     		$posts_model->save(array("id"=>$article_id,"post_hits"=>array("exp","post_hits+1")));
     	}
-    	
-    	
-    	
     	$smeta=json_decode($article['smeta'],true);
     	$content_data=sp_content_page($article['post_content']);
     	$article['post_content']=$content_data['content'];
@@ -35,7 +33,32 @@ class ArticleController extends HomeBaseController {
     	
     	$tplname=$term["one_tpl"];
     	$tplname=sp_get_apphome_tpl($tplname, "article");
-    	$this->display(":$tplname");
+
+
+        $comment_model=D("Common/Comments");
+        $comments=$comment_model->where(array("post_table"=>$table,"post_id"=>$article_id,"status"=>1))->order("createtime ASC")->select();
+        $new_comments=array();
+        $parent_comments=array();
+        if(!empty($comments)){
+            foreach ($comments as $m){
+                if($m['parentid']==0){
+                    $new_comments[$m['id']]=$m;
+                }else{
+                    $path=explode("-", $m['path']);
+                    $new_comments[$path[1]]['children'][]=$m;
+                }
+                    
+                $parent_comments[$m['id']]=$m;
+            }
+        }
+        
+        $data['post_table']=sp_authencode($table);
+        $data['post_id']=$post_id;
+        $this->assign($data);
+        $this->assign("comments",$new_comments);
+        $this->assign("parent_comments",$parent_comments);
+
+    	$this->render(":$tplname");
     }
     
     public function do_like(){

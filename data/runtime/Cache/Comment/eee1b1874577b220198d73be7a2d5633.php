@@ -119,27 +119,54 @@
 
 <!-- ng-Layout -->
 <div id="layout" data-ui-view="">
-<div class="system-message">
-<?php if(isset($message)): ?><p class="success"><?php echo($message); ?></p>
-<?php else: ?>
-<p class="error"><?php echo($error); ?></p><?php endif; ?>
-	<p class="detail"></p>
-	<p class="jump">
-	网站提示：页面自动 <a id="href" href="<?php echo($jumpUrl); ?>">跳转</a> 等待时间： <b id="wait"><?php echo($waitSecond); ?></b>
-	</p>
+<div class="container tc-main">
+	<div class="row">
+		<div class="span3">
+			<div class="list-group">
+	<a class="list-group-item" href="<?php echo u('user/profile/edit');?>"><i class="fa fa-list-alt"></i> 修改资料</a>
+	<a class="list-group-item" href="<?php echo u('user/profile/password');?>"><i class="fa fa-lock"></i> 修改密码</a>
+	<a class="list-group-item" href="<?php echo u('user/profile/avatar');?>"><i class="fa fa-user"></i> 编辑头像</a>
+	<a class="list-group-item" href="<?php echo u('user/profile/bang');?>"><i class="fa fa-exchange"></i> 绑定账号</a>
+	<a class="list-group-item" href="<?php echo u('user/favorite/index');?>"><i class="fa fa-star-o"></i> 我的收藏</a>
+	<a class="list-group-item" href="<?php echo u('comment/comment/index');?>"><i class="fa fa-comments-o"></i> 我的评论</a>
 </div>
-<script type="text/javascript">
-(function(){
-var wait = document.getElementById('wait'),href = document.getElementById('href').href;
-var interval = setInterval(function(){
-	var time = --wait.innerHTML;
-	if(time <= 0) {
-		location.href = href;
-		clearInterval(interval);
-	};
-}, 1000);
-})();
-</script>
+		</div>
+		<div class="span9">
+			<div class="tabs">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#one" data-toggle="tab"><i class="fa fa-comments-o"></i> 我的评论</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="one">
+						<table class="table table-bordered table-striped table-hover">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>评论内容</th>
+									<th width="150">评论时间</th>
+									<th width="150">操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php if(is_array($comments)): foreach($comments as $key=>$vo): ?><tr>
+									<td><?php echo ($vo["id"]); ?></td>
+									<td><?php echo ($vo["content"]); ?></td>
+									<td><?php echo ($vo["createtime"]); ?></td>
+									<td>
+										<a href="/<?php echo ($vo["url"]); ?>#comment<?php echo ($vo["id"]); ?>">查看原文</a>
+										<!-- | <a class="J_ajax_dialog_btn" href="<?php echo u('user/favorite/delete_favorite',array('id'=>$vo['id']));?>" data-msg="您确定要取消收藏吗？" data-ok="" data-cacel="取消">取消收藏</a> -->
+									</td>
+								</tr><?php endforeach; endif; ?>
+							</tbody>
+						</table>
+					</div>
+					
+					<div class="pager"><?php echo ($pager); ?></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 </div>
 
 <!-- JavaScript -->
@@ -152,15 +179,6 @@ var interval = setInterval(function(){
 
 <script type="text/javascript">
 	var cultural = angular.module('cultural', ['ui.router','angular-loading-bar','ngAnimate']);
-
-	cultural.directive('goBack', function($window){
-	  return function($scope, $element){
-	    $element.on('click', function(){
-	      $window.history.back();
-	    })
-	  }
-	});
-
 	cultural.config(function(cfpLoadingBarProvider,$stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
 
 		$urlRouterProvider.when("", "/")
@@ -203,7 +221,6 @@ var interval = setInterval(function(){
 
 		cfpLoadingBarProvider.includeSpinner = true;
 		$locationProvider.html5Mode(true);
-		$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 		$httpProvider.defaults.headers.common['X-Requested-With'] = 'application/angularjs';
 		
 	});

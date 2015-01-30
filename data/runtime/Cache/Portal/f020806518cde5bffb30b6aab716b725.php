@@ -80,26 +80,43 @@ body fieldset legend {
 <body class="J_scroll_fixed">
 <div class="wrap J_check_wrap">
   <ul class="nav nav-tabs">
-     <li><a href="<?php echo U('slide/index');?>">所有幻灯片</a></li>
-     <li class="active"><a href="<?php echo U('slide/add');?>">添加幻灯片</a></li>
+     <li><a href="<?php echo U('AdminPost/index');?>">所有文章</a></li>
+     <li class="active"><a href="<?php echo U('AdminPost/add',array('term'=>empty($term['term_id'])?'':$term['term_id']));?>"  target="_self">添加文章</a></li>
   </ul>
-  <form name="myform" id="myform" action="<?php echo U('slide/add_post');?>" method="post" class="form-horizontal J_ajaxForms" enctype="multipart/form-data">
+  <form name="myform" id="myform" action="<?php echo u('AdminPost/add_post');?>" method="post" class="form-horizontal J_ajaxForms" enctype="multipart/form-data">
   <div class="col-right">
     <div class="table_full">
-      <table width="100%" cellpadding="2" cellspacing="2">
+      <table width="100%">
          <tr>
           <td><b>缩略图</b></td>
         </tr>
         <tr>
           <td>
-          	<div  style="text-align: center;"><input type='hidden' name='slide_pic' id='thumb' value=''>
-			<a href='javascript:void(0);' onclick="flashupload('thumb_images', '附件上传','thumb',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','content','12','b6ba209759e147124653ac77362ef2bd');return false;">
+          	<div  style="text-align: center;"><input type='hidden' name='smeta[thumb]' id='thumb' value=''>
+			<a href='javascript:void(0);' onclick="flashupload('thumb_images', '附件上传','thumb',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','','','');return false;">
 			<img src='/statics/images/icon/upload-pic.png' id='thumb_preview' width='135' height='113' style='cursor:hand' /></a>
+			<!-- <input type="button" class="btn" onclick="crop_cut_thumb($('#thumb').val());return false;" value="裁减图片">  -->
             <input type="button"  class="btn" onclick="$('#thumb_preview').attr('src','/statics/images/icon/upload-pic.png');$('#thumb').val('');return false;" value="取消图片">
             </div>
 			</td>
         </tr>
-        
+        <tr>
+          <td><b>发布时间</b></td>
+        </tr>
+        <tr>
+          <td><input type="text" name="post[post_modified]" id="updatetime" value="<?php echo date('Y-m-d H:i:s',time());?>" size="21" class="input length_3 J_datetime "></td>
+        </tr>
+        <tr>
+          <td><b>状态</b></td>
+        </tr>
+        <tr>
+          <td>
+          	<span class="switch_list cc">
+			<label><input type="radio" name="post[post_status]" value="1" checked><span>审核通过</span></label>
+			<label><input type="radio" name="post[post_status]" value="0"  ><span>待审核</span></label>
+		 	</span>
+		 </td>
+        </tr>
       </table>
     </div>
   </div>
@@ -109,46 +126,58 @@ body fieldset legend {
             <tr>
               <th width="80">栏目</th>
               <td>
-              	<select name="slide_cid" class="normal_select">
-                  <option value="0">默认分类</option>
-                  <?php if(is_array($categorys)): foreach($categorys as $key=>$vo): ?><option value="<?php echo ($vo["cid"]); ?>"><?php echo ($vo["cat_name"]); ?></option><?php endforeach; endif; ?>
-                </select>
+              	<select name="term[term_id]"  class="normal_select">
+						<?php echo ($taxonomys); ?>
+				</select>
               </td>
             </tr>
             <tr>
-              <th width="80">幻灯片名称</th>
+              <th width="80">标题 </th>
               <td>
-              	<input type="text" style="width:400px;" name="slide_name" id="title" value="" style="color:" class="input input_hd J_title_color" placeholder="请输入幻灯片名称" onkeyup="strlen_verify(this, 'title_len', 160)" />
+              	<input type="text" style="width:400px;" name="post[post_title]" id="title"  required value="" style="color:" class="input input_hd J_title_color" placeholder="请输入标题" onkeyup="strlen_verify(this, 'title_len', 160)" />
               	<span class="must_red">*</span>
               </td>
             </tr>
-             <tr>
-              <th width="80">链接地址：</th>
-              <td>
-              <input type='text' name='slide_url'  value='' style='width:400px' class='input  input_hd J_title_color'>
-              </td>
+            <tr>
+              <th width="80">关键词</th>
+              <td><input type='text' name='post[post_keywords]' id='keywords' value='' style='width:400px'   class='input' placeholder='请输入关键字'> 多关键词之间用空格隔开</td>
             </tr>
             <tr>
-              <th width="80">描述</th>
-              <td><input type='text' name='slide_des'  value='' style='width:400px' class='input  input_hd J_title_color'></td>
+              <th width="80">摘要 </th>
+              <td><textarea name='post[post_excerpt]' id='description'  required style='width:98%;height:50px;' placeholder='请填写摘要'></textarea> </td>
             </tr>
-             <tr>
-              <th width="80">幻灯片内容</th>
-              <td>
-              	
-              	<textarea name='slide_content' id='description' style='width:98%;height:200px;'  ></textarea>
-              </td>
+            <tr>
+              <th width="80">内容</th>
+              <td><span class="must_red">*</span><div id='content_tip'></div>
+              <script type="text/plain" id="content" name="post[post_content]"></script>
+                <script type="text/javascript">
+                //编辑器路径定义
+                var editorURL = GV.DIMAUB;
+                </script>
+                <script type="text/javascript"  src="/statics/js/ueditor/ueditor.config.js"></script>
+                <script type="text/javascript"  src="/statics/js/ueditor/ueditor.all.min.js"></script>
+				</td>
             </tr>
             
+            <tr>
+              <th width="80">相册图集 </th>
+              <td>
+				<fieldset class="blue pad-10">
+		        <legend>图片列表</legend>
+		        <ul id="photos" class="picList"></ul>
+				</fieldset>
+				<div class="bk10"></div>
+				<a href='javascript:void(0);' onclick="javascript:flashupload('albums_images', '图片上传','photos',change_images,'10,gif|jpg|jpeg|png|bmp,0','','','')" class="btn">选择图片 </a> </td>
+            </tr>
                         
         </tbody>
       </table>
     </div>
   </div>
-  	<div class="form-actions">
-           <button class="btn btn-primary btn_submit J_ajax_submit_btn"type="submit">提交</button>
-      		<a class="btn" href="/Admin/Slide">返回</a>
-      </div>
+  <div class="form-actions">
+        <button class="btn btn_submit J_ajax_submit_btn"type="submit">提交</button>
+        <a class="btn" href="<?php echo U('AdminPost/index');?>">返回</a>
+  </div>
  </form>
 </div>
 <script type="text/javascript" src="/statics/js/common.js"></script>
@@ -179,7 +208,16 @@ $(function () {
 	 Wind.use('validate', 'ajaxForm', 'artDialog', function () {
 			//javascript
 	        
-	        var form = $('form.J_ajaxForms');
+	            //编辑器
+	            editorcontent = new baidu.editor.ui.Editor();
+	            editorcontent.render( 'content' );
+	            try{editorcontent.sync();}catch(err){};
+	            //增加编辑器验证规则
+	            jQuery.validator.addMethod('editorcontent',function(){
+	                try{editorcontent.sync();}catch(err){};
+	                return editorcontent.hasContents();
+	            });
+	            var form = $('form.J_ajaxForms');
 	        //ie处理placeholder提交问题
 	        if ($.browser.msie) {
 	            form.find('[placeholder]').each(function () {
@@ -220,9 +258,9 @@ $(function () {
 					}
 	            },
 	            //验证规则
-	            rules: {'slide_name':{required:1}},
+	            rules: {'post[post_title]':{required:1},'post[post_content]':{editorcontent:true}},
 	            //验证未通过提示消息
-	            messages: {'slide_name':{required:'请输入名称'}},
+	            messages: {'post[post_title]':{required:'请输入标题'},'post[post_content]':{editorcontent:'内容不能为空'}},
 	            //给未通过验证的元素加效果,闪烁等
 	            highlight: false,
 	            //是否在获取焦点时验证
@@ -257,9 +295,9 @@ $(function () {
 												},
 												focus: true
 											},{
-												name: '返回列表',
+												name: '返回列表页',
 												callback:function(){
-													location.href="/Admin/Slide";
+													location='<?php echo U('AdminPost/index');?>';
 													return true;
 												}
 											}
