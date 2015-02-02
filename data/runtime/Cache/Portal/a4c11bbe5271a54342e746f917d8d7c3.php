@@ -67,7 +67,7 @@
 		<script src="/statics/js/wind.js"></script>
 		<script src="/statics/js/frontend.js"></script>
 	</head>
-	<body ng-app="cultural" class="ng-app:cultural" id="ng-app">
+	<body ng-app="cultural" class="ng-app:cultural" id="ng-app" ng-controller="control">
 		<div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
@@ -80,7 +80,6 @@
 			<div class="nav-collapse collapse" id="main-menu">
 				<?php
  $effected_id=""; $filetpl="<a href='\$href' target='\$target'>\$label</a>"; $foldertpl="<a href='\$href' target='\$target' class='dropdown-toggle' data-toggle='dropdown'>\$label <b class='caret'></b></a>"; $ul_class="dropdown-menu" ; $li_class="" ; $style="nav"; $showlevel=6; $dropdown='dropdown'; echo sp_get_menu("main",$effected_id,$filetpl,$foldertpl,$ul_class,$li_class,$style,$showlevel,$dropdown); ?>
-				
 				<ul class="nav pull-right" id="main-menu-left">
 					<li class="dropdown">
 						<?php if(sp_is_user_login()): ?><a class="dropdown-toggle user" data-toggle="dropdown" href="#">
@@ -107,8 +106,8 @@
 					</li>
 				</ul>
 				<div class="pull-right">
-					<form method="post" ng-submit="onSearchSubmit" class="form-inline" action="<?php echo U('/search/index');?>" style="margin:18px 0;">
-						<input type="text" class="" placeholder="Search" name="keyword" value="<?php echo I('get.keyword');?>"/>
+					<form ng-submit="onSearchSubmit()" class="form-inline" style="margin:18px 0;">
+						<input type="text" class="" ng-model="searchForm.keyword" placeholder="Search" name="keyword" value="<?php echo I('get.keyword');?>"/>
 						<input type="submit" class="btn btn-info" value="Go" style="margin:0"/>
 					</form>
 				</div>
@@ -129,152 +128,116 @@
 <script src="/statics/js/angular/angular-ui-router.js"></script>
 <script src="/statics/js/angular/loading-bar.js"></script>
 <link href='/statics/js/angular/loading-bar.css' rel='stylesheet' />
-
 <script type="text/javascript">
 	var cultural = angular.module('cultural', ['ui.router','angular-loading-bar','ngAnimate']);
-
-	cultural.directive('goBack', function($window){
-	  return function($scope, $element){
-	    $element.on('click', function(){
-	      $window.history.back();
-	    })
-	  }
-	});
-
+	
 	cultural.config(function(cfpLoadingBarProvider,$stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
-
 		$urlRouterProvider
+
 		.otherwise(function($injector, $location){
 			$injector.invoke(['$state', function($state) {
-    			// window.location = $location['$$absUrl'];
-  			}]);
-  		});
-		// $rootScope.$viewHistory.backView = null;
+				// window.location = $location['$$absUrl'];
+			}]);
+		});
+		// $urlRouterProvider.otherwise('/');
+
 		$stateProvider
 		.state("/", {
 			url: "/",
 			templateUrl: "/"
 		})
 		.state("search", {
-			url: "/search/index.html",
-			templateUrl: "/search/index.html"
+			url: "/search/:keyword",
+			templateUrl: function ($stateParams){
+				if ($stateParams.keyword) {
+					return '/search/index.html?keyword=' + $stateParams.keyword;
+				}
+				else {
+					return "/";
+				}
+			}
 		})
 		.state("user", {
 			url: "/user/:actionName/:tplName.html",
 			templateUrl: function ($stateParams){
-			    return '/user/' + $stateParams.actionName + '/' + $stateParams.tplName + '.html';
+				return '/user/' + $stateParams.actionName + '/' + $stateParams.tplName + '.html';
 			}
 		})
 		.state("list", {
 			url: "/list/index/id/:listId.html",
 			templateUrl: function ($stateParams){
-			    return '/list/index/id/' + $stateParams.listId + '.html';
+				return '/list/index/id/' + $stateParams.listId + '.html';
 			}
 		})
 		.state("article", {
 			url: "/article/index/id/:articleId.html",
 			templateUrl: function ($stateParams){
-			    return '/article/index/id/' + $stateParams.articleId + '.html';
+			return '/article/index/id/' + $stateParams.articleId + '.html';
 			}
 		})
 		.state("comment", {
 			url: "/comment/comment/:tplName.html",
 			templateUrl: function ($stateParams){
-			    return '/comment/comment/' + $stateParams.tplName + '.html';
+			return '/comment/comment/' + $stateParams.tplName + '.html';
 			}
 		})
-
 		cfpLoadingBarProvider.includeSpinner = true;
 		$locationProvider.html5Mode(true);
 		$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 		$httpProvider.defaults.headers.common['X-Requested-With'] = 'application/angularjs';
 		
 	})
-	// cultural.run(function($rootScope,  $location){
-	//     //Bind the `$locationChangeSuccess` event on the rootScope, so that we dont need to 
-	//     //bind in induvidual controllers.
-	//     $rootScope.$on('$locationChangeSuccess', function() {
-	//         $rootScope.actualLocation = $location.path();
-	//     });        
-
-	//    $rootScope.$watch(function () {return $location.path()}, function (newLocation, oldLocation) {
-	//         if($rootScope.actualLocation === newLocation) {
-	//             alert('Why did you use history back?');
-	//         }
-	//     });
-	// });
-
-	// cultural.run(function($rootScope){
-	//     $rootScope
-	//         .$on('$stateChangeSuccess',
-	//             function(event, toState, toParams, fromState, fromParams){ 
-	//                  console.log(fromState);
-	//         });
-
-	// })
-	cultural.controller("onSearchSubmit", function ($scope, $http) {
-    });
-
-	cultural.controller("formController", function ($scope, $http) {
-        $scope.formData = {};
-        $scope.processForm = function() {
- 			$http({
-		        method  : 'POST',
-		        url     : "<?php echo u('user/login/dologin');?>",
-		        data    : $.param($scope.formData),  // pass in data as strings
-		        headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  
-		    })
-	        .success(function(data) {
-	            console.log(data);
-	            if (!data.success) {
-	               
-	            } else {
-
-	                $scope.message = data.message;
-
-	            }
-	        });
-        };
-    });
-</script>
-<script type="text/javascript">
-$(function(){
-	$('body').on('touchstart.dropdown', '.dropdown-menu', function (e) { e.stopPropagation(); });
 	
-	;(function($){
-		$.fn.totop=function(opt){
-			var scrolling=false;
-			return this.each(function(){
-				var $this=$(this);
-				$(window).scroll(function(){
-					if(!scrolling){
-						var sd=$(window).scrollTop();
-						if(sd>100){
-							$this.fadeIn();
-						}else{
-							$this.fadeOut();
+	cultural.controller('control', function ($scope, $location, $state) {
+
+		$scope.onSearchSubmit = function() {
+			$state.go("search", {keyword: $scope.searchForm.keyword}, {reload:true,inherit:true});
+		}
+
+		$scope.loginSubmit = function() {
+			$('form[name="login"]').submit();
+		}
+
+	});
+		
+	</script>
+	<script type="text/javascript">
+	$(function(){
+		$('body').on('touchstart.dropdown', '.dropdown-menu', function (e) { e.stopPropagation(); });
+		
+		;(function($){
+			$.fn.totop=function(opt){
+				var scrolling=false;
+				return this.each(function(){
+					var $this=$(this);
+					$(window).scroll(function(){
+						if(!scrolling){
+							var sd=$(window).scrollTop();
+							if(sd>100){
+								$this.fadeIn();
+							}else{
+								$this.fadeOut();
+							}
 						}
-					}
-				});
-				
-				$this.click(function(){
-					scrolling=true;
-					$('html, body').animate({
-						scrollTop : 0
-					}, 500,function(){
-						scrolling=false;
-						$this.fadeOut();
+					});
+					
+					$this.click(function(){
+						scrolling=true;
+						$('html, body').animate({
+							scrollTop : 0
+						}, 500,function(){
+							scrolling=false;
+							$this.fadeOut();
+						});
 					});
 				});
-			});
-		};
-	})(jQuery);
-	
-	$("#backtotop").totop();
-	
-});
-</script>
-
+			};
+		})(jQuery);
+		
+		$("#backtotop").totop();
+		
+	});
+	</script>
 
 <!-- Footer -->
 

@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="span6 offset3">
 			<h2 class="text-center">用户登录</h2>
-			<form class="form-horizontal J_ajaxForms" action="{:U('user/login/dologin')}" method="post">
+			<form name="login" ng-submit="loginSubmit()" class="form-horizontal J_ajaxForms" action="{:U('user/login/dologin')}" method="POST">
 				<div class="control-group">
 					<label class="control-label" for="input_username">账号</label>
 					<div class="controls">

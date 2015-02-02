@@ -129,7 +129,8 @@ hello;
 	
     //登录验证
     function dologin(){
-        
+        var_dump($_POST);
+        exit;
     	if( $_SESSION['_verify_']['verify'] != strtolower($_POST['verify']) ){
     		$this->error("验证码错误！",U('user/login/index'));
     	}
