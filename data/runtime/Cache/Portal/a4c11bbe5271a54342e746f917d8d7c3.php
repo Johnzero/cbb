@@ -195,6 +195,7 @@
 		}
 
 		$scope.loginSubmit = function() {
+			$httpProvider.defaults.headers.common['X-Requested-With'] = 'application/angularjs-login';
 			$('form[name="login"]').submit();
 		}
 

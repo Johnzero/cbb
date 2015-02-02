@@ -15,12 +15,6 @@ class AppframeController extends Controller {
         //$this->assign("__token__", $this->getToken());
        	$time=time();
         $this->assign("js_debug",APP_DEBUG?"?v=$time":"");
-        if (array_key_exists('HTTP_X_REQUESTED_WITH', $_SERVER) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'application/angularjs') {
-        } else {
-            layout(true);
-            $this->display("@empty");
-            exit;
-        } 
     }
 
     //获取表单令牌
