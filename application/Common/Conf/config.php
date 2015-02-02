@@ -40,6 +40,7 @@ $configs= array(
 		
 		'SP_TMPL_PATH'     		=> 'tpl/',       // 前台模板文件根目录
 		'SP_DEFAULT_THEME'		=> 'default',       // 前台模板文件
+		'SP_TMPL_ACTION_EMPTY'		=> 'empty',       
 		'SP_TMPL_ACTION_ERROR' 	=> 'error', // 默认错误跳转对应的模板文件,注：相对于前台模板路径
 		'SP_TMPL_ACTION_SUCCESS' 	=> 'success', // 默认成功跳转对应的模板文件,注：相对于前台模板路径
 		'SP_ADMIN_STYLE'		=> 'flat',

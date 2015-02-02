@@ -169,6 +169,10 @@ class HomeBaseController extends AppframeController {
 			$file = C('TMPL_ACTION_SUCCESS');
 		}
 
+		if(strpos($template,'@empty') ){ // 跨模块调用模版文件
+			$file = 'tpl/default/empty.html';
+		}
+
 		if(!is_file($file)) E(L('_TEMPLATE_NOT_EXIST_').':'.$file);
 		return $file;
 	}

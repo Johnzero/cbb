@@ -16,35 +16,12 @@
 	  }
 	});
 
-	cultural.controller("formController", function ($scope, $http) {
-        $scope.formData = {};
-        $scope.processForm = function() {
- 			$http({
-		        method  : 'POST',
-		        url     : "{:u('user/login/dologin')}",
-		        data    : $.param($scope.formData),  // pass in data as strings
-		        headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  
-		    })
-	        .success(function(data) {
-	            console.log(data);
-	            if (!data.success) {
-	               
-	            } else {
+	cultural.config(function(cfpLoadingBarProvider,$stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
 
-	                $scope.message = data.message;
-
-	            }
-	        });
-        };
-    });
-
-
-	cultural.config(function($rootScope,cfpLoadingBarProvider,$stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
-
-		$urlRouterProvider.when("", "/")
+		$urlRouterProvider
 		.otherwise(function($injector, $location){
 			$injector.invoke(['$state', function($state) {
-    			window.location = $location['$$absUrl'];
+    			// window.location = $location['$$absUrl'];
   			}]);
   		});
 		// $rootScope.$viewHistory.backView = null;
@@ -81,28 +58,59 @@
 			    return '/comment/comment/' + $stateParams.tplName + '.html';
 			}
 		})
-		
 
 		cfpLoadingBarProvider.includeSpinner = true;
 		$locationProvider.html5Mode(true);
 		$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 		$httpProvider.defaults.headers.common['X-Requested-With'] = 'application/angularjs';
 		
-	});
+	})
+	// cultural.run(function($rootScope,  $location){
+	//     //Bind the `$locationChangeSuccess` event on the rootScope, so that we dont need to 
+	//     //bind in induvidual controllers.
+	//     $rootScope.$on('$locationChangeSuccess', function() {
+	//         $rootScope.actualLocation = $location.path();
+	//     });        
 
-	cultural.run(function($rootScope){
-	    $rootScope
-	        .$on('$stateChangeStart', 
-	            function(event, toState, toParams, fromState, fromParams){ 
-	                $("#layout").html("<div class='tf-spin' ng-show='loading'><i class='fa fa-spinner fa-3x fa-spin'></i><p>数据加载中</p></div>");
-	        });
-	    $rootScope
-	        .$on('$stateChangeSuccess',
-	            function(event, toState, toParams, fromState, fromParams){ 
-	                $("#layout").remove(".tf-spin");
-	        });
+	//    $rootScope.$watch(function () {return $location.path()}, function (newLocation, oldLocation) {
+	//         if($rootScope.actualLocation === newLocation) {
+	//             alert('Why did you use history back?');
+	//         }
+	//     });
+	// });
 
-	});
+	// cultural.run(function($rootScope){
+	//     $rootScope
+	//         .$on('$stateChangeSuccess',
+	//             function(event, toState, toParams, fromState, fromParams){ 
+	//                  console.log(fromState);
+	//         });
+
+	// })
+	cultural.controller("onSearchSubmit", function ($scope, $http) {
+    });
+
+	cultural.controller("formController", function ($scope, $http) {
+        $scope.formData = {};
+        $scope.processForm = function() {
+ 			$http({
+		        method  : 'POST',
+		        url     : "{:u('user/login/dologin')}",
+		        data    : $.param($scope.formData),  // pass in data as strings
+		        headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  
+		    })
+	        .success(function(data) {
+	            console.log(data);
+	            if (!data.success) {
+	               
+	            } else {
+
+	                $scope.message = data.message;
+
+	            }
+	        });
+        };
+    });
 </script>
 <script type="text/javascript">
 $(function(){

@@ -30,7 +30,6 @@ class CommentController extends MemberbaseController{
 	}
 	
 	function post(){
-
 		if ( $_REQUEST['post_table'] ){
 			$post_table = sp_authcode($_REQUEST['post_table']);
 			$_REQUEST['post_table']=$post_table;
@@ -40,7 +39,7 @@ class CommentController extends MemberbaseController{
 
 			$_REQUEST['url']=sp_get_relative_url($url);
 			
-			if(isset($_SESSION["user"])){//用户已登陆,且是本站会员
+			if(isset($_SESSION["user"])){
 				$uid=$_SESSION["user"]['id'];
 				$_REQUEST['uid']=$uid;
 				$users_model=M('Users');

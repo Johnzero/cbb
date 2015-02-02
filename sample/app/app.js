@@ -22,12 +22,13 @@ angular.module('uiRouterSample', [
 )
 
 .config(
-  [          '$stateProvider', '$urlRouterProvider',
-    function ($stateProvider,   $urlRouterProvider) {
+  [          '$stateProvider', '$urlRouterProvider','$locationProvider',
+    function ($stateProvider,   $urlRouterProvider,$locationProvider) {
 
       /////////////////////////////
       // Redirects and Otherwise //
       /////////////////////////////
+      // $locationProvider.html5Mode(true);
 
       // Use $urlRouterProvider to configure any redirects (when) and invalid urls (otherwise).
       $urlRouterProvider

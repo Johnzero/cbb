@@ -15,9 +15,12 @@ class AppframeController extends Controller {
         //$this->assign("__token__", $this->getToken());
        	$time=time();
         $this->assign("js_debug",APP_DEBUG?"?v=$time":"");
-        if(APP_DEBUG){
-        	//sp_clear_cache();
-        }
+        if (array_key_exists('HTTP_X_REQUESTED_WITH', $_SERVER) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'application/angularjs') {
+        } else {
+            layout(true);
+            $this->display("@empty");
+            exit;
+        } 
     }
 
     //获取表单令牌
@@ -163,7 +166,7 @@ class AppframeController extends Controller {
             $this->display($tplname); 
         } else {
             layout(true);
-            $this->display($tplname);
+            $this->display("@empty");
         }
         
     }

@@ -57,7 +57,6 @@ class ArticleController extends HomeBaseController {
         $this->assign($data);
         $this->assign("comments",$new_comments);
         $this->assign("parent_comments",$parent_comments);
-
     	$this->render(":$tplname");
     }
     

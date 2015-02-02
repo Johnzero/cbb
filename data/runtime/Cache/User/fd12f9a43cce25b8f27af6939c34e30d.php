@@ -107,7 +107,7 @@
 					</li>
 				</ul>
 				<div class="pull-right">
-					<form method="post" class="form-inline" action="<?php echo U('search/index');?>" style="margin:18px 0;">
+					<form method="post" class="form-inline" action="<?php echo U('/search/index');?>" style="margin:18px 0;">
 						<input type="text" class="" placeholder="Search" name="keyword" value="<?php echo I('get.keyword');?>"/>
 						<input type="submit" class="btn btn-info" value="Go" style="margin:0"/>
 					</form>
@@ -161,7 +161,30 @@ var interval = setInterval(function(){
 	  }
 	});
 
-	cultural.config(function(cfpLoadingBarProvider,$stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
+	cultural.controller("formController", function ($scope, $http) {
+        $scope.formData = {};
+        $scope.processForm = function() {
+ 			$http({
+		        method  : 'POST',
+		        url     : "<?php echo u('user/login/dologin');?>",
+		        data    : $.param($scope.formData),  // pass in data as strings
+		        headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  
+		    })
+	        .success(function(data) {
+	            console.log(data);
+	            if (!data.success) {
+	               
+	            } else {
+
+	                $scope.message = data.message;
+
+	            }
+	        });
+        };
+    });
+
+
+	cultural.config(function($rootScope,cfpLoadingBarProvider,$stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
 
 		$urlRouterProvider.when("", "/")
 		.otherwise(function($injector, $location){
@@ -169,11 +192,15 @@ var interval = setInterval(function(){
     			window.location = $location['$$absUrl'];
   			}]);
   		});
-
+		// $rootScope.$viewHistory.backView = null;
 		$stateProvider
 		.state("/", {
 			url: "/",
 			templateUrl: "/"
+		})
+		.state("search", {
+			url: "/search/index.html",
+			templateUrl: "/search/index.html"
 		})
 		.state("user", {
 			url: "/user/:actionName/:tplName.html",
