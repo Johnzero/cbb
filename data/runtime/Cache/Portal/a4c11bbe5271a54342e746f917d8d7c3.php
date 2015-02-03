@@ -67,7 +67,7 @@
 		<script src="/statics/js/wind.js"></script>
 		<script src="/statics/js/frontend.js"></script>
 	</head>
-	<body ng-app="cultural" class="ng-app:cultural" id="ng-app" ng-controller="control">
+	<body ng-app="cultural" class="ng-app:cultural" id="ng-app">
 		<div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
@@ -106,7 +106,7 @@
 					</li>
 				</ul>
 				<div class="pull-right">
-					<form ng-submit="onSearchSubmit()" class="form-inline" style="margin:18px 0;">
+					<form ng-submit="onSearchSubmit()" class="form-inline" style="margin:18px 0;" ng-controller="searchCtl">
 						<input type="text" class="" ng-model="searchForm.keyword" placeholder="Search" name="keyword" value="<?php echo I('get.keyword');?>"/>
 						<input type="submit" class="btn btn-info" value="Go" style="margin:0"/>
 					</form>
@@ -123,6 +123,8 @@
 
 <!-- JavaScript -->
 <!-- Javascript -->
+<script src="/statics/js/sweetalert/sweet-alert.min.js"></script>
+<link rel="stylesheet" href="/statics/js/sweetalert/sweet-alert.css">
 <script src="/statics/js/angular/angular.js"></script>
 <script src="/statics/js/angular/angular-animate.js"></script>
 <script src="/statics/js/angular/angular-ui-router.js"></script>
@@ -132,13 +134,13 @@
 	var cultural = angular.module('cultural', ['ui.router','angular-loading-bar','ngAnimate']);
 	
 	cultural.config(function(cfpLoadingBarProvider,$stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
-		$urlRouterProvider
+		// $urlRouterProvider
 
-		.otherwise(function($injector, $location){
-			$injector.invoke(['$state', function($state) {
-				// window.location = $location['$$absUrl'];
-			}]);
-		});
+		// .otherwise(function($injector, $location){
+		// 	$injector.invoke(['$state', function($state) {
+		// 		// window.location = $location['$$absUrl'];
+		// 	}]);
+		// });
 		// $urlRouterProvider.otherwise('/');
 
 		$stateProvider
@@ -188,17 +190,51 @@
 		
 	})
 	
-	cultural.controller('control', function ($scope, $location, $state) {
-
+	cultural.controller('searchCtl', function ($scope, $state, $location) {
+		// $location.path('/').replace();
 		$scope.onSearchSubmit = function() {
 			$state.go("search", {keyword: $scope.searchForm.keyword}, {reload:true,inherit:true});
 		}
+	});
 
-		$scope.loginSubmit = function() {
-			$httpProvider.defaults.headers.common['X-Requested-With'] = 'application/angularjs-login';
-			$('form[name="login"]').submit();
+	cultural.controller('loginCtl', function ($scope, $state, $http) {
+		$scope.onloginSubmit = function($event) {
+			if ( !$scope.loginForm ) {
+				sweetAlert("登陆错误！", "请填写内容!", "error");
+				return;
+			}else if ( !$scope.loginForm.username ) {
+				sweetAlert("登陆错误！", "请填写用户名!", "error");
+				return;
+			}else if ( !$scope.loginForm.password ) {
+				sweetAlert("登陆错误！", "请输入密码!", "error");
+				return;
+			}else if ( !$scope.loginForm.password ) {
+				sweetAlert("登陆错误！", "请输入密码!", "error");
+				return;
+			}else if ( !$scope.loginForm.password ) {
+				sweetAlert("登陆错误！", "请同意网站内容服务条款!", "error");
+				return;
+			}
+
+			$http({
+				method  : 'POST',
+				url     : "<?php echo u('user/login/dologin');?>",
+				data    : $.param($scope.loginForm),  // pass in data as strings
+				headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+			})
+			.success(function(data) {
+
+				sweetAlert(data.info, data.data, data.status);
+				if ( data.status == "success") {
+					location.href = data.referer;
+				}
+			})
+			.error( function () {
+				sweetAlert("登陆错误！", "网络异常，请稍后重试！","error");
+			});
+
+			$event.preventDefault();
 		}
-
 	});
 		
 	</script>

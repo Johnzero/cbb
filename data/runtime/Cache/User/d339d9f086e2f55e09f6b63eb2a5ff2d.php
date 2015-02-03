@@ -13,34 +13,17 @@
 		<div class="span9">
 			<div class="tabs">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#one" data-toggle="tab"><i class="fa fa-comments-o"></i> 我的评论</a></li>
+					<li class="active"><a href="#one" data-toggle="tab"><i class="fa fa-exchange"></i> 绑定账号</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="one">
-						<table class="table table-bordered table-striped table-hover">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>评论内容</th>
-									<th width="150">评论时间</th>
-									<th width="150">操作</th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php if(is_array($comments)): foreach($comments as $key=>$vo): ?><tr>
-									<td><?php echo ($vo["id"]); ?></td>
-									<td><?php echo ($vo["content"]); ?></td>
-									<td><?php echo ($vo["createtime"]); ?></td>
-									<td>
-										<a href="/<?php echo ($vo["url"]); ?>#comment<?php echo ($vo["id"]); ?>">查看原文</a>
-										<!-- | <a class="J_ajax_dialog_btn" href="<?php echo u('user/favorite/delete_favorite',array('id'=>$vo['id']));?>" data-msg="您确定要取消收藏吗？" data-ok="" data-cacel="取消">取消收藏</a> -->
-									</td>
-								</tr><?php endforeach; endif; ?>
-							</tbody>
-						</table>
+						<?php if(!empty($oauths['qq'])): ?><button class="btn"><i class="fa fa-qq"></i> 已绑定腾讯QQ账号</button>
+						<?php else: ?>
+						<a class="btn btn-primary" href="<?php echo U('api/oauth/bang',array('type'=>'qq'));?>"><i class="fa fa-qq"></i> 绑定腾讯QQ账号</a><?php endif; ?>
+						<?php if(!empty($oauths['sina'])): ?><button class="btn"><i class="fa fa-weibo"></i> 已绑定新浪微博账号</button>
+						<?php else: ?>
+						<a class="btn btn-primary" href="<?php echo U('api/oauth/bang',array('type'=>'sina'));?>"><i class="fa fa-weibo"></i> 绑定新浪微博账号</a><?php endif; ?>
 					</div>
-					
-					<div class="pager"><?php echo ($pager); ?></div>
 				</div>
 			</div>
 		</div>

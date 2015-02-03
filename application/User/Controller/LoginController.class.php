@@ -126,14 +126,17 @@ hello;
 		}
 	}
 	
-	
     //登录验证
     function dologin(){
-    	// if( $_SESSION['_verify_']['verify'] != strtolower($_POST['verify']) ){
-    	// 	$this->error("验证码错误！",U('user/login/index'));
-    	// }
-        var_dump($_POST);
-        
+
+    	if( $_SESSION['_verify_']['verify'] != strtolower($_POST['verify']) ){
+            $return = array();
+            $return['status'] = "error";
+            $return['info'] = "登陆错误！";
+            $return['data'] = "验证码错误！";
+    		$this->ajaxReturn($return);
+    	}
+
     	$users_model=M("Users");
     	$rules = array(
     			//array(验证字段,验证规则,错误提示,验证条件,附加规则,验证时间)
@@ -143,7 +146,11 @@ hello;
     	
     	);
     	if($users_model->validate($rules)->create()===false){
-    		$this->error($users_model->getError(),U('user/login/index'));
+            $return = array();
+            $return['status'] = "error";
+            $return['info'] = "登陆错误！";
+            $return['data'] = $users_model->getError();
+            $this->ajaxReturn($return);
     	}
     	
     	extract($_POST);
@@ -197,13 +204,19 @@ hello;
     										"-5"=>"Email不允许注册",
     										"-6"=>"该Email已经被注册",
     								);
-    								$this->error("同步用户失败--".$uc_register_errors[$uc_uid2],U('user/login/index'));
-    	
-    	
+                                    $return = array();
+                                    $return['status'] = "error";
+                                    $return['info'] = "登陆错误！";
+                                    $return['data'] = "同步用户失败--".$uc_register_errors[$uc_uid2];
+                                    $this->ajaxReturn($return);
     							}
     							$uc_uid=$uc_uid2;
     						}else{
-    							$this->error("密码错误！",U('user/login/index'));
+                                $return = array();
+                                $return['status'] = "error";
+                                $return['info'] = "登陆错误！";
+                                $return['data'] = "密码错误！";
+                                $this->ajaxReturn($return);
     						}
     					}
     						
@@ -213,16 +226,28 @@ hello;
     						if($result['user_pass'] == sp_password($password)){//本应用已经有这个用户,且密码正确，同步用户
     							$uc_user_edit_status=uc_user_edit($username,"",$password,"",1);
     							if($uc_user_edit_status<=0){
-    								$this->error("登陆错误！",U('user/login/index'));
+                                    $return = array();
+                                    $return['status'] = "error";
+                                    $return['info'] = "登陆错误！";
+                                    $return['data'] = "密码错误！";
+                                    $this->ajaxReturn($return);
     							}
     							list($uc_uid2)=uc_get_user($username);
     							$uc_uid=$uc_uid2;
     							$ucenter_old_user_login=true;
     						}else{
-    							$this->error("密码错误！",U('user/login/index'));
+    							$return = array();
+                                $return['status'] = "error";
+                                $return['info'] = "登陆错误！";
+                                $return['data'] = "密码错误！";
+                                $this->ajaxReturn($return);
     						}
     					}else{
-    						$this->error("密码错误！",U('user/login/index'));
+    						$return = array();
+                            $return['status'] = "error";
+                            $return['info'] = "登陆错误！";
+                            $return['data'] = "密码错误！";
+                            $this->ajaxReturn($return);
     					}
     	
     					break;
@@ -251,13 +276,29 @@ hello;
     			if($ucenter_old_user_login){
     				//$ucenter_old_user_login_msg="老用户请在跳转后，再次登陆";
     			}
-    				
-    			$this->success("登录验证成功！", $redirect);
+
+    			$return = array();
+                $return['status'] = "success";
+                $return['info'] = "登陆成功！";
+                $return['data'] = "登录验证成功！";
+                $return['url'] = $redirect;
+                $this->ajaxReturn($return);
+
     		}else{
-    			$this->error("密码错误！",U('user/login/index'));
+                $return = array();
+                $return['status'] = "error";
+                $return['info'] = "登陆错误！";
+                $return['data'] = "密码错误！";
+                $this->ajaxReturn($return);
     		}
     	}else{
-    		$this->error("用户名不存在！",U('user/login/index'));
+
+            $return = array();
+            $return['status'] = "error";
+            $return['info'] = "登陆错误！";
+            $return['data'] = "用户名不存在！";
+            $this->ajaxReturn($return);
+
     	}
     	 
     }

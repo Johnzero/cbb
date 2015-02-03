@@ -21,11 +21,11 @@ cultural.run(function($rootScope,  $location){
 			$scope.formData = {};
 			$scope.processForm = function() {
 				$http({
-			method  : 'POST',
-			url     : "{:u('user/login/dologin')}",
-			data    : $.param($scope.formData),  // pass in data as strings
-			headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
-			})
+					method  : 'POST',
+					url     : "{:u('user/login/dologin')}",
+					data    : $.param($scope.formData),  // pass in data as strings
+					headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+				})
 		.success(function(data) {
 		console.log(data);
 		if (!data.success) {
