@@ -30,7 +30,7 @@ class IndexController extends HomeBaseController {
     		include UC_CLIENT_ROOT."client.php";
     		echo uc_user_synlogout();
     	}
-    	session("user",null);//只有前台用户退出
+    	session("user",null);
     	redirect(__ROOT__."/");
     }
 	

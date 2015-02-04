@@ -29,12 +29,27 @@ class ProfileController extends MemberbaseController {
 				if ($this->users_model->save()!==false) {
 					$user=$this->users_model->find($userid);
 					sp_update_current_user($user);
-					$this->success("保存成功！",U("user/profile/edit"));
+
+                    $return = array();
+                    $return['url'] = U("user/profile/edit");
+                    $return['status'] = "success";
+                    $return['info'] = "编辑个人资料";
+                    $return['data'] = "保存成功！";
+                    $this->ajaxReturn($return);
+
 				} else {
-					$this->error("保存失败！");
+                    $return = array();
+                    $return['status'] = "error";
+                    $return['info'] = "编辑个人资料";
+                    $return['data'] = "保存失败！";
+                    $this->ajaxReturn($return);
 				}
 			} else {
-				$this->error($this->users_model->getError());
+                $return = array();
+                $return['status'] = "error";
+                $return['info'] = "编辑个人资料";
+                $return['data'] = $this->users_model->getError();
+                $this->ajaxReturn($return);
 			}
     	}
     	

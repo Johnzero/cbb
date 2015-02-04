@@ -2,6 +2,7 @@
     <div class="row">
         <div class="span3">
             <div class="list-group">
+	<a class="list-group-item" href="<?php echo u('user/center/index');?>"><i class="fa fa-list-alt"></i> 个人中心</a>
 	<a class="list-group-item" href="<?php echo u('user/profile/edit');?>"><i class="fa fa-list-alt"></i> 修改资料</a>
 	<a class="list-group-item" href="<?php echo u('user/profile/password');?>"><i class="fa fa-lock"></i> 修改密码</a>
 	<a class="list-group-item" href="<?php echo u('user/profile/avatar');?>"><i class="fa fa-user"></i> 编辑头像</a>
@@ -17,39 +18,38 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="one">
-                        <form class="form-horizontal J_ajaxForm" action="<?php echo u('profile/edit_post');?>" method="post">
+                        <form class="form-horizontal" action="<?php echo u('profile/edit_post');?>" ng-submit="profileEdit($event)" class="form-horizontal" ng-controller="profileEditCtl">
                             <div class="control-group">
                                 <label class="control-label" for="input-user_nicename">昵称</label>
                                 <div class="controls">
-                                    <input type="text" id="input-user_nicename" placeholder="昵称" name="user_nicename" value="<?php echo ($user_nicename); ?>">
+                                    <input type="text" id="input-user_nicename" placeholder="昵称" name="user_nicename" value="<?php echo ($user_nicename); ?>" ng-model="profileForm.user_nicename">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="input-sex">性别</label>
                                 <div class="controls">
                                     <?php $sexs=array("0"=>"保密","1"=>"男","2"=>"女"); ?>
-                                    <select id="input-sex" name="sex">
-                                        <?php if(is_array($sexs)): foreach($sexs as $key=>$vo): $sexselected=$key==$sex?"selected":""; ?>
-                                        <option value="<?php echo ($key); ?>" <?php echo ($sexselected); ?>><?php echo ($vo); ?></option><?php endforeach; endif; ?>
+                                    <select id="input-sex" name="sex" ng-model="profileForm.sex" ng-init="profileForm.sex='<?php echo ($sex); ?>'">
+                                        <?php if(is_array($sexs)): foreach($sexs as $key=>$vo): ?><option value="<?php echo ($key); ?>"><?php echo ($vo); ?></option><?php endforeach; endif; ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="input-birthday">生日</label>
                                 <div class="controls">
-                                    <input class="J_date" type="text" id="input-birthday" placeholder="2013-01-04" name="birthday" value="<?php echo ($birthday); ?>">
+                                    <input class="J_date" type="text" id="input-birthday" placeholder="2013-01-04" name="birthday" value="<?php echo ($birthday); ?>" ng-model="profileForm.birthday">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="input-user_url">公司网址</label>
                                 <div class="controls">
-                                    <input type="text" id="input-user_url" name="user_url" value="<?php echo ($user_url); ?>">
+                                    <input type="text" id="input-user_url" name="user_url" value="<?php echo ($user_url); ?>" ng-model="profileForm.user_url">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="input-signature">个性签名</label>
                                 <div class="controls">
-                                    <textarea id="input-signature" placeholder="个性签名" name="signature"><?php echo ($signature); ?></textarea>
+                                    <textarea id="input-signature" placeholder="个性签名" name="signature" ng-model="profileForm.signature"><?php echo ($signature); ?></textarea>
                                 </div>
                             </div>
                             <div class="control-group">

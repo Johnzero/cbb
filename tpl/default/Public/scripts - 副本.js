@@ -15,6 +15,30 @@ cultural.run(function($rootScope,  $location){
 		                 console.log(fromState);
 		        });
 		})
+
+		// testControllers.controller('LogoutController', [
+	//     '$scope', '$http', '$route',
+	//     function($scope, $http, $route) {
+	//         $scope.logout = function() {
+	//             $http.get('/api/authentication/logout').success(function () {
+	//                 $route.reload();
+	//             });
+
+	//         };
+	//     }
+	// ]);
+
+		cultural.run(function($rootScope){
+	    $rootScope
+	        .$on('$stateChangeSuccess',
+	            function(event, toState, toParams, fromState, fromParams){
+	                if ($rootScope && $rootScope.current && $rootScope.current.$rootScope.templateUrl.indexOf('dataEntry') > 0) {
+				        $rootScope.current = lastRoute; 
+				    }
+	        });
+	})
+
+		
 		cultural.controller("onSearchSubmit", function ($scope, $http) {
 		});
 		cultural.controller("formController", function ($scope, $http) {
@@ -65,3 +89,25 @@ cultural.directive('goBack', function($window){
 $http.post('form.php', JSON.stringify(data)).success(function(){
 				/*success callback*/
 			});
+
+
+$urlRouterProvider
+	.otherwise(function($injector, $location){
+		$injector.invoke(['$state', function($state) {
+			window.location = $location['$$absUrl'];
+		}]);
+	});
+
+
+
+ //    cultural.run(function($rootScope,  $location){
+	//     $rootScope.$on('$locationChangeSuccess', function() {
+	//         $rootScope.actualLocation = $location.path();
+	//     });
+	//     $rootScope.$watch(function () {
+	//     	return $location.path()
+	//     }, function (newLocation, oldLocation) {
+	//     		// console.log(newLocation);
+	//             // console.log(oldLocation);
+	//     });
+	// });

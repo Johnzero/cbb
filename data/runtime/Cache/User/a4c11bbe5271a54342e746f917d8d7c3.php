@@ -21,39 +21,7 @@
 		<![endif]-->
 		<link href="/tpl/default/Public/css/style.css" rel="stylesheet">
 		<style type="text/css">
-			/*html{filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);-webkit-filter: grayscale(1);}*/
-			#backtotop{position: fixed;bottom: 50px;right:20px;display: none;cursor: pointer;font-size: 50px;z-index: 9999;}
-			#backtotop:hover{color:#333;}
-			.caption-wraper{position: absolute;left:50%;bottom:2em;}
-			.caption-wraper .caption{
-				position: relative;left:-50%;
-				background-color: rgba(0, 0, 0, 0.54);
-				padding: 0.4em 1em;
-				color:#fff;
-				-webkit-border-radius: 1.2em;
-				-moz-border-radius: 1.2em;
-				-ms-border-radius: 1.2em;
-				-o-border-radius: 1.2em;
-				border-radius: 1.2em;
-			}
-			@media (max-width: 767px){
-				.sy-box{margin: 12px -20px 0 -20px;}
-				.caption-wraper{left:0;bottom: 0.4em;}
-				.caption-wraper .caption{
-				left: 0;
-				padding: 0.2em 0.4em;
-				font-size: 0.92em;
-				-webkit-border-radius: 0;
-				-moz-border-radius: 0;
-				-ms-border-radius: 0;
-				-o-border-radius: 0;
-				border-radius: 0;}
-			}
-			#layout{min-height:400px; height:auto!important; height:400px;}
-			.tf-spin {
-				text-align: center;
-				margin-top: 10%;
-			}
+			
 		</style>
 		<script type="text/javascript">
 			var GV = {
@@ -134,14 +102,8 @@
 	var cultural = angular.module('cultural', ['ui.router','angular-loading-bar','ngAnimate']);
 	
 	cultural.config(function(cfpLoadingBarProvider,$stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
-		// $urlRouterProvider
-
-		// .otherwise(function($injector, $location){
-		// 	$injector.invoke(['$state', function($state) {
-		// 		// window.location = $location['$$absUrl'];
-		// 	}]);
-		// });
-		// $urlRouterProvider.otherwise('/');
+		
+		$urlRouterProvider.otherwise('/');
 
 		$stateProvider
 		.state("/", {
@@ -187,17 +149,27 @@
 		$locationProvider.html5Mode(true);
 		$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 		$httpProvider.defaults.headers.common['X-Requested-With'] = 'application/angularjs';
-		
 	})
+
+	cultural.directive('input', function ($parse) {
+		return {
+			restrict: 'E',
+			require: '?ngModel',
+			link: function (scope, element, attrs) {
+				if (attrs.ngModel && attrs.value) {
+			    	$parse(attrs.ngModel).assign(scope, attrs.value);
+				}
+			}
+		};
+	});
 	
 	cultural.controller('searchCtl', function ($scope, $state, $location) {
-		// $location.path('/').replace();
 		$scope.onSearchSubmit = function() {
 			$state.go("search", {keyword: $scope.searchForm.keyword}, {reload:true,inherit:true});
 		}
 	});
 
-	cultural.controller('loginCtl', function ($scope, $state, $http) {
+	cultural.controller('loginCtl', function ($scope, $http, $state, $location, $window) {
 		$scope.onloginSubmit = function($event) {
 			if ( !$scope.loginForm ) {
 				sweetAlert("登陆错误！", "请填写内容!", "error");
@@ -205,13 +177,13 @@
 			}else if ( !$scope.loginForm.username ) {
 				sweetAlert("登陆错误！", "请填写用户名!", "error");
 				return;
-			}else if ( !$scope.loginForm.password ) {
-				sweetAlert("登陆错误！", "请输入密码!", "error");
+			}else if ( !$scope.loginForm.verify ) {
+				sweetAlert("登陆错误！", "请输入验证码!", "error");
 				return;
 			}else if ( !$scope.loginForm.password ) {
 				sweetAlert("登陆错误！", "请输入密码!", "error");
 				return;
-			}else if ( !$scope.loginForm.password ) {
+			}else if ( !$scope.loginForm.terms ) {
 				sweetAlert("登陆错误！", "请同意网站内容服务条款!", "error");
 				return;
 			}
@@ -225,8 +197,34 @@
 			.success(function(data) {
 
 				sweetAlert(data.info, data.data, data.status);
+				if ( data.status == "success" ) {
+					// $location.path(data.referer).replace();
+					// $window.location.reload(true);
+					// $state.go("user", {"actionName":"center","tplName":"index"}, {reload: true});
+					$window.location.href = data.referer;
+				}
+			})
+			.error( function () {
+				sweetAlert("登陆错误！", "网络异常，请稍后重试！","error");
+			});
+
+			$event.preventDefault();
+		}
+	});
+
+	cultural.controller('profileEditCtl', function ($scope, $http, $location) {
+		// $scope.profileForm.user_nicename = '';
+		$scope.profileEdit = function($event) {
+			$http({
+				method  : 'POST',
+				url     : "<?php echo u('user/profile/edit_post');?>",
+				data    : $.param($scope.profileForm),  
+				headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+			})
+			.success(function(data) {
+				sweetAlert(data.info, data.data, data.status);
 				if ( data.status == "success") {
-					location.href = data.referer;
+					$location.path(data.referer).replace();
 				}
 			})
 			.error( function () {

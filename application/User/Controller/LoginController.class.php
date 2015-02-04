@@ -33,10 +33,9 @@ class LoginController extends HomeBaseController {
 			}else{
 				$users_model=M("Users");
 				$rules = array(
-						//array(验证字段,验证规则,错误提示,验证条件,附加规则,验证时间)
-						array('email', 'require', '邮箱不能为空！', 1 ),
-						array('email','email','邮箱格式不正确！',1), // 验证email字段格式是否正确
-						
+					//array(验证字段,验证规则,错误提示,验证条件,附加规则,验证时间)
+					array('email', 'require', '邮箱不能为空！', 1 ),
+					array('email','email','邮箱格式不正确！',1), // 验证email字段格式是否正确
 				);
 				if($users_model->validate($rules)->create()===false){
 					$this->error($users_model->getError());
@@ -276,12 +275,15 @@ hello;
     			if($ucenter_old_user_login){
     				//$ucenter_old_user_login_msg="老用户请在跳转后，再次登陆";
     			}
-
+                if( $redirect = "/" ) {
+                    $redirect = "/user/center/index.html";
+                }
     			$return = array();
                 $return['status'] = "success";
                 $return['info'] = "登陆成功！";
                 $return['data'] = "登录验证成功！";
                 $return['url'] = $redirect;
+
                 $this->ajaxReturn($return);
 
     		}else{
