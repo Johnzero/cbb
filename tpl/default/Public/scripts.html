@@ -1,17 +1,25 @@
 <!-- Javascript -->
-<script src="__ROOT__/statics/js/sweetalert/sweet-alert.min.js"></script>
 <link rel="stylesheet" href="__ROOT__/statics/js/sweetalert/sweet-alert.css">
-<script src="__ROOT__/statics/js/angular/angular.js"></script>
-<script src="__ROOT__/statics/js/angular/angular-animate.js"></script>
+<script src="__ROOT__/statics/js/sweetalert/sweet-alert.min.js"></script>
+<script src="http://cdn.bootcss.com/angular.js/1.2.28/angular.js"></script>
+<!-- <script src="__ROOT__/statics/js/angular/angular.js"></script> -->
 <script src="__ROOT__/statics/js/angular/angular-ui-router.js"></script>
+<script src="__ROOT__/statics/js/angular/angular-file-upload.min.js"></script>
 <script src="__ROOT__/statics/js/angular/loading-bar.js"></script>
 <link href='__ROOT__/statics/js/angular/loading-bar.css' rel='stylesheet' />
+
 <script type="text/javascript">
-	var cultural = angular.module('cultural', ['ui.router','angular-loading-bar','ngAnimate']);
 	
+	var cultural = angular.module('cultural', ['ui.router','angular-loading-bar','angularFileUpload']);
 	cultural.config(function(cfpLoadingBarProvider,$stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
 		
-		$urlRouterProvider.otherwise('/');
+		$urlRouterProvider.otherwise(function($injector, $location){
+			$injector.invoke(['$state', function($state) {
+				window.location = $location['$$absUrl'];
+			}]);
+		});
+
+		$urlRouterProvider.when('', '/');
 
 		$stateProvider
 		.state("/", {
@@ -55,6 +63,7 @@
 		})
 		cfpLoadingBarProvider.includeSpinner = true;
 		$locationProvider.html5Mode(true);
+		$locationProvider.hashPrefix('!');
 		$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 		$httpProvider.defaults.headers.common['X-Requested-With'] = 'application/angularjs';
 	})
@@ -75,6 +84,19 @@
 		$scope.onSearchSubmit = function() {
 			$state.go("search", {keyword: $scope.searchForm.keyword}, {reload:true,inherit:true});
 		}
+	});
+
+	cultural.controller('avatarCtl', function ($scope, $state, FileUploader) {
+		var uploader = $scope.uploader = new FileUploader({
+            url: "{:u('profile/avatar_upload')}"
+        });
+		uploader.onSuccessItem  = function(item, response, status, headers) {
+			if ( response.status == "error" ) {
+				sweetAlert(response.info, response.data, response.status);
+			}else {
+				$(".headicon").attr("src","/data/upload/avatar/"+response.data);
+			}
+        };
 	});
 
 	cultural.controller('loginCtl', function ($scope, $http, $state, $location, $window) {
@@ -121,13 +143,12 @@
 	});
 
 	cultural.controller('profileEditCtl', function ($scope, $http, $location) {
-		// $scope.profileForm.user_nicename = '';
 		$scope.profileEdit = function($event) {
 			$http({
 				method  : 'POST',
 				url     : "{:u('user/profile/edit_post')}",
 				data    : $.param($scope.profileForm),  
-				headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+				headers : {'Content-Type': 'application/x-www-form-urlencoded'}
 			})
 			.success(function(data) {
 				sweetAlert(data.info, data.data, data.status);
@@ -142,10 +163,98 @@
 			$event.preventDefault();
 		}
 	});
+
+	cultural.controller('passeditCtl', function ($scope, $http, $location) {
+		$scope.passEdit = function($event) {
+			if ( !$scope.passeditForm ) {
+				sweetAlert("修改密码", "请填写内容!", "error");
+				return;
+			}
+			$http({
+				method  : 'POST',
+				url     : "{:u('profile/password_post')}",
+				data    : $.param($scope.passeditForm),  
+				headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+			})
+			.success(function(data) {
+				sweetAlert(data.info, data.data, data.status);
+				if ( data.status == "success") {
+					$location.path(data.referer).replace();
+				}
+			})
+			.error( function () {
+				sweetAlert("网络错误！", "网络异常，请稍后重试！","error");
+			});
+			$event.preventDefault();
+		}
+	});
 		
-	</script>
-	<script type="text/javascript">
+	cultural.controller('companyCtl', function ($scope, $http, $state, $location, $window) {
+		$scope.companySubmit = function($event) {
+			// $("#test").submit();
+			// if ( !$scope.companyForm ) {
+			// 	sweetAlert("认证错误！", "请填写完整信息!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.name ) {
+			// 	sweetAlert("认证错误！", "请填写公司名称!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.location ) {
+			// 	sweetAlert("认证错误！", "请填写公司地址!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.tel ) {
+			// 	sweetAlert("认证错误！", "请填写公司电话!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.contact ) {
+			// 	sweetAlert("认证错误！", "请填写联系人姓名!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.ctel ) {
+			// 	sweetAlert("认证错误！", "请填写联系人电话!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.email ) {
+			// 	sweetAlert("认证错误！", "请填写电子邮箱!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.code ) {
+			// 	sweetAlert("认证错误！", "请填写营业执照号!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.group ) {
+			// 	sweetAlert("认证错误！", "请填写组织机构代码!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.code_pic ) {
+			// 	sweetAlert("认证错误！", "请上传营业执照电子版!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.group_pic ) {
+			// 	sweetAlert("认证错误！", "请上传组织机构电子版!", "error");
+			// 	return;
+			// }
+
+			// $http({
+			// 	method  : 'POST',
+			// 	url     : "{:u('user/login/dologin')}",
+			// 	data    : $.param($scope.companyForm),  // pass in data as strings
+			// 	headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+			// })
+			// .success(function(data) {
+
+			// 	sweetAlert(data.info, data.data, data.status);
+			// 	if ( data.status == "success" ) {
+			// 		// $location.path(data.referer).replace();
+			// 		// $window.location.reload(true);
+			// 		// $state.go("user", {"actionName":"center","tplName":"index"}, {reload: true});
+			// 		$window.location.href = data.referer;
+			// 	}
+			// })
+			// .error( function () {
+			// 	sweetAlert("登陆错误！", "网络异常，请稍后重试！","error");
+			// });
+
+			$event.preventDefault();
+		}
+	});
+
+</script>
+<script type="text/javascript">
 	$(function(){
+
 		$('body').on('touchstart.dropdown', '.dropdown-menu', function (e) { e.stopPropagation(); });
 		
 		;(function($){
@@ -176,8 +285,29 @@
 				});
 			};
 		})(jQuery);
-		
 		$("#backtotop").totop();
-		
+
+		if (document.createElement('input').placeholder !== '') {
+	        $('[placeholder]').focus(function () {
+	            var input = $(this);
+	            if (input.val() == input.attr('placeholder')) {
+	                input.val('');
+	                input.removeClass('placeholder');
+	            }
+	        }).blur(function () {
+	            var input = $(this);
+	            if (input.val() == '' || input.val() == input.attr('placeholder')) {
+	                input.addClass('placeholder');
+	                input.val(input.attr('placeholder'));
+	            }
+	        }).blur().parents('form').submit(function () {
+	            $(this).find('[placeholder]').each(function () {
+	                var input = $(this);
+	                if (input.val() == input.attr('placeholder')) {
+	                    input.val('');
+	                }
+	            });
+	        });
+	    }
 	});
-	</script>
+</script>

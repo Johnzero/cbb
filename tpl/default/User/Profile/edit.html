@@ -1,3 +1,18 @@
+<style type="text/css">
+    .uploaded_avatar_area{
+        margin-top: 20px;
+    }
+    .uploaded_avatar_btns{
+        margin-top: 20px;
+    }
+    #avatar .headicon {
+        width:120px;
+    }
+    #avatar {
+        display: inline-block;
+        float: right;
+    }
+</style>
 <div class="container tc-main">
     <div class="row">
         <div class="span3">
@@ -10,13 +25,14 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="one">
-                        <form class="form-horizontal" action="{:u('profile/edit_post')}" ng-submit="profileEdit($event)" class="form-horizontal" ng-controller="profileEditCtl">
+                        <form class="form-horizontal" action="{:u('profile/edit_post')}" ng-submit="profileEdit($event)" class="form-horizontal" ng-controller="profileEditCtl" style="float: left">
                             <div class="control-group">
                                 <label class="control-label" for="input-user_nicename">昵称</label>
                                 <div class="controls">
                                     <input type="text" id="input-user_nicename" placeholder="昵称" name="user_nicename" value="{$user_nicename}" ng-model="profileForm.user_nicename">
                                 </div>
                             </div>
+
                             <div class="control-group">
                                 <label class="control-label" for="input-sex">性别</label>
                                 <div class="controls">
@@ -45,15 +61,32 @@
                             <div class="control-group">
                                 <label class="control-label" for="input-signature">个性签名</label>
                                 <div class="controls">
-                                    <textarea id="input-signature" placeholder="个性签名" name="signature" ng-model="profileForm.signature">{$signature}</textarea>
+                                    <textarea id="input-signature" placeholder="个性签名" name="signature" ng-model="profileForm.signature" ng-init="profileForm.signature='{$signature}'">{$signature}</textarea>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <div class="controls">
-                                    <button type="submit" class="btn J_ajax_submit_btn">保存</button>
+                                    <button type="submit" class="btn">保存</button>
                                 </div>
                             </div>
                         </form>
+                        <div class="control-group" id="avatar" ng-controller="avatarCtl">
+                            <div class="tab-pane active">
+                                <if condition="empty($avatar)">
+                                    <img src="__ROOT__/statics/images/headicon_128.png" class="headicon"/>
+                                <else/>
+                                    <img src="{:sp_get_user_avatar_url($avatar)}" class="headicon"/>
+                                </if>
+                                <input type="file"  nv-file-select uploader="uploader" name="file" value="{$avatar}" ng-model="profileForm.avatar" id="avatar_uploder"/>
+                                <div ng-repeat="item in uploader.queue">
+                                    文件名: <span ng-bind="item.file.name"></span><br/>
+                                    <button class="btn btn-success btn-xs" ng-click="item.upload()">上传</button>
+                                </div>
+                                <div class="progress" style="">
+                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

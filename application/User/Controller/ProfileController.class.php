@@ -23,8 +23,8 @@ class ProfileController extends MemberbaseController {
     
     public function edit_post() {
     	if(IS_POST){
-    		$userid=sp_get_current_userid();
-    		$_POST['id']=$userid;
+    		$userid = sp_get_current_userid();
+    		$_POST['id'] = $userid;
     		if ($this->users_model->create()) {
 				if ($this->users_model->save()!==false) {
 					$user=$this->users_model->find($userid);
@@ -65,10 +65,18 @@ class ProfileController extends MemberbaseController {
     public function password_post() {
     	if (IS_POST) {
     		if(empty($_POST['old_password'])){
-    			$this->error("原始密码不能为空！");
+                $return = array();
+                $return['status'] = "error";
+                $return['info'] = "修改密码";
+                $return['data'] = "原始密码不能为空！";
+                $this->ajaxReturn($return);
     		}
     		if(empty($_POST['password'])){
-    			$this->error("新密码不能为空！");
+                $return = array();
+                $return['status'] = "error";
+                $return['info'] = "修改密码";
+                $return['data'] = "新密码不能为空！";
+                $this->ajaxReturn($return);
     		}
     		$uid=sp_get_current_userid();
     		$admin=$this->users_model->where("id=$uid")->find();
@@ -77,23 +85,43 @@ class ProfileController extends MemberbaseController {
     		if(sp_password($old_password)==$admin['user_pass']){
     			if($_POST['password']==$_POST['repassword']){
     				if($admin['user_pass']==sp_password($password)){
-    					$this->error("新密码不能和原始密码相同！");
+                        $return = array();
+                        $return['status'] = "error";
+                        $return['info'] = "修改密码";
+                        $return['data'] = "新密码不能和原始密码相同！";
+                        $this->ajaxReturn($return);
     				}else{
     					$data['user_pass']=sp_password($password);
     					$data['id']=$uid;
     					$r=$this->users_model->save($data);
     					if ($r!==false) {
-    						$this->success("修改成功！");
+                            $return = array();
+                            $return['status'] = "success";
+                            $return['info'] = "修改密码";
+                            $return['data'] = "修改成功！";
+                            $this->ajaxReturn($return);
     					} else {
-    						$this->error("修改失败！");
+                            $return = array();
+                            $return['status'] = "error";
+                            $return['info'] = "修改密码";
+                            $return['data'] = "修改失败！";
+                            $this->ajaxReturn($return);
     					}
     				}
     			}else{
-    				$this->error("密码输入不一致！");
+                    $return = array();
+                    $return['status'] = "error";
+                    $return['info'] = "修改密码";
+                    $return['data'] = "密码输入不一致！";
+                    $this->ajaxReturn($return);
     			}
     	
     		}else{
-    			$this->error("原始密码不正确！");
+                $return = array();
+                $return['status'] = "error";
+                $return['info'] = "修改密码";
+                $return['data'] = "原始密码不正确！";
+                $this->ajaxReturn($return);
     		}
     	}
     	 
@@ -120,86 +148,53 @@ class ProfileController extends MemberbaseController {
     }
     
     function avatar_upload(){
+        $userid=sp_get_current_userid();
     	$config=array(
-    			'rootPath' => './'.C("UPLOADPATH"),
-    			'savePath' => './avatar/',
-    			'maxSize' => 512000,//500K
-    			'saveName'   =>    array('uniqid',''),
-    			'exts'       =>    array('jpg', 'png', 'jpeg'),
-    			'autoSub'    =>    false,
+			'rootPath' => './'.C("UPLOADPATH"),
+			'savePath' => './avatar/',
+			'maxSize' => 512000,//500K
+			'saveName'   =>    array('uniqid',''),
+			'exts'       =>    array('jpg', 'png', 'jpeg'),
+			'autoSub'    =>    false,
     	);
     	$upload = new \Think\Upload($config);//
     	$info=$upload->upload();
-    	//开始上传
+
     	if ($info) {
-    	//上传成功
-    	//写入附件数据库信息
-    		$first=array_shift($info);
-    		$file=$first['savename'];
-    		$_SESSION['avatar']=$file;
-    		$this->ajaxReturn(array("file"=>$file),"上传成功！",1,"AJAX_UPLOAD");
+    		$info = array_shift($info);
+    		$avatar = $info['savename'];
+    		$_SESSION['avatar'] = $avatar;
+            $result=$this->users_model->where(array("id"=>$userid))->save(array("avatar"=>$avatar));
+            $_SESSION['user']['avatar']=$avatar;
+
+    		$return = array();
+            $return['status'] = "success";
+            $return['info'] = "上传成功！";
+            $return['data'] = $avatar;
+            $this->ajaxReturn($return);
     	} else {
-    		//上传失败，返回错误
-    		$this->ajaxReturn(array(),$upload->getError(),0,"AJAX_UPLOAD");
+            $return = array();
+            $return['status'] = "error";
+            $return['info'] = "上传错误！";
+            $return['data'] = $upload->getError();
+            $this->ajaxReturn($return);
     	}
     }
-    
-    function avatar_update(){
-    	if(!empty($_SESSION['avatar'])){
-    		$targ_w = $_POST['w'];
-    		$targ_h = $_POST['h'];
-    		$jpeg_quality = 90;
-    		
-    		$avatar_dir=C("UPLOADPATH")."avatar/";
-    		$avatar=$_SESSION['avatar'];
-    		
-    		$src = $avatar_dir.$avatar;
-    		
-    		$imginfo=getimagesize($src);
-    		
-    		$ext=array("2"=>".jpg","3"=>".png");
-    		
-    		if(empty($imginfo)){
-    			$this->error("图像非法！");
-    		}
-    		
-    		if(! array_key_exists($imginfo[2], $ext)){
-    			$this->error("文件类型不支持！");
-    		}
-    		
-    		$createmethods=array("2"=>"imagecreatefromjpeg","3"=>"imagecreatefrompng");
-    		
-    		$createmethod=$createmethods[$imginfo[2]];
-    		
-    		$img_r = $createmethod($src);
-    		
-    		imagesavealpha($img_r, true);
-    		$dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
-    		
-    		$color=imagecolorallocate($dst_r,255,255,255);
-    		imagecolortransparent($dst_r,$color);
-    		imagefill($dst_r,0,0,$color);
-    		
-    		imagecopyresampled($dst_r,$img_r,0,0,$_POST['x'],$_POST['y'],
-    		$targ_w,$targ_h,$targ_w,$targ_h);
-    		
-    		$result=imagepng($dst_r,$src,0);
-    		if($result){
-    			$userid=sp_get_current_userid();
-    			$result=$this->users_model->where(array("id"=>$userid))->save(array("avatar"=>$avatar));
-    			$_SESSION['user']['avatar']=$avatar;
-    			if($result){
-    				$this->success("头像更新成功！");
-    			}else{
-    				$this->error("头像更新失败！");
-    			}
-    		}else{
-    			$this->success("头像文件保存失败！");
-    		}
-    		
-    	}
+
+    function company(){
+
+        $userid=sp_get_current_userid();
+        $user=$this->users_model->where(array("id"=>$userid))->find();
+        $this->assign($user);
+
+        if( IS_POST ) {
+            var_dump($_POST);
+            exit;
+        }
+
+        $this->render();
+
     }
-    
     
 }
     

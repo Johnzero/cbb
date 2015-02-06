@@ -71,8 +71,8 @@
 </div>
 </div>
 
-<link href="/tpl/default/Public/css/slippry/slippry.css" rel="stylesheet">
-<script src="/tpl/default/Public/js/slippry.min.js"></script>
+<link href="/statics/js/slippry/slippry.css" rel="stylesheet">
+<script src="/statics/js/slippry/slippry.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
 	var demo1 = $("#homeslider").slippry({

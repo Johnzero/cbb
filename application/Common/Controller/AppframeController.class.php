@@ -87,9 +87,6 @@ class AppframeController extends Controller {
                 tag('ajax_return', $return);
         }
     }
-
-
-
     
     //分页
     protected function page($Total_Size = 1, $Page_Size = 0, $Current_Page = 1, $listRows = 6, $PageParam = '', $PageLink = '', $Static = FALSE) {
@@ -155,60 +152,6 @@ class AppframeController extends Controller {
     	}
     }
 
-    protected function render($tplname) {
-        if (array_key_exists('HTTP_X_REQUESTED_WITH', $_SERVER) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'application/angularjs') {
-            $this->display($tplname); 
-        } else {
-            layout(true);
-            $this->display("@empty");
-        }
-        
-    }
-
-    protected function error($message='',$jumpUrl='',$ajax=false) {
-        $this->dispatchJump_self($message,0,$jumpUrl,$ajax);
-    }
-
-    protected function success($message='',$jumpUrl='',$ajax=false) {
-        $this->dispatchJump_self($message,1,$jumpUrl,$ajax);
-    }
-
-    private function dispatchJump_self($message,$status=1,$jumpUrl='',$ajax=false) {
-        if(true === $ajax || IS_AJAX) {// AJAX提交
-            $data           =   is_array($ajax)?$ajax:array();
-            $data['info']   =   $message;
-            $data['status'] =   $status;
-            $data['url']    =   $jumpUrl;
-            $this->ajaxReturn($data);
-        }
-        
-        if(is_int($ajax)) $this->assign('waitSecond',$ajax);
-        if(!empty($jumpUrl)) $this->assign('jumpUrl',$jumpUrl);
-        // 提示标题
-        $this->assign('msgTitle',$status? L('_OPERATION_SUCCESS_') : L('_OPERATION_FAIL_'));
-        //如果设置了关闭窗口，则提示完毕后自动关闭窗口
-        if($this->get('closeWin'))    $this->assign('jumpUrl','javascript:window.close();');
-        $this->assign('status',$status);   // 状态
-        //保证输出不受静态缓存影响
-        C('HTML_CACHE_ON',false);
-        if($status) { //发送成功信息
-            $this->assign('message',$message);// 提示信息
-            // 成功操作后默认停留1秒
-            if(!isset($this->waitSecond))    $this->assign('waitSecond','1');
-            // 默认操作成功自动返回操作前页面
-            if(!isset($this->jumpUrl)) $this->assign("jumpUrl",$_SERVER["HTTP_REFERER"]);
-            $this->render('@success');
-            exit;
-        }else{
-            $this->assign('error',$message);// 提示信息
-            //发生错误时候默认停留3秒
-            if(!isset($this->waitSecond))    $this->assign('waitSecond','3');
-            // 默认发生错误的话自动返回上页
-            if(!isset($this->jumpUrl)) $this->assign('jumpUrl',"javascript:history.back(-1);");
-            $this->render("@error");
-            exit;
-        }
-    }
 }
 
 ?>

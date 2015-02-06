@@ -9,12 +9,6 @@
         }
     });
 
-    if ($.browser.msie) {
-        //ie 都不缓存
-        $.ajaxSetup({
-            cache: false
-        });
-    }
 
     //不支持placeholder浏览器下对placeholder进行处理
     if (document.createElement('input').placeholder !== '') {

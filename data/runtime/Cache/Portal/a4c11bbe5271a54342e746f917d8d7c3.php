@@ -7,22 +7,16 @@
 		<?php $portal_index_lastnews=2; $portal_hot_articles="1,2"; $portal_last_post="1,2"; $tmpl=sp_get_theme_path(); ?>
 		<base href="/">
 		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':8080/livereload.js?snipver=1"></' + 'script>')</script>
-		<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<!--[if !IE]>
+			<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':8080/livereload.js?snipver=1"></' + 'script>')</script>
 		<![endif]-->
-		<link href="/tpl/default/Public/simpleboot/themes/cmf/theme.min.css" rel="stylesheet">
-		<link href="/tpl/default/Public/simpleboot/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-		<link href="/tpl/default/Public/simpleboot/font-awesome/4.2.0/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
+		<link href="/statics/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/statics/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
 		<!--[if IE 7]>
-		<link rel="stylesheet" href="/tpl/default/Public/simpleboot/font-awesome/4.2.0/css/font-awesome-ie7.min.css">
+		<link rel="stylesheet" href="/statics/font-awesome/css/font-awesome-ie7.min.css">
 		<![endif]-->
-		<link href="/tpl/default/Public/css/style.css" rel="stylesheet">
-		<style type="text/css">
-			
-		</style>
+		<link href="/statics/css/style.css" rel="stylesheet">
 		<script type="text/javascript">
 			var GV = {
 				DIMAUB: "/",
@@ -30,10 +24,24 @@
 				TOKEN: ""
 			};
 		</script>
+		<!--[if IE]>
+			<script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
+	        <script src="http://nervgh.github.io/js/es5-sham.min.js"></script>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	        <script src="../console-sham.js"></script>
+		 	<script src="/statics/js/json2.js"></script>
+			<script src="/statics/js/angular/es5-shim.min.js"></script>
+			<script>
+				document.createElement('ng-include');
+				document.createElement('ng-pluralize');
+				document.createElement('ng-view');
+				document.createElement('ng:include');
+				document.createElement('ng:pluralize');
+				document.createElement('ng:view');
+			</script>
+		<![endif]-->
 		<script src="/statics/js/jquery.js"></script>
-		<script src="/tpl/default/Public/simpleboot/bootstrap/js/bootstrap.min.js"></script>
-		<script src="/statics/js/wind.js"></script>
-		<script src="/statics/js/frontend.js"></script>
+		<script src="/statics/bootstrap/js/bootstrap.min.js"></script>
 	</head>
 	<body ng-app="cultural" class="ng-app:cultural" id="ng-app">
 		<div class="navbar navbar-fixed-top">
@@ -44,14 +52,14 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a class="brand" href="/" target="_self"><img src="/tpl/default/Public/images/logo.png"/></a>
+			<a class="brand" href="/" target="_self"><img src="/statics/images/logo.png"/></a>
 			<div class="nav-collapse collapse" id="main-menu">
 				<?php
  $effected_id=""; $filetpl="<a href='\$href' target='\$target'>\$label</a>"; $foldertpl="<a href='\$href' target='\$target' class='dropdown-toggle' data-toggle='dropdown'>\$label <b class='caret'></b></a>"; $ul_class="dropdown-menu" ; $li_class="" ; $style="nav"; $showlevel=6; $dropdown='dropdown'; echo sp_get_menu("main",$effected_id,$filetpl,$foldertpl,$ul_class,$li_class,$style,$showlevel,$dropdown); ?>
 				<ul class="nav pull-right" id="main-menu-left">
 					<li class="dropdown">
 						<?php if(sp_is_user_login()): ?><a class="dropdown-toggle user" data-toggle="dropdown" href="#">
-							<?php if(empty($user['avatar'])): ?><img src="/tpl/default//Public/images/headicon.png" class="headicon"/>
+							<?php if(empty($user['avatar'])): ?><img src="/statics/images/headicon.png" class="headicon"/>
 							<?php else: ?>
 							<img src="<?php echo sp_get_user_avatar_url($user['avatar']);?>" class="headicon"/><?php endif; ?>
 						<?php echo ($user["user_nicename"]); ?><b class="caret"></b></a>
@@ -62,7 +70,7 @@
 						</ul>
 						<?php else: ?>
 						<a class="dropdown-toggle user" data-toggle="dropdown" href="#">
-							<img src="/tpl/default//Public/images/headicon.png" class="headicon"/>登录<b class="caret"></b>
+							<img src="/statics/images/headicon.png" class="headicon"/>登录<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu pull-right">
 							<li><a href="<?php echo U('api/oauth/login',array('type'=>'sina'));?>"><i class="fa fa-weibo"></i> &nbsp;微博登录</a></li>
@@ -85,42 +93,33 @@
 </div>
 
 <!-- ng-Layout -->
-<div id="layout" data-ui-view="">
+<div id="layout" ui-view>
 
 </div>
 
 <!-- JavaScript -->
 <!-- Javascript -->
-<script src="/statics/js/sweetalert/sweet-alert.min.js"></script>
 <link rel="stylesheet" href="/statics/js/sweetalert/sweet-alert.css">
-<script src="/statics/js/angular/angular.js"></script>
-<script src="/statics/js/angular/angular-animate.js"></script>
+<script src="/statics/js/sweetalert/sweet-alert.min.js"></script>
+<script src="http://cdn.bootcss.com/angular.js/1.2.28/angular.js"></script>
+<!-- <script src="/statics/js/angular/angular.js"></script> -->
 <script src="/statics/js/angular/angular-ui-router.js"></script>
+<script src="/statics/js/angular/angular-file-upload.min.js"></script>
 <script src="/statics/js/angular/loading-bar.js"></script>
 <link href='/statics/js/angular/loading-bar.css' rel='stylesheet' />
+
 <script type="text/javascript">
-	var cultural = angular.module('cultural', ['ui.router','angular-loading-bar','ngAnimate']);
 	
-    cultural.run(function($rootScope,  $location){
-	    $rootScope.$on('$locationChangeSuccess', function() {
-	        $rootScope.actualLocation = $location.path();
-	    });
-	    $rootScope.$watch(function () {return $location.path()}, function (newLocation, oldLocation) {
-	        if($rootScope.actualLocation === newLocation) {
-	            alert('Why did you use history back?');
-	        }
-	    });
-	});
-
+	var cultural = angular.module('cultural', ['ui.router','angular-loading-bar','angularFileUpload']);
 	cultural.config(function(cfpLoadingBarProvider,$stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
-		// $urlRouterProvider
+		
+		$urlRouterProvider.otherwise(function($injector, $location){
+			$injector.invoke(['$state', function($state) {
+				window.location = $location['$$absUrl'];
+			}]);
+		});
 
-		// .otherwise(function($injector, $location){
-		// 	$injector.invoke(['$state', function($state) {
-		// 		// window.location = $location['$$absUrl'];
-		// 	}]);
-		// });
-		// $urlRouterProvider.otherwise('/');
+		$urlRouterProvider.when('', '/');
 
 		$stateProvider
 		.state("/", {
@@ -164,6 +163,7 @@
 		})
 		cfpLoadingBarProvider.includeSpinner = true;
 		$locationProvider.html5Mode(true);
+		$locationProvider.hashPrefix('!');
 		$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 		$httpProvider.defaults.headers.common['X-Requested-With'] = 'application/angularjs';
 	})
@@ -179,21 +179,24 @@
 			}
 		};
 	});
-	// testControllers.controller('LogoutController', [
-	//     '$scope', '$http', '$route',
-	//     function($scope, $http, $route) {
-	//         $scope.logout = function() {
-	//             $http.get('/api/authentication/logout').success(function () {
-	//                 $route.reload();
-	//             });
-
-	//         };
-	//     }
-	// ]);
+	
 	cultural.controller('searchCtl', function ($scope, $state, $location) {
 		$scope.onSearchSubmit = function() {
 			$state.go("search", {keyword: $scope.searchForm.keyword}, {reload:true,inherit:true});
 		}
+	});
+
+	cultural.controller('avatarCtl', function ($scope, $state, FileUploader) {
+		var uploader = $scope.uploader = new FileUploader({
+            url: "<?php echo u('profile/avatar_upload');?>"
+        });
+		uploader.onSuccessItem  = function(item, response, status, headers) {
+			if ( response.status == "error" ) {
+				sweetAlert(response.info, response.data, response.status);
+			}else {
+				$(".headicon").attr("src","/data/upload/avatar/"+response.data);
+			}
+        };
 	});
 
 	cultural.controller('loginCtl', function ($scope, $http, $state, $location, $window) {
@@ -240,13 +243,12 @@
 	});
 
 	cultural.controller('profileEditCtl', function ($scope, $http, $location) {
-		// $scope.profileForm.user_nicename = '';
 		$scope.profileEdit = function($event) {
 			$http({
 				method  : 'POST',
 				url     : "<?php echo u('user/profile/edit_post');?>",
 				data    : $.param($scope.profileForm),  
-				headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+				headers : {'Content-Type': 'application/x-www-form-urlencoded'}
 			})
 			.success(function(data) {
 				sweetAlert(data.info, data.data, data.status);
@@ -261,10 +263,98 @@
 			$event.preventDefault();
 		}
 	});
+
+	cultural.controller('passeditCtl', function ($scope, $http, $location) {
+		$scope.passEdit = function($event) {
+			if ( !$scope.passeditForm ) {
+				sweetAlert("修改密码", "请填写内容!", "error");
+				return;
+			}
+			$http({
+				method  : 'POST',
+				url     : "<?php echo u('profile/password_post');?>",
+				data    : $.param($scope.passeditForm),  
+				headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+			})
+			.success(function(data) {
+				sweetAlert(data.info, data.data, data.status);
+				if ( data.status == "success") {
+					$location.path(data.referer).replace();
+				}
+			})
+			.error( function () {
+				sweetAlert("网络错误！", "网络异常，请稍后重试！","error");
+			});
+			$event.preventDefault();
+		}
+	});
 		
-	</script>
-	<script type="text/javascript">
+	cultural.controller('companyCtl', function ($scope, $http, $state, $location, $window) {
+		$scope.companySubmit = function($event) {
+			// $("#test").submit();
+			// if ( !$scope.companyForm ) {
+			// 	sweetAlert("认证错误！", "请填写完整信息!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.name ) {
+			// 	sweetAlert("认证错误！", "请填写公司名称!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.location ) {
+			// 	sweetAlert("认证错误！", "请填写公司地址!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.tel ) {
+			// 	sweetAlert("认证错误！", "请填写公司电话!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.contact ) {
+			// 	sweetAlert("认证错误！", "请填写联系人姓名!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.ctel ) {
+			// 	sweetAlert("认证错误！", "请填写联系人电话!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.email ) {
+			// 	sweetAlert("认证错误！", "请填写电子邮箱!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.code ) {
+			// 	sweetAlert("认证错误！", "请填写营业执照号!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.group ) {
+			// 	sweetAlert("认证错误！", "请填写组织机构代码!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.code_pic ) {
+			// 	sweetAlert("认证错误！", "请上传营业执照电子版!", "error");
+			// 	return;
+			// }else if ( !$scope.companyForm.group_pic ) {
+			// 	sweetAlert("认证错误！", "请上传组织机构电子版!", "error");
+			// 	return;
+			// }
+
+			// $http({
+			// 	method  : 'POST',
+			// 	url     : "<?php echo u('user/login/dologin');?>",
+			// 	data    : $.param($scope.companyForm),  // pass in data as strings
+			// 	headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+			// })
+			// .success(function(data) {
+
+			// 	sweetAlert(data.info, data.data, data.status);
+			// 	if ( data.status == "success" ) {
+			// 		// $location.path(data.referer).replace();
+			// 		// $window.location.reload(true);
+			// 		// $state.go("user", {"actionName":"center","tplName":"index"}, {reload: true});
+			// 		$window.location.href = data.referer;
+			// 	}
+			// })
+			// .error( function () {
+			// 	sweetAlert("登陆错误！", "网络异常，请稍后重试！","error");
+			// });
+
+			$event.preventDefault();
+		}
+	});
+
+</script>
+<script type="text/javascript">
 	$(function(){
+
 		$('body').on('touchstart.dropdown', '.dropdown-menu', function (e) { e.stopPropagation(); });
 		
 		;(function($){
@@ -295,11 +385,32 @@
 				});
 			};
 		})(jQuery);
-		
 		$("#backtotop").totop();
-		
+
+		if (document.createElement('input').placeholder !== '') {
+	        $('[placeholder]').focus(function () {
+	            var input = $(this);
+	            if (input.val() == input.attr('placeholder')) {
+	                input.val('');
+	                input.removeClass('placeholder');
+	            }
+	        }).blur(function () {
+	            var input = $(this);
+	            if (input.val() == '' || input.val() == input.attr('placeholder')) {
+	                input.addClass('placeholder');
+	                input.val(input.attr('placeholder'));
+	            }
+	        }).blur().parents('form').submit(function () {
+	            $(this).find('[placeholder]').each(function () {
+	                var input = $(this);
+	                if (input.val() == input.attr('placeholder')) {
+	                    input.val('');
+	                }
+	            });
+	        });
+	    }
 	});
-	</script>
+</script>
 
 <!-- Footer -->
 

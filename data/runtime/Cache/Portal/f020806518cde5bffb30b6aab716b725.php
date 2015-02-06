@@ -10,15 +10,15 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <![endif]-->
 
-	<link href="/statics/simpleboot/themes/<?php echo C('SP_ADMIN_STYLE');?>/theme.min.css" rel="stylesheet">
-    <link href="/statics/simpleboot/css/simplebootadmin.css" rel="stylesheet">
+	<link href="/statics/themes/<?php echo C('SP_ADMIN_STYLE');?>/theme.min.css" rel="stylesheet">
+    <link href="/statics/css/simplebootadmin.css" rel="stylesheet">
     <link href="/statics/js/artDialog/skins/default.css" rel="stylesheet" />
-    <link href="/statics/simpleboot/font-awesome/4.2.0/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
+    <link href="/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
     <style>
 		.length_3{width: 180px;}
 	</style>
 	<!--[if IE 7]>
-	<link rel="stylesheet" href="/statics/simpleboot/font-awesome/4.2.0/css/font-awesome-ie7.min.css">
+	<link rel="stylesheet" href="/statics/font-awesome/css/font-awesome-ie7.min.css">
 	<![endif]-->
 <script type="text/javascript">
 //全局变量
@@ -33,7 +33,7 @@ var GV = {
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/statics/js/jquery.js"></script>
     <script src="/statics/js/wind.js"></script>
-    <script src="/statics/simpleboot/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/statics/bootstrap/js/bootstrap.min.js"></script>
 <?php if(APP_DEBUG): ?><style>
 		#think_page_trace_open{
 			z-index:9999;
