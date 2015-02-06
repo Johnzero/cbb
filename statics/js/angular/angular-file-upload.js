@@ -811,8 +811,11 @@ module
             /**
              * Uploads a FileItem
              */
-            FileItem.prototype.upload = function() {
+            FileItem.prototype.upload = function($event) {
                 this.uploader.uploadItem(this);
+                if ($event) {
+                    $event.preventDefault();
+                }
             };
             /**
              * Cancels uploading of FileItem

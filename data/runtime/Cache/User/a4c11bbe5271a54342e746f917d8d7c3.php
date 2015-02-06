@@ -104,7 +104,7 @@
 <script src="http://cdn.bootcss.com/angular.js/1.2.28/angular.js"></script>
 <!-- <script src="/statics/js/angular/angular.js"></script> -->
 <script src="/statics/js/angular/angular-ui-router.js"></script>
-<script src="/statics/js/angular/angular-file-upload.min.js"></script>
+<script src="/statics/js/angular/angular-file-upload.js"></script>
 <script src="/statics/js/angular/loading-bar.js"></script>
 <link href='/statics/js/angular/loading-bar.css' rel='stylesheet' />
 
@@ -290,7 +290,7 @@
 	});
 		
 	cultural.controller('companyCtl', function ($scope, $http, $window, FileUploader) {
-		$scope.companySubmit = function($event) {
+		$scope.companySubmit = function($event,FileUploader) {
 			if ( !$scope.companyForm ) {
 				sweetAlert("认证错误！", "请填写完整信息!", "error");
 				return;
@@ -326,46 +326,44 @@
 				return;
 			}
 
-			// $http({
-			// 	method  : 'POST',
-			// 	url     : "<?php echo u('user/login/dologin');?>",
-			// 	data    : $.param($scope.companyForm),  // pass in data as strings
-			// 	headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
-			// })
-			// .success(function(data) {
+			$http({
+				method  : 'POST',
+				url     : "<?php echo u('user/login/dologin');?>",
+				data    : $.param($scope.companyForm),  // pass in data as strings
+				headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+			})
+			.success(function(data) {
 
-			// 	sweetAlert(data.info, data.data, data.status);
-			// 	if ( data.status == "success" ) {
-			// 		// $location.path(data.referer).replace();
-			// 		// $window.location.reload(true);
-			// 		// $state.go("user", {"actionName":"center","tplName":"index"}, {reload: true});
-			// 		$window.location.href = data.referer;
-			// 	}
-			// })
-			// .error( function () {
-			// 	sweetAlert("登陆错误！", "网络异常，请稍后重试！","error");
-			// });
-
+				sweetAlert(data.info, data.data, data.status);
+				if ( data.status == "success" ) {
+					// $location.path(data.referer).replace();
+					// $window.location.reload(true);
+					// $state.go("user", {"actionName":"center","tplName":"index"}, {reload: true});
+					$window.location.href = data.referer;
+				}
+			})
+			.error( function () {
+				sweetAlert("登陆错误！", "网络异常，请稍后重试！","error");
+			});
 			$event.preventDefault();
 		}
 
 		var code = $scope.code = new FileUploader({
             url: "<?php echo u('index/picupload');?>"
         });
+        var group = $scope.group = new FileUploader({
+            url: "<?php echo u('index/picupload');?>"
+        });
 		code.onSuccessItem  = function(item, response, status, headers,config) {
-						if ( response.status == "error" ) {
+			if ( response.status == "error" ) {
 				sweetAlert(response.info, response.data, response.status);
 			}else {
 				$scope.companyForm.code_pic = response.data;
 				$("input[name='code_pic']").prev().attr("src","/data/upload/"+response.data);
 			}
         };
-
-		var group = $scope.group = new FileUploader({
-            url: "<?php echo u('index/picupload');?>"
-        });
 		group.onSuccessItem  = function(item, response, status, headers,config) {
-						if ( response.status == "error" ) {
+			if ( response.status == "error" ) {
 				sweetAlert(response.info, response.data, response.status);
 			}else {
 				$scope.companyForm.group_pic = response.data;

@@ -65,18 +65,18 @@
                                     <input type="text" name="code" ng-model="companyForm.code">
                                 </div>
                             </div>
-                             <div class="control-group">
+                            <div class="control-group">
                                 <label class="control-label"><span class="text-error">*</span>营业执照电子版：</label>
                                 <div class="controls">
                                     <?php if(empty($code_pic)): ?><img src="/statics/images/headicon_128.png" class="headicon"/>
                                     <?php else: ?>
                                         <img src="<?php echo ($code_pic); ?>" class="headicon"/><?php endif; ?>
-                                    <input type="hidden" name="code_pic" ng-model="companyForm.code_pic">
+                                    <input type="hidden" name="code_pic">
                                     <input type="file" nv-file-select uploader="code"/>
                                     <span class="help-block">请确保图片清晰，文字可辨并有清晰的红色公章。</span>
                                     <div ng-repeat="item in code.queue">
                                         文件名: <span ng-bind="item.file.name"></span><br/>
-                                        <button class="btn btn-success btn-xs" ng-click="item.upload()">上传</button>
+                                        <button class="btn btn-success btn-xs" ng-click="item.upload($event)">上传</button>
                                     </div>
                                     <div class="progress" style="">
                                         <div class="progress-bar" role="progressbar" ng-style="{'width': code.progress + '%' }"></div>
@@ -103,7 +103,7 @@
                                     <span class="help-block">请确保图片清晰，文字可辨并有清晰的红色公章。</span>
                                     <div ng-repeat="item in group.queue">
                                         文件名: <span ng-bind="item.file.name"></span><br/>
-                                        <button class="btn btn-success btn-xs" ng-click="item.upload()">上传</button>
+                                        <button class="btn btn-success btn-xs" ng-click="item.upload($event)">上传</button>
                                     </div>
                                     <div class="progress" style="">
                                         <div class="progress-bar" role="progressbar" ng-style="{'width': group.progress + '%' }"></div>
