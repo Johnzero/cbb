@@ -51,5 +51,35 @@ class IndexController extends HomeBaseController {
 		}
     }
 
+    public function picupload() {
+    	$userid=sp_get_current_userid();
+    	$config=array(
+			'rootPath' => './'.C("UPLOADPATH"),
+			'savePath' => './company/',
+			'maxSize' => 512000,
+			'saveName'   =>    array('uniqid',''),
+			'exts'       =>    array('jpg', 'png', 'jpeg'),
+			'autoSub'    =>    false,
+    	);
+    	$upload = new \Think\Upload($config);
+    	$info=$upload->upload();
+
+    	if ($info) {
+    		$info = array_shift($info);
+    		$url = $info['savepath'].$info['savename'];
+    		$return = array();
+            $return['status'] = "success";
+            $return['info'] = "上传成功！";
+            $return['data'] = $url;
+            $this->ajaxReturn($return);
+    	} else {
+            $return = array();
+            $return['status'] = "error";
+            $return['info'] = "上传错误！";
+            $return['data'] = $upload->getError();
+            $this->ajaxReturn($return);
+    	}
+    }
+
 }
 ?>
