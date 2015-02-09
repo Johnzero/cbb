@@ -183,17 +183,51 @@ class ProfileController extends MemberbaseController {
 
     function company(){
 
-        $userid=sp_get_current_userid();
-        $user=$this->users_model->where(array("id"=>$userid))->find();
+        $data = D("Company");
+        $userid = sp_get_current_userid();
+        $user = $this->users_model->where(array("id"=>$userid))->find();
         $this->assign($user);
+        $company = $data->where(array("user_id"=>$userid))->find();
+        $this->assign("companyForm",$company);
 
         if( IS_POST ) {
-            var_dump($_POST);
-            exit;
+            $return = array();
+            $return['info'] = "认证信息";
+            $_POST["user_id"] = $userid;
+            $_POST['create_time'] = time();
+            if ( !empty($company) ) {
+                $data->where(array("user_id"=>$userid))->save($_POST);
+                $return['url'] = U("user/profile/company");
+                $return['status'] = "success";
+                $return['data'] = "上传成功！请等待管理员审核。";
+                $this->ajaxReturn($return);  
+            }else {
+
+                $_POST["authorize"] = 0;
+                if( $data->create() ) {                
+                    if( $data->add() ){
+                        $return = array();
+                        $return['url'] = U("user/profile/company");
+                        $return['status'] = "success";
+                        $return['data'] = "上传成功！请等待管理员审核。";
+                        $this->ajaxReturn($return);             
+                    }else{
+                        $return['status'] = "error";
+                        $return['data'] = "服务器繁忙，请稍候再试";
+                        $this->ajaxReturn($return);
+                    }           
+                }else{      
+                    $return['status'] = "error";
+                    $return['data'] = $data->getError();
+                    $this->ajaxReturn($return);
+                }
+            }
         }
-
-        $this->render();
-
+        if ($company['authorize'] == 1) {
+            $this->render("company_au");
+        }else {
+            $this->render();
+        }
     }
     
 }

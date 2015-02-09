@@ -43,7 +43,7 @@ var GV = {
 <body class="J_scroll_fixed" style="min-width:800px;">
 <div class="wrap J_check_wrap">
   <ul class="nav nav-tabs">
-     <li class="active"><a href="<?php echo U('commentadmin/index');?>">所有评论</a></li>
+     <li class="active"><a href="<?php echo U('company/index');?>">全部认证</a></li>
   </ul>
   <form class="J_ajaxForm" action="" method="post">
     <div class="table_list">
@@ -52,36 +52,42 @@ var GV = {
 	          <tr>
 	            <th width="16"><label><input type="checkbox" class="J_check_all" data-direction="x" data-checklist="J_check_x"></label></th>
 	            <th width="50">ID</th>
-	            <th>用户名/姓名</th>
-	            <th>邮箱</th>
-	            <th width="140">内容</th>
-	            <th width="140"><span>评论时间</span></th>
-	            <th width="50"><span>状态</span></th>
+	            <th>企业名称</th>
+	            <th>联系人姓名</th>
+	            <th>联系人电话</th>
+	            <th>营业执照号</th>
+	            <th>组织机构代码</th>
+	            <th><span>更新时间</span></th>
+	            <th><span>状态</span></th>
 	            <th width="120">操作</th>
 	          </tr>
         </thead>
-        	<?php $status=array("1"=>"已审核","0"=>"未审核"); ?>
-        	<?php if(is_array($comments)): foreach($comments as $key=>$vo): ?><tr>
+        	<?php $status=array("1"=>"√","0"=>"<span style='color:red;'>未审核</span>"); ?>
+        	<?php if(is_array($companys)): foreach($companys as $key=>$vo): ?><tr>
 		            <td><input type="checkbox" class="J_check" data-yid="J_check_y" data-xid="J_check_x" name="ids[]" value="<?php echo ($vo["id"]); ?>" ></td>
 		            <td><?php echo ($vo["id"]); ?></td>
-		            <td><?php echo ($vo["full_name"]); ?></td>
-		            <td><?php echo ($vo["email"]); ?></td>
-		            <td><?php echo ($vo["content"]); ?></td>
-		            <td><?php echo ($vo["createtime"]); ?></td>
-		            <td><?php echo ($status[$vo['status']]); ?></td>
+		            <td><?php echo ($vo["name"]); ?></td>
+		            <td><?php echo ($vo["contact"]); ?></td>
+		            <td><?php echo ($vo["ctel"]); ?></td>
+		            <td><?php echo ($vo["code"]); ?></td>
+		            <td><?php echo ($vo["group"]); ?></td>
+		            <td><?php echo date('Y-m-d H:i:s', $vo['create_time']);?></td>
+		            <td><?php echo ($status[$vo['authorize']]); ?></td>
 		            <td>
-		            	<a href="<?php echo U('Commentadmin/delete',array('id'=>$vo['id']));?>" class="J_ajax_del" >删除</a>
+		            	<a href="<?php echo U('company/detail',array('id'=>$vo['id']));?>">查看详细</a>
+						  &nbsp;|&nbsp;  
+		            	<a href="<?php echo U('company/delete',array('id'=>$vo['id']));?>" class="J_ajax_del" >删除</a>
 					</td>
 	          	</tr><?php endforeach; endif; ?>
           </table>
-          <div class="pagination"><?php echo ($Page); ?></div>
+          <div class="pagination"><?php echo ($pager); ?></div>
      
     </div>
     <div class="form-actions">
         <label class="checkbox inline" for="check_all"><input type="checkbox" class="J_check_all" data-direction="y" data-checklist="J_check_y" id="check_all">全选</label>                
-        <button class="btn btn-primary J_ajax_submit_btn" type="submit" data-action="<?php echo u('Commentadmin/check',array('check'=>1));?>" data-subcheck="true">审核</button>
-        <button class="btn btn-primary J_ajax_submit_btn" type="submit" data-action="<?php echo u('Commentadmin/check',array('uncheck'=>1));?>" data-subcheck="true">取消审核</button>
-        <button class="btn btn-primary J_ajax_submit_btn" type="submit" data-action="<?php echo u('Commentadmin/delete');?>" data-subcheck="true" data-msg="你确定删除吗？">删除</button>
+        <button class="btn btn-primary J_ajax_submit_btn" type="submit" data-action="<?php echo u('company/check',array('check'=>1));?>" data-subcheck="true">审核</button>
+        <button class="btn btn-primary J_ajax_submit_btn" type="submit" data-action="<?php echo u('company/check',array('uncheck'=>1));?>" data-subcheck="true">取消审核</button>
+        <button class="btn btn-primary J_ajax_submit_btn" type="submit" data-action="<?php echo u('company/delete');?>" data-subcheck="true" data-msg="你确定删除吗？">删除</button>
     </div>
   </form>
 </div>

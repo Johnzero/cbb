@@ -15,7 +15,6 @@ class UsersModel extends CommonModel
 			array('user_email','email','邮箱格式不正确！',0,'',CommonModel:: MODEL_BOTH ), // 验证user_email字段格式是否正确
 	);
 	
-	//用于获取时间，格式为2012-02-03 12:12:12,注意,方法不能为private
 	function mGetDate() {
 		return date('Y-m-d H:i:s');
 	}

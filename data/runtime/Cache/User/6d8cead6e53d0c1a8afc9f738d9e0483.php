@@ -17,103 +17,73 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#one" data-toggle="tab"><i class="fa fa-lock"></i> 认证信息</a></li>
                 </ul>
-                <?php if($companyForm["authorize"] != 1): if($companyForm["tip"] != null): ?><h4 class="well text-error">系统通知：<?php echo ($companyForm["tip"]); ?></h4><?php endif; endif; ?>
+                
+                <h4 class="well text-error">系统通知：已认证通过！</h4>
+                
                 <div class="tab-content">
                     <div class="tab-pane active">
-                        <form id="test" class="form-horizontal"  ng-submit="companySubmit($event)"  ng-controller="companyCtl" method="POST" enctype="multipart/form-data">
+                        <form class="form-horizontal">
                             <h2>公司及联系人信息</h2>
                             <div class="control-group">
                                 <label class="control-label"><span class="text-error">*</span>公司名称：</label>
                                 <div class="controls">
-                                    <input type="text" name="name" ng-model="companyForm.name" value="<?php echo ($companyForm["name"]); ?>">
+                                    <input type="text" name="name" value="<?php echo ($companyForm["name"]); ?>" readonly="readonly">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label"><span class="text-error">*</span>公司详细地址：</label>
                                 <div class="controls">
-                                    <input type="text" name="location" ng-model="companyForm.location" value="<?php echo ($companyForm["location"]); ?>">
+                                    <input type="text" name="location" value="<?php echo ($companyForm["location"]); ?>" readonly="readonly">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label"><span class="text-error">*</span>公司电话：</label>
                                 <div class="controls">
-                                    <input type="text" name="tel" ng-model="companyForm.tel" value="<?php echo ($companyForm["tel"]); ?>">
+                                    <input type="text" name="tel" value="<?php echo ($companyForm["tel"]); ?>" readonly="readonly">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label"><span class="text-error">*</span>联系人姓名：</label>
                                 <div class="controls">
-                                    <input type="text" name="contact" ng-model="companyForm.contact" value="<?php echo ($companyForm["contact"]); ?>">
+                                    <input type="text" name="contact" value="<?php echo ($companyForm["contact"]); ?>" readonly="readonly">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label"><span class="text-error">*</span>联系人电话：</label>
                                 <div class="controls">
-                                    <input type="text" name="ctel" ng-model="companyForm.ctel" value="<?php echo ($companyForm["ctel"]); ?>">
+                                    <input type="text" name="ctel"value="<?php echo ($companyForm["ctel"]); ?>" readonly="readonly">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label"><span class="text-error">*</span>电子邮箱：</label>
                                 <div class="controls">
-                                    <input type="text" name="email" ng-model="companyForm.email" value="<?php echo ($companyForm["email"]); ?>">
+                                    <input type="text" name="email" value="<?php echo ($companyForm["email"]); ?>" readonly="readonly">
                                 </div>
                             </div>
                             <h2>营业执照信息</h2>
                             <div class="control-group">
                                 <label class="control-label"><span class="text-error">*</span>营业执照号：</label>
                                 <div class="controls">
-                                    <input type="text" name="code" ng-model="companyForm.code" value="<?php echo ($companyForm["code"]); ?>">
+                                    <input type="text" name="code" value="<?php echo ($companyForm["code"]); ?>" readonly="readonly">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label"><span class="text-error">*</span>营业执照电子版：</label>
                                 <div class="controls">
-                                    <?php if(empty($companyForm['code_pic'])): ?><img src="/statics/images/headicon_128.png" class="headicon"/>
-                                    <?php else: ?>
-                                        <img src="/data/upload/company/<?php echo ($companyForm["code_pic"]); ?>" class="headicon"/><?php endif; ?>
-                                    <input type="hidden" name="code_pic" ng-model="companyForm.code_pic"  value="<?php echo ($companyForm["code_pic"]); ?>">
-                                    <input type="file" nv-file-select uploader="code"/>
-                                    <span class="help-block">请确保图片清晰，文字可辨并有清晰的红色公章。</span>
-                                    <div ng-repeat="item in code.queue">
-                                        文件名: <span ng-bind="item.file.name"></span><br/>
-                                        <button class="btn btn-success btn-xs" ng-click="item.upload($event)">上传</button>
-                                    </div>
-                                    <div class="progress" style="">
-                                        <div class="progress-bar" role="progressbar" ng-style="{'width': code.progress + '%' }"></div>
-                                    </div>
+                                    <img src="/data/upload/company/<?php echo ($companyForm["code_pic"]); ?>" class="headicon">
                                 </div>
                             </div>
-
                             <h2>组织机构代码证</h2>
                             <div class="control-group">
                                 <label class="control-label"><span class="text-error">*</span>组织机构代码：</label>
                                 <div class="controls">
-                                    <input type="text" name="group" ng-model="companyForm.group" value="<?php echo ($companyForm["group"]); ?>">
+                                    <input type="text" name="group" value="<?php echo ($companyForm["group"]); ?>" readonly="readonly">
                                 </div>
                             </div>
-
                             <div class="control-group">
                                 <label class="control-label"><span class="text-error">*</span>组织机构代码证电子版：</label>
                                 <div class="controls">
-                                    <?php if(empty($companyForm['group_pic'])): ?><img src="/statics/images/headicon_128.png" class="headicon"/>
-                                    <?php else: ?>
-                                        <img src="/data/upload/company/<?php echo ($companyForm["group_pic"]); ?>" class="headicon"/><?php endif; ?>
-                                    <input type="hidden" name="group_pic" ng-model="companyForm.group_pic" value="<?php echo ($companyForm["group_pic"]); ?>">
-                                    <input type="file" nv-file-select uploader="group"/>
-                                    <span class="help-block">请确保图片清晰，文字可辨并有清晰的红色公章。</span>
-                                    <div ng-repeat="item in group.queue">
-                                        文件名: <span ng-bind="item.file.name"></span><br/>
-                                        <button class="btn btn-success btn-xs" ng-click="item.upload($event)">上传</button>
-                                    </div>
-                                    <div class="progress" style="">
-                                        <div class="progress-bar" role="progressbar" ng-style="{'width': group.progress + '%' }"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="control-group">
-                                <div class="controls">
-                                    <button type="submit" class="btn btn-primary">保存</button>
+                                    <img src="/data/upload/company/<?php echo ($companyForm["group_pic"]); ?>" class="headicon">
                                 </div>
                             </div>
                         </form>

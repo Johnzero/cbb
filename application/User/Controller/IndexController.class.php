@@ -66,7 +66,7 @@ class IndexController extends HomeBaseController {
 
     	if ($info) {
     		$info = array_shift($info);
-    		$url = $info['savepath'].$info['savename'];
+    		$url = $info['savename'];
     		$return = array();
             $return['status'] = "success";
             $return['info'] = "上传成功！";

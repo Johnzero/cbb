@@ -7,9 +7,9 @@
 		<?php $portal_index_lastnews=2; $portal_hot_articles="1,2"; $portal_last_post="1,2"; $tmpl=sp_get_theme_path(); ?>
 		<base href="/">
 		<meta charset="utf-8">
-		<!--[if !IE]>
+		<!--[if !IE]><!--> 
 			<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':8080/livereload.js?snipver=1"></' + 'script>')</script>
-		<![endif]-->
+		<!--<![endif]-->
 		<link href="/statics/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/statics/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 		<link href="/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
@@ -101,10 +101,10 @@
 <!-- Javascript -->
 <link rel="stylesheet" href="/statics/js/sweetalert/sweet-alert.css">
 <script src="/statics/js/sweetalert/sweet-alert.min.js"></script>
-<script src="http://cdn.bootcss.com/angular.js/1.2.28/angular.js"></script>
+<script src="/statics/js/angular/angular.min.js"></script>
 <!-- <script src="/statics/js/angular/angular.js"></script> -->
 <script src="/statics/js/angular/angular-ui-router.js"></script>
-<script src="/statics/js/angular/angular-file-upload.min.js"></script>
+<script src="/statics/js/angular/angular-file-upload.js"></script>
 <script src="/statics/js/angular/loading-bar.js"></script>
 <link href='/statics/js/angular/loading-bar.css' rel='stylesheet' />
 
@@ -289,66 +289,86 @@
 		}
 	});
 		
-	cultural.controller('companyCtl', function ($scope, $http, $state, $location, $window) {
-		$scope.companySubmit = function($event) {
-			// $("#test").submit();
-			// if ( !$scope.companyForm ) {
-			// 	sweetAlert("认证错误！", "请填写完整信息!", "error");
-			// 	return;
-			// }else if ( !$scope.companyForm.name ) {
-			// 	sweetAlert("认证错误！", "请填写公司名称!", "error");
-			// 	return;
-			// }else if ( !$scope.companyForm.location ) {
-			// 	sweetAlert("认证错误！", "请填写公司地址!", "error");
-			// 	return;
-			// }else if ( !$scope.companyForm.tel ) {
-			// 	sweetAlert("认证错误！", "请填写公司电话!", "error");
-			// 	return;
-			// }else if ( !$scope.companyForm.contact ) {
-			// 	sweetAlert("认证错误！", "请填写联系人姓名!", "error");
-			// 	return;
-			// }else if ( !$scope.companyForm.ctel ) {
-			// 	sweetAlert("认证错误！", "请填写联系人电话!", "error");
-			// 	return;
-			// }else if ( !$scope.companyForm.email ) {
-			// 	sweetAlert("认证错误！", "请填写电子邮箱!", "error");
-			// 	return;
-			// }else if ( !$scope.companyForm.code ) {
-			// 	sweetAlert("认证错误！", "请填写营业执照号!", "error");
-			// 	return;
-			// }else if ( !$scope.companyForm.group ) {
-			// 	sweetAlert("认证错误！", "请填写组织机构代码!", "error");
-			// 	return;
-			// }else if ( !$scope.companyForm.code_pic ) {
-			// 	sweetAlert("认证错误！", "请上传营业执照电子版!", "error");
-			// 	return;
-			// }else if ( !$scope.companyForm.group_pic ) {
-			// 	sweetAlert("认证错误！", "请上传组织机构电子版!", "error");
-			// 	return;
-			// }
+	cultural.controller('companyCtl', function ($scope, $http, $window, FileUploader) {
+		$scope.companySubmit = function($event,FileUploader) {
+			if ( !$scope.companyForm ) {
+				sweetAlert("认证错误！", "请填写完整信息!", "error");
+				return;
+			}else if ( !$scope.companyForm.name ) {
+				sweetAlert("认证错误！", "请填写公司名称!", "error");
+				return;
+			}else if ( !$scope.companyForm.location ) {
+				sweetAlert("认证错误！", "请填写公司地址!", "error");
+				return;
+			}else if ( !$scope.companyForm.tel ) {
+				sweetAlert("认证错误！", "请填写公司电话!", "error");
+				return;
+			}else if ( !$scope.companyForm.contact ) {
+				sweetAlert("认证错误！", "请填写联系人姓名!", "error");
+				return;
+			}else if ( !$scope.companyForm.ctel ) {
+				sweetAlert("认证错误！", "请填写联系人电话!", "error");
+				return;
+			}else if ( !$scope.companyForm.email ) {
+				sweetAlert("认证错误！", "请填写电子邮箱!", "error");
+				return;
+			}else if ( !$scope.companyForm.code ) {
+				sweetAlert("认证错误！", "请填写营业执照号!", "error");
+				return;
+			}else if ( !$scope.companyForm.group ) {
+				sweetAlert("认证错误！", "请填写组织机构代码!", "error");
+				return;
+			}else if ( !$scope.companyForm.code_pic ) {
+				sweetAlert("认证错误！", "请上传营业执照电子版!", "error");
+				return;
+			}else if ( !$scope.companyForm.group_pic ) {
+				sweetAlert("认证错误！", "请上传组织机构电子版!", "error");
+				return;
+			}
+			$http({
+				method  : 'POST',
+				url     : "<?php echo u('user/profile/company');?>",
+				data    : $.param($scope.companyForm),
+				headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+			})
+			.success(function(data) {
 
-			// $http({
-			// 	method  : 'POST',
-			// 	url     : "<?php echo u('user/login/dologin');?>",
-			// 	data    : $.param($scope.companyForm),  // pass in data as strings
-			// 	headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
-			// })
-			// .success(function(data) {
-
-			// 	sweetAlert(data.info, data.data, data.status);
-			// 	if ( data.status == "success" ) {
-			// 		// $location.path(data.referer).replace();
-			// 		// $window.location.reload(true);
-			// 		// $state.go("user", {"actionName":"center","tplName":"index"}, {reload: true});
-			// 		$window.location.href = data.referer;
-			// 	}
-			// })
-			// .error( function () {
-			// 	sweetAlert("登陆错误！", "网络异常，请稍后重试！","error");
-			// });
-
+				sweetAlert(data.info, data.data, data.status);
+				if ( data.status == "success" ) {
+					// $location.path(data.referer).replace();
+					// $window.location.reload(true);
+					// $state.go("user", {"actionName":"center","tplName":"index"}, {reload: true});
+					$window.location.href = data.referer;
+				}
+			})
+			.error( function () {
+				sweetAlert("认证错误！", "网络异常，请稍后重试！","error");
+			});
 			$event.preventDefault();
 		}
+
+		var code = $scope.code = new FileUploader({
+            url: "<?php echo u('index/picupload');?>"
+        });
+        var group = $scope.group = new FileUploader({
+            url: "<?php echo u('index/picupload');?>"
+        });
+		code.onSuccessItem  = function(item, response, status, headers,config) {
+			if ( response.status == "error" ) {
+				sweetAlert(response.info, response.data, response.status);
+			}else {
+				$scope.companyForm.code_pic = response.data;
+				$("input[name='code_pic']").prev().attr("src","/data/upload/company/"+response.data);
+			}
+        };
+		group.onSuccessItem  = function(item, response, status, headers,config) {
+			if ( response.status == "error" ) {
+				sweetAlert(response.info, response.data, response.status);
+			}else {
+				$scope.companyForm.group_pic = response.data;
+				$("input[name='group_pic']").prev().attr("src","/data/upload/company/"+response.data);
+			}
+        };
 	});
 
 </script>

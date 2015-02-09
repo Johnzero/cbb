@@ -1,0 +1,57 @@
+<admintpl file="header" />
+<body class="J_scroll_fixed" style="min-width:800px;">
+<div class="wrap J_check_wrap">
+  <ul class="nav nav-tabs">
+     <li class="active"><a href="{:U('company/index')}">全部认证</a></li>
+  </ul>
+  <form class="J_ajaxForm" action="" method="post">
+    <div class="table_list">
+      <table width="100%" class="table table-hover">
+        <thead>
+	          <tr>
+	            <th width="16"><label><input type="checkbox" class="J_check_all" data-direction="x" data-checklist="J_check_x"></label></th>
+	            <th width="50">ID</th>
+	            <th>企业名称</th>
+	            <th>联系人姓名</th>
+	            <th>联系人电话</th>
+	            <th>营业执照号</th>
+	            <th>组织机构代码</th>
+	            <th><span>更新时间</span></th>
+	            <th><span>状态</span></th>
+	            <th width="120">操作</th>
+	          </tr>
+        </thead>
+        	<php>$status=array("1"=>"√","0"=>"<span style='color:red;'>未审核</span>");</php>
+        	<foreach name="companys" item="vo">
+	        	<tr>
+		            <td><input type="checkbox" class="J_check" data-yid="J_check_y" data-xid="J_check_x" name="ids[]" value="{$vo.id}" ></td>
+		            <td>{$vo.id}</td>
+		            <td>{$vo.name}</td>
+		            <td>{$vo.contact}</td>
+		            <td>{$vo.ctel}</td>
+		            <td>{$vo.code}</td>
+		            <td>{$vo.group}</td>
+		            <td>{:date('Y-m-d H:i:s', $vo['create_time'])}</td>
+		            <td>{$status[$vo['authorize']]}</td>
+		            <td>
+		            	<a href="{:U('company/detail',array('id'=>$vo['id']))}">查看详细</a>
+						  &nbsp;|&nbsp;  
+		            	<a href="{:U('company/delete',array('id'=>$vo['id']))}" class="J_ajax_del" >删除</a>
+					</td>
+	          	</tr>
+          </foreach>
+          </table>
+          <div class="pagination">{$pager}</div>
+     
+    </div>
+    <div class="form-actions">
+        <label class="checkbox inline" for="check_all"><input type="checkbox" class="J_check_all" data-direction="y" data-checklist="J_check_y" id="check_all">全选</label>                
+        <button class="btn btn-primary J_ajax_submit_btn" type="submit" data-action="{:u('company/check',array('check'=>1))}" data-subcheck="true">审核</button>
+        <button class="btn btn-primary J_ajax_submit_btn" type="submit" data-action="{:u('company/check',array('uncheck'=>1))}" data-subcheck="true">取消审核</button>
+        <button class="btn btn-primary J_ajax_submit_btn" type="submit" data-action="{:u('company/delete')}" data-subcheck="true" data-msg="你确定删除吗？">删除</button>
+    </div>
+  </form>
+</div>
+<script src="__ROOT__/statics/js/common.js"></script>
+</body>
+</html>

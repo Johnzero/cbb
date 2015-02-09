@@ -40,24 +40,45 @@ var GV = {
 			z-index:9999;
 		}
 	</style><?php endif; ?>
-</head>
-<body>
-<div class="wrap">
-  <div id="error_tips">
-    <h2><?php echo ($msgTitle); ?></h2>
-    <div class="error_cont">
-      <ul>
-        <li><?php echo ($message); ?></li>
-      </ul>
-      <div class="error_return"><a href="<?php echo ($jumpUrl); ?>" class="btn">返回</a></div>
-    </div>
+<body class="J_scroll_fixed">
+<div class="wrap jj">
+  <ul class="nav nav-tabs">
+     <li class="active"><a href="<?php echo U('guestbookadmin/index');?>">所有留言</a></li>
+  </ul>
+  <div class="common-form">
+    <form method="post" class="J_ajaxForm" action="#">
+      <div class="table_list">
+	    <table width="100%" class="table table-hover">
+	        <thead>
+	          <tr>
+	            <th width="50">ID</th>
+	            <th>姓名</th>
+	            <th>邮箱</th>
+	            <th>留言标题</th>
+	            <th>留言内容</th>
+	            <th>留言时间</th>
+	            <th width="120">操作</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	        	<?php if(is_array($guestmsgs)): foreach($guestmsgs as $key=>$vo): ?><tr>
+		            <td><?php echo ($vo["id"]); ?></td>
+		            <td><?php echo ($vo["full_name"]); ?></td>
+		            <td><?php echo ($vo["email"]); ?></td>
+		            <td><?php echo ($vo["title"]); ?></td>
+		            <td><?php echo ($vo["msg"]); ?></td>
+		            <td><?php echo ($vo["createtime"]); ?></td>
+		            <td>
+			            <a href="<?php echo U('guestbookadmin/delete',array('id'=>$vo['id']));?>" class="J_ajax_del" >删除</a>
+			        </td>
+	          	</tr><?php endforeach; endif; ?>
+			</tbody>
+	      </table>
+	      <div class="pagination"><?php echo ($Page); ?></div>
+  		</div>
+    </form>
   </div>
 </div>
-<script src="/statics/js/common.js"></script>
-<script>
-setTimeout(function(){
-	location.href = '<?php echo ($jumpUrl); ?>';
-},3000);
-</script>
+<script src="/statics/js/common.js?"></script>
 </body>
 </html>

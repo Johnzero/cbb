@@ -101,7 +101,7 @@
 <!-- Javascript -->
 <link rel="stylesheet" href="/statics/js/sweetalert/sweet-alert.css">
 <script src="/statics/js/sweetalert/sweet-alert.min.js"></script>
-<script src="http://cdn.bootcss.com/angular.js/1.2.28/angular.js"></script>
+<script src="/statics/js/angular/angular.min.js"></script>
 <!-- <script src="/statics/js/angular/angular.js"></script> -->
 <script src="/statics/js/angular/angular-ui-router.js"></script>
 <script src="/statics/js/angular/angular-file-upload.js"></script>
@@ -325,11 +325,10 @@
 				sweetAlert("认证错误！", "请上传组织机构电子版!", "error");
 				return;
 			}
-
 			$http({
 				method  : 'POST',
-				url     : "<?php echo u('user/login/dologin');?>",
-				data    : $.param($scope.companyForm),  // pass in data as strings
+				url     : "<?php echo u('user/profile/company');?>",
+				data    : $.param($scope.companyForm),
 				headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
 			})
 			.success(function(data) {
@@ -343,7 +342,7 @@
 				}
 			})
 			.error( function () {
-				sweetAlert("登陆错误！", "网络异常，请稍后重试！","error");
+				sweetAlert("认证错误！", "网络异常，请稍后重试！","error");
 			});
 			$event.preventDefault();
 		}
@@ -359,7 +358,7 @@
 				sweetAlert(response.info, response.data, response.status);
 			}else {
 				$scope.companyForm.code_pic = response.data;
-				$("input[name='code_pic']").prev().attr("src","/data/upload/"+response.data);
+				$("input[name='code_pic']").prev().attr("src","/data/upload/company/"+response.data);
 			}
         };
 		group.onSuccessItem  = function(item, response, status, headers,config) {
@@ -367,7 +366,7 @@
 				sweetAlert(response.info, response.data, response.status);
 			}else {
 				$scope.companyForm.group_pic = response.data;
-				$("input[name='group_pic']").prev().attr("src","/data/upload/"+response.data);
+				$("input[name='group_pic']").prev().attr("src","/data/upload/company/"+response.data);
 			}
         };
 	});

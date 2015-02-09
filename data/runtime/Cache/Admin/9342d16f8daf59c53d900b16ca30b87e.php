@@ -32,6 +32,7 @@ var GV = {
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/statics/js/jquery.js"></script>
+    <script src="/statics/js/jquery-migrate-1.2.1.js"></script>
     <script src="/statics/js/wind.js"></script>
     <script src="/statics/bootstrap/js/bootstrap.min.js"></script>
 <?php if(APP_DEBUG): ?><style>
