@@ -152,7 +152,7 @@ class ProfileController extends MemberbaseController {
     	$config=array(
 			'rootPath' => './'.C("UPLOADPATH"),
 			'savePath' => './avatar/',
-			'maxSize' => 512000,//500K
+			'maxSize' => 5120000,
 			'saveName'   =>    array('uniqid',''),
 			'exts'       =>    array('jpg', 'png', 'jpeg'),
 			'autoSub'    =>    false,
@@ -223,7 +223,7 @@ class ProfileController extends MemberbaseController {
                 }
             }
         }
-        if ($company['authorize'] == 1) {
+        if ($company['authorize'] == 2) {
             $this->render("company_au");
         }else {
             $this->render();

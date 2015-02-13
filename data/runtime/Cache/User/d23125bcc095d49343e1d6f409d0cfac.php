@@ -21,7 +21,7 @@
 	<a class="list-group-item" href="<?php echo u('user/profile/edit');?>"><i class="fa fa-edit"></i> 修改资料</a>
 	<a class="list-group-item" href="<?php echo u('user/profile/password');?>"><i class="fa fa-lock"></i> 修改密码</a>
 	<a class="list-group-item" href="<?php echo u('user/profile/company');?>"><i class="fa fa-shield"></i> 企业认证</a>
-	<a class="list-group-item" href="<?php echo u('user/favorite/index');?>"><i class="fa fa-file-text-o"></i> 我的投稿</a>
+	<a class="list-group-item" href="<?php echo u('user/post/index');?>"><i class="fa fa-file-text-o"></i> 我的投稿</a>
 	<a class="list-group-item" href="<?php echo u('user/favorite/index');?>"><i class="fa fa-star-o"></i> 我的收藏</a>
 	<a class="list-group-item" href="<?php echo u('comment/comment/index');?>"><i class="fa fa-comments-o"></i> 我的评论</a>
 
@@ -71,7 +71,7 @@
                             </div>
                             <div class="control-group">
                                 <div class="controls">
-                                    <button type="submit" class="btn">保存</button>
+                                    <button type="submit" class="btn btn-primary">保存</button>
                                 </div>
                             </div>
                         </form>
@@ -80,13 +80,9 @@
                                 <?php if(empty($avatar)): ?><img src="/statics/images/headicon_128.png" class="headicon"/>
                                 <?php else: ?>
                                     <img src="<?php echo sp_get_user_avatar_url($avatar);?>" class="headicon"/><?php endif; ?>
-                                <input type="file"  nv-file-select uploader="uploader" name="file" value="<?php echo ($avatar); ?>" ng-model="profileForm.avatar" id="avatar_uploder"/>
-                                <div ng-repeat="item in uploader.queue">
-                                    文件名: <span ng-bind="item.file.name"></span><br/>
-                                    <button class="btn btn-success btn-xs" ng-click="item.upload()">上传</button>
-                                </div>
-                                <div class="progress" style="">
-                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                                <input type="file" name="file" value="<?php echo ($avatar); ?>" ng-model="profileForm.avatar" id="avatar_uploder" ng-multiple="false" ng-accept="'image/*'" ng-file-select ng-file-change="upload($files)"/>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': profileForm.avatar[0].progress + '%' }">{{profileForm.avatar[0].progress}}%</div>
                                 </div>
                             </div>
                         </div>

@@ -6,7 +6,7 @@
 	<a class="list-group-item" href="<?php echo u('user/profile/edit');?>"><i class="fa fa-edit"></i> 修改资料</a>
 	<a class="list-group-item" href="<?php echo u('user/profile/password');?>"><i class="fa fa-lock"></i> 修改密码</a>
 	<a class="list-group-item" href="<?php echo u('user/profile/company');?>"><i class="fa fa-shield"></i> 企业认证</a>
-	<a class="list-group-item" href="<?php echo u('user/favorite/index');?>"><i class="fa fa-file-text-o"></i> 我的投稿</a>
+	<a class="list-group-item" href="<?php echo u('user/post/index');?>"><i class="fa fa-file-text-o"></i> 我的投稿</a>
 	<a class="list-group-item" href="<?php echo u('user/favorite/index');?>"><i class="fa fa-star-o"></i> 我的收藏</a>
 	<a class="list-group-item" href="<?php echo u('comment/comment/index');?>"><i class="fa fa-comments-o"></i> 我的评论</a>
 
@@ -71,15 +71,12 @@
                                     <?php if(empty($companyForm['code_pic'])): ?><img src="/statics/images/headicon_128.png" class="headicon"/>
                                     <?php else: ?>
                                         <img src="/data/upload/company/<?php echo ($companyForm["code_pic"]); ?>" class="headicon"/><?php endif; ?>
-                                    <input type="hidden" name="code_pic" ng-model="companyForm.code_pic"  value="<?php echo ($companyForm["code_pic"]); ?>">
-                                    <input type="file" nv-file-select uploader="code"/>
+
+                                    <input type="file" name="code_pic" value="<?php echo ($companyForm["code_pic"]); ?>" ng-model="companyForm.code_pic" ng-multiple="false" ng-accept="'image/*'" ng-file-select ng-file-change="code($files)"/>
+
                                     <span class="help-block">请确保图片清晰，文字可辨并有清晰的红色公章。</span>
-                                    <div ng-repeat="item in code.queue">
-                                        文件名: <span ng-bind="item.file.name"></span><br/>
-                                        <button class="btn btn-success btn-xs" ng-click="item.upload($event)">上传</button>
-                                    </div>
-                                    <div class="progress" style="">
-                                        <div class="progress-bar" role="progressbar" ng-style="{'width': code.progress + '%' }"></div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': code_progress + '%' }">{{code_progress}}%</div>
                                     </div>
                                 </div>
                             </div>
@@ -98,15 +95,10 @@
                                     <?php if(empty($companyForm['group_pic'])): ?><img src="/statics/images/headicon_128.png" class="headicon"/>
                                     <?php else: ?>
                                         <img src="/data/upload/company/<?php echo ($companyForm["group_pic"]); ?>" class="headicon"/><?php endif; ?>
-                                    <input type="hidden" name="group_pic" ng-model="companyForm.group_pic" value="<?php echo ($companyForm["group_pic"]); ?>">
-                                    <input type="file" nv-file-select uploader="group"/>
+                                    <input type="file" name="group_pic" value="<?php echo ($companyForm["group_pic"]); ?>" ng-model="companyForm.group_pic" ng-multiple="false" ng-accept="'image/*'" ng-file-select ng-file-change="group($files)"/>
                                     <span class="help-block">请确保图片清晰，文字可辨并有清晰的红色公章。</span>
-                                    <div ng-repeat="item in group.queue">
-                                        文件名: <span ng-bind="item.file.name"></span><br/>
-                                        <button class="btn btn-success btn-xs" ng-click="item.upload($event)">上传</button>
-                                    </div>
-                                    <div class="progress" style="">
-                                        <div class="progress-bar" role="progressbar" ng-style="{'width': group.progress + '%' }"></div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width':group_progress + '%' }">{{group_progress}}%</div>
                                     </div>
                                 </div>
                             </div>

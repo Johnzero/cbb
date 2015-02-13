@@ -1,4 +1,4 @@
-<div class="container tc-main">
+<?php if (!defined('THINK_PATH')) exit();?><div class="container tc-main">
 	<div class="row">
 		<div class="span6 offset3">
 			<h2 class="text-center">创建账号</h2>
@@ -32,7 +32,7 @@
 					<div class="controls">
 						<input type="hidden" name="terms" ng-model="register.terms" value="1">
 						<input type="text" name="verify" placeholder="请输入验证码" class="span3" ng-model="register.verify">
-						{:sp_verifycode_img('code_len=4&font_size=15&width=100&height=35&charset=1234567890')}
+						<?php echo sp_verifycode_img('code_len=4&font_size=15&width=100&height=35&charset=1234567890');?>
 					</div>
 				</div>
 				<div class="control-group">
@@ -45,7 +45,7 @@
 					<label class="control-label" for="login"></label>
 					<div class="controls">
 						<p>
-						已有账号? <a href="{:u('user/login/index')}">点击此处登录</a>
+						已有账号? <a href="<?php echo u('user/login/index');?>">点击此处登录</a>
 						</p>
 					</div>
 				</div>

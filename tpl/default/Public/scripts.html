@@ -1,24 +1,37 @@
 <!-- Javascript -->
 <link rel="stylesheet" href="__ROOT__/statics/js/sweetalert/sweet-alert.css">
 <script src="__ROOT__/statics/js/sweetalert/sweet-alert.min.js"></script>
-<script src="__ROOT__/statics/js/angular/angular.min.js"></script>
-<!-- <script src="__ROOT__/statics/js/angular/angular.js"></script> -->
+<script type="text/javascript" src="http://ueditor.baidu.com/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="http://ueditor.baidu.com/ueditor/ueditor.all.js"></script>
+<!-- <script src="__ROOT__/statics/js/angular/angular.min.js"></script> -->
+<script src="__ROOT__/statics/js/angular/angular.js"></script>
 <script src="__ROOT__/statics/js/angular/angular-ui-router.js"></script>
-<script src="__ROOT__/statics/js/angular/angular-file-upload.js"></script>
+<!--[if IE]>
+<script>
+    FileAPI = {
+        jsPath: '__ROOT__/statics/js/angular/', 
+        jsUrl: '__ROOT__/statics/js/angular/FileAPI.min.js',
+        staticPath: '__ROOT__/statics/js/angular/',
+        flashUrl: '__ROOT__/statics/js/angular/FileAPI.flash.swf',
+    }
+</script>
+<script src="__ROOT__/statics/js/angular/angular-file-upload-shim.min.js"></script>
+<![endif]-->
+<script src="__ROOT__/statics/js/angular/angular-file-upload.min.js"></script>
 <script src="__ROOT__/statics/js/angular/loading-bar.js"></script>
 <link href='__ROOT__/statics/js/angular/loading-bar.css' rel='stylesheet' />
 
 <script type="text/javascript">
 	
-	var cultural = angular.module('cultural', ['ui.router','angular-loading-bar','angularFileUpload']);
+	var cultural = angular.module('cultural',['ui.router','angular-loading-bar','angularFileUpload']);
 	cultural.config(function(cfpLoadingBarProvider,$stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
 		
-		$urlRouterProvider.otherwise(function($injector, $location){
-			$injector.invoke(['$state', function($state) {
-				window.location = $location['$$absUrl'];
-			}]);
-		});
-
+		// $urlRouterProvider.otherwise(function($injector, $location){
+		// 	$injector.invoke(['$state', function($state) {
+		// 		window.location = $location['$$absUrl'];
+		// 	}]);
+		// });
+		// $urlRouterProvider.otherwise('/');  
 		$urlRouterProvider.when('', '/');
 
 		$stateProvider
@@ -40,6 +53,7 @@
 		.state("user", {
 			url: "/user/:actionName/:tplName.html",
 			templateUrl: function ($stateParams){
+				console.log($stateParams.actionName);
 				return '/user/' + $stateParams.actionName + '/' + $stateParams.tplName + '.html';
 			}
 		})
@@ -63,7 +77,7 @@
 		})
 		cfpLoadingBarProvider.includeSpinner = true;
 		$locationProvider.html5Mode(true);
-		$locationProvider.hashPrefix('!');
+		// $locationProvider.hashPrefix('!');
 		$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 		$httpProvider.defaults.headers.common['X-Requested-With'] = 'application/angularjs';
 	})
@@ -79,24 +93,123 @@
 			}
 		};
 	});
-	
+
+	cultural.directive('ueditor', [function($scope) {
+        return {
+            restrict: 'A',
+            link: function($scope, element, attrs){
+
+              	// var editor = new UE.ui.Editor({initialContent: $scope.post.post_content});
+
+              	var editor = new UE.ui.Editor();
+
+              	editor.render(element[0]);
+
+              	editor.ready(function(){
+	                editor.addListener('contentChange', function(){
+	                  	$scope.post['post_content'] = editor.getContent();
+	                  	$scope.$root.$$phase || $scope.$apply();
+	                });
+                });
+            }
+        };
+    }])
+
+    cultural.controller('postCtl', function ($scope, $http, $state, $upload) {
+		$scope.postAdd = function($event) {
+			if ( !$scope.post ) {
+				sweetAlert("投稿错误！", "请填写完整信息!", "error");
+				return;
+			}else if ( !$scope.post.post_title ) {
+				sweetAlert("投稿错误！", "请填写标题!", "error");
+				return;
+			}else if ( !$scope.post.term_id ) {
+				sweetAlert("投稿错误！", "请选择栏目!", "error");
+				return;
+			}else if ( !$scope.post.post_keywords ) {
+				sweetAlert("投稿错误！", "请填写关键词!", "error");
+				return;
+			}else if ( !$scope.post.post_excerpt ) {
+				sweetAlert("投稿错误！", "请填写摘要!", "error");
+				return;
+			}else if ( !$scope.post.post_content ) {
+				sweetAlert("投稿错误！", "请填写内容!", "error");
+				return;
+			}else if ( !$scope.post.smeta.thumb ) {
+				sweetAlert("投稿错误！", "请上传缩略图!", "error");
+				return;
+			}
+			$http({
+				method  : 'POST',
+				url     : "{:u('user/post/add_post')}",
+				data    : $.param($scope.post),
+				headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+			})
+			.success(function(data) {
+				sweetAlert(data.info, data.data, data.status);
+				if ( data.status == "success" ) {
+					$state.go("user", {"actionName":"post","tplName":"index"}, {reload: true});
+				}
+			})
+			.error( function () {
+				sweetAlert("投稿错误！", "网络异常，请稍后重试！","error");
+			});
+
+			$event.preventDefault();
+		}
+
+		$scope.thumb = function (files) {
+	        if (files && files.length) {
+	            for (var i = 0; i < files.length; i++) {
+	                var file = files[i];
+	                $upload.upload({
+	                    url: "{:u('index/postupload')}",
+	                    file: file
+	                }).progress(function (evt) {
+	                	$scope.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+	                }).success(function (response, status, headers, config) {
+                		if ( response.status == "error" ) {
+							sweetAlert(response.info, response.data, response.status);
+						}else {
+							$scope.post.smeta.thumb = response.data;
+							$("#thumb").val("/data/upload/post/"+response.data);
+							$("#thumb_preview").attr("src","/data/upload/post/"+response.data);
+						}
+	                });
+	            }
+	        }
+	    };
+	});
+
 	cultural.controller('searchCtl', function ($scope, $state, $location) {
 		$scope.onSearchSubmit = function() {
 			$state.go("search", {keyword: $scope.searchForm.keyword}, {reload:true,inherit:true});
 		}
 	});
 
-	cultural.controller('avatarCtl', function ($scope, $state, FileUploader) {
-		var uploader = $scope.uploader = new FileUploader({
-            url: "{:u('profile/avatar_upload')}"
-        });
-		uploader.onSuccessItem  = function(item, response, status, headers) {
-			if ( response.status == "error" ) {
-				sweetAlert(response.info, response.data, response.status);
-			}else {
-				$(".headicon").attr("src","/data/upload/avatar/"+response.data);
-			}
-        };
+	cultural.controller('avatarCtl', function ($scope, $state, $upload) {
+		$scope.usingFlash = FileAPI && FileAPI.upload != null;
+		$scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
+		console.log(FileAPI.getFiles);
+	    $scope.upload = function (files) {
+	        if (files && files.length) {
+	            for (var i = 0; i < files.length; i++) {
+	                var file = files[i];
+	                $upload.upload({
+	                    url: "{:u('profile/avatar_upload')}",
+	                    file: file
+	                }).progress(function (evt) {
+	                    file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+	                }).success(function (response, status, headers, config) {
+	                    	if ( response.status == "error" ) {
+								sweetAlert(response.info, response.data, "error");
+							}else {
+								$(".headicon").attr("src","/data/upload/avatar/"+response.data);
+							}
+	                });
+	            }
+	        }
+	    };
 	});
 
 	cultural.controller('loginCtl', function ($scope, $http, $state, $location, $window) {
@@ -189,8 +302,8 @@
 		}
 	});
 		
-	cultural.controller('companyCtl', function ($scope, $http, $window, FileUploader) {
-		$scope.companySubmit = function($event,FileUploader) {
+	cultural.controller('companyCtl', function ($scope, $http, $window, $upload) {
+		$scope.companySubmit = function($event) {
 			if ( !$scope.companyForm ) {
 				sweetAlert("认证错误！", "请填写完整信息!", "error");
 				return;
@@ -247,28 +360,91 @@
 			$event.preventDefault();
 		}
 
-		var code = $scope.code = new FileUploader({
-            url: "{:u('index/picupload')}"
-        });
-        var group = $scope.group = new FileUploader({
-            url: "{:u('index/picupload')}"
-        });
-		code.onSuccessItem  = function(item, response, status, headers,config) {
-			if ( response.status == "error" ) {
-				sweetAlert(response.info, response.data, response.status);
-			}else {
-				$scope.companyForm.code_pic = response.data;
-				$("input[name='code_pic']").prev().attr("src","/data/upload/company/"+response.data);
+		$scope.code = function (files) {
+	        if (files && files.length) {
+	            for (var i = 0; i < files.length; i++) {
+	                var file = files[i];
+	                $upload.upload({
+	                    url: "{:u('index/picupload')}",
+	                    file: file
+	                }).progress(function (evt) {
+	                    $scope.code_progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+	                }).success(function (response, status, headers, config) {
+                		if ( response.status == "error" ) {
+							sweetAlert(response.info, response.data, response.status);
+						}else {
+							$scope.companyForm.code_pic = response.data;
+							$("input[name='code_pic']").prev().attr("src","/data/upload/company/"+response.data);
+						}
+	                });
+	            }
+	        }
+	    };
+
+	    $scope.group = function (files) {
+	        if (files && files.length) {
+	            for (var i = 0; i < files.length; i++) {
+	                var file = files[i];
+	                $upload.upload({
+	                    url: "{:u('index/picupload')}",
+	                    file: file
+	                }).progress(function (evt) {
+	                	$scope.group_progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+	                }).success(function (response, status, headers, config) {
+                		if ( response.status == "error" ) {
+							sweetAlert(response.info, response.data, response.status);
+						}else {
+							$scope.companyForm.group_pic = response.data;
+							$("input[name='group_pic']").prev().attr("src","/data/upload/company/"+response.data);
+						}
+	                });
+	            }
+	        }
+	    };
+	});
+
+	cultural.controller('registerCtl', function ($scope, $http, $window, $location) {
+		$scope.registerSubmit = function($event,FileUploader) {
+			if ( !$scope.register ) {
+				sweetAlert("注册出错！！", "请填写完整信息!", "error");
+				return;
+			}else if ( !$scope.register.username ) {
+				sweetAlert("注册出错！！", "请输入账号!", "error");
+				return;
+			}else if ( !$scope.register.email ) {
+				sweetAlert("注册出错！！", "请输入邮箱!", "error");
+				return;
+			}else if ( !$scope.register.password ) {
+				sweetAlert("注册出错！！", "请输入密码!", "error");
+				return;
+			}else if ( !$scope.register.repassword ) {
+				sweetAlert("注册出错！！", "请再输入一次密码!", "error");
+				return;
+			}else if ( !$scope.register.verify ) {
+				sweetAlert("注册出错！！", "请输入验证码!", "error");
+				return;
 			}
-        };
-		group.onSuccessItem  = function(item, response, status, headers,config) {
-			if ( response.status == "error" ) {
-				sweetAlert(response.info, response.data, response.status);
-			}else {
-				$scope.companyForm.group_pic = response.data;
-				$("input[name='group_pic']").prev().attr("src","/data/upload/company/"+response.data);
-			}
-        };
+
+			$http({
+				method  : 'POST',
+				url     : "{:u('user/register/doregister')}",
+				data    : $.param($scope.register),
+				headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+			})
+			.success(function(data) {
+				sweetAlert(data.info, data.data, data.status);
+				if ( data.status == "success" ) {
+					// $location.path(data.referer).replace();
+					// $window.location.reload(true);
+					// $state.go("user", {"actionName":"center","tplName":"index"}, {reload: true});
+					$window.location.href = data.referer;
+				}
+			})
+			.error( function () {
+				sweetAlert("注册出错！！", "网络异常，请稍后重试！","error");
+			});
+			$event.preventDefault();
+		}
 	});
 
 </script>

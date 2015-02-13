@@ -1,4 +1,4 @@
-<div class="container tc-main">
+<?php if (!defined('THINK_PATH')) exit();?><div class="container tc-main">
 	<div class="row">
 		<div class="span6 offset3">
 			<h2 class="text-center">用户登录</h2>
@@ -19,7 +19,7 @@
 					<label class="control-label" for="input_verify">验证码</label>
 					<div class="controls">
 						<input ng-model="loginForm.verify" type="text" id="input_verify" name="verify"  placeholder="请输入验证码" class="span3">
-						{:sp_verifycode_img('code_len=4&font_size=15&width=100&height=35&charset=1234567890')}
+						<?php echo sp_verifycode_img('code_len=4&font_size=15&width=100&height=35&charset=1234567890');?>
 					</div>
 				</div>
 				<div class="control-group">
@@ -40,8 +40,8 @@
 					<label class="control-label" for="input_repassword"></label>
 					<div class="controls">
 						<ul class="inline">
-							<li><a href="{:U('user/register/index')}">现在注册</a></li>
-							<!-- <li><a href="{:U('user/login/forgot_password')}">忘记密码</a></li> -->
+							<li><a href="<?php echo U('user/register/index');?>">现在注册</a></li>
+							<!-- <li><a href="<?php echo U('user/login/forgot_password');?>">忘记密码</a></li> -->
 						</ul>
 					</div>
 				</div>

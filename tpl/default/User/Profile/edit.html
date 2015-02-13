@@ -66,7 +66,7 @@
                             </div>
                             <div class="control-group">
                                 <div class="controls">
-                                    <button type="submit" class="btn">保存</button>
+                                    <button type="submit" class="btn btn-primary">保存</button>
                                 </div>
                             </div>
                         </form>
@@ -77,13 +77,9 @@
                                 <else/>
                                     <img src="{:sp_get_user_avatar_url($avatar)}" class="headicon"/>
                                 </if>
-                                <input type="file"  nv-file-select uploader="uploader" name="file" value="{$avatar}" ng-model="profileForm.avatar" id="avatar_uploder"/>
-                                <div ng-repeat="item in uploader.queue">
-                                    文件名: <span ng-bind="item.file.name"></span><br/>
-                                    <button class="btn btn-success btn-xs" ng-click="item.upload()">上传</button>
-                                </div>
-                                <div class="progress" style="">
-                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                                <input type="file" name="file" value="{$avatar}" ng-model="profileForm.avatar" id="avatar_uploder" ng-multiple="false" ng-accept="'image/*'" ng-file-select ng-file-change="upload($files)"/>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': profileForm.avatar[0].progress + '%' }">{{profileForm.avatar[0].progress}}%</div>
                                 </div>
                             </div>
                         </div>

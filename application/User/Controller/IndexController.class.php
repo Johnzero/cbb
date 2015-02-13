@@ -56,7 +56,7 @@ class IndexController extends HomeBaseController {
     	$config=array(
 			'rootPath' => './'.C("UPLOADPATH"),
 			'savePath' => './company/',
-			'maxSize' => 512000,
+			'maxSize' => 5120000,
 			'saveName'   =>    array('uniqid',''),
 			'exts'       =>    array('jpg', 'png', 'jpeg'),
 			'autoSub'    =>    false,
@@ -79,6 +79,36 @@ class IndexController extends HomeBaseController {
             $return['data'] = $upload->getError();
             $this->ajaxReturn($return);
     	}
+    }
+
+    public function postupload() {
+        $userid=sp_get_current_userid();
+        $config=array(
+            'rootPath' => './'.C("UPLOADPATH"),
+            'savePath' => './post/',
+            'maxSize' => 5120000,
+            'saveName'   =>    array('uniqid',''),
+            'exts'       =>    array('jpg', 'png', 'jpeg'),
+            'autoSub'    =>    false,
+        );
+        $upload = new \Think\Upload($config);
+        $info=$upload->upload();
+
+        if ($info) {
+            $info = array_shift($info);
+            $url = $info['savename'];
+            $return = array();
+            $return['status'] = "success";
+            $return['info'] = "上传成功！";
+            $return['data'] = $url;
+            $this->ajaxReturn($return);
+        } else {
+            $return = array();
+            $return['status'] = "error";
+            $return['info'] = "上传错误！";
+            $return['data'] = $upload->getError();
+            $this->ajaxReturn($return);
+        }
     }
 
 }

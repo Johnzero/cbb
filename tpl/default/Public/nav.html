@@ -22,7 +22,7 @@
 				<ul class="nav pull-right" id="main-menu-left">
 					<li class="dropdown">
 						<if condition="sp_is_user_login()">
-						<a class="dropdown-toggle user" data-toggle="dropdown" href="#">
+						<a class="dropdown-toggle user" data-toggle="dropdown" href="javaScript:void(0);">
 							<if condition="empty($user['avatar'])">
 							<img src="__ROOT__/statics/images/headicon.png" class="headicon"/>
 							<else/>
@@ -35,12 +35,12 @@
 							<li><a href="{:u('user/index/logout')}"><i class="fa fa-sign-out"></i> &nbsp;退出</a></li>
 						</ul>
 						<else/>
-						<a class="dropdown-toggle user" data-toggle="dropdown" href="#">
+						<a class="dropdown-toggle user" data-toggle="dropdown" href="javaScript:void(0);">
 							<img src="__ROOT__/statics/images/headicon.png" class="headicon"/>登录<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu pull-right">
-							<li><a href="{:U('api/oauth/login',array('type'=>'sina'))}"><i class="fa fa-weibo"></i> &nbsp;微博登录</a></li>
-							<li><a href="{:U('api/oauth/login',array('type'=>'qq'))}"><i class="fa fa-qq"></i> &nbsp;QQ登录</a></li>
+							<!-- <li><a href="{:U('api/oauth/login',array('type'=>'sina'))}"><i class="fa fa-weibo"></i> &nbsp;微博登录</a></li> -->
+							<!-- <li><a href="{:U('api/oauth/login',array('type'=>'qq'))}"><i class="fa fa-qq"></i> &nbsp;QQ登录</a></li> -->
 							<li><a href="{:u('user/login/index')}"><i class="fa fa-sign-in"></i> &nbsp;登录</a></li>
 							<li class="divider"></li>
 							<li><a href="{:u('user/register/index')}"><i class="fa fa-user"></i> &nbsp;注册</a></li>
