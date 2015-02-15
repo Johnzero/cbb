@@ -23,6 +23,13 @@
 .nav-tabs>.active>a {
 	background:white;
 }
+.progress {
+	margin-top: 10px;
+	height: 20px;
+	width: 90%;
+	margin-bottom: 0;
+	margin-left: 5%;
+}
 </style>
 </head>
 <div class="container tc-main">
@@ -40,11 +47,9 @@
 							<div class="table_full">
 								<span style="text-align: center;display:block;width:100%">缩略图</span>
 								<div style="text-align: center;">
-									<input type="hidden" name="smeta[thumb]" id='file_input' value="/statics/images/icon/upload-pic.png" ng-model="post.smeta.thumb" ng-multiple="false" ng-accept="'image/*'" ng-file-select ng-file-change="thumb($files)"/>
-									<a href='javascript:void(0);' onclick="file_select();">
-										<img src='/statics/images/icon/upload-pic.png' id='thumb_preview' width='135' height='113' style='cursor:hand' />
-									</a>
-	                                <div class="progress">
+									<img src='/statics/images/icon/upload-pic.png' id='thumb_preview' width='135' height='113' style='margin-bottom: 10px;' />
+									<input type="file" name="smeta[thumb]" id='file_input' value="/statics/images/icon/upload-pic.png" ng-model="post.smeta.thumb" ng-multiple="false" ng-accept="'image/*'" ng-file-select ng-file-change="thumb($files)" style="width:90%"/>
+	                                <div class="progress" ng-show="progress >= 0">
 	                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': progress + '%' }">{{progress}}%</div>
 	                                </div>
 								</div>

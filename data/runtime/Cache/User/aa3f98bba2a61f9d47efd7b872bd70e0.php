@@ -72,7 +72,7 @@
                                     <?php else: ?>
                                         <img src="/data/upload/company/<?php echo ($companyForm["code_pic"]); ?>" class="headicon"/><?php endif; ?>
 
-                                    <input type="file" name="code_pic" value="<?php echo ($companyForm["code_pic"]); ?>" ng-model="companyForm.code_pic" ng-multiple="false" ng-accept="'image/*'" ng-file-select ng-file-change="code($files)"/>
+                                    <input type="file" name="code_pic" value="<?php echo ($companyForm["code_pic"]); ?>" ng-model="companyForm.code_pic" ng-multiple="false" ng-accept="'image/*'" ng-file-select ng-file-change="code($files)" id="code_pic"/>
 
                                     <span class="help-block">请确保图片清晰，文字可辨并有清晰的红色公章。</span>
                                     <div class="progress">
@@ -95,7 +95,7 @@
                                     <?php if(empty($companyForm['group_pic'])): ?><img src="/statics/images/headicon_128.png" class="headicon"/>
                                     <?php else: ?>
                                         <img src="/data/upload/company/<?php echo ($companyForm["group_pic"]); ?>" class="headicon"/><?php endif; ?>
-                                    <input type="file" name="group_pic" value="<?php echo ($companyForm["group_pic"]); ?>" ng-model="companyForm.group_pic" ng-multiple="false" ng-accept="'image/*'" ng-file-select ng-file-change="group($files)"/>
+                                    <input type="file" name="group_pic" value="<?php echo ($companyForm["group_pic"]); ?>" ng-model="companyForm.group_pic" ng-multiple="false" ng-accept="'image/*'" ng-file-select ng-file-change="group($files)" id="group_pic"/>
                                     <span class="help-block">请确保图片清晰，文字可辨并有清晰的红色公章。</span>
                                     <div class="progress">
                                         <div class="progress-bar" role="progressbar" ng-style="{ 'width':group_progress + '%' }">{{group_progress}}%</div>

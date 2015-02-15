@@ -104,19 +104,16 @@
 <!-- <script src="/statics/js/angular/angular.min.js"></script> -->
 <script src="/statics/js/angular/angular.js"></script>
 <script src="/statics/js/angular/angular-ui-router.js"></script>
+<!--[if IE]>
 <script>
-    FileAPI = {
-        jsPath: '/statics/js/angular/', 
+    window.FileAPI = {
         jsUrl: '/statics/js/angular/FileAPI.min.js',
-        staticPath: '/statics/js/angular/',
         flashUrl: '/statics/js/angular/FileAPI.flash.swf',
-        wrapInsideDiv: true,
-        forceLoad: true, 
-        html5: false
     }
 </script>
 <script src="/statics/js/angular/angular-file-upload-shim.min.js"></script>
-<script src="/statics/js/angular/angular-file-upload-all.js"></script>
+<![endif]-->
+<script src="/statics/js/angular/angular-file-upload.min.js"></script>
 <script src="/statics/js/angular/loading-bar.js"></script>
 <link href='/statics/js/angular/loading-bar.css' rel='stylesheet' />
 
@@ -134,46 +131,46 @@
 		$urlRouterProvider.when('', '/');
 
 		$stateProvider
-		.state("/", {
-			url: "/",
-			templateUrl: "/"
-		})
-		.state("search", {
-			url: "/search/:keyword",
-			templateUrl: function ($stateParams){
-				if ($stateParams.keyword) {
-					return '/search/index.html?keyword=' + $stateParams.keyword;
+			.state("/", {
+				url: "/",
+				templateUrl: "/"
+			})
+			.state("search", {
+				url: "/search/:keyword",
+				templateUrl: function ($stateParams){
+					if ($stateParams.keyword) {
+						return '/search/index.html?keyword=' + $stateParams.keyword;
+					}
+					else {
+						return "/";
+					}
 				}
-				else {
-					return "/";
+			})
+			.state("user", {
+				url: "/user/:actionName/:tplName.html",
+				templateUrl: function ($stateParams){
+					// console.log($stateParams.actionName);
+					return '/user/' + $stateParams.actionName + '/' + $stateParams.tplName + '.html';
 				}
-			}
-		})
-		.state("user", {
-			url: "/user/:actionName/:tplName.html",
-			templateUrl: function ($stateParams){
-				console.log($stateParams.actionName);
-				return '/user/' + $stateParams.actionName + '/' + $stateParams.tplName + '.html';
-			}
-		})
-		.state("list", {
-			url: "/list/index/id/:listId.html",
-			templateUrl: function ($stateParams){
-				return '/list/index/id/' + $stateParams.listId + '.html';
-			}
-		})
-		.state("article", {
-			url: "/article/index/id/:articleId.html",
-			templateUrl: function ($stateParams){
-			return '/article/index/id/' + $stateParams.articleId + '.html';
-			}
-		})
-		.state("comment", {
-			url: "/comment/comment/:tplName.html",
-			templateUrl: function ($stateParams){
-			return '/comment/comment/' + $stateParams.tplName + '.html';
-			}
-		})
+			})
+			.state("list", {
+				url: "/list/index/id/:listId.html",
+				templateUrl: function ($stateParams){
+					return '/list/index/id/' + $stateParams.listId + '.html';
+				}
+			})
+			.state("article", {
+				url: "/article/index/id/:articleId.html",
+				templateUrl: function ($stateParams){
+				return '/article/index/id/' + $stateParams.articleId + '.html';
+				}
+			})
+			.state("comment", {
+				url: "/comment/comment/:tplName.html",
+				templateUrl: function ($stateParams){
+				return '/comment/comment/' + $stateParams.tplName + '.html';
+				}
+			})
 		cfpLoadingBarProvider.includeSpinner = true;
 		$locationProvider.html5Mode(true);
 		// $locationProvider.hashPrefix('!');
@@ -256,13 +253,21 @@
 
 			$event.preventDefault();
 		}
+		$scope.usingFlash = window.FileAPI && window.FileAPI.upload != null;
+	    if ( (typeof (window.FileAPI) != 'undefined') ) {
+	    	var thumb = document.getElementById('file_input');
+	    	window.FileAPI.event.on(thumb, 'change', function (evt){
+			    var files = window.FileAPI.getFiles(thumb);
+			    $scope.thumb(files);
+			});
+	    }
 
 		$scope.thumb = function (files) {
 	        if (files && files.length) {
 	            for (var i = 0; i < files.length; i++) {
 	                var file = files[i];
 	                $upload.upload({
-	                    url: "<?php echo u('index/postupload');?>",
+	                    url: "/user/index/postupload.html",
 	                    file: file
 	                }).progress(function (evt) {
 	                	$scope.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
@@ -287,13 +292,20 @@
 	});
 
 	cultural.controller('avatarCtl', function ($scope, $state, $upload) {
+	    $scope.usingFlash = window.FileAPI && window.FileAPI.upload != null;
+	    if ( (typeof (window.FileAPI) != 'undefined') ) {
+	    	var el = document.getElementById('avatar_uploder');
+	    	window.FileAPI.event.on(el, 'change', function (evt){
+			    var files = window.FileAPI.getFiles(el);
+			    $scope.upload(files);
+			});
+	    }
 	    $scope.upload = function (files) {
-	    	console.log($scope.profileForm);
 	        if (files && files.length) {
 	            for (var i = 0; i < files.length; i++) {
 	                var file = files[i];
 	                $upload.upload({
-	                    url: "<?php echo u('profile/avatar_upload');?>",
+	                    url: "/user/profile/avatar_upload.html",
 	                    file: file
 	                }).progress(function (evt) {
 	                    file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
@@ -457,12 +469,26 @@
 			$event.preventDefault();
 		}
 
+		$scope.usingFlash = window.FileAPI && window.FileAPI.upload != null;
+	    if ( (typeof (window.FileAPI) != 'undefined') ) {
+	    	var code = document.getElementById('code_pic');
+	    	var group = document.getElementById('group_pic');
+	    	window.FileAPI.event.on(code, 'change', function (evt){
+			    var files = window.FileAPI.getFiles(code);
+			    $scope.code(files);
+			});
+			window.FileAPI.event.on(group, 'change', function (evt){
+			    var files = window.FileAPI.getFiles(group);
+			    $scope.group(files);
+			});
+	    }
+
 		$scope.code = function (files) {
 	        if (files && files.length) {
 	            for (var i = 0; i < files.length; i++) {
 	                var file = files[i];
 	                $upload.upload({
-	                    url: "<?php echo u('index/picupload');?>",
+	                    url: "/user/index/picupload.html",
 	                    file: file
 	                }).progress(function (evt) {
 	                    $scope.code_progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
@@ -483,7 +509,7 @@
 	            for (var i = 0; i < files.length; i++) {
 	                var file = files[i];
 	                $upload.upload({
-	                    url: "<?php echo u('index/picupload');?>",
+	                    url: "/user/index/picupload.html",
 	                    file: file
 	                }).progress(function (evt) {
 	                	$scope.group_progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));

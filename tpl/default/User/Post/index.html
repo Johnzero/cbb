@@ -45,7 +45,7 @@
                                         <td>
                                             <php>$smeta=json_decode($vo['smeta'],true);</php>
                                             <if condition="!empty($smeta['thumb'])">
-                                            <a href="{:sp_get_asset_upload_path($smeta['thumb'])}" target='_blank'>查看</a>
+                                            <a href="/data/upload/post/{$smeta['thumb']}" target='_blank'>查看</a>
                                             </if>
                                         </td>
                                         <td>{$vo.post_date}</td>

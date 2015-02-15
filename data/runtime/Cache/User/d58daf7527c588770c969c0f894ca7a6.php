@@ -50,7 +50,7 @@
                                         <td><?php echo ($vo["post_hits"]); ?></td>
                                         <td>
                                             <?php $smeta=json_decode($vo['smeta'],true); ?>
-                                            <?php if(!empty($smeta['thumb'])): ?><a href="<?php echo sp_get_asset_upload_path($smeta['thumb']);?>" target='_blank'>查看</a><?php endif; ?>
+                                            <?php if(!empty($smeta['thumb'])): ?><a href="/data/upload/post/<?php echo ($smeta['thumb']); ?>" target='_blank'>查看</a><?php endif; ?>
                                         </td>
                                         <td><?php echo ($vo["post_date"]); ?></td>
                                         <td><?php echo ($status[$vo['post_status']]); ?></td>

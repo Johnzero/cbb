@@ -80,9 +80,7 @@
                                 <?php if(empty($avatar)): ?><img src="/statics/images/headicon_128.png" class="headicon"/>
                                 <?php else: ?>
                                     <img src="<?php echo sp_get_user_avatar_url($avatar);?>" class="headicon"/><?php endif; ?>
-                                <input type="hidden" value="/statics/images/headicon_128.png" ng-model="profileForm.avatars"/>
                                 <input type="file" name="file" value="<?php echo ($avatar); ?>" ng-model="profileForm.avatar" id="avatar_uploder" ng-multiple="false" ng-accept="'image/*'" ng-file-select ng-file-change="upload($files)"/>
-                                 <!-- ng-show="profileForm.avatar[0].progress >= 0" -->
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" ng-style="{ 'width': profileForm.avatar[0].progress + '%' }">{{profileForm.avatar[0].progress}}%</div>
                                 </div>
