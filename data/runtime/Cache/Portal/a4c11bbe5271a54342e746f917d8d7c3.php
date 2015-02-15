@@ -104,18 +104,19 @@
 <!-- <script src="/statics/js/angular/angular.min.js"></script> -->
 <script src="/statics/js/angular/angular.js"></script>
 <script src="/statics/js/angular/angular-ui-router.js"></script>
-<!--[if IE]>
 <script>
     FileAPI = {
         jsPath: '/statics/js/angular/', 
         jsUrl: '/statics/js/angular/FileAPI.min.js',
         staticPath: '/statics/js/angular/',
         flashUrl: '/statics/js/angular/FileAPI.flash.swf',
+        wrapInsideDiv: true,
+        forceLoad: true, 
+        html5: false
     }
 </script>
 <script src="/statics/js/angular/angular-file-upload-shim.min.js"></script>
-<![endif]-->
-<script src="/statics/js/angular/angular-file-upload.min.js"></script>
+<script src="/statics/js/angular/angular-file-upload-all.js"></script>
 <script src="/statics/js/angular/loading-bar.js"></script>
 <link href='/statics/js/angular/loading-bar.css' rel='stylesheet' />
 
@@ -286,10 +287,8 @@
 	});
 
 	cultural.controller('avatarCtl', function ($scope, $state, $upload) {
-		$scope.usingFlash = FileAPI && FileAPI.upload != null;
-		$scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
-		console.log(FileAPI.getFiles);
 	    $scope.upload = function (files) {
+	    	console.log($scope.profileForm);
 	        if (files && files.length) {
 	            for (var i = 0; i < files.length; i++) {
 	                var file = files[i];
@@ -299,11 +298,11 @@
 	                }).progress(function (evt) {
 	                    file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
 	                }).success(function (response, status, headers, config) {
-	                    	if ( response.status == "error" ) {
-								sweetAlert(response.info, response.data, "error");
-							}else {
-								$(".headicon").attr("src","/data/upload/avatar/"+response.data);
-							}
+                    	if ( response.status == "error" ) {
+							sweetAlert(response.info, response.data, "error");
+						}else {
+							$(".headicon").attr("src","/data/upload/avatar/"+response.data);
+						}
 	                });
 	            }
 	        }

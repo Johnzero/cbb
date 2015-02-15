@@ -44,7 +44,7 @@
 									<a href='javascript:void(0);' onclick="file_select();">
 										<img src='__ROOT__/statics/images/icon/upload-pic.png' id='thumb_preview' width='135' height='113' style='cursor:hand' />
 									</a>
-	                                <div class="progress">
+	                                <div class="progress" ng-show="progress >= 0">
 	                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': progress + '%' }">{{progress}}%</div>
 	                                </div>
 								</div>
