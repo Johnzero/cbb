@@ -54,7 +54,7 @@
 				<div class="header">
 					<div class="item-image">
 						<a href="<?php echo leuu('article/index',array('id'=>$vo['tid']));?>">
-							<?php if(empty($smeta['thumb'])): ?><img src="/tpl/default/Public/images/default_tupian1.png" class="img-responsive" alt="<?php echo ($vo["post_title"]); ?>"/>
+							<?php if(empty($smeta['thumb'])): ?><img src="http://wangsong.com/tpl/default/Public/images/default_tupian1.png" class="img-responsive" alt="<?php echo ($vo["post_title"]); ?>"/>
 							<?php else: ?>
 							<img src="<?php echo sp_get_asset_upload_path($smeta['thumb']);?>" class="img-responsive img-thumbnail" alt="<?php echo ($vo["post_title"]); ?>" /><?php endif; ?>
 						</a>
@@ -69,10 +69,8 @@
 		</div><?php endforeach; endif; ?>
 	</div>
 </div>
-</div>
-
-<link href="/statics/js/slippry/slippry.css" rel="stylesheet">
-<script src="/statics/js/slippry/slippry.min.js"></script>
+<link href="http://wangsong.com/statics/js/slippry/slippry.css" rel="stylesheet">
+<script src="http://wangsong.com/statics/js/slippry/slippry.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
 	var demo1 = $("#homeslider").slippry({

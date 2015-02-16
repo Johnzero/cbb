@@ -10,25 +10,23 @@
 		<!--[if !IE]><!--> 
 			<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':8080/livereload.js?snipver=1"></' + 'script>')</script>
 		<!--<![endif]-->
-		<link href="/statics/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/statics/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-		<link href="/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
+		<link href="http://wangsong.com/statics/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="http://wangsong.com/statics/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="http://wangsong.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
 		<!--[if IE 7]>
-		<link rel="stylesheet" href="/statics/font-awesome/css/font-awesome-ie7.min.css">
+		<link rel="stylesheet" href="http://wangsong.com/statics/font-awesome/css/font-awesome-ie7.min.css">
 		<![endif]-->
-		<link href="/statics/css/style.css" rel="stylesheet">
+		<link href="http://wangsong.com/statics/css/style.css" rel="stylesheet">
 		<script type="text/javascript">
 			var GV = {
-				DIMAUB: "/",
+				DIMAUB: "http://wangsong.com/",
 				JS_ROOT: "statics/js/",
 				TOKEN: ""
 			};
 		</script>
 		<!--[if IE]>
-			<script src="/statics/js/angular/es5-shim.min.js"></script>
+			<script src="http://wangsong.com/statics/js/angular/es5-shim.min.js"></script>
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-	        <script src="../console-sham.js"></script>
-		 	<script src="/statics/js/json2.js"></script>
 			<script>
 				document.createElement('ng-include');
 				document.createElement('ng-pluralize');
@@ -38,10 +36,26 @@
 				document.createElement('ng:view');
 			</script>
 		<![endif]-->
-		<script src="/statics/js/jquery.js"></script>
-		<script src="/statics/bootstrap/js/bootstrap.min.js"></script>
+
+		<!--[if lt IE 7]>
+            <script src="http://wangsong.com/statics/js/IE7.js"></script>
+        <![endif]-->
+        <!--[if lt IE 8]>
+            <script src="http://wangsong.com/statics/js/IE8.js"></script>
+		 	<script src="http://wangsong.com/statics/js/json3.min.js"></script>
+        <![endif]-->
+        <!--[if lt IE 9]>
+            <script src="http://wangsong.com/statics/js/IE9.js"></script>
+		 	<script src="http://wangsong.com/statics/js/json3.min.js"></script>
+        <![endif]-->
+
+		<script src="http://wangsong.com/statics/js/jquery.js"></script>
+		<script src="http://wangsong.com/statics/bootstrap/js/bootstrap.min.js"></script>
 	</head>
 	<body ng-app="cultural" class="ng-app:cultural" id="ng-app">
+		<!--[if lt IE 8]>
+	        <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+	    <![endif]-->
 		<div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
@@ -50,14 +64,14 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a class="brand" href="/" target="_self"><img src="/statics/images/logo.png"/></a>
+			<a class="brand" href="http://wangsong.com/" target="_self"><img src="http://wangsong.com/statics/images/logo.png"/></a>
 			<div class="nav-collapse collapse" id="main-menu">
 				<?php
  $effected_id=""; $filetpl="<a href='\$href' target='\$target'>\$label</a>"; $foldertpl="<a href='\$href' target='\$target' class='dropdown-toggle' data-toggle='dropdown'>\$label <b class='caret'></b></a>"; $ul_class="dropdown-menu" ; $li_class="" ; $style="nav"; $showlevel=6; $dropdown='dropdown'; echo sp_get_menu("main",$effected_id,$filetpl,$foldertpl,$ul_class,$li_class,$style,$showlevel,$dropdown); ?>
 				<ul class="nav pull-right" id="main-menu-left">
 					<li class="dropdown">
 						<?php if(sp_is_user_login()): ?><a class="dropdown-toggle user" data-toggle="dropdown" href="javaScript:void(0);">
-							<?php if(empty($user['avatar'])): ?><img src="/statics/images/headicon.png" class="headicon"/>
+							<?php if(empty($user['avatar'])): ?><img src="http://wangsong.com/statics/images/headicon.png" class="headicon"/>
 							<?php else: ?>
 							<img src="<?php echo sp_get_user_avatar_url($user['avatar']);?>" class="headicon"/><?php endif; ?>
 						<?php echo ($user["user_nicename"]); ?><b class="caret"></b></a>
@@ -68,7 +82,7 @@
 						</ul>
 						<?php else: ?>
 						<a class="dropdown-toggle user" data-toggle="dropdown" href="javaScript:void(0);">
-							<img src="/statics/images/headicon.png" class="headicon"/>登录<b class="caret"></b>
+							<img src="http://wangsong.com/statics/images/headicon.png" class="headicon"/>登录<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu pull-right">
 							<!-- <li><a href="<?php echo U('api/oauth/login',array('type'=>'sina'));?>"><i class="fa fa-weibo"></i> &nbsp;微博登录</a></li> -->
@@ -97,43 +111,48 @@
 
 <!-- JavaScript -->
 <!-- Javascript -->
-<link rel="stylesheet" href="/statics/js/sweetalert/sweet-alert.css">
-<script src="/statics/js/sweetalert/sweet-alert.min.js"></script>
+<link rel="stylesheet" href="http://wangsong.com/statics/js/sweetalert/sweet-alert.css">
+<script src="http://wangsong.com/statics/js/sweetalert/sweet-alert.min.js"></script>
 <script type="text/javascript" src="http://ueditor.baidu.com/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" src="http://ueditor.baidu.com/ueditor/ueditor.all.js"></script>
-<!-- <script src="/statics/js/angular/angular.min.js"></script> -->
-<script src="/statics/js/angular/angular.js"></script>
-<script src="/statics/js/angular/angular-ui-router.js"></script>
+<script src="http://wangsong.com/statics/js/angular/angular.min.js"></script>
+<!-- <script src="http://wangsong.com/statics/js/angular/angular.js"></script> -->
+<script src="http://wangsong.com/statics/js/angular/angular-ui-router.js"></script>
 <!--[if IE]>
 <script>
     window.FileAPI = {
-        jsUrl: '/statics/js/angular/FileAPI.min.js',
-        flashUrl: '/statics/js/angular/FileAPI.flash.swf',
+        jsUrl: 'http://wangsong.com/statics/js/angular/FileAPI.min.js',
+        flashUrl: 'http://wangsong.com/statics/js/angular/FileAPI.flash.swf',
     }
 </script>
-<script src="/statics/js/angular/angular-file-upload-shim.min.js"></script>
+<script src="http://wangsong.com/statics/js/angular/angular-file-upload-shim.min.js"></script>
 <![endif]-->
-<script src="/statics/js/angular/angular-file-upload.min.js"></script>
-<script src="/statics/js/angular/loading-bar.js"></script>
-<link href='/statics/js/angular/loading-bar.css' rel='stylesheet' />
+<script src="http://wangsong.com/statics/js/angular/angular-file-upload.min.js"></script>
+<script src="http://wangsong.com/statics/js/angular/loading-bar.js"></script>
+<link href='http://wangsong.com/statics/js/angular/loading-bar.css' rel='stylesheet' />
 
 <script type="text/javascript">
 	
 	var cultural = angular.module('cultural',['ui.router','angular-loading-bar','angularFileUpload']);
-	cultural.config(function(cfpLoadingBarProvider,$stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
-		
+	cultural.run(
+		['$rootScope', '$state', '$stateParams',
+			function ($rootScope,   $state,   $stateParams) {
+			$rootScope.$state = $state;
+			$rootScope.$stateParams = $stateParams;
+			}
+		]
+	).config(function(cfpLoadingBarProvider,$stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
 		// $urlRouterProvider.otherwise(function($injector, $location){
 		// 	$injector.invoke(['$state', function($state) {
 		// 		window.location = $location['$$absUrl'];
 		// 	}]);
 		// });
-		// $urlRouterProvider.otherwise('/');  
+		$urlRouterProvider.otherwise('/');  
 		$urlRouterProvider.when('', '/');
-
 		$stateProvider
 			.state("/", {
 				url: "/",
-				templateUrl: "/"
+				templateUrl: "/index"
 			})
 			.state("search", {
 				url: "/search/:keyword",
@@ -173,9 +192,10 @@
 			})
 		cfpLoadingBarProvider.includeSpinner = true;
 		$locationProvider.html5Mode(true);
-		// $locationProvider.hashPrefix('!');
+		$locationProvider.hashPrefix('!');
 		$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 		$httpProvider.defaults.headers.common['X-Requested-With'] = 'application/angularjs';
+		$httpProvider.defaults.headers.common['Cache-control'] = 'no-cache';
 	})
 
 	cultural.directive('input', function ($parse) {
@@ -194,13 +214,9 @@
         return {
             restrict: 'A',
             link: function($scope, element, attrs){
-
               	// var editor = new UE.ui.Editor({initialContent: $scope.post.post_content});
-
               	var editor = new UE.ui.Editor();
-
               	editor.render(element[0]);
-
               	editor.ready(function(){
 	                editor.addListener('contentChange', function(){
 	                  	$scope.post['post_content'] = editor.getContent();
@@ -569,13 +585,11 @@
 			$event.preventDefault();
 		}
 	});
-
 </script>
 <script type="text/javascript">
 	$(function(){
 
 		$('body').on('touchstart.dropdown', '.dropdown-menu', function (e) { e.stopPropagation(); });
-		
 		;(function($){
 			$.fn.totop=function(opt){
 				var scrolling=false;

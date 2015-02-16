@@ -1,9 +1,5 @@
 <?php
 
-/**
- * 项目入口文件
- * Some rights reserved：www.simplewind.net
- */
 if (ini_get('magic_quotes_gpc')) {
 	function stripslashesRecursive(array $array){
 		foreach ($array as $k => $v) {
@@ -20,6 +16,8 @@ if (ini_get('magic_quotes_gpc')) {
 }
 //开启调试模式
 define("APP_DEBUG", true);
+define("__ROOT__", "http://wangsong.com");
+
 //网站当前路径
 define('SITE_PATH', getcwd());
 //项目路径，不可更改

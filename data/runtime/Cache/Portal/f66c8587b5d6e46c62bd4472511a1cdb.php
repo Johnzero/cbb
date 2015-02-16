@@ -66,7 +66,7 @@
 						<i class="fa fa-comment"></i>
 						<a href="<?php echo U('user/index/index',array('id'=>$vo['uid']));?>"><?php echo ($vo["full_name"]); ?>:</a>
 						<span><?php echo ($vo["content"]); ?></span>
-						<a href="/<?php echo ($vo["url"]); ?>#comment<?php echo ($vo["id"]); ?>">查看原文</a>
+						<a href="http://wangsong.com/<?php echo ($vo["url"]); ?>#comment<?php echo ($vo["id"]); ?>">查看原文</a>
 						<span class="comment-time"><?php echo date('m月d日  H:i',strtotime($vo['createtime']));?></span>
 					</div><?php endforeach; endif; ?>
 				</div>
@@ -96,7 +96,7 @@
 					<dl class="dl-horizontal">
 						<dt>
 						<a class="img-wraper" href="<?php echo U('article/index',array('id'=>$vo['tid']));?>">
-							<?php if(empty($smeta['thumb'])): ?><img src="/tpl/default/Public/images/default_tupian4.png" class="img-responsive" alt="<?php echo ($vo["post_title"]); ?>"/>
+							<?php if(empty($smeta['thumb'])): ?><img src="http://wangsong.com/tpl/default/Public/images/default_tupian4.png" class="img-responsive" alt="<?php echo ($vo["post_title"]); ?>"/>
 							<?php else: ?>
 							<img src="<?php echo sp_get_asset_upload_path($smeta['thumb']);?>" class="img-responsive img-thumbnail" alt="<?php echo ($vo["post_title"]); ?>" /><?php endif; ?>
 						</a>

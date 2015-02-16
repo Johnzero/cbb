@@ -10,20 +10,20 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <![endif]-->
 
-	<link href="/statics/themes/<?php echo C('SP_ADMIN_STYLE');?>/theme.min.css" rel="stylesheet">
-    <link href="/statics/css/simplebootadmin.css" rel="stylesheet">
-    <link href="/statics/js/artDialog/skins/default.css" rel="stylesheet" />
-    <link href="/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
+	<link href="http://wangsong.com/statics/themes/<?php echo C('SP_ADMIN_STYLE');?>/theme.min.css" rel="stylesheet">
+    <link href="http://wangsong.com/statics/css/simplebootadmin.css" rel="stylesheet">
+    <link href="http://wangsong.com/statics/js/artDialog/skins/default.css" rel="stylesheet" />
+    <link href="http://wangsong.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
     <style>
 		.length_3{width: 180px;}
 	</style>
 	<!--[if IE 7]>
-	<link rel="stylesheet" href="/statics/font-awesome/css/font-awesome-ie7.min.css">
+	<link rel="stylesheet" href="http://wangsong.com/statics/font-awesome/css/font-awesome-ie7.min.css">
 	<![endif]-->
 <script type="text/javascript">
 //全局变量
 var GV = {
-    DIMAUB: "/",
+    DIMAUB: "http://wangsong.com/",
     JS_ROOT: "statics/js/",
     TOKEN: ""
 };
@@ -31,10 +31,10 @@ var GV = {
 <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/statics/js/jquery.js"></script>
-    <script src="/statics/js/jquery-migrate-1.2.1.js"></script>
-    <script src="/statics/js/wind.js"></script>
-    <script src="/statics/bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://wangsong.com/statics/js/jquery.js"></script>
+    <script src="http://wangsong.com/statics/js/jquery-migrate-1.2.1.js"></script>
+    <script src="http://wangsong.com/statics/js/wind.js"></script>
+    <script src="http://wangsong.com/statics/bootstrap/js/bootstrap.min.js"></script>
 <?php if(APP_DEBUG): ?><style>
 		#think_page_trace_open{
 			z-index:9999;
@@ -53,7 +53,7 @@ var GV = {
     </div>
   </div>
 </div>
-<script src="/statics/js/common.js"></script>
+<script src="http://wangsong.com/statics/js/common.js"></script>
 <script>
 var close_timeout=setTimeout(function(){
 	parent.close_current_app();
