@@ -35,28 +35,8 @@
 						<td>安装路径：</td>
 						<td><input type="text" class="input" name="options[site_root]" value="{$site_root}"><span class="must_red">*&nbsp;&nbsp;如安装在根目录请填“/”</span></td>
 					</tr>
-					<tr>
-						<td>模版方案：</td>
-						<td>
-							<select name="options[site_tpl]" class="normal_select" >
-								<foreach name="templates" item="vo">
-									<php>$tpl_selected=$site_tpl==$vo?"selected":"";</php>
-									<option value="{$vo}" {$tpl_selected}>{$vo}</option>
-								</foreach>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td>后台风格：</td>
-						<td>
-							<select name="options[site_adminstyle]" class="normal_select" >
-								<foreach name="adminstyles" item="vo">
-									<php>$adminstyle_selected=$site_adminstyle==$vo?"selected":"";</php>
-									<option value="{$vo}" {$adminstyle_selected}>{$vo}</option>
-								</foreach>
-							</select>
-						</td>
-					</tr>
+					<input type="hidden" name="options[site_tpl]" value="default">
+					<input type="hidden" name="options[site_adminstyle]" value="admin">
 					<tr>
 						<td>备案信息：</td>
 						<td><input type="text" class="input" name="options[site_icp]" value="{$site_icp}"></td>

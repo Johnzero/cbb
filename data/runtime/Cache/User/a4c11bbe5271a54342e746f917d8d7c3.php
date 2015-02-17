@@ -56,7 +56,25 @@
 		<!--[if lt IE 8]>
 	        <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
 	    <![endif]-->
-		<div class="navbar navbar-fixed-top">
+		<div class="tophead">
+	<div class="headtopNav">
+		<div class="pull-left">
+			<span>欢迎访问 <?php echo ($site_name); ?></span>
+			<?php $days = array('星期天','星期一','星期二','星期三','星期四','星期五','星期六');$today = date('w')-1; ?>
+			<span class="date"><?php echo date(Y年m月d日); ?> <?php echo $days[$today]; ?></span>
+		</div>
+		<div class="pull-right">
+			<a class="" href="<?php echo u('user/login/index');?>">
+				登录
+			</a>
+			<a class="" href="<?php echo u('user/register/index');?>">
+				注册
+			</a>
+		</div>
+	</div>
+</div>
+
+<div class="navbar">
 	<div class="navbar-inner">
 		<div class="container">
 			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">

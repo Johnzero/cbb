@@ -56,7 +56,48 @@
 		<!--[if lt IE 8]>
 	        <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
 	    <![endif]-->
-		<div class="navbar navbar-fixed-top">
+		<div class="tophead">
+	<div class="headtopNav">
+		<div class="pull-left">
+			<span>欢迎访问 <?php echo ($site_name); ?></span>
+			<?php $days = array('星期天','星期一','星期二','星期三','星期四','星期五','星期六');$today = date('w')-1; ?>
+			<span class="date"><?php echo date(Y年m月d日); ?> <?php echo $days[$today]; ?></span>
+		</div>
+		<div class="right-bar">
+			<ul>
+				<li>
+					<a href="javascript:;" class="login">登录</a>
+				</li>
+				<li>
+					<form class="form-search active" action="http://www.pingwest.com/">
+						<input type="search" class="nav-search-input" name="s" placeholder="输入搜索内容..." autocomplete="off" spellcheck="false" style="width: 0px;">
+						<i class="icon-search"></i>
+						<i class="close">×</i>
+					</form>
+				</li>
+			</ul>
+			
+			<!-- <a href="<?php echo u('user/login/index');?>">
+					登录
+			</a>
+			/
+			<a href="<?php echo u('user/register/index');?>">
+					注册
+			</a>
+			|  -->
+			<!-- 			<form class="form-search active" action="http://www.pingwest.com/">
+				<input type="search" class="nav-search-input" name="s" placeholder="输入搜索内容..." autocomplete="off" spellcheck="false" style="width: 0px;">
+				<i class="icon-search"></i>
+				<i class="close">×</i>
+			</form> -->
+			<!-- 			<form ng-submit="onSearchSubmit()" class="form-inline form-search" ng-controller="searchCtl">
+					<input type="text" class="" ng-model="searchForm.keyword" placeholder="Search" name="keyword" value="<?php echo I('get.keyword');?>"/>
+					<input type="submit" class="btn btn-info" value="Go" style="margin:0"/>
+			</form> -->
+		</div>
+	</div>
+</div>
+<div class="navbar">
 	<div class="navbar-inner">
 		<div class="container">
 			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -93,12 +134,6 @@
 						</ul><?php endif; ?>
 					</li>
 				</ul>
-				<div class="pull-right">
-					<form ng-submit="onSearchSubmit()" class="form-inline" style="margin:18px 0;" ng-controller="searchCtl">
-						<input type="text" class="" ng-model="searchForm.keyword" placeholder="Search" name="keyword" value="<?php echo I('get.keyword');?>"/>
-						<input type="submit" class="btn btn-info" value="Go" style="margin:0"/>
-					</form>
-				</div>
 			</div>
 		</div>
 	</div>
