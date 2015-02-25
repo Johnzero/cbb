@@ -93,7 +93,7 @@ var GV = {
                             <td><input name='listorders[<?php echo ($vo["tid"]); ?>]' class="input input-order"  type='text' size='3' value='<?php echo ($vo["listorder"]); ?>'></td>
                             <td><a><?php echo ($vo["tid"]); ?></a></td>
                             <td>
-                                <a href="<?php echo U('portal/article/index',array('id'=>$vo['tid']));?>" target="_blank">
+                                <a href="<?php echo U('article/index',array('id'=>$vo['tid']));?>" target="_blank">
                                     <span><?php echo ($vo["post_title"]); ?></span>
                                 </a>
                             </td>

@@ -69,7 +69,6 @@
 
 	<div class="row-fluid">
 	 	<div class="w790 pull-left">
-	 		<img src="http://wangsong.com/statics/images/block2.png" width="100%">
 	 		<ul class="cats">
 				<li><a href="">电商新闻</a></li>
 				<li><a href="">行业数据</a></li>
@@ -79,16 +78,17 @@
 				<li><a href="">电商专题</a></li>
 	 		</ul>
 	        <div class="j-hotspotWrap ml20">
-	        	<?php if(is_array($posts)): foreach($posts as $key=>$vo): $smeta = json_decode($vo['smeta'],true); ?>
+	        	<?php $posts = sp_sql_posts("field:post_title,tid,post_excerpt,smeta,post_keywords;order:post_date desc;limit:7;"); ?>
+	        	<?php if(is_array($posts)): foreach($posts as $key=>$vo): $smeta = json_decode($vo['smeta'],true); $keywords = explode(" ",$vo['post_keywords']); ?>
 					<div class="j-hotspot">
 	                    <div class="j-hotspotTil clearfix">
 	                        <h3 class="h3">
-								<a href="<?php echo leuu('article/index',array('id'=>$vo['tid']));?>" class="a-title"><?php echo ($vo["post_title"]); ?></a>
+								<a href="<?php echo u('article/index',array('id'=>$vo['tid']));?>" class="a-title"><?php echo ($vo["post_title"]); ?></a>
 							</h3>
 	                    </div>  
 	                    <div class="clearfix mb30">
 							<div class="j-hotspotPic">
-							<a href="<?php echo leuu('article/index',array('id'=>$vo['tid']));?>">
+							<a href="<?php echo u('article/index',array('id'=>$vo['tid']));?>">
 								<?php if ($smeta['thumb']) { ?>
 									<img src="/data/upload/post/<?php echo ($smeta["thumb"]); ?>">
 								<?php } else { ?>
@@ -98,10 +98,12 @@
 							</div>                            
 							<div class="j-hotspotInfo">
 	                            <p class="j-hotspotA">								
-									<a href="<?php echo leuu('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_excerpt"]); ?></a>
+									<a href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_excerpt"]); ?></a>
 								</p>
 	                            <p class="j-hotspotLink">
-									<a target="_blank" href="/blog/index/lists/tag/3827.html">观点</a><a target="_blank" href="/blog/index/lists/tag/7229.html">农村网购达人</a>								
+	                            	<?php foreach ($keywords as $key => $value): ?>
+										<a href=""><?php echo ($value); ?></a>
+	                            	<?php endforeach ?>
 								</p>
 	                        </div>
 	                    </div> 

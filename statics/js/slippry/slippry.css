@@ -385,19 +385,18 @@
 
 /* pager bubbles */
 .sy-pager {
-  display: none;
   overflow: hidden;
   *zoom: 1;
-  width: 100%;
-  margin: 1em 0 0;
-  padding: 0;
   list-style: none;
-  text-align: center;
+  text-align: right;
+  position: relative;
+  margin-top: -30px;
+  z-index: 100;
 }
 .sy-pager li {
   display: inline-block;
-  width: 1.2em;
-  height: 1.2em;
+  width: 1.3em;
+  height: 1.3em;
   margin: 0 1em 0 0;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -406,13 +405,14 @@
   border-radius: 50%;
 }
 .sy-pager li.sy-active a {
-  background-color: #E59149;
+  background-color: #bc0000;
 }
 .sy-pager li a {
   width: 100%;
   height: 100%;
   display: block;
-  background-color: #cccccc;
+  font-size: 0;
+  background-color: white;
   text-indent: -9999px;
   -webkit-background-size: 2em;
   -moz-background-size: 2em;

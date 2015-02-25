@@ -70,7 +70,7 @@
 						<?php if(empty($user['avatar'])): ?><img src="http://wangsong.com/statics/images/headicon.png" class="headicon"/>
 						<?php else: ?>
 						<img src="<?php echo sp_get_user_avatar_url($user['avatar']);?>" class="headicon"/><?php endif; ?>
-					<?php echo ($user["user_nicename"]); ?><b class="caret"></b></a>
+						<?php echo ($user["user_nicename"]); ?><b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="<?php echo u('user/center/index');?>"><i class="fa fa-user"></i> &nbsp;个人中心</a></li>
 						<li class="divider"></li>
@@ -96,7 +96,7 @@
 		<img src="http://wangsong.com/statics/images/top.png" class="pull-right">
 	</div>
 </div>
-<div class="navbar navbar-menu">
+<div class="navbar navbar-menu headroom">
 	<div class="menu">
 		<div class="menu-section">
 			<a href="http://wangsong.com"><i class="fa fa-home"></i>首页</a>
@@ -146,6 +146,8 @@
 
 <!-- JavaScript -->
 <!-- Javascript -->
+<script src="http://wangsong.com/statics/js/headroom/headroom.js"></script>
+<script src="http://wangsong.com/statics/js/headroom/jQuery.headroom.js"></script>
 <link rel="stylesheet" href="http://wangsong.com/statics/js/sweetalert/sweet-alert.css">
 <script src="http://wangsong.com/statics/js/sweetalert/sweet-alert.min.js"></script>
 <script type="text/javascript" src="http://ueditor.baidu.com/ueditor/ueditor.config.js"></script>
@@ -627,7 +629,15 @@
 </script>
 <script type="text/javascript">
 	$(function(){
-
+		$(".headroom").headroom({
+			"tolerance": 10,
+			"offset": 205,
+			"classes": {
+			    "initial": "animated",
+			    "pinned": "flipInX",
+			    "unpinned": "flipOutX"
+  			}
+  		});
 		$('body').on('touchstart.dropdown', '.dropdown-menu', function (e) { e.stopPropagation(); });
 		;(function($){
 			$.fn.totop=function(opt){
@@ -636,11 +646,13 @@
 					var $this=$(this);
 					$(window).scroll(function(){
 						if(!scrolling){
-							var sd=$(window).scrollTop();
-							if(sd>100){
+							var sd = $(window).scrollTop();
+							if(sd > 150){
 								$this.fadeIn();
+								$(".headroom").addClass("header--fixed");
 							}else{
 								$this.fadeOut();
+								$(".headroom").removeClass("header--fixed");
 							}
 						}
 					});

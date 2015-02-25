@@ -1,4 +1,6 @@
 <!-- Javascript -->
+<script src="__ROOT__/statics/js/headroom/headroom.js"></script>
+<script src="__ROOT__/statics/js/headroom/jQuery.headroom.js"></script>
 <link rel="stylesheet" href="__ROOT__/statics/js/sweetalert/sweet-alert.css">
 <script src="__ROOT__/statics/js/sweetalert/sweet-alert.min.js"></script>
 <script type="text/javascript" src="http://ueditor.baidu.com/ueditor/ueditor.config.js"></script>
@@ -480,7 +482,15 @@
 </script>
 <script type="text/javascript">
 	$(function(){
-
+		$(".headroom").headroom({
+			"tolerance": 10,
+			"offset": 205,
+			"classes": {
+			    "initial": "animated",
+			    "pinned": "flipInX",
+			    "unpinned": "flipOutX"
+  			}
+  		});
 		$('body').on('touchstart.dropdown', '.dropdown-menu', function (e) { e.stopPropagation(); });
 		;(function($){
 			$.fn.totop=function(opt){
@@ -489,11 +499,13 @@
 					var $this=$(this);
 					$(window).scroll(function(){
 						if(!scrolling){
-							var sd=$(window).scrollTop();
-							if(sd>100){
+							var sd = $(window).scrollTop();
+							if(sd > 150){
 								$this.fadeIn();
+								$(".headroom").addClass("header--fixed");
 							}else{
 								$this.fadeOut();
+								$(".headroom").removeClass("header--fixed");
 							}
 						}
 					});

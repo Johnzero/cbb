@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
 <meta charset="utf-8">
-<title>ThinkCMF</title>
+<title>安徽文惠网</title>
 
 <meta name="description" content="This is page-header (.page-header &gt; h1)">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -128,7 +128,7 @@ right: initial !important;}
 			<div class="container-fluid">
 				<a href="http://wangsong.com/index.php?g=admin&m=index&a=index" class="brand"> <small> 
 				<img src="http://wangsong.com/statics/images/icon/logo-18.png">
-						ThinkCMF 后台
+						安徽文惠网后台
 				</small>
 				</a>
 				<div class="pull-left nav_shortcuts" >
