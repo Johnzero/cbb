@@ -191,6 +191,10 @@
 
 	cultural.controller('searchCtl', function ($scope, $state, $location) {
 		$scope.onSearchSubmit = function() {
+			if (!$scope.searchForm) {
+				sweetAlert("请输入关键词！", "", "error");
+				return;
+			}
 			$state.go("search", {keyword: $scope.searchForm.keyword}, {reload:true,inherit:true});
 		}
 	});

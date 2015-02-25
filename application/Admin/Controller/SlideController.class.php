@@ -28,10 +28,18 @@ class SlideController extends AdminbaseController{
 		$cid=0;
 		if(isset($_POST['cid']) && $_POST['cid']!=""){
 			$cid=$_POST['cid'];
-			$where="slide_cid=$cid";
+			$where = "slide_cid=$cid";
 		}
 		$this->assign("slide_cid",$cid);
 		$slides=$this->slide_obj->where($where)->order("listorder ASC")->select();
+		$categorys=$this->slidecat_obj->field("cid,cat_name")->where("cat_status!=0")->select();
+		foreach ($slides as $key => $value) {
+			foreach ($categorys as $k => $v) {
+				if ($value['slide_cid'] == $v['cid']) {
+					$slides[$key]['lm'] = $v['cat_name'];
+				}
+			}
+		}
 		$this->assign('slides',$slides);
 		$this->display();
 	}
