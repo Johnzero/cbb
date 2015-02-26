@@ -90,7 +90,7 @@
 							<div class="j-hotspotPic">
 							<a href="<?php echo u('article/index',array('id'=>$vo['tid']));?>">
 								<?php if ($smeta['thumb']) { ?>
-									<img src="/data/upload/post/<?php echo ($smeta["thumb"]); ?>">
+									<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
 								<?php } else { ?>
 									<img src="http://wangsong.com/statics/images/default_tupian1.png">
 								<?php } ?>
@@ -186,6 +186,9 @@
 					</li>
 					<li>
 						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
+					</li>
+					<li>
+						<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
 					</li>
 				</ul>
 				<h3> 人 才 </h3>

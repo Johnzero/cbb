@@ -25,7 +25,7 @@ class AdminTermController extends AdminbaseController {
 		$tree->nbsp = '&nbsp;&nbsp;&nbsp;';
 		foreach ($result as $r) {
 			$r['str_manage'] = '<a href="' . U("AdminTerm/add", array("parent" => $r['term_id'])) . '">添加子类</a> | <a href="' . U("AdminTerm/edit", array("id" => $r['term_id'])) . '">修改</a> | <a class="J_ajax_del" href="' . U("AdminTerm/delete", array("id" => $r['term_id'])) . '">删除</a> ';
-			$url=U('portal/list/index',array('id'=>$r['term_id']));
+			$url=U('/list/index',array('id'=>$r['term_id']));
 			$r['url'] = $url;
 			$r['taxonomys'] = $this->taxonomys[$r['taxonomy']];
 			$r['id']=$r['term_id'];

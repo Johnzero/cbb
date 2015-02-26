@@ -11,9 +11,9 @@
 					<if condition="sp_is_user_login()">
 					<a class="dropdown-toggle user" data-toggle="dropdown" href="javaScript:void(0);">
 						<if condition="empty($user['avatar'])">
-						<img src="__ROOT__/statics/images/headicon.png" class="headicon"/>
+							<img src="__ROOT__/statics/images/headicon.png" class="headicon"/>
 						<else/>
-						<img src="{:sp_get_user_avatar_url($user['avatar'])}" class="headicon"/>
+							<img src="{:sp_get_user_avatar_url($user['avatar'])}" class="headicon"/>
 						</if>
 						{$user.user_nicename}<b class="caret"></b></a>
 					<ul class="dropdown-menu">
@@ -49,36 +49,36 @@
 		</div>
 
 		<div class="menu-section">
-			<a class="gesp"><i class="fa fa-leanpub"></i>电商资讯</a>
+			<a href="{:u('list/index',array('id'=>3))}" class="gesp"><i class="fa fa-leanpub"></i>电商资讯</a>
 			<ul class="sub-menu">
-				<li><a href="">电商新闻</a></li>
-				<li><a href="">行业数据</a></li>
-				<li><a href="">人物观点</a></li><br/>
-				<li><a href="">典型案例</a></li>
-				<li><a href="">电商干货</a></li>
-				<li><a href="">电商专题</a></li>
+				<li><a href="{:u('list/index',array('id'=>14))}">电商新闻</a></li>
+				<li><a href="{:u('list/index',array('id'=>15))}">行业数据</a></li>
+				<li><a href="{:u('list/index',array('id'=>16))}">人物观点</a></li><br/>
+				<li><a href="{:u('list/index',array('id'=>17))}">典型案例</a></li>
+				<li><a href="{:u('list/index',array('id'=>18))}">电商干货</a></li>
+				<li><a href="{:u('list/index',array('id'=>19))}">电商专题</a></li>
 			</ul>
 		</div>
 
 		<div class="menu-section">
-			<a class="gesp"><i class="fa fa-heart-o"></i>文化产业</a>
+			<a href="{:u('list/index',array('id'=>4))}" class="gesp"><i class="fa fa-heart-o"></i>文化产业</a>
 			<ul class="sub-menu">
-				<li><a href="">文产新闻</a></li>
-				<li><a href="">文化企业</a></li><br/>
-				<li><a href="">项目对接</a></li>
-				<li><a href="">文化活动</a></li>
+				<li><a href="{:u('list/index',array('id'=>20))}">文产新闻</a></li>
+				<li><a href="{:u('list/index',array('id'=>21))}">文化企业</a></li><br/>
+				<li><a href="{:u('list/index',array('id'=>22))}">项目对接</a></li>
+				<li><a href="{:u('list/index',array('id'=>23))}">文化活动</a></li>
 			</ul>
 		</div>
 
 		<div class="menu-section">
-			<a class="gesp"><i class="fa fa-users"></i>联盟空间</a>
+			<a href="{:u('list/index',array('id'=>13))}" class="gesp"><i class="fa fa-users"></i>联盟空间</a>
 			<ul class="sub-menu">
-				<li><a href="">联盟简介</a></li>
-				<li><a href="">联盟动态</a></li>
-				<li><a href="">政策法规</a></li><br/>
-				<li><a href="">联盟公告</a></li>
-				<li><a href="">联盟文库</a></li>
-				<li><a href="">联盟服务</a></li>
+				<li><a href="{:u('list/index',array('id'=>24))}">联盟简介</a></li>
+				<li><a href="{:u('list/index',array('id'=>25))}">联盟动态</a></li>
+				<li><a href="{:u('list/index',array('id'=>26))}">政策法规</a></li><br/>
+				<li><a href="{:u('list/index',array('id'=>27))}">联盟公告</a></li>
+				<li><a href="{:u('list/index',array('id'=>28))}">联盟文库</a></li>
+				<li><a href="{:u('list/index',array('id'=>29))}">联盟服务</a></li>
 			</ul>
 		</div>
 
