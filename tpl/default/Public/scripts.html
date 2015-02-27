@@ -58,7 +58,6 @@
 			.state("user", {
 				url: "/user/:actionName/:tplName.html",
 				templateUrl: function ($stateParams){
-					// console.log($stateParams.actionName);
 					return '/user/' + $stateParams.actionName + '/' + $stateParams.tplName + '.html';
 				}
 			})
@@ -68,16 +67,27 @@
 					return '/list/index/id/' + $stateParams.listId + '.html';
 				}
 			})
+			.state("list/index/", {
+				url: "/list/index/id/:listId/p/:pageId.html",
+				templateUrl: function ($stateParams){
+					return '/list/index/id/' + $stateParams.listId +'/p/' + $stateParams.pageId + '.html';
+				}
+			})
 			.state("article", {
 				url: "/article/index/id/:articleId.html",
 				templateUrl: function ($stateParams){
-				return '/article/index/id/' + $stateParams.articleId + '.html';
-				}
+					return '/article/index/id/' + $stateParams.articleId + '.html';
+				},
+				controller: function($scope) {
+					if (window._bd_share_main != undefined) {
+						window._bd_share_main.init();
+					}
+			    }
 			})
 			.state("comment", {
 				url: "/comment/comment/:tplName.html",
 				templateUrl: function ($stateParams){
-				return '/comment/comment/' + $stateParams.tplName + '.html';
+					return '/comment/comment/' + $stateParams.tplName + '.html';
 				}
 			})
 		cfpLoadingBarProvider.includeSpinner = true;

@@ -1,4 +1,4 @@
-<style type="text/css">
+<?php if (!defined('THINK_PATH')) exit();?><style type="text/css">
 .col-auto {
 	overflow: hidden;
 	_zoom: 1;
@@ -37,8 +37,8 @@
 	<div class="span12">
 		<div class="tabs">
 			<ul class="nav nav-tabs">
-				<li class="active"><a href="{:u('user/post/index')}"><i class="fa fa-file-text-o"></i> 我的投稿</a></li>
-				<a href="{:u('user/post/add')}" style="float:right;margin-top: 10px;"><i class="fa fa-pencil-square-o"></i> 新增投稿</a>
+				<li class="active"><a href="<?php echo u('user/post/index');?>"><i class="fa fa-file-text-o"></i> 我的投稿</a></li>
+				<a href="<?php echo u('user/post/add');?>" style="float:right;margin-top: 10px;"><i class="fa fa-pencil-square-o"></i> 新增投稿</a>
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane active" id="one">
@@ -47,8 +47,8 @@
 							<div class="table_full">
 								<span style="text-align: center;display:block;width:100%">缩略图</span>
 								<div style="text-align: center;">
-									<img src='__ROOT__/statics/images/icon/upload-pic.png' id='thumb_preview' width='135' height='113' style='margin-bottom: 10px;' />
-									<input type="file" name="smeta[thumb]" id='file_input' value="__ROOT__/statics/images/icon/upload-pic.png" ng-model="post.smeta.thumb" ng-multiple="false" ng-accept="'image/*'" ng-file-select ng-file-change="thumb($files)" style="width:90%"/>
+									<img src='http://wangsong.com/statics/images/icon/upload-pic.png' id='thumb_preview' width='135' height='113' style='margin-bottom: 10px;' />
+									<input type="file" name="smeta[thumb]" id='file_input' value="http://wangsong.com/statics/images/icon/upload-pic.png" ng-model="post.smeta.thumb" ng-multiple="false" ng-accept="'image/*'" ng-file-select ng-file-change="thumb($files)" style="width:90%"/>
 	                                <div class="progress" ng-show="progress >= 0">
 	                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': progress + '%' }">{{progress}}%</div>
 	                                </div>
@@ -67,7 +67,7 @@
 										<th width="80">栏目</th>
 										<td>
 											<select name="term[term_id]" class="normal_select" ng-model="post.term_id">
-												{$taxonomys}
+												<?php echo ($taxonomys); ?>
 											</select>
 										</td>
 									</tr>
@@ -103,7 +103,7 @@
 					</div>
 				<div class="form-actions">
 					<input class="btn btn-primary" type="submit" value="提交">
-					<a class="btn" href="{:u('user/post/index')}">返回</a>
+					<a class="btn" href="<?php echo u('user/post/index');?>">返回</a>
 				</div>
 			</form>
 		</div>

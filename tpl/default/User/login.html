@@ -1,22 +1,22 @@
-<div class="container tc-main">
+<div class="container tc-main login">
 	<div class="row">
 		<div class="span6 offset3">
 			<h2 class="text-center">用户登录</h2>
 			<form ng-submit="onloginSubmit($event)" class="form-horizontal" ng-controller="loginCtl">
 				<div class="control-group">
-					<label class="control-label" for="input_username">账号</label>
+					<label class="control-label" for="input_username">账号：</label>
 					<div class="controls">
 						<input ng-model="loginForm.username" type="text" id="input_username" name="username" placeholder="请输入用户名或者邮箱" class="span3">
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="input_password">密码</label>
+					<label class="control-label" for="input_password">密码：</label>
 					<div class="controls">
 						<input ng-model="loginForm.password" type="password" id="input_password" name="password" placeholder="请输入密码" class="span3">
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="input_verify">验证码</label>
+					<label class="control-label" for="input_verify">验证码：</label>
 					<div class="controls">
 						<input ng-model="loginForm.verify" type="text" id="input_verify" name="verify"  placeholder="请输入验证码" class="span3">
 						{:sp_verifycode_img('code_len=4&font_size=15&width=100&height=35&charset=1234567890')}
@@ -27,20 +27,20 @@
 					<div class="controls">
 						<label class="checkbox persistent">
 						<input type="checkbox" name="terms" value="1" ng-model="loginForm.terms">我同意
-						<a href="#">网站内容服务条款</a></label>
+						<a>网站内容服务条款</a></label>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="input_repassword"></label>
 					<div class="controls">
-						<button class="btn btn-primary" type="submit">确定</button>
+						<button class="btn confirm-btn" type="submit">确定</button>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="input_repassword"></label>
 					<div class="controls">
 						<ul class="inline">
-							<li><a href="{:U('user/register/index')}">现在注册</a></li>
+							<li><a href="{:u('user/register/index')}">现在注册</a></li>
 							<!-- <li><a href="{:U('user/login/forgot_password')}">忘记密码</a></li> -->
 						</ul>
 					</div>

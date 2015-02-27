@@ -2,6 +2,10 @@
     .table th, .table td {
         text-align:center;
     }
+    .nav {
+        margin-bottom:0;
+    }
+    .tab-content {padding-top: 20px;}
 </style>
 <div class="container tc-main">
     <div class="row">
@@ -11,10 +15,10 @@
         <div class="span9">
             <div class="tabs">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#one" data-toggle="tab"><i class="fa fa-file-text-o"></i> 我的投稿</a></li>
+                    <li class="active"><a href="{:u('user/post/index')}" data-toggle="tab"><i class="fa fa-file-text-o"></i> 我的投稿</a></li>
                     <a href="{:u('user/post/add')}" style="float:right;margin-top: 10px;"><i class="fa fa-pencil-square-o"></i> 新增投稿</a>
                 </ul>
-                <div class="tab-content">
+                <div class="tab-content" style="background:white;">
                     <div class="tab-pane active" id="one">
                         <form class="J_ajaxForm" action="" method="post">
                             <div class="table_list">

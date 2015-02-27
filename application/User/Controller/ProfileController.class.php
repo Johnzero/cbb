@@ -223,7 +223,7 @@ class ProfileController extends MemberbaseController {
                 }
             }
         }
-        if ($company['authorize'] == 2) {
+        if ($company['authorize'] == 1) {
             $this->render("company_au");
         }else {
             $this->render();

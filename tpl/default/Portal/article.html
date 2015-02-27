@@ -12,6 +12,7 @@
 				<div class="common_block_title">
 					<h2>{$post_title}</h2>
 					<div class="article-infobox">
+						<span>分类：<a href="/list/index/id/{$term.term_id}.html">{$term.name}</a> </span>
 						<span>发布：{$user_nicename} </span>
 						<span>时间：{$post_date} </span>
 						<span>阅读：{$post_hits}次 </span>
@@ -20,7 +21,7 @@
 				<hr/>
 				<div id="article_content">
 					{$post_content}
-					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdDesc":'{$post_excerpt}',"bdText":"{$post_title}","bdMini":"2","bdMiniList":false,"bdPic":location.origin+"/data/upload/post/{$smeta.thumb}","bdStyle":"0","bdSize":"22"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+					<div class="bdsharebuttonbox bdshare-button-style0-16"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
 					<hr/>
 				</div>
 			</div>
@@ -30,3 +31,8 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function () {
+		window._bd_share_config={"common":{"bdSnsKey":{},"bdDesc":'{$post_excerpt}',"bdText":"{$post_title}","bdMini":"2","bdMiniList":false,"bdPic":location.origin+"/data/upload/post/{$smeta.thumb}","bdStyle":"0","bdSize":"22"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+	})
+</script>
