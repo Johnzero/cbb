@@ -13,9 +13,6 @@
 		<link href="http://wangsong.com/statics/bootstrap/css/bootstrap.css" rel="stylesheet">
 		<link href="http://wangsong.com/statics/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 		<link href="http://wangsong.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
-		<!--[if IE 7]>
-		<link rel="stylesheet" href="http://wangsong.com/statics/font-awesome/css/font-awesome-ie7.min.css">
-		<![endif]-->
 		<link href="http://wangsong.com/statics/css/style.css" rel="stylesheet">
 		<script type="text/javascript">
 			var GV = {
@@ -44,11 +41,6 @@
             <script src="http://wangsong.com/statics/js/IE8.js"></script>
 		 	<script src="http://wangsong.com/statics/js/json3.min.js"></script>
         <![endif]-->
-        <!--[if lt IE 9]>
-            <script src="http://wangsong.com/statics/js/IE9.js"></script>
-		 	<script src="http://wangsong.com/statics/js/json3.min.js"></script>
-        <![endif]-->
-
 		<script src="http://wangsong.com/statics/js/jquery.js"></script>
 		<script src="http://wangsong.com/statics/bootstrap/js/bootstrap.min.js"></script>
 	</head>
@@ -140,7 +132,7 @@
 </div>
 
 <!-- ng-Layout -->
-<div id="layout" ui-view>
+<div id="layout" ui-view="" class="slide-left">
 
 </div>
 
@@ -152,9 +144,9 @@
 <script src="http://wangsong.com/statics/js/sweetalert/sweet-alert.min.js"></script>
 <script type="text/javascript" src="http://ueditor.baidu.com/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" src="http://ueditor.baidu.com/ueditor/ueditor.all.js"></script>
-<script src="http://wangsong.com/statics/js/angular/angular.min.js"></script>
-<!-- <script src="http://wangsong.com/statics/js/angular/angular.js"></script> -->
+<script src="http://wangsong.com/statics/js/angular/angular.js"></script>
 <script src="http://wangsong.com/statics/js/angular/angular-ui-router.js"></script>
+<script src="http://wangsong.com/statics/js/angular/angular-animate.js"></script>
 <!--[if IE]>
 <script>
     window.FileAPI = {
@@ -167,15 +159,14 @@
 <script src="http://wangsong.com/statics/js/angular/angular-file-upload.min.js"></script>
 <script src="http://wangsong.com/statics/js/angular/loading-bar.js"></script>
 <link href='http://wangsong.com/statics/js/angular/loading-bar.css' rel='stylesheet' />
-
 <script type="text/javascript">
 	
-	var cultural = angular.module('cultural',['ui.router','angular-loading-bar','angularFileUpload']);
+	var cultural = angular.module('cultural',['ui.router','angular-loading-bar','angularFileUpload','ngAnimate']);
 	cultural.run(
 		['$rootScope', '$state', '$stateParams',
 			function ($rootScope,   $state,   $stateParams) {
-			$rootScope.$state = $state;
-			$rootScope.$stateParams = $stateParams;
+				$rootScope.$state = $state;
+				$rootScope.$stateParams = $stateParams;
 			}
 		]
 	).config(function(cfpLoadingBarProvider,$stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
@@ -184,12 +175,42 @@
 		// 		window.location = $location['$$absUrl'];
 		// 	}]);
 		// });
-		$urlRouterProvider.otherwise('/');  
+		// $urlRouterProvider.otherwise('/');  
 		$urlRouterProvider.when('', '/');
 		$stateProvider
-			.state("/", {
+			.state("index", {
 				url: "/",
 				templateUrl: "/index"
+			})
+			.state("index.page", {
+				url: "index/page/p/:pageId.html",
+				views: {
+					'subview': {
+						templateUrl: function ($stateParams){
+							return '/index/page/p/' + $stateParams.pageId + '.html';
+						}
+					}
+				}
+			})
+			.state("index.content", {
+				url: "index/content/id/:Id.html",
+				views: {
+					'subview': {
+						templateUrl: function ($stateParams){
+							return '/index/content/id/' + $stateParams.Id + '.html';
+						}
+					}
+				}
+			})
+			.state("index.content/page", {
+				url: "index/content/id/:Id/p/:pageId.html",
+				views: {
+					'subview': {
+						templateUrl: function ($stateParams){
+							return '/index/content/id/' + $stateParams.Id +'/p/' + $stateParams.pageId + '.html'
+						}
+					}
+				}
 			})
 			.state("search", {
 				url: "/search/:keyword",
@@ -214,7 +235,7 @@
 					return '/list/index/id/' + $stateParams.listId + '.html';
 				}
 			})
-			.state("list/index/", {
+			.state("list/index", {
 				url: "/list/index/id/:listId/p/:pageId.html",
 				templateUrl: function ($stateParams){
 					return '/list/index/id/' + $stateParams.listId +'/p/' + $stateParams.pageId + '.html';

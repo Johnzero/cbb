@@ -104,7 +104,12 @@ body fieldset legend {
             <tr>
               <th width="80">栏目</th>
               <td>
-              	<input type="hidden" name="term[term_id]" value="{$term.term_id}">{$term.name}
+              		<select name="term[term_id]"  class="normal_select" id="term_id">
+						{$taxonomys}
+					</select>
+					<script type="text/javascript">
+						$("#term_id").find("option[value='{$term.term_id}']").attr("selected",true);
+					</script>
               </td>
             </tr>
             </if>

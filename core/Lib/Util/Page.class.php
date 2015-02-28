@@ -161,7 +161,11 @@ class Page {
         		$url=leuu(MODULE_NAME  . "/" . CONTROLLER_NAME . "/" . ACTION_NAME)."?".http_build_query ($arg);
         	}else{
                 if (MODULE_NAME == 'Portal') {
-                    $url=leuu( strtolower(CONTROLLER_NAME) . "/" . strtolower(ACTION_NAME),$arg);
+                    if ( ACTION_NAME == 'index' || ACTION_NAME == 'page') {
+                        $url=leuu( strtolower(CONTROLLER_NAME) . "/" . strtolower('page'),$arg);
+                    }else {
+                        $url=leuu( strtolower(CONTROLLER_NAME) . "/" . strtolower(ACTION_NAME),$arg);
+                    }
                 }else {
                     $url=leuu(MODULE_NAME  . "/" . CONTROLLER_NAME . "/" . ACTION_NAME,$arg);
                 }

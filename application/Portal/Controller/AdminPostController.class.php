@@ -59,6 +59,7 @@ class AdminPostController extends AdminbaseController {
 	}
 	
 	public function edit(){
+		$this->_getTree();
 		$id=  intval(I("get.id"));
 		$term_id = intval(I("get.term"));
 		if(empty($term_id)){
@@ -80,11 +81,12 @@ class AdminPostController extends AdminbaseController {
 					$_POST['smeta']['photo'][]=array("url"=>$photourl,"alt"=>$_POST['photos_alt'][$key]);
 				}
 			}
+			$id = $_POST['post']['id'];
 			$_POST['smeta']['thumb'] = sp_asset_relative_url($_POST['smeta']['thumb']);
 			$_POST['post']['smeta']=json_encode($_POST['smeta']);
 			unset($_POST['post']['post_author']);
 			$result=$this->posts_obj->save($_POST['post']);
-			//echo($this->posts_obj->getLastSql());die;
+			D('term_relationships')->where("object_id=$id")->save(array("term_id"=>$_POST['term']['term_id'])); 
 			if ($result!==false) {
 				$this->success("保存成功！");
 			} else {
@@ -201,7 +203,7 @@ class AdminPostController extends AdminbaseController {
 		$taxonomys = $tree->get_tree(0, $str);
 		$this->assign("taxonomys", $taxonomys);
 	}
-	
+
 	function delete(){
 		if(isset($_GET['tid'])){
 			$tid = intval(I("get.tid"));

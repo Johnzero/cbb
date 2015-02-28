@@ -139,7 +139,12 @@ body fieldset legend {
       		<?php if($term['name'] != ''): ?><tr>
               <th width="80">栏目</th>
               <td>
-              	<input type="hidden" name="term[term_id]" value="<?php echo ($term["term_id"]); ?>"><?php echo ($term["name"]); ?>
+              		<select name="term[term_id]"  class="normal_select" id="term_id">
+						<?php echo ($taxonomys); ?>
+					</select>
+					<script type="text/javascript">
+						$("#term_id").find("option[value='<?php echo ($term["term_id"]); ?>']").attr("selected",true);
+					</script>
               </td>
             </tr><?php endif; ?>
             <tr>

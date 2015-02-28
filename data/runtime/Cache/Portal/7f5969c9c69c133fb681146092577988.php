@@ -108,8 +108,8 @@ var GV = {
                             <td><?php echo ($vo["post_date"]); ?></td>
                             <td><?php echo ($status[$vo['post_status']]); ?><br><?php echo ($top_status[$vo['istop']]); ?><br><?php echo ($recommend_status[$vo['recommended']]); ?></td>
                             <td>
-                                <a href="javascript:open_iframe_dialog('<?php echo u('comment/commentadmin/index',array('post_id'=>$vo['id']));?>','评论列表')">查看评论</a> |
-                                <a href="<?php echo U('AdminPost/edit',array('term'=>empty($term['term_id'])?'':$term['term_id'],'id'=>$vo['id']));?>">修改</a>|
+                                <a href="javascript:open_iframe_dialog('<?php echo u('comment/commentadmin/index',array('post_id'=>$vo['id']));?>','评论列表')">查看评论</a> | 
+                                <a href="<?php echo U('AdminPost/edit',array('term'=>empty($term['term_id'])?'':$term['term_id'],'id'=>$vo['id']));?>">修改</a> | 
                                 <a href="<?php echo U('AdminPost/delete',array('term'=>empty($term['term_id'])?'':$term['term_id'],'tid'=>$vo['tid']));?>" class="J_ajax_del" >删除</a>
                             </td>
                         </tr><?php endforeach; endif; ?>

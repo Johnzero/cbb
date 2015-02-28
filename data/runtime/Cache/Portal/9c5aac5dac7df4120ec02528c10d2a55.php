@@ -70,44 +70,57 @@
 	<div class="row-fluid">
 	 	<div class="w790 pull-left">
 	 		<ul class="cats">
-				<li><a href="">电商新闻</a></li>
-				<li><a href="">行业数据</a></li>
-				<li><a href="">人物观点</a></li>
-				<li><a href="">典型案例</a></li>
-				<li><a href="">电商干货</a></li>
-				<li><a href="">电商专题</a></li>
+				<li><a ui-sref="index.content({Id:14})">电商新闻</a></li>
+				<li><a ui-sref="index.content({Id:15})">行业数据</a></li>
+				<li><a ui-sref="index.content({Id:16})">人物观点</a></li>
+				<li><a ui-sref="index.content({Id:17})">典型案例</a></li>
+				<li><a ui-sref="index.content({Id:18})">电商干货</a></li>
+				<li><a ui-sref="index.content({Id:19})">电商专题</a></li>
 	 		</ul>
-	        <div class="j-hotspotWrap ml20">
-	        	<?php $posts = sp_sql_posts("field:post_title,tid,post_excerpt,smeta,post_keywords;order:post_date desc;limit:7;"); ?>
-	        	<?php if(is_array($posts)): foreach($posts as $key=>$vo): $smeta = json_decode($vo['smeta'],true); $keywords = explode(" ",$vo['post_keywords']); ?>
-					<div class="j-hotspot">
-	                    <div class="j-hotspotTil clearfix">
-	                        <h3 class="h3">
-								<a href="<?php echo u('article/index',array('id'=>$vo['tid']));?>" class="a-title"><?php echo ($vo["post_title"]); ?></a>
-							</h3>
-	                    </div>  
-	                    <div class="clearfix mb30">
-							<div class="j-hotspotPic">
-							<a href="<?php echo u('article/index',array('id'=>$vo['tid']));?>">
-								<?php if ($smeta['thumb']) { ?>
-									<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
-								<?php } else { ?>
-									<img src="http://wangsong.com/statics/images/default_tupian1.png">
-								<?php } ?>
-							</a>
-							</div>                            
-							<div class="j-hotspotInfo">
-	                            <p class="j-hotspotA">								
-									<a href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_excerpt"]); ?></a>
-								</p>
-	                            <p class="j-hotspotLink">
-	                            	<?php foreach ($keywords as $key => $value): ?>
-										<a href=""><?php echo ($value); ?></a>
-	                            	<?php endforeach ?>
-								</p>
-	                        </div>
-	                    </div> 
-	                </div><?php endforeach; endif; ?>
+	        <div class="j-hotspotWrap ml20 slide-left" ui-view="subview">
+	        	<?php $cat_id = intval($_GET['id']) ? intval($_GET['id']):3; $posts = sp_sql_posts_paged("cid:$cat_id;order:post_date DESC;",2); ?>
+<?php if (!empty($posts['posts'])) { ?>
+<?php if(is_array($posts['posts'])): foreach($posts['posts'] as $key=>$vo): $smeta = json_decode($vo['smeta'],true); $keywords = explode(" ",$vo['post_keywords']); ?>
+<div class="j-hotspot">
+	<div class="j-hotspotTil clearfix">
+		<h3 class="h3">
+			<a href="<?php echo u('article/index',array('id'=>$vo['tid']));?>" class="a-title"><?php echo ($vo["post_title"]); ?></a>
+		</h3>
+	</div>
+	<div class="clearfix mb30">
+		<div class="j-hotspotPic">
+			<a href="<?php echo u('article/index',array('id'=>$vo['tid']));?>">
+				<?php if ($smeta['thumb']) { ?>
+				<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
+				<?php } else { ?>
+				<img src="http://wangsong.com/statics/images/default_tupian1.png">
+				<?php } ?>
+			</a>
+		</div>
+		<div class="j-hotspotInfo">
+			<p class="j-hotspotA">
+				<a href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_excerpt"]); ?></a>
+			</p>
+			<p class="j-hotspotLink">
+				<?php foreach ($keywords as $key => $value): ?>
+				<a href=""><?php echo ($value); ?></a>
+				<?php endforeach ?>
+			</p>
+		</div>
+	</div>
+</div><?php endforeach; endif; ?>
+<div class="pagination text-right">
+	<ul>
+		<?php echo ($posts['page']); ?>
+	</ul>
+</div>
+<?php }else { ?>
+<div class="j-hotspot" style="width: 730px;text-align:center;">
+	<div class="j-hotspotTil clearfix">
+		<h1>暂无新闻</h1>
+	</div>
+</div>
+<?php } ?>
 	        </div>
 	    </div>
 	    <div class="w380 pull-right">
