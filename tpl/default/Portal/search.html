@@ -12,6 +12,9 @@
 			<volist name="result['posts']" id="vo">
 				<php>
 					$smeta = json_decode($vo['smeta'], true);
+					$date = date('Y-m-d',strtotime($vo['post_date']));
+					$termid = $vo['term_id'];
+			    	$term = M("Terms")->where("term_id='$termid'")->find();
 				</php>
 				<div class="list-boxes">
 				    <div class="leftimg">
@@ -27,15 +30,11 @@
 			            <h3 class="text-more media-heading" style="width: 100%">
 			            <a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a></h3>
 				        <div>
-				            <span class="author">{$vo.post_date}</span>
-				            <p class="detail">{$vo.post_excerpt}</p>
+				            <span class="author">分类：<a href="/list/index/id/{$term.term_id}.html"> {$term.name} </a> </span>
+							<span class="author">时间：{$date} </span>
+							<span class="author">阅读：{$vo.post_hits} 次 </span>
+							<p class="detail">{$vo.post_excerpt}</p>
 				        </div>
-				        <div class="blog_tags" style="margin-top: 20px">
-				        </div>
-				        <div class="pull-right">
-				            <span><i class="fa fa-eye"></i> {$vo.post_hits} </span>
-				        </div>
-
 				    </div>
 				</div>
 				<hr>

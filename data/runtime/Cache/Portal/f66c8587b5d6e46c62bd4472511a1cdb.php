@@ -10,8 +10,8 @@
                 <div><?php echo ($name); ?></div>
             </div>
 			<div class="list-posts">
-				<?php $lists = sp_sql_posts_paged("cid:$cat_id;order:post_date DESC;",10); ?>
-				<?php if(is_array($lists['posts'])): $i = 0; $__LIST__ = $lists['posts'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; $smeta = json_decode($vo['smeta'], true); ?>
+				<?php $lists = sp_sql_posts_paged("cid:$cat_id;order:post_date DESC;",6); ?>
+				<?php if(is_array($lists['posts'])): $i = 0; $__LIST__ = $lists['posts'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; $smeta = json_decode($vo['smeta'], true); $keywords = explode(" ",$vo['post_keywords']); $date = date('Y-m-d',strtotime($vo['post_date'])); $termid = $vo['term_id']; $term = M("Terms")->where("term_id='$termid'")->find(); ?>
 					<div class="list-boxes">
 					    <div class="leftimg">
 					        <a title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>">
@@ -26,15 +26,11 @@
 				            <h3 class="text-more media-heading" style="width: 100%">
 				            <a title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a></h3>
 					        <div>
-					            <span class="author"><?php echo ($vo["post_date"]); ?></span>
+					            <span class="author">分类：<a href="/list/index/id/<?php echo ($term["term_id"]); ?>.html"> <?php echo ($term["name"]); ?> </a> </span>
+								<span class="author">时间：<?php echo ($date); ?> </span>
+								<span class="author">阅读：<?php echo ($vo["post_hits"]); ?> 次 </span>
 					            <p class="detail"><?php echo ($vo["post_excerpt"]); ?></p>
 					        </div>
-					        <div class="blog_tags" style="margin-top: 20px">
-					        </div>
-					        <div class="pull-right">
-					            <span><i class="fa fa-eye"></i> <?php echo ($vo["post_hits"]); ?> </span>
-					        </div>
-
 					    </div>
 					</div>
 					<hr><?php endforeach; endif; else: echo "" ;endif; ?>
@@ -49,10 +45,28 @@
 			<div class="tc-box">
 	<div class="common_block_border blog_position">
 		<div class="common_block_title_right">
+			热门标签
+		</div>
+		<?php $hot_tags = sp_sql_tags("limit:10;"); ?>
+		<div class="category_right_list">
+			<ul>
+				<?php foreach ($hot_tags as $key => $value): ?>
+					<li>
+						<a href="<?php echo u('list/keyword',array('id'=>$key));?>"><?php echo ($key); ?></a>
+					</li>
+				<?php endforeach ?>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="tc-box">
+	<div class="common_block_border blog_position">
+		<div class="common_block_title_right">
 			热门文章
 		</div>
 		<?php $hot_articles = sp_sql_posts("field:post_title,post_hits,post_excerpt,post_date,tid,smeta;order:post_hits desc;limit:5;"); ?>
-		<?php if(is_array($hot_articles)): foreach($hot_articles as $key=>$vo): $smeta = json_decode($vo['smeta'],true); ?>
+		<?php if(is_array($hot_articles)): foreach($hot_articles as $key=>$vo): $smeta = json_decode($vo['smeta'],true); $date = date('Y-m-d',strtotime($vo['post_date'])); ?>
 		<div class="clearfix" style="position: relative">
 			<div class="common_block_left">
 				<a title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>">
@@ -70,7 +84,7 @@
 					</h3>
 				</div>
 				<div>
-					<span class="author"><?php echo ($vo["post_date"]); ?></span>
+					<span class="author"><?php echo ($date); ?></span>
 				</div>
 				<div>
 				</div>

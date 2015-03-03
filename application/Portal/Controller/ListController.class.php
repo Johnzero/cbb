@@ -15,6 +15,12 @@ class ListController extends HomeBaseController {
     	$this->assign('cat_id', intval($_GET['id']));
     	$this->render(":$tplname");
 	}
+
+	public function keyword() {
+		$keyword = $_GET['id'];
+    	$this->assign("keyword",$keyword);
+    	$this->render(":keyword");
+	}
 	
 	public function nav_index(){
 		$navcatname="文章分类";

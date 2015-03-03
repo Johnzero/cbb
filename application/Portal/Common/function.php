@@ -97,6 +97,18 @@ function sp_sql_posts_paged($tag,$pagesize=20,$pagetpl='{first}{prev}{liststart}
 
 	if (isset($tag['cid'])) {
 		$where['term_id'] = array('in',$tag['cid']);
+		$terms = D("Terms")->where(array("term_id"=>array('in',$tag['cid'])))->select();
+		foreach ($terms as $key => $value) {
+			if ($value['parent'] == 0 ) {
+				$sub_terms = D("Terms")->where(array("parent"=>$value['term_id']))->select();
+				foreach ($sub_terms as $k => $v) {
+					$tid_array[] = $v['term_id'];
+				}
+			}else {
+				$tid_array[] = $value['term_id'];
+			}
+		}
+		$where['term_id'] = array('in',$tid_array);
 	}
 	if (isset($tag['ids'])) {
 		$where['object_id'] = array('in',$tag['ids']);
@@ -145,7 +157,46 @@ function sp_sql_posts_paged_bykeyword($keyword,$tag,$pagesize=20,$pagetpl='{firs
 	$where['status'] = array('eq',1);
 	$where['post_status'] = array('eq',1);
 	$where['post_title'] = array('like','%' . $keyword . '%');
-	
+	if (isset($tag['cid'])) {
+		$where['term_id'] = array('in',$tag['cid']);
+	}
+
+	if (isset($tag['ids'])) {
+		$where['object_id'] = array('in',$tag['ids']);
+	}
+
+	$join = "".C('DB_PREFIX').'posts as b on a.object_id =b.id';
+	$join2= "".C('DB_PREFIX').'users as c on b.post_author = c.id';
+	$rs= M("TermRelationships");
+	$totalsize=$rs->alias("a")->join($join)->join($join2)->field($field)->where($where)->count();
+	import('Page');
+	if ($pagesize == 0) {
+		$pagesize = 20;
+	}
+	$PageParam = C("VAR_PAGE");
+	$page = new Page($totalsize,$pagesize);
+	$page->setLinkWraper("li");
+	$page->__set("PageParam", $PageParam);
+	$page->SetPager('default', $pagetpl, array("listlong" => "6", "first" => "首页", "last" => "尾页", "prev" => "上一页", "next" => "下一页", "list" => "*", "disabledclass" => ""));
+	$posts=$rs->alias("a")->join($join)->join($join2)->field($field)->where($where)->order($order)->limit($page->firstRow . ',' . $page->listRows)->select();
+	$content['count']=$totalsize;
+	$content['posts']=$posts;
+	$content['page']=$page->show('default');
+	return $content;
+}
+
+function sp_sql_posts_paged_bytag($keyword,$tag,$pagesize=20,$pagetpl='{first}{prev}{liststart}{list}{listend}{next}{last}'){
+	$where=array();
+	$tag=sp_param_lable($tag);
+	$field = !empty($tag['field']) ? $tag['field'] : '*';
+	$limit = !empty($tag['limit']) ? $tag['limit'] : '';
+	$order = !empty($tag['order']) ? $tag['order'] : 'post_date';
+
+
+	//根据参数生成查询条件
+	$where['status'] = array('eq',1);
+	$where['post_status'] = array('eq',1);
+	$where['post_keywords'] = array('like','%' . $keyword . '%');
 	if (isset($tag['cid'])) {
 		$where['term_id'] = array('in',$tag['cid']);
 	}
@@ -232,6 +283,25 @@ function sp_sql_post($tid,$tag){
 
 	$posts=$rs->alias("a")->join($join)->join($join2)->field($field)->where($where)->find();
 	return $posts;
+}
+
+function sp_sql_tags($tag){
+	$where=array();
+	$tag = sp_param_lable($tag);
+	$limit = $tag['limit'];
+	$posts = M("posts")->field("post_keywords")->order("post_date desc")->limit(100)->select();
+	$keyword = '';
+	foreach ($posts as $key => $value) {
+		$keyword = $keyword." ".$value['post_keywords'];
+	}
+	if ($keyword) {
+		$keyword = explode(" ",$keyword);
+	}
+	$keyword = array_filter($keyword);
+	$keyword = array_count_values($keyword);
+	arsort( $keyword );
+	$keyword = array_slice($keyword,0,$limit);
+	return $keyword;
 }
 
 /**

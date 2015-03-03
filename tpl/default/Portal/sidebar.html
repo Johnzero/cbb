@@ -1,6 +1,26 @@
 <div class="tc-box">
 	<div class="common_block_border blog_position">
 		<div class="common_block_title_right">
+			热门标签
+		</div>
+		<php>
+			$hot_tags = sp_sql_tags("limit:10;");
+		</php>
+		<div class="category_right_list">
+			<ul>
+				<?php foreach ($hot_tags as $key => $value): ?>
+					<li>
+						<a href="{:u('list/keyword',array('id'=>$key))}">{$key}</a>
+					</li>
+				<?php endforeach ?>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="tc-box">
+	<div class="common_block_border blog_position">
+		<div class="common_block_title_right">
 			热门文章
 		</div>
 		<php>
@@ -9,6 +29,7 @@
 		<foreach name="hot_articles" item="vo">
 		<php>
 			$smeta = json_decode($vo['smeta'],true);
+			$date = date('Y-m-d',strtotime($vo['post_date']));
 		</php>
 		<div class="clearfix" style="position: relative">
 			<div class="common_block_left">
@@ -27,7 +48,7 @@
 					</h3>
 				</div>
 				<div>
-					<span class="author">{$vo.post_date}</span>
+					<span class="author">{$date}</span>
 				</div>
 				<div>
 				</div>

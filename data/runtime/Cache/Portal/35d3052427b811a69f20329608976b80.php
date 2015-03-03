@@ -1,34 +1,48 @@
 <?php if (!defined('THINK_PATH')) exit();?><style>
-	#article_content img{height:auto !important}
-	#article_content {word-wrap: break-word;}
 	#layout {
 		background: #E4E4E4 !important;
 	}
 </style>
-<div class="container tc-main">
+<div class="container tc-main list">
 	<div class="row">
 		<div class="span8">
-			<div class="tc-box article-box">
-				<div class="common_block_title">
-					<h2><?php echo ($post_title); ?></h2>
-					<?php $keywords = explode(" ",$post_keywords); $date = date('Y-m-d',strtotime($post_date)); ?>
-					<div class="article-infobox">
-						<span>分类：<a href="/list/index/id/<?php echo ($term["term_id"]); ?>.html"><?php echo ($term["name"]); ?></a> </span>
-						<span>关键词：
-							<?php foreach ($keywords as $key => $value): ?>
-								<a href="<?php echo u('list/keyword',array('id'=>$value));?>"><?php echo ($value); ?></a>
-							<?php endforeach ?>
-						</span>
-						<span>时间：<a><?php echo ($date); ?></a> </span>
-						<span>阅读：<a><?php echo ($post_hits); ?></a> 次 </span>
+			<div class="row circle_block_title">
+                <div>关键词：“<?php echo ($keyword); ?>”</div>
+            </div>
+			<div class="list-posts">
+				<?php $lists = sp_sql_posts_paged_bytag($keyword,"order:post_date DESC;",5); ?>
+				<?php if(is_array($lists['posts'])): $i = 0; $__LIST__ = $lists['posts'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; $smeta = json_decode($vo['smeta'], true); $date = date('Y-m-d',strtotime($vo['post_date'])); $termid = $vo['term_id']; $term = M("Terms")->where("term_id='$termid'")->find(); ?>
+					<div class="list-boxes">
+					    <div class="leftimg">
+					        <a title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>">
+					        	<?php if ($smeta['thumb']) { ?>
+									<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
+								<?php } else { ?>
+									<img src="http://wangsong.com/statics/images/default_tupian1.png">
+								<?php } ?>
+					        </a>
+					    </div>
+					    <div class="blog_detail">
+				            <h3 class="text-more media-heading" style="width: 100%">
+				            <a title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a></h3>
+					        <div>
+					            <span class="author">分类：<a href="/list/index/id/<?php echo ($term["term_id"]); ?>.html"> <?php echo ($term["name"]); ?> </a> </span>
+								<span class="author">时间：<?php echo ($date); ?> </span>
+								<span class="author">阅读：<?php echo ($vo["post_hits"]); ?> 次 </span>
+								<p class="detail"><?php echo ($vo["post_excerpt"]); ?></p>
+					        </div>
+					       	<div class="pull-right">
+					            <span><i class="fa fa-eye"></i> <?php echo ($vo["post_hits"]); ?> </span>
+					        </div>
+
+					    </div>
 					</div>
-				</div>
-				<hr/>
-				<div id="article_content">
-					<?php echo ($post_content); ?>
-					<div class="bdsharebuttonbox bdshare-button-style0-16"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
-					<hr/>
-				</div>
+					<hr><?php endforeach; endif; else: echo "" ;endif; ?>
+			</div>
+			<div class="pagination text-right">
+				<ul>
+					<?php echo ($lists['page']); ?>
+				</ul>
 			</div>
 		</div>
 		<div class="span4">
@@ -105,8 +119,3 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-	$(document).ready(function () {
-		window._bd_share_config={"common":{"bdSnsKey":{},"bdDesc":'<?php echo ($post_excerpt); ?>',"bdText":"<?php echo ($post_title); ?>","bdMini":"2","bdMiniList":false,"bdPic":location.origin+"/data/upload/post/<?php echo ($smeta["thumb"]); ?>","bdStyle":"0","bdSize":"22"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-	})
-</script>

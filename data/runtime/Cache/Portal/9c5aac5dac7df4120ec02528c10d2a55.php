@@ -78,7 +78,7 @@
 				<li><a ui-sref="index.content({Id:19})">电商专题</a></li>
 	 		</ul>
 	        <div class="j-hotspotWrap ml20 slide-left" ui-view="subview">
-	        	<?php $cat_id = intval($_GET['id']) ? intval($_GET['id']):3; $posts = sp_sql_posts_paged("cid:$cat_id;order:post_date DESC;",2); ?>
+	        	<?php $cat_id = intval($_GET['id']) ? intval($_GET['id']):3; $posts = sp_sql_posts_paged("cid:$cat_id;order:post_date DESC;",6); ?>
 <?php if (!empty($posts['posts'])) { ?>
 <?php if(is_array($posts['posts'])): foreach($posts['posts'] as $key=>$vo): $smeta = json_decode($vo['smeta'],true); $keywords = explode(" ",$vo['post_keywords']); ?>
 <div class="j-hotspot">
@@ -91,9 +91,9 @@
 		<div class="j-hotspotPic">
 			<a href="<?php echo u('article/index',array('id'=>$vo['tid']));?>">
 				<?php if ($smeta['thumb']) { ?>
-				<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
+					<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
 				<?php } else { ?>
-				<img src="http://wangsong.com/statics/images/default_tupian1.png">
+					<img src="http://wangsong.com/statics/images/default_tupian1.png">
 				<?php } ?>
 			</a>
 		</div>
@@ -103,7 +103,7 @@
 			</p>
 			<p class="j-hotspotLink">
 				<?php foreach ($keywords as $key => $value): ?>
-				<a href=""><?php echo ($value); ?></a>
+					<a href="<?php echo u('list/keyword',array('id'=>$value));?>"><?php echo ($value); ?></a>
 				<?php endforeach ?>
 			</p>
 		</div>

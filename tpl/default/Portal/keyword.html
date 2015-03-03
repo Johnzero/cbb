@@ -7,16 +7,15 @@
 	<div class="row">
 		<div class="span8">
 			<div class="row circle_block_title">
-                <div>{$name}</div>
+                <div>关键词：“{$keyword}”</div>
             </div>
 			<div class="list-posts">
 				<php>
-					$lists = sp_sql_posts_paged("cid:$cat_id;order:post_date DESC;",6);
+					$lists = sp_sql_posts_paged_bytag($keyword,"order:post_date DESC;",5);
 				</php>
 				<volist name="lists['posts']" id="vo">
 					<php>
 						$smeta = json_decode($vo['smeta'], true);
-						$keywords = explode(" ",$vo['post_keywords']);
 						$date = date('Y-m-d',strtotime($vo['post_date']));
 						$termid = $vo['term_id'];
 				    	$term = M("Terms")->where("term_id='$termid'")->find();
@@ -38,8 +37,12 @@
 					            <span class="author">分类：<a href="/list/index/id/{$term.term_id}.html"> {$term.name} </a> </span>
 								<span class="author">时间：{$date} </span>
 								<span class="author">阅读：{$vo.post_hits} 次 </span>
-					            <p class="detail">{$vo.post_excerpt}</p>
+								<p class="detail">{$vo.post_excerpt}</p>
 					        </div>
+					       	<div class="pull-right">
+					            <span><i class="fa fa-eye"></i> {$vo.post_hits} </span>
+					        </div>
+
 					    </div>
 					</div>
 					<hr>

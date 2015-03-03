@@ -175,7 +175,7 @@
 		// 		window.location = $location['$$absUrl'];
 		// 	}]);
 		// });
-		// $urlRouterProvider.otherwise('/');  
+		$urlRouterProvider.otherwise('/');  
 		$urlRouterProvider.when('', '/');
 		$stateProvider
 			.state("index", {
@@ -187,6 +187,11 @@
 				views: {
 					'subview': {
 						templateUrl: function ($stateParams){
+							$('html, body').animate({
+								scrollTop : 900
+							}, 500,function(){
+								scrolling=false;
+							});
 							return '/index/page/p/' + $stateParams.pageId + '.html';
 						}
 					}
@@ -197,6 +202,11 @@
 				views: {
 					'subview': {
 						templateUrl: function ($stateParams){
+							$('html, body').animate({
+								scrollTop : 900
+							}, 500,function(){
+								scrolling=false;
+							});
 							return '/index/content/id/' + $stateParams.Id + '.html';
 						}
 					}
@@ -207,6 +217,11 @@
 				views: {
 					'subview': {
 						templateUrl: function ($stateParams){
+							$('html, body').animate({
+								scrollTop : 900
+							}, 500,function(){
+								scrolling=false;
+							});
 							return '/index/content/id/' + $stateParams.Id +'/p/' + $stateParams.pageId + '.html'
 						}
 					}
@@ -239,6 +254,12 @@
 				url: "/list/index/id/:listId/p/:pageId.html",
 				templateUrl: function ($stateParams){
 					return '/list/index/id/' + $stateParams.listId +'/p/' + $stateParams.pageId + '.html';
+				}
+			})
+			.state("list/keyword", {
+				url: "/list/keyword/id/:keyWord.html",
+				templateUrl: function ($stateParams){
+					return '/list/keyword/id/' + $stateParams.keyWord + '.html';
 				}
 			})
 			.state("article", {

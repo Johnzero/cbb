@@ -15,7 +15,7 @@ a {
 	transition: all 0.2s ease;
 }
 a:hover{
-	color: #dd5f0d;
+	color: rgb(188, 0, 0);
 	text-decoration: none
 }
 ul,li,span,button,form,a,div,i{
@@ -525,13 +525,13 @@ body.body-white {
 	border-top: solid 2px #fff;
 }
 .list-boxes:hover {
-	border-top: solid 2px #f90;
+	border-top: solid 2px rgb(188, 0, 0);
 }
 .list-boxes h2 a {
-	color: #555;
+	color: rgb(188, 0, 0);
 }
 .list-boxes:hover h2 a {
-	color: #f90;
+	color: rgb(188, 0, 0);
 }
 .list-boxes .list-actions a {
 	font-size: 16px;
@@ -1419,13 +1419,13 @@ hr {
 	border: 1px solid #dcdcdc;
 	background:#ebebeb;
 	padding:5px 20px;
-	margin-right:15px;
+	margin-right:5px;
 	font-size:12px;
 	white-space:nowrap;
 }
 .j-hotspotLink a:hover{
 	border: 1px solid #a2a2a2;
-	background:#a2a2a2;
+	background:none;
 }
 .hx {
 	background: url(../images/hr.png) repeat-x;
@@ -1538,6 +1538,9 @@ hr {
 	font-size: 14px;
 	color: #666;
 }
+.article-infobox a {
+	color: rgb(188, 0, 0);
+}
 .article-infobox span {
 	margin-right: 10px;
 }
@@ -1550,6 +1553,16 @@ hr {
   margin-bottom: 20px;
   background: white;
 }
+.category_right_list{margin:0 15px;min-height:90px}
+.category_right_list p{}
+.category_right_list dl{margin-left:35px;margin-bottom:12px;}
+.category_right_list dt{clear:both}
+.category_right_list dd{margin:10px auto 10px 20px;float:left}
+.category_right_list dd a{padding:3px 5px;font-weight:100;background: none;border-radius: 0px;}
+.category_right_list a{padding:3px 15px;font-weight:100;background: #efefef;border-radius: 3px;max-width: 195px;display: block;}
+.category_right_list .hover{background: #bc0000;color: #fff !important;border-radius: 3px;}
+.category_right_list ul{list-style:none;margin:0;padding:0}
+.category_right_list li{display: inline-block;padding:6px 5px;}
 .common_block_title {
   padding: 8px 5px;
   -moz-border-radius-topleft: 5px;
@@ -1607,6 +1620,7 @@ hr {
 .author {
 	font-size: 14px;
 	color: #9f9f9f !important;
+	margin-right: 10px;
 }
 .circle_block_title {
 	background: #F5F5F5;
@@ -1614,7 +1628,6 @@ hr {
 	color: #7A7A7A;
 	font-size: 1.2em;
 	margin: 0;
-	margin-bottom: 20px;
 }
 .list .span8 {
 	background: white;

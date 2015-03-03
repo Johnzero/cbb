@@ -11,11 +11,19 @@
 			<div class="tc-box article-box">
 				<div class="common_block_title">
 					<h2>{$post_title}</h2>
+					<php>
+						$keywords = explode(" ",$post_keywords);
+						$date = date('Y-m-d',strtotime($post_date));
+					</php>
 					<div class="article-infobox">
 						<span>分类：<a href="/list/index/id/{$term.term_id}.html">{$term.name}</a> </span>
-						<span>发布：{$user_nicename} </span>
-						<span>时间：{$post_date} </span>
-						<span>阅读：{$post_hits}次 </span>
+						<span>关键词：
+							<?php foreach ($keywords as $key => $value): ?>
+								<a href="{:u('list/keyword',array('id'=>$value))}">{$value}</a>
+							<?php endforeach ?>
+						</span>
+						<span>时间：<a>{$date}</a> </span>
+						<span>阅读：<a>{$post_hits}</a> 次 </span>
 					</div>
 				</div>
 				<hr/>
