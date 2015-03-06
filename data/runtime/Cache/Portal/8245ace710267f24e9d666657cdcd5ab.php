@@ -23,7 +23,7 @@
 			</p>
 			<p class="j-hotspotLink">
 				<?php foreach ($keywords as $key => $value): ?>
-				<a href="<?php echo u('list/keyword',array('id'=>$value));?>"><?php echo ($value); ?></a>
+					<a href="<?php echo u('list/keyword',array('id'=>$value));?>"><?php echo ($value); ?></a>
 				<?php endforeach ?>
 			</p>
 		</div>
