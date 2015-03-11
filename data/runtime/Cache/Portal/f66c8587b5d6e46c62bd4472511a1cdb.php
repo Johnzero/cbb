@@ -18,7 +18,7 @@
 					        	<?php if ($smeta['thumb']) { ?>
 									<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
 								<?php } else { ?>
-									<img src="http://wangsong.com/statics/images/default_tupian1.png">
+									<img src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
 								<?php } ?>
 					        </a>
 					    </div>
@@ -73,7 +73,7 @@
 					<?php if ($smeta['thumb']) { ?>
 					<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
 					<?php } else { ?>
-					<img src="http://wangsong.com/statics/images/default_tupian1.png">
+					<img src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
 					<?php } ?>
 				</a>
 			</div>
@@ -97,7 +97,7 @@
 	</div>
 </div>
 <a href="<?php echo u('user/register/index');?>">
-	<img src="http://wangsong.com/statics/images/wl.png" width="100%">
+	<img src="http://www.ahwenhui.com/statics/images/wl.png" width="100%">
 </a>
 <div class="contact" style="margin-top: 10px">
 	<div class="common_block_title_right" style="display:inline-block;">

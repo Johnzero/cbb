@@ -29,8 +29,8 @@ body {
 
 h1 a {
 	display: block;
-	height: 50px;
-	width: 250px;
+	height: 100px;
+	width: 255px;
 	margin:auto;
 	overflow: hidden;
 	text-indent: -2000em;

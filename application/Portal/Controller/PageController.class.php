@@ -11,7 +11,7 @@ class PageController extends HomeBaseController{
 		
 		$tplname=sp_get_apphome_tpl($tplname, "page");
 		
-		$this->display(":$tplname");
+		$this->render(":$tplname");
 	}
 	
 	public function nav_index(){

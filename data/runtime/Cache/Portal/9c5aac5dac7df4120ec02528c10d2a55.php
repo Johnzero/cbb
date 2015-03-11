@@ -21,51 +21,36 @@
 	<div class="block1">
 		<div>
 			<h3> 企 业 </h3>
-			<img src="http://wangsong.com/statics/images/qy.png">
+			<img src="http://www.ahwenhui.com/statics/images/qy.png">
 			<ul>
-				<li>
-					<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-				</li>
-				<li>
-					<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-				</li>
-				<li>
-					<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-				</li>
+				<?php if(is_array($companys)): $i = 0; $__LIST__ = $companys;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+						<a title="<?php echo ($vo["name"]); ?>" href="<?php echo u('company/detail',array('id'=>$vo['id']));?>"><?php echo ($vo["name"]); ?></a>
+					</li><?php endforeach; endif; else: echo "" ;endif; ?>
 			</ul>
 		</div>
 		<div>
 			<h3> 项 目 </h3>
-			<img src="http://wangsong.com/statics/images/qy.png">
+			<?php $xm = sp_sql_posts("cid:22;order:post_date DESC;",3); ?>
+			<img src="http://www.ahwenhui.com/statics/images/xmbg.png">
+			
 			<ul>
-				<li>
-					<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-				</li>
-				<li>
-					<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-				</li>
-				<li>
-					<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-				</li>
+				<?php if(is_array($xm)): $i = 0; $__LIST__ = $xm;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+						<a title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a>
+					</li><?php endforeach; endif; else: echo "" ;endif; ?>
 			</ul>
 		</div>
 		<div>
 			<h3> 活 动 </h3>
-			<img src="http://wangsong.com/statics/images/qy.png">
+			<?php $hd = sp_sql_posts("cid:23;order:post_date DESC;",3); ?>
+			<img src="http://www.ahwenhui.com/statics/images/hdbg.png">
 			<ul>
-				<li>
-					<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-				</li>
-				<li>
-					<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-				</li>
-				<li>
-					<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-				</li>
+				<?php if(is_array($hd)): $i = 0; $__LIST__ = $hd;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+						<a title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a>
+					</li><?php endforeach; endif; else: echo "" ;endif; ?>
 			</ul>
 		</div>
 	</div>
-	<a href=""><img src="http://wangsong.com/statics/images/adv.png" width="100%"></a>
+	<a href=""><img src="http://www.ahwenhui.com/statics/images/adv.png" width="100%"></a>
 
 	<div class="row-fluid">
 	 	<div class="w790 pull-left">
@@ -93,7 +78,7 @@
 				<?php if ($smeta['thumb']) { ?>
 					<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
 				<?php } else { ?>
-					<img src="http://wangsong.com/statics/images/default_tupian1.png">
+					<img src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
 				<?php } ?>
 			</a>
 		</div>
@@ -127,114 +112,50 @@
 	    	<div class="content1">
 		 		<h3> 动 态 </h3>
 				<span class="hx"></span>
+				<?php $dt = sp_sql_posts("cid:25;order:post_date DESC;",8); ?>
 				<ul>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
-					<li>
-						<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-					</li>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
-					<li>
-						<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-					</li>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
+					<?php if(is_array($dt)): $i = 0; $__LIST__ = $dt;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+							<a title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a>
+						</li><?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>
 				<h3> 政 策 </h3>
 				<span class="hx"></span>
+				<?php $zc = sp_sql_posts("cid:26;order:post_date DESC;",8); ?>
 				<ul>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
-					<li>
-						<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-					</li>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
-					<li>
-						<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-					</li>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
+					<?php if(is_array($zc)): $i = 0; $__LIST__ = $zc;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+							<a title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a>
+						</li><?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>
 				<h3> 公 告 </h3>
 				<span class="hx"></span>
+				<?php $gg = sp_sql_posts("cid:26;order:post_date DESC;",8); ?>
 				<div class="imgblock">
-					<img src="http://wangsong.com/statics/images/default_tupian1.png">
-					<img src="http://wangsong.com/statics/images/default_tupian1.png">
+					<?php if(is_array($gg)): $i = 0; $__LIST__ = array_slice($gg,0,1,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; $smeta = json_decode($vo['smeta'],true); ?>
+						<li>
+							<a title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>">
+							<?php if ($smeta['thumb']) { ?>
+								<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
+							<?php } else { ?>
+								<img src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
+							<?php } ?></a>
+						</li><?php endforeach; endif; else: echo "" ;endif; ?>
 				</div>
 				<ul>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
-					<li>
-						<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-					</li>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-					</li>
+					<?php if(is_array($gg)): $i = 0; $__LIST__ = array_slice($gg,1,null,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+							<a title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a>
+						</li><?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>
-				<h3> 人 才 </h3>
+				<h3> 服 务 </h3>
 				<span class="hx"></span>
+				<?php $fw = sp_sql_posts("cid:29;order:post_date DESC;",8); ?>
 				<ul>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
-					<li>
-						<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-					</li>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
-					<li>
-						<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-					</li>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
+					<?php if(is_array($fw)): $i = 0; $__LIST__ = $fw;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+							<a title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a>
+						</li><?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>
 			</div>
 			<a href="<?php echo u('user/register/index');?>">
-				<img src="http://wangsong.com/statics/images/wl.png" width="100%">
+				<img src="http://www.ahwenhui.com/statics/images/wl.png" width="100%">
 			</a>
 			<div class="contact">
 				<h3> 联系方式 </h3>
@@ -256,16 +177,16 @@
     </div>
 
     <div class="link">
-		<a href=""><img src="http://wangsong.com/statics/images/y1.png"></a>
-		<a href=""><img src="http://wangsong.com/statics/images/y2.png"></a>
-		<a href=""><img src="http://wangsong.com/statics/images/y3.png"></a>
-		<a href=""><img src="http://wangsong.com/statics/images/y4.png"></a>
-		<a href=""><img src="http://wangsong.com/statics/images/y5.png"></a>
-		<a href=""><img src="http://wangsong.com/statics/images/y6.png"></a>
+		<a href=""><img src="http://www.ahwenhui.com/statics/images/y1.png"></a>
+		<a href=""><img src="http://www.ahwenhui.com/statics/images/y2.png"></a>
+		<a href=""><img src="http://www.ahwenhui.com/statics/images/y3.png"></a>
+		<a href=""><img src="http://www.ahwenhui.com/statics/images/y4.png"></a>
+		<a href=""><img src="http://www.ahwenhui.com/statics/images/y5.png"></a>
+		<a href=""><img src="http://www.ahwenhui.com/statics/images/y6.png"></a>
     </div>
 </div>
-<link href="http://wangsong.com/statics/js/slippry/slippry.css" rel="stylesheet">
-<script src="http://wangsong.com/statics/js/slippry/slippry.min.js"></script>
+<link href="http://www.ahwenhui.com/statics/js/slippry/slippry.css" rel="stylesheet">
+<script src="http://www.ahwenhui.com/statics/js/slippry/slippry.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
 	var demo1 = $("#homeslider").slippry({

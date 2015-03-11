@@ -7,22 +7,19 @@
 		<?php $portal_index_lastnews=2; $portal_hot_articles="1,2"; $portal_last_post="1,2"; $tmpl=sp_get_theme_path(); ?>
 		<base href="/">
 		<meta charset="utf-8">
-		<!--[if !IE]><!--> 
-			<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':8080/livereload.js?snipver=1"></' + 'script>')</script>
-		<!--<![endif]-->
-		<link href="http://wangsong.com/statics/bootstrap/css/bootstrap.css" rel="stylesheet">
-		<link href="http://wangsong.com/statics/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-		<link href="http://wangsong.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
-		<link href="http://wangsong.com/statics/css/style.css" rel="stylesheet">
+		<link href="http://wenhui.anhuinews.com/statics/bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link href="http://wenhui.anhuinews.com/statics/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="http://wenhui.anhuinews.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
+		<link href="http://wenhui.anhuinews.com/statics/css/style.css" rel="stylesheet">
 		<script type="text/javascript">
 			var GV = {
-				DIMAUB: "http://wangsong.com/",
+				DIMAUB: "http://wenhui.anhuinews.com/",
 				JS_ROOT: "statics/js/",
 				TOKEN: ""
 			};
 		</script>
 		<!--[if IE]>
-			<script src="http://wangsong.com/statics/js/angular/es5-shim.min.js"></script>
+			<script src="http://wenhui.anhuinews.com/statics/js/angular/es5-shim.min.js"></script>
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 			<script>
 				document.createElement('ng-include');
@@ -35,14 +32,14 @@
 		<![endif]-->
 
 		<!--[if lt IE 7]>
-            <script src="http://wangsong.com/statics/js/IE7.js"></script>
+            <script src="http://wenhui.anhuinews.com/statics/js/IE7.js"></script>
         <![endif]-->
         <!--[if lt IE 8]>
-            <script src="http://wangsong.com/statics/js/IE8.js"></script>
-		 	<script src="http://wangsong.com/statics/js/json3.min.js"></script>
+            <script src="http://wenhui.anhuinews.com/statics/js/IE8.js"></script>
+		 	<script src="http://wenhui.anhuinews.com/statics/js/json3.min.js"></script>
         <![endif]-->
-		<script src="http://wangsong.com/statics/js/jquery.js"></script>
-		<script src="http://wangsong.com/statics/bootstrap/js/bootstrap.min.js"></script>
+		<script src="http://wenhui.anhuinews.com/statics/js/jquery.js"></script>
+		<script src="http://wenhui.anhuinews.com/statics/bootstrap/js/bootstrap.min.js"></script>
 	</head>
 	<body ng-app="cultural" class="ng-app:cultural" id="ng-app">
 		<!--[if lt IE 8]>
@@ -51,7 +48,7 @@
 		<div class="tophead">
 	<div class="headtopNav">
 		<div class="pull-left">
-			<span>欢迎访问 <a href="http://wangsong.com"><?php echo ($site_name); ?></a></span>
+			<span>欢迎访问 <a href="http://wenhui.anhuinews.com"><?php echo ($site_name); ?></a></span>
 			<?php $days = array('星期天','星期一','星期二','星期三','星期四','星期五','星期六');$today = date('w')-1; ?>
 			<span class="date"><?php echo date(Y年m月d日); ?> <?php echo $days[$today]; ?></span>
 		</div>
@@ -59,7 +56,7 @@
 			<ul>
 				<li class="li-after">
 					<?php if(sp_is_user_login()): ?><a class="dropdown-toggle user" data-toggle="dropdown" href="javaScript:void(0);">
-						<?php if(empty($user['avatar'])): ?><img src="http://wangsong.com/statics/images/headicon.png" class="headicon"/>
+						<?php if(empty($user['avatar'])): ?><img src="http://wenhui.anhuinews.com/statics/images/headicon.png" class="headicon"/>
 						<?php else: ?>
 							<img src="<?php echo sp_get_user_avatar_url($user['avatar']);?>" class="headicon"/><?php endif; ?>
 						<?php echo ($user["user_nicename"]); ?><b class="caret"></b></a>
@@ -84,18 +81,24 @@
 </div>
 <div class="navbar">
 	<div class="navbar-inner">
-		<a class="pull-left" href="http://wangsong.com/"><img src="http://wangsong.com/statics/images/logo.png"/></a>
-		<img src="http://wangsong.com/statics/images/top.png" class="pull-right">
+		<a class="pull-left" href="http://wenhui.anhuinews.com/"><img src="http://wenhui.anhuinews.com/statics/images/logo.png"/></a>
+		<img src="http://wenhui.anhuinews.com/statics/images/1.png" class="pull-left wz1">
+		<img src="http://wenhui.anhuinews.com/statics/images/2.png" class="pull-left wz2">
+		<img src="http://wenhui.anhuinews.com/statics/images/3.png" class="pull-left wz3">
+		<img src="http://wenhui.anhuinews.com/statics/images/4.png" class="pull-left wz4">
+		<img src="http://wenhui.anhuinews.com/statics/images/top.png" class="pull-right">
 	</div>
 </div>
 <div class="navbar navbar-menu headroom">
 	<div class="menu">
 		<div class="menu-section">
-			<a href="http://wangsong.com"><i class="fa fa-home"></i>首页</a>
+			<a href="http://wenhui.anhuinews.com"><i class="fa fa-home"></i>首页</a>
 		</div>
 
 		<div class="menu-section">
-			<a href="<?php echo u('list/index',array('id'=>3));?>" class="gesp"><i class="fa fa-leanpub"></i>电商资讯</a>
+			<a href="<?php echo u('list/index',array('id'=>3));?>" class="gesp">
+			<img src="http://wenhui.anhuinews.com/statics/images/dszx.png" width="40"><br/>
+			电商资讯</a>
 			<ul class="sub-menu">
 				<li><a href="<?php echo u('list/index',array('id'=>14));?>">电商新闻</a></li>
 				<li><a href="<?php echo u('list/index',array('id'=>15));?>">行业数据</a></li>
@@ -107,7 +110,8 @@
 		</div>
 
 		<div class="menu-section">
-			<a href="<?php echo u('list/index',array('id'=>4));?>" class="gesp"><i class="fa fa-heart-o"></i>文化产业</a>
+			<a href="<?php echo u('list/index',array('id'=>4));?>" class="gesp">
+			<img src="http://wenhui.anhuinews.com/statics/images/whcy.png" width="25"><br/>文化产业</a>
 			<ul class="sub-menu">
 				<li><a href="<?php echo u('list/index',array('id'=>20));?>">文产新闻</a></li>
 				<li><a href="<?php echo u('list/index',array('id'=>21));?>">文化企业</a></li><br/>
@@ -117,9 +121,9 @@
 		</div>
 
 		<div class="menu-section">
-			<a href="<?php echo u('list/index',array('id'=>13));?>" class="gesp"><i class="fa fa-users"></i>联盟空间</a>
+			<a href="<?php echo u('list/index',array('id'=>13));?>" class="gesp"><img src="http://wenhui.anhuinews.com/statics/images/lmkj.png" width="30"><br/>联盟空间</a>
 			<ul class="sub-menu">
-				<li><a href="<?php echo u('list/index',array('id'=>24));?>">联盟简介</a></li>
+				<li><a href="<?php echo u('page/index',array('id'=>47));?>">联盟简介</a></li>
 				<li><a href="<?php echo u('list/index',array('id'=>25));?>">联盟动态</a></li>
 				<li><a href="<?php echo u('list/index',array('id'=>26));?>">政策法规</a></li><br/>
 				<li><a href="<?php echo u('list/index',array('id'=>27));?>">联盟公告</a></li>
@@ -132,36 +136,36 @@
 </div>
 
 <!-- ng-Layout -->
-<div id="layout" ui-view="">
+<div id="layout" ui-view="" class="slide-left">
 
 </div>
 
 <!-- JavaScript -->
 <!-- Javascript -->
-<script src="http://wangsong.com/statics/js/headroom/headroom.js"></script>
-<script src="http://wangsong.com/statics/js/headroom/jQuery.headroom.js"></script>
-<link rel="stylesheet" href="http://wangsong.com/statics/js/sweetalert/sweet-alert.css">
-<script src="http://wangsong.com/statics/js/sweetalert/sweet-alert.min.js"></script>
+<script src="http://wenhui.anhuinews.com/statics/js/headroom/headroom.js"></script>
+<script src="http://wenhui.anhuinews.com/statics/js/headroom/jQuery.headroom.js"></script>
+<link rel="stylesheet" href="http://wenhui.anhuinews.com/statics/js/sweetalert/sweet-alert.css">
+<script src="http://wenhui.anhuinews.com/statics/js/sweetalert/sweet-alert.min.js"></script>
 <script type="text/javascript" src="http://ueditor.baidu.com/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" src="http://ueditor.baidu.com/ueditor/ueditor.all.js"></script>
-<script src="http://wangsong.com/statics/js/angular/angular.min.js"></script>
-<!-- <script src="http://wangsong.com/statics/js/angular/angular.js"></script> -->
-<script src="http://wangsong.com/statics/js/angular/angular-ui-router.js"></script>
+<script src="http://wenhui.anhuinews.com/statics/js/angular/angular.js"></script>
+<script src="http://wenhui.anhuinews.com/statics/js/angular/angular-ui-router.js"></script>
+<script src="http://wenhui.anhuinews.com/statics/js/angular/angular-animate.js"></script>
 <!--[if IE]>
 <script>
     window.FileAPI = {
-        jsUrl: 'http://wangsong.com/statics/js/angular/FileAPI.min.js',
-        flashUrl: 'http://wangsong.com/statics/js/angular/FileAPI.flash.swf',
+        jsUrl: 'http://wenhui.anhuinews.com/statics/js/angular/FileAPI.min.js',
+        flashUrl: 'http://wenhui.anhuinews.com/statics/js/angular/FileAPI.flash.swf',
     }
 </script>
-<script src="http://wangsong.com/statics/js/angular/angular-file-upload-shim.min.js"></script>
+<script src="http://wenhui.anhuinews.com/statics/js/angular/angular-file-upload-shim.min.js"></script>
 <![endif]-->
-<script src="http://wangsong.com/statics/js/angular/angular-file-upload.min.js"></script>
-<script src="http://wangsong.com/statics/js/angular/loading-bar.js"></script>
-<link href='http://wangsong.com/statics/js/angular/loading-bar.css' rel='stylesheet' />
+<script src="http://wenhui.anhuinews.com/statics/js/angular/angular-file-upload.min.js"></script>
+<script src="http://wenhui.anhuinews.com/statics/js/angular/loading-bar.js"></script>
+<link href='http://wenhui.anhuinews.com/statics/js/angular/loading-bar.css' rel='stylesheet' />
 <script type="text/javascript">
 	
-	var cultural = angular.module('cultural',['ui.router','angular-loading-bar','angularFileUpload']);
+	var cultural = angular.module('cultural',['ui.router','angular-loading-bar','angularFileUpload','ngAnimate']);
 	cultural.run(
 		['$rootScope', '$state', '$stateParams',
 			function ($rootScope,   $state,   $stateParams) {
@@ -175,7 +179,7 @@
 		// 		window.location = $location['$$absUrl'];
 		// 	}]);
 		// });
-		// $urlRouterProvider.otherwise('/');  
+		$urlRouterProvider.otherwise('/');  
 		$urlRouterProvider.when('', '/');
 		$stateProvider
 			.state("index", {
@@ -187,6 +191,11 @@
 				views: {
 					'subview': {
 						templateUrl: function ($stateParams){
+							$('html, body').animate({
+								scrollTop : 900
+							}, 500,function(){
+								scrolling=false;
+							});
 							return '/index/page/p/' + $stateParams.pageId + '.html';
 						}
 					}
@@ -197,6 +206,11 @@
 				views: {
 					'subview': {
 						templateUrl: function ($stateParams){
+							$('html, body').animate({
+								scrollTop : 900
+							}, 500,function(){
+								scrolling=false;
+							});
 							return '/index/content/id/' + $stateParams.Id + '.html';
 						}
 					}
@@ -207,6 +221,11 @@
 				views: {
 					'subview': {
 						templateUrl: function ($stateParams){
+							$('html, body').animate({
+								scrollTop : 900
+							}, 500,function(){
+								scrolling=false;
+							});
 							return '/index/content/id/' + $stateParams.Id +'/p/' + $stateParams.pageId + '.html'
 						}
 					}
@@ -229,6 +248,12 @@
 					return '/user/' + $stateParams.actionName + '/' + $stateParams.tplName + '.html';
 				}
 			})
+			.state("page", {
+				url: "/page/index/id/:pageId.html",
+				templateUrl: function ($stateParams){
+					return '/page/index/id/' + $stateParams.pageId + '.html';
+				}
+			})
 			.state("list", {
 				url: "/list/index/id/:listId.html",
 				templateUrl: function ($stateParams){
@@ -241,9 +266,16 @@
 					return '/list/index/id/' + $stateParams.listId +'/p/' + $stateParams.pageId + '.html';
 				}
 			})
+			.state("list/keyword", {
+				url: "/list/keyword/id/:keyWord.html",
+				templateUrl: function ($stateParams){
+					return '/list/keyword/id/' + $stateParams.keyWord + '.html';
+				}
+			})
 			.state("article", {
 				url: "/article/index/id/:articleId.html",
 				templateUrl: function ($stateParams){
+					$('html, body').scrollTop(0);
 					return '/article/index/id/' + $stateParams.articleId + '.html';
 				},
 				controller: function($scope) {
@@ -723,8 +755,23 @@
 	                }
 	            });
 	        });
-	    }
+	    }  
 	});
+
+	$(document).ready(function () {
+		fadeto = function (){
+	    	var value = Math.random();
+	    	$(".wz1").fadeTo("slow",value);
+	    	value = Math.random();
+	    	$(".wz2").fadeTo("slow",value);
+	    	value = Math.random();
+	    	$(".wz3").fadeTo("slow",value);
+	    	value = Math.random();
+	    	$(".wz4").fadeTo("slow",value);
+	    };
+		setInterval("fadeto()",2000);
+	})
+	
 </script>
 
 <!-- Footer -->

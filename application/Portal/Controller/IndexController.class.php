@@ -7,6 +7,9 @@ use Common\Controller\HomeBaseController;
 class IndexController extends HomeBaseController {
 	
 	public function index() {
+		$where['authorize'] = 1;
+		$companys = D("Company")->where($where)->limit(3)->select();
+		$this->assign("companys",$companys);
     	$this->render(":index");
     }
 

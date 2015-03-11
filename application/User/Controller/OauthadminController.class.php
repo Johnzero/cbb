@@ -21,7 +21,7 @@ class OauthadminController extends AdminbaseController {
 		->select();
 		$this->assign("page", $page->show('Admin'));
 		$this->assign('lists', $lists);
-		$this->render();
+		$this->display();
 	}
 	
 	//删除用户

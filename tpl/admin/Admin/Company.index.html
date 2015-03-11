@@ -2,7 +2,8 @@
 <body class="J_scroll_fixed" style="min-width:800px;">
 <div class="wrap J_check_wrap">
   <ul class="nav nav-tabs">
-     <li class="active"><a href="{:U('company/index')}">全部认证</a></li>
+     <li class="active"><a href="{:U('company/index')}">认证企业</a></li>
+     <li ><a href="{:U('company/add')}">添加企业</a></li>
   </ul>
   <form class="J_ajaxForm" action="" method="post">
     <div class="table_list">
@@ -15,10 +16,10 @@
 	            <th>联系人姓名</th>
 	            <th>联系人电话</th>
 	            <th>营业执照号</th>
-	            <th>组织机构代码</th>
+	            <!-- <th>组织机构代码</th> -->
 	            <th><span>更新时间</span></th>
 	            <th><span>状态</span></th>
-	            <th width="120">操作</th>
+	            <th width="160">操作</th>
 	          </tr>
         </thead>
         	<php>$status=array("1"=>"√","0"=>"<span style='color:red;'>未审核</span>");</php>
@@ -30,11 +31,13 @@
 		            <td>{$vo.contact}</td>
 		            <td>{$vo.ctel}</td>
 		            <td>{$vo.code}</td>
-		            <td>{$vo.group}</td>
+		            <!-- <td>{$vo.group}</td> -->
 		            <td>{:date('Y-m-d H:i:s', $vo['create_time'])}</td>
 		            <td>{$status[$vo['authorize']]}</td>
 		            <td>
-		            	<a href="{:U('company/detail',array('id'=>$vo['id']))}">查看详细</a>
+		            	<a href="{:U('company/detail',array('id'=>$vo['id']))}">认证信息</a>
+						  &nbsp;|&nbsp;  
+		            	<a href="{:U('company/edit',array('id'=>$vo['id']))}">编辑内容</a>
 						  &nbsp;|&nbsp;  
 		            	<a href="{:U('company/delete',array('id'=>$vo['id']))}" class="J_ajax_del" >删除</a>
 					</td>

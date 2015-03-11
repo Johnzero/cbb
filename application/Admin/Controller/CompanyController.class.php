@@ -37,6 +37,49 @@ class CompanyController extends AdminbaseController{
 		$this->display();exit;
 	}
 
+	function add(){
+		$uid = sp_get_current_userid();
+		$this->display();
+	}
+
+	function edit(){
+		$uid = sp_get_current_userid();
+		$id = $_GET['id'];
+		$company = D("Company")->where(array("id"=>$id))->find();
+		$this->assign("company",$company);
+		$this->display("add");
+	}
+
+	function add_company() {
+
+		if (!$_POST['name']) {
+			$this->error("请输入名称！");exit;
+		}
+		$data = D("Company");
+		$id = $_POST['id'];
+
+		$uid = sp_get_current_userid();
+		// $company = $data->where(array("id"=>$id))->find();
+
+		$_POST["user_id"] = $uid;
+        $_POST['create_time'] = time();
+
+        if ( $id ) {
+            $data->where(array("id"=>$id))->save($_POST);
+            $this->success("修改成功！");exit;
+        }else {
+            if( $data->create() ) {                
+                if( $data->add() ){
+					$this->success("添加成功！");exit;
+                }else{
+					$this->error("服务器繁忙，请稍候再试");exit;
+                }           
+            }else{   
+            	$this->error($data->getError());exit;   
+            }
+        }
+	}
+
 	function delete(){
 		if(isset($_GET['id'])){
 			$id = intval(I("get.id"));

@@ -17,8 +17,7 @@ class IndexadminController extends AdminbaseController {
     	->select();
     	$this->assign('lists', $lists);
     	$this->assign("page", $page->show('Admin'));
-    	
-    	$this->render(":index");
+    	$this->display(":index");
     }
     
     function ban(){

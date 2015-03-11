@@ -1,5 +1,4 @@
 <?php
-
 if (ini_get('magic_quotes_gpc')) {
 	function stripslashesRecursive(array $array){
 		foreach ($array as $k => $v) {
@@ -16,7 +15,7 @@ if (ini_get('magic_quotes_gpc')) {
 }
 //开启调试模式
 define("APP_DEBUG", true);
-define("__ROOT__", "http://wangsong.com");
+define("__ROOT__", "http://".$_SERVER['HTTP_HOST']);
 
 //网站当前路径
 define('SITE_PATH', getcwd());

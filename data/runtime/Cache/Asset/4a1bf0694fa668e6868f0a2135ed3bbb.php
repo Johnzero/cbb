@@ -10,20 +10,20 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <![endif]-->
 
-	<link href="http://wangsong.com/statics/themes/<?php echo C('SP_ADMIN_STYLE');?>/theme.min.css" rel="stylesheet">
-    <link href="http://wangsong.com/statics/css/simplebootadmin.css" rel="stylesheet">
-    <link href="http://wangsong.com/statics/js/artDialog/skins/default.css" rel="stylesheet" />
-    <link href="http://wangsong.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
+	<link href="http://wenhui.anhuinews.com/statics/themes/<?php echo C('SP_ADMIN_STYLE');?>/theme.min.css" rel="stylesheet">
+    <link href="http://wenhui.anhuinews.com/statics/css/simplebootadmin.css" rel="stylesheet">
+    <link href="http://wenhui.anhuinews.com/statics/js/artDialog/skins/default.css" rel="stylesheet" />
+    <link href="http://wenhui.anhuinews.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
     <style>
 		.length_3{width: 180px;}
 	</style>
 	<!--[if IE 7]>
-	<link rel="stylesheet" href="http://wangsong.com/statics/font-awesome/css/font-awesome-ie7.min.css">
+	<link rel="stylesheet" href="http://wenhui.anhuinews.com/statics/font-awesome/css/font-awesome-ie7.min.css">
 	<![endif]-->
 <script type="text/javascript">
 //全局变量
 var GV = {
-    DIMAUB: "http://wangsong.com/",
+    DIMAUB: "http://wenhui.anhuinews.com/",
     JS_ROOT: "statics/js/",
     TOKEN: ""
 };
@@ -31,10 +31,10 @@ var GV = {
 <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="http://wangsong.com/statics/js/jquery.js"></script>
-    <script src="http://wangsong.com/statics/js/jquery-migrate-1.2.1.js"></script>
-    <script src="http://wangsong.com/statics/js/wind.js"></script>
-    <script src="http://wangsong.com/statics/bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://wenhui.anhuinews.com/statics/js/jquery.js"></script>
+    <script src="http://wenhui.anhuinews.com/statics/js/jquery-migrate-1.2.1.js"></script>
+    <script src="http://wenhui.anhuinews.com/statics/js/wind.js"></script>
+    <script src="http://wenhui.anhuinews.com/statics/bootstrap/js/bootstrap.min.js"></script>
 <?php if(APP_DEBUG): ?><style>
 		#think_page_trace_open{
 			z-index:9999;
@@ -123,7 +123,7 @@ var GV = {
     text-align: center;
 }
 .eidt_uphoto .no {
-    background: url("http://wangsong.com/tpl/admin/assets/images/upload_pic.jpg") no-repeat scroll center center #FBFBFB;
+    background: url("http://wenhui.anhuinews.com/tpl/admin/assets/images/upload_pic.jpg") no-repeat scroll center center #FBFBFB;
     border: 1px solid #CCCCCC;
     height: 98px;
     overflow: hidden;
@@ -176,7 +176,7 @@ var GV = {
 	position:absolute;
 	width:15px;
 	height:15px;
-	background:url("http://wangsong.com/tpl/admin/assets/images/upload_del.png") no-repeat;
+	background:url("http://wenhui.anhuinews.com/tpl/admin/assets/images/upload_del.png") no-repeat;
 	right:1px;
 	top:1px;
 	overflow:hidden;
@@ -219,13 +219,13 @@ var GV = {
 }
 /*上传选择按钮*/
 #btupload,.addnew{
-	background: url("http://wangsong.com/statics/js/swfupload/images/swfBnt.png") no-repeat; float:left; margin-right:10px;width:75px; height:28px; line-height:28px;font-weight:700; color:#fff;
+	background: url("http://wenhui.anhuinews.com/statics/js/swfupload/images/swfBnt.png") no-repeat; float:left; margin-right:10px;width:75px; height:28px; line-height:28px;font-weight:700; color:#fff;
 }
 #btupload{ 
     vertical-align:middle;border:none;cursor: hand;!important;cursor: pointer;
 }
 .addnew{
-	background: url("http://wangsong.com/statics/js/swfupload/images/swfBnt.png") no-repeat; float:left; margin-right:10px;width:75px; height:28px; line-height:28px;font-weight:700; color:#fff;
+	background: url("http://wenhui.anhuinews.com/statics/js/swfupload/images/swfBnt.png") no-repeat; float:left; margin-right:10px;width:75px; height:28px; line-height:28px;font-weight:700; color:#fff;
 }
 .addnew{
 	background-position: left bottom;
@@ -288,7 +288,7 @@ var swfu = '';
 	$(document).ready(function(){
 		Wind.use("swfupload",GV.DIMAUB+"statics/js/swfupload/handlers.js",function(){
 		      swfu = new SWFUpload({
-			flash_url:"http://wangsong.com/statics/js/swfupload/swfupload.swf",
+			flash_url:"http://wenhui.anhuinews.com/statics/js/swfupload/swfupload.swf",
 			upload_url:"<?php echo u('asset/swfupload');?>",
 			file_post_name : "Filedata",
 			post_params:{
@@ -360,7 +360,7 @@ var swfu = '';
 <div id="att-status" style="display:none"></div>
 <div id="att-status-del" style="display:none"></div>
 <div id="att-name" style="display:none"></div>
-<script src="http://wangsong.com/statics/js/common.js"></script> 
+<script src="http://wenhui.anhuinews.com/statics/js/common.js"></script> 
 <script>
 $(function(){
     $("#att-status").html("");

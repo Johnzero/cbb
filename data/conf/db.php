@@ -7,8 +7,8 @@ return array(
     'DB_TYPE' => 'mysql',
     'DB_HOST' => 'localhost',
     'DB_NAME' => 'cultural',
-    'DB_USER' => 'root',
-    'DB_PWD' => 'root',
+    'DB_USER' => 'cultural',
+    'DB_PWD' => 'cultural',
     'DB_PORT' => '3306',
     'DB_PREFIX' => 'cultural_',
     //密钥

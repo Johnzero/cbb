@@ -13,7 +13,7 @@
 				<?php if ($smeta['thumb']) { ?>
 					<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
 				<?php } else { ?>
-					<img src="http://wangsong.com/statics/images/default_tupian1.png">
+					<img src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
 				<?php } ?>
 			</a>
 		</div>

@@ -31,45 +31,40 @@
 			<h3> 企 业 </h3>
 			<img src="__ROOT__/statics/images/qy.png">
 			<ul>
-				<li>
-					<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-				</li>
-				<li>
-					<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-				</li>
-				<li>
-					<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-				</li>
+				<volist name="companys" id="vo">
+					<li>
+						<a title="{$vo.name}" href="{:u('company/detail',array('id'=>$vo['id']))}">{$vo.name}</a>
+					</li>
+				</volist>
 			</ul>
 		</div>
 		<div>
 			<h3> 项 目 </h3>
-			<img src="__ROOT__/statics/images/qy.png">
+			<php>
+				$xm = sp_sql_posts("cid:22;order:post_date DESC;",3);
+			</php>
+			<img src="__ROOT__/statics/images/xmbg.png">
+			
 			<ul>
-				<li>
-					<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-				</li>
-				<li>
-					<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-				</li>
-				<li>
-					<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-				</li>
+				<volist name="xm" id="vo">
+					<li>
+						<a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
+					</li>
+				</volist>
 			</ul>
 		</div>
 		<div>
 			<h3> 活 动 </h3>
-			<img src="__ROOT__/statics/images/qy.png">
+			<php>
+				$hd = sp_sql_posts("cid:23;order:post_date DESC;",3);
+			</php>
+			<img src="__ROOT__/statics/images/hdbg.png">
 			<ul>
-				<li>
-					<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-				</li>
-				<li>
-					<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-				</li>
-				<li>
-					<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-				</li>
+				<volist name="hd" id="vo">
+					<li>
+						<a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
+					</li>
+				</volist>
 			</ul>
 		</div>
 	</div>
@@ -93,110 +88,66 @@
 	    	<div class="content1">
 		 		<h3> 动 态 </h3>
 				<span class="hx"></span>
+				<php>
+					$dt = sp_sql_posts("cid:25;order:post_date DESC;",8);
+				</php>
 				<ul>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
-					<li>
-						<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-					</li>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
-					<li>
-						<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-					</li>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
+					<volist name="dt" id="vo">
+						<li>
+							<a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
+						</li>
+					</volist>
 				</ul>
 				<h3> 政 策 </h3>
 				<span class="hx"></span>
+				<php>
+					$zc = sp_sql_posts("cid:26;order:post_date DESC;",8);
+				</php>
 				<ul>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
-					<li>
-						<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-					</li>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
-					<li>
-						<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-					</li>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
+					<volist name="zc" id="vo">
+						<li>
+							<a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
+						</li>
+					</volist>
 				</ul>
 				<h3> 公 告 </h3>
 				<span class="hx"></span>
+				<php>
+					$gg = sp_sql_posts("cid:26;order:post_date DESC;",8);
+				</php>
 				<div class="imgblock">
-					<img src="__ROOT__/statics/images/default_tupian1.png">
-					<img src="__ROOT__/statics/images/default_tupian1.png">
+					<volist name="gg" id="vo" offset="0" length='1'>
+						<php>
+							$smeta = json_decode($vo['smeta'],true);
+						</php>
+						<li>
+							<a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">
+							<?php if ($smeta['thumb']) { ?>
+								<img src="/data/upload/{$smeta.thumb}">
+							<?php } else { ?>
+								<img src="__ROOT__/statics/images/default_tupian1.png">
+							<?php } ?></a>
+						</li>
+					</volist>
 				</div>
 				<ul>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
-					<li>
-						<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-					</li>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-					</li>
+					<volist name="gg" id="vo" offset="1">
+						<li>
+							<a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
+						</li>
+					</volist>
 				</ul>
-				<h3> 人 才 </h3>
+				<h3> 服 务 </h3>
 				<span class="hx"></span>
+				<php>
+					$fw = sp_sql_posts("cid:29;order:post_date DESC;",8);
+				</php>
 				<ul>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
-					<li>
-						<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-					</li>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
-					<li>
-						<a title="百度宣布转型成功：移动搜索收入首超PC" href="/article/index/id/15.html">百度宣布转型成功：移动搜索收入首超PC</a>
-					</li>
-					<li>
-						<a title="断崖式跌落，阿里股价去泡沫化的开始？" href="/article/index/id/1.html">断崖式跌落，阿里股价去泡沫化的开始？</a>
-					</li>
-					<li>
-						<a title="2015年中国A股上市互联网企业发展情况预测" href="/article/index/id/11.html">2015年中国A股上市互联网企业发展情况预测</a>
-					</li>
+					<volist name="fw" id="vo">
+						<li>
+							<a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
+						</li>
+					</volist>
 				</ul>
 			</div>
 			<a href="{:u('user/register/index')}">

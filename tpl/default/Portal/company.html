@@ -1,0 +1,43 @@
+<style>
+	#layout {
+		background: #E4E4E4 !important;
+	}
+</style>
+<div class="container tc-main list">
+	<div class="row">
+		<div class="span8">
+			<div class="row circle_block_title">
+                <div>入驻企业</div>
+            </div>
+			<div class="list-posts">
+				<volist name="companys" id="vo">
+					<div class="list-boxes">
+					    <div class="leftimg">
+					        <a href="{:u('company/detail',array('id'=>$vo['id']))}">
+					        	<?php if ($vo['logo']) { ?>
+									<img src="{$vo.logo}">
+								<?php } else { ?>
+									<img src="__ROOT__/statics/images/default_tupian1.png">
+								<?php } ?>
+					        </a>
+					    </div>
+					    <div class="blog_detail">
+				            <h3 class="text-more media-heading" style="width: 100%">
+				            <a title="{$vo.name}" href="{:u('company/detail',array('id'=>$vo['id']))}">{$vo.name}</a></h3>
+					        <div>
+					            <p class="detail">
+					            	{$vo.description}
+					            </p>
+					        </div>
+					    </div>
+					</div>
+					<hr>
+				</volist>
+			</div>
+		</div>
+		<div class="span4">
+			<tc_include file="Portal/sidebar"/>
+		</div>
+	</div>
+</div>
+
