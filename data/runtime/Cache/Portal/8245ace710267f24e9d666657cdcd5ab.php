@@ -4,26 +4,26 @@
 <div class="j-hotspot">
 	<div class="j-hotspotTil clearfix">
 		<h3 class="h3">
-			<a href="<?php echo u('article/index',array('id'=>$vo['tid']));?>" class="a-title"><?php echo ($vo["post_title"]); ?></a>
+			<a target="_blank" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>" class="a-title"><?php echo ($vo["post_title"]); ?></a>
 		</h3>
 	</div>
 	<div class="clearfix mb30">
 		<div class="j-hotspotPic">
-			<a href="<?php echo u('article/index',array('id'=>$vo['tid']));?>">
+			<a target="_blank" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>">
 				<?php if ($smeta['thumb']) { ?>
 					<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
 				<?php } else { ?>
-					<img src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
+					<img src="http://ahwenhui.com/statics/images/default_tupian1.png">
 				<?php } ?>
 			</a>
 		</div>
 		<div class="j-hotspotInfo">
 			<p class="j-hotspotA">
-				<a href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_excerpt"]); ?></a>
+				<a target="_blank" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_excerpt"]); ?></a>
 			</p>
 			<p class="j-hotspotLink">
 				<?php foreach ($keywords as $key => $value): ?>
-					<a href="<?php echo u('list/keyword',array('id'=>$value));?>"><?php echo ($value); ?></a>
+					<a target="_blank" href="<?php echo u('list/keyword',array('id'=>$value));?>"><?php echo ($value); ?></a>
 				<?php endforeach ?>
 			</p>
 		</div>

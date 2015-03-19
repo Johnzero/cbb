@@ -128,11 +128,23 @@ var GV = {
 								<textarea id='xm' name='xm' style='width:98%;height:200px;'><?php echo ($company["xm"]); ?></textarea>
 							</td>
 						</tr>
+
 						<tr>
-							<th width="80">企业展示：</th>
+							<th width="80">企业展示： </th>
 							<td>
-								<textarea id='show' name='show' style='width:98%;height:200px;'  ><?php echo ($company["show"]); ?></textarea>
-							</td>
+								<fieldset class="blue pad-10">
+									<legend>图片列表</legend>
+									双击查看
+									<ul id="photos" class="picList">
+										<?php if(is_array($company['show'])): $i = 0; $__LIST__ = $company['show'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li id="savedimage<?php echo ($key); ?>">
+												<input type="text" name="photos_url[]" value="<?php echo ($vo); ?>" title='双击查看' style="width:310px;" ondblclick="image_priview(this.value);" class="input">
+												<input type="text" name="photos_alt[]" value="<?php echo ($vo); ?>" style="width:160px;" class="input" onfocus="if(this.value == this.defaultValue) this.value = ''" onblur="if(this.value.replace(' ','') == '') this.value = this.defaultValue;">
+												<a href="javascript:remove_div('savedimage<?php echo ($key); ?>')">移除</a>
+											</li><?php endforeach; endif; else: echo "" ;endif; ?>
+									</ul>
+								</fieldset>
+							<div class="bk10"></div>
+							<a href='javascript:void(0);' onclick="javascript:flashupload('albums_images', '图片上传','photos',change_images,'10,gif|jpg|jpeg|png|bmp,0','','','')" class="btn">选择图片 </a> </td>
 						</tr>
 
 						<tr>
@@ -159,9 +171,6 @@ $(function () {
 
 		editorcontent2 = new baidu.editor.ui.Editor();
 		editorcontent2.render( 'xm' );
-
-		editorcontent3 = new baidu.editor.ui.Editor();
-		editorcontent3.render( 'show' );
 
 		editorcontent1 = new baidu.editor.ui.Editor();
 		editorcontent1.render( 'ct' );

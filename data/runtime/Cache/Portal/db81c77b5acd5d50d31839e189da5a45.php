@@ -8,7 +8,22 @@
 		margin: 10px;
 		margin-bottom: 0;
 	}
+	.showimg img {
+		background: #fff;
+		color: #3498db;
+		font-size: 36px;
+		line-height: 100px;
+		margin: 10px;
+		padding: 10px;
+		position: relative;
+		text-align: center;
+	}
 </style>
+
+<link href="http://ahwenhui.com/statics/slick/slick.css" rel="stylesheet">
+<link href="http://ahwenhui.com/statics/slick/slick-theme.css" rel="stylesheet">
+<script src="http://ahwenhui.com/statics/slick/slick.min.js"></script>
+
 <div class="container tc-main">
 	<div class="row">
 		<div class="span12">
@@ -25,20 +40,20 @@
 										<div class="intro_title_content_01">
 										公司介绍</div>
 									</td>
-									<td background="http://www.ahwenhui.com/statics/images/block.jpg">
+									<td background="http://ahwenhui.com/statics/images/block.jpg">
 										<div class="place_content_02">&nbsp;</div>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 						<?php if ($company['logo']) { ?>
-							<img src="<?php echo ($company["logo"]); ?>" width="80%">
+							<img class="clogo" src="<?php echo ($company["logo"]); ?>" width="80%">
 						<?php } else { ?>
-							<img src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
+							<img class="clogo" src="http://ahwenhui.com/statics/images/default_tupian1.png">
 						<?php } ?>
-						<p class="des_content">
+						<span class="des_content">
 							<?php echo ($company["description"]); ?>
-						</p>
+						</span>
 					</div>
 
 					<div class="description">
@@ -49,15 +64,15 @@
 										<div class="intro_title_content_01">
 										项目介绍</div>
 									</td>
-									<td background="http://www.ahwenhui.com/statics/images/block.jpg">
+									<td background="http://ahwenhui.com/statics/images/block.jpg">
 										<div class="place_content_02">&nbsp;</div>
 									</td>
 								</tr>
 							</tbody>
 						</table>
-						<p>
+						<div id="article_content">
 							<?php echo ($company["xm"]); ?>
-						</p>
+						</div>
 					</div>
 
 					<div class="description">
@@ -68,17 +83,49 @@
 										<div class="intro_title_content_01">
 										企业展示</div>
 									</td>
-									<td background="http://www.ahwenhui.com/statics/images/block.jpg">
+									<td background="http://ahwenhui.com/statics/images/block.jpg">
 										<div class="place_content_02">&nbsp;</div>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 						<p>
-							<?php echo ($company["show"]); ?>
+							<div class="companyshow" >
+							  <?php if(is_array($company["show"])): $i = 0; $__LIST__ = $company["show"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="showimg"><img src="<?php echo ($vo); ?>"></div><?php endforeach; endif; else: echo "" ;endif; ?>
+							</div>
 						</p>
 					</div>
-
+						<script type="text/javascript">
+						    $(document).ready(function(){
+						      $('.companyshow').slick({
+									autoplay: true,
+									autoplaySpeed: 2000,
+									centerMode: true,
+									centerPadding: '60px',
+									slidesToShow: 3,
+									responsive: [
+									{
+									  breakpoint: 768,
+									  settings: {
+									    arrows: false,
+									    centerMode: true,
+									    centerPadding: '40px',
+									    slidesToShow: 3
+									  }
+									},
+									{
+									  breakpoint: 480,
+									  settings: {
+									    arrows: false,
+									    centerMode: true,
+									    centerPadding: '40px',
+									    slidesToShow: 1
+									  }
+									}
+									]
+						      });
+						    });
+					  	</script>
 					<div class="description">
 						<table cellspacing="0" cellpadding="0" width="100%" border="0">
 							<tbody>
@@ -87,7 +134,7 @@
 										<div class="intro_title_content_01">
 										联系方式</div>
 									</td>
-									<td background="http://www.ahwenhui.com/statics/images/block.jpg">
+									<td background="http://ahwenhui.com/statics/images/block.jpg">
 										<div class="place_content_02">&nbsp;</div>
 									</td>
 								</tr>

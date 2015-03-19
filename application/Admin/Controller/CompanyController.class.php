@@ -46,6 +46,8 @@ class CompanyController extends AdminbaseController{
 		$uid = sp_get_current_userid();
 		$id = $_GET['id'];
 		$company = D("Company")->where(array("id"=>$id))->find();
+
+		$company['show'] = unserialize($company['show']);
 		$this->assign("company",$company);
 		$this->display("add");
 	}
@@ -61,10 +63,17 @@ class CompanyController extends AdminbaseController{
 		$uid = sp_get_current_userid();
 		// $company = $data->where(array("id"=>$id))->find();
 
+		if ( !empty($_POST['photos_url']) ) {
+			$_POST['show'] = serialize($_POST['photos_url']);
+		}
+
 		$_POST["user_id"] = $uid;
         $_POST['create_time'] = time();
 
         if ( $id ) {
+        	unset($_POST['id']);
+        	unset($_POST['photos_url']);
+        	unset($_POST['photos_alt']);
             $data->where(array("id"=>$id))->save($_POST);
             $this->success("修改成功！");exit;
         }else {

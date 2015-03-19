@@ -6,7 +6,7 @@
 <div class="container tc-main list">
 	<div class="row">
 		<div class="span8">
-			<div class="row circle_block_title">
+			<div class="row circle_block_title" title="<?php echo ($keyword); ?>">
                 <div>关键词：“<?php echo ($keyword); ?>”</div>
             </div>
 			<div class="list-posts">
@@ -18,7 +18,7 @@
 					        	<?php if ($smeta['thumb']) { ?>
 									<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
 								<?php } else { ?>
-									<img src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
+									<img src="http://ahwenhui.com/statics/images/default_tupian1.png">
 								<?php } ?>
 					        </a>
 					    </div>
@@ -77,7 +77,7 @@
 					<?php if ($smeta['thumb']) { ?>
 					<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
 					<?php } else { ?>
-					<img src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
+					<img src="http://ahwenhui.com/statics/images/default_tupian1.png">
 					<?php } ?>
 				</a>
 			</div>
@@ -101,7 +101,7 @@
 	</div>
 </div>
 <a href="<?php echo u('user/register/index');?>">
-	<img src="http://www.ahwenhui.com/statics/images/wl.png" width="100%">
+	<img src="http://ahwenhui.com/statics/images/wl.png" width="100%">
 </a>
 <div class="contact" style="margin-top: 10px">
 	<div class="common_block_title_right" style="display:inline-block;">

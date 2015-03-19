@@ -1416,6 +1416,7 @@ hr {
 	float:left;
 	margin-right:20px;
 	margin-bottom: 20px;
+	margin-top: 5px;
 }
 .j-hotspotPic img {
 	width:305px;
@@ -1662,13 +1663,13 @@ hr {
 	padding: 8px 5px;
 	color: #7A7A7A;
 	font-size: 1.2em;
-	margin: 0;
+	margin: 0 !important;
 }
 .list .span8 {
 	background: white;
 }
 .circle_block_title div {
-	margin-left: 20px;
+	 margin-left: 20px; 
 }
 .list-posts {
 	padding: 20px;
@@ -1849,7 +1850,7 @@ a.list-group-item:hover,a.list-group-item:focus {
 .nav-tabs li a:hover {
 	cursor: pointer !important;
 }
-.j-hotspotWrap div:first-child {
+.j-hotspotWrap .j-hotspot:first-child {
 	padding-top: 10px;
 }
 .common_block_title img {
@@ -1859,15 +1860,14 @@ a.list-group-item:hover,a.list-group-item:focus {
 .description {
 	margin-bottom: 20px;
 }
-.description img {
+.clogo {
 	float: left;
 	margin-right: 20px;
 	width: 30%;
 }
 .des_content {
 	line-height: 32px;
-	font-size: 16px;
-	text-indent: 2em;
+	font-size: 14px;
 }
 .description table {
 	margin-bottom: 10px;
@@ -1880,4 +1880,7 @@ a.list-group-item:hover,a.list-group-item:focus {
 	background-repeat: no-repeat;
 	background-position: left 45%;
 	padding-left: 16px;
+}
+.active{
+	color: rgb(188, 0, 0);
 }

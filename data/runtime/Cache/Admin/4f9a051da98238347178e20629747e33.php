@@ -10,15 +10,15 @@
 <meta name="description" content="This is page-header (.page-header &gt; h1)">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="http://www.ahwenhui.com/statics/themes/<?php echo C('SP_ADMIN_STYLE');?>/theme.min.css" rel="stylesheet">
-<link href="http://www.ahwenhui.com/statics/css/simplebootadmin.css" rel="stylesheet">
-<link href="http://www.ahwenhui.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
+<link href="http://ahwenhui.com/statics/themes/<?php echo C('SP_ADMIN_STYLE');?>/theme.min.css" rel="stylesheet">
+<link href="http://ahwenhui.com/statics/css/simplebootadmin.css" rel="stylesheet">
+<link href="http://ahwenhui.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
 <!--[if IE 7]>
-	<link rel="stylesheet" href="http://www.ahwenhui.com/statics/font-awesome/css/font-awesome-ie7.min.css">
+	<link rel="stylesheet" href="http://ahwenhui.com/statics/font-awesome/css/font-awesome-ie7.min.css">
 <![endif]-->
-<link rel="stylesheet" href="http://www.ahwenhui.com/statics/themes/<?php echo C('SP_ADMIN_STYLE');?>/simplebootadminindex.min.css?">
+<link rel="stylesheet" href="http://ahwenhui.com/statics/themes/<?php echo C('SP_ADMIN_STYLE');?>/simplebootadminindex.min.css?">
 <!--[if lte IE 8]>
-	<link rel="stylesheet" href="http://www.ahwenhui.com/statics/css/simplebootadminindex-ie.css" />
+	<link rel="stylesheet" href="http://ahwenhui.com/statics/css/simplebootadminindex-ie.css" />
 <![endif]-->
 <style>
 .navbar .nav_shortcuts .btn{margin-top: 5px;}
@@ -38,7 +38,7 @@
 //全局变量
 var GV = {
 	HOST:"<?php echo ($_SERVER['HTTP_HOST']); ?>",
-    DIMAUB: "http://www.ahwenhui.com/",
+    DIMAUB: "http://ahwenhui.com/",
     JS_ROOT: "statics/js/",
     TOKEN: ""
 };
@@ -126,8 +126,8 @@ right: initial !important;}
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container-fluid">
-				<a href="http://www.ahwenhui.com/index.php?g=admin&m=index&a=index" class="brand"> <small> 
-				<img src="http://www.ahwenhui.com/statics/images/icon/logo-18.png">
+				<a href="http://ahwenhui.com/index.php?g=admin&m=index&a=index" class="brand"> <small> 
+				<img src="http://ahwenhui.com/statics/images/icon/logo-18.png">
 						安徽文惠网后台
 				</small>
 				</a>
@@ -140,7 +140,7 @@ right: initial !important;}
 						<i class="fa fa-pencil"></i>
 					</a>
 
-					<a class="btn btn-small btn-warning" href="http://www.ahwenhui.com/" title="前台首页" target="_blank">
+					<a class="btn btn-small btn-warning" href="http://ahwenhui.com/" title="前台首页" target="_blank">
 						<i class="fa fa-home"></i>
 					</a>
 
@@ -151,7 +151,7 @@ right: initial !important;}
 				<ul class="nav simplewind-nav pull-right">
 					<li class="light-blue">
 						<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-							<img class="nav-user-photo" src="http://www.ahwenhui.com/statics/images/icon/logo-18.png" alt="<?php echo ($admin["user_login"]); ?>">
+							<img class="nav-user-photo" src="http://ahwenhui.com/statics/images/icon/logo-18.png" alt="<?php echo ($admin["user_login"]); ?>">
 							<span class="user-info">
 								<small>欢迎,</small><?php echo ((isset($admin["user_nicename"]) && ($admin["user_nicename"] !== ""))?($admin["user_nicename"]):$admin[user_login]); ?>
 							</span>
@@ -202,9 +202,9 @@ right: initial !important;}
 		</div>
 	</div>
 	
-	<script src="http://www.ahwenhui.com/statics/js/jquery.js"></script>
-	<script src="http://www.ahwenhui.com/statics/js/jquery-migrate-1.2.1.js"></script>
-	<script src="http://www.ahwenhui.com/statics/bootstrap/js/bootstrap.min.js"></script>
+	<script src="http://ahwenhui.com/statics/js/jquery.js"></script>
+	<script src="http://ahwenhui.com/statics/js/jquery-migrate-1.2.1.js"></script>
+	<script src="http://ahwenhui.com/statics/bootstrap/js/bootstrap.min.js"></script>
 	<script>
 	var b = $("#sidebar").hasClass("menu-min");
 	var a = "ontouchend" in document;
@@ -249,7 +249,7 @@ right: initial !important;}
 				return false;
 			});
 	</script>
-	<script src="http://www.ahwenhui.com/tpl/admin/assets/js/index.js"></script>
+	<script src="http://ahwenhui.com/tpl/admin/assets/js/index.js"></script>
 
 
 

@@ -18,6 +18,9 @@ class ListController extends HomeBaseController {
 
 	public function keyword() {
 		$keyword = $_GET['id'];
+		if(!preg_match('/^.*$/u', $keyword)){
+		    $keyword = iconv('GB2312', 'UTF-8', $keyword);
+		}
     	$this->assign("keyword",$keyword);
     	$this->render(":keyword");
 	}

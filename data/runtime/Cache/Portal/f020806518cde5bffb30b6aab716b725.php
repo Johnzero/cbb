@@ -10,20 +10,20 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <![endif]-->
 
-	<link href="http://wenhui.anhuinews.com/statics/themes/<?php echo C('SP_ADMIN_STYLE');?>/theme.min.css" rel="stylesheet">
-    <link href="http://wenhui.anhuinews.com/statics/css/simplebootadmin.css" rel="stylesheet">
-    <link href="http://wenhui.anhuinews.com/statics/js/artDialog/skins/default.css" rel="stylesheet" />
-    <link href="http://wenhui.anhuinews.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
+	<link href="http://www.ahwenhui.com/statics/themes/<?php echo C('SP_ADMIN_STYLE');?>/theme.min.css" rel="stylesheet">
+    <link href="http://www.ahwenhui.com/statics/css/simplebootadmin.css" rel="stylesheet">
+    <link href="http://www.ahwenhui.com/statics/js/artDialog/skins/default.css" rel="stylesheet" />
+    <link href="http://www.ahwenhui.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
     <style>
 		.length_3{width: 180px;}
 	</style>
 	<!--[if IE 7]>
-	<link rel="stylesheet" href="http://wenhui.anhuinews.com/statics/font-awesome/css/font-awesome-ie7.min.css">
+	<link rel="stylesheet" href="http://www.ahwenhui.com/statics/font-awesome/css/font-awesome-ie7.min.css">
 	<![endif]-->
 <script type="text/javascript">
 //全局变量
 var GV = {
-    DIMAUB: "http://wenhui.anhuinews.com/",
+    DIMAUB: "http://www.ahwenhui.com/",
     JS_ROOT: "statics/js/",
     TOKEN: ""
 };
@@ -31,10 +31,10 @@ var GV = {
 <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="http://wenhui.anhuinews.com/statics/js/jquery.js"></script>
-    <script src="http://wenhui.anhuinews.com/statics/js/jquery-migrate-1.2.1.js"></script>
-    <script src="http://wenhui.anhuinews.com/statics/js/wind.js"></script>
-    <script src="http://wenhui.anhuinews.com/statics/bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://www.ahwenhui.com/statics/js/jquery.js"></script>
+    <script src="http://www.ahwenhui.com/statics/js/jquery-migrate-1.2.1.js"></script>
+    <script src="http://www.ahwenhui.com/statics/js/wind.js"></script>
+    <script src="http://www.ahwenhui.com/statics/bootstrap/js/bootstrap.min.js"></script>
 <?php if(APP_DEBUG): ?><style>
 		#think_page_trace_open{
 			z-index:9999;
@@ -72,7 +72,7 @@ var GV = {
 	.list-dot li,.list-dot-othors li{padding:5px 0; border-bottom:1px dotted #c6dde0; font-family:"宋体"; color:#bbb; position:relative;_height:22px}
 	.list-dot li span,.list-dot-othors li span{color:#004499}
 	.list-dot li a.close span,.list-dot-othors li a.close span{display:none}
-	.list-dot li a.close,.list-dot-othors li a.close{ background: url("http://wenhui.anhuinews.com/statics/images/cross.png") no-repeat left 3px; display:block; width:16px; height:16px;position: absolute;outline:none;right:5px; bottom:5px}
+	.list-dot li a.close,.list-dot-othors li a.close{ background: url("http://www.ahwenhui.com/statics/images/cross.png") no-repeat left 3px; display:block; width:16px; height:16px;position: absolute;outline:none;right:5px; bottom:5px}
 	.list-dot li a.close:hover,.list-dot-othors li a.close:hover{background-position: left -46px}
 	.list-dot-othors li{float:left;width:24%;overflow:hidden;}
 	</style>
@@ -94,9 +94,9 @@ var GV = {
 							<td>
 								<div  style="text-align: center;"><input type='hidden' name='smeta[thumb]' id='thumb' value=''>
 									<a href='javascript:void(0);' onclick="flashupload('thumb_images', '附件上传','thumb',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','','','');return false;">
-									<img src='http://wenhui.anhuinews.com/statics/images/icon/upload-pic.png' id='thumb_preview' width='135' height='113' style='cursor:hand' /></a>
+									<img src='http://www.ahwenhui.com/statics/images/icon/upload-pic.png' id='thumb_preview' width='135' height='113' style='cursor:hand' /></a>
 									<!-- <input type="button" class="btn" onclick="crop_cut_thumb($('#thumb').val());return false;" value="裁减图片">  -->
-									<input type="button"  class="btn" onclick="$('#thumb_preview').attr('src','http://wenhui.anhuinews.com/statics/images/icon/upload-pic.png');$('#thumb').val('');return false;" value="取消图片">
+									<input type="button"  class="btn" onclick="$('#thumb_preview').attr('src','http://www.ahwenhui.com/statics/images/icon/upload-pic.png');$('#thumb').val('');return false;" value="取消图片">
 								</div>
 							</td>
 						</tr>
@@ -140,7 +140,7 @@ var GV = {
 						</tr>
 						<tr>
 							<th width="80">关键词</th>
-							<td><input type='text' name='post[post_keywords]' id='keywords' value='' style='width:400px'   class='input' placeholder='请输入关键字'> 多关键词之间用空格隔开</td>
+							<td><input type='text' name='post[post_keywords]' id='keywords' value='' style='width:400px'   class='input' placeholder='请输入关键字'> 多关键词之间用一个空格隔开</td>
 						</tr>
 						<tr>
 							<th width="80">摘要 </th>
@@ -154,8 +154,8 @@ var GV = {
 							//编辑器路径定义
 							var editorURL = GV.DIMAUB;
 							</script>
-							<script type="text/javascript"  src="http://wenhui.anhuinews.com/statics/js/ueditor/ueditor.config.js"></script>
-							<script type="text/javascript"  src="http://wenhui.anhuinews.com/statics/js/ueditor/ueditor.all.min.js"></script>
+							<script type="text/javascript"  src="http://www.ahwenhui.com/statics/js/ueditor/ueditor.config.js"></script>
+							<script type="text/javascript"  src="http://www.ahwenhui.com/statics/js/ueditor/ueditor.all.min.js"></script>
 						</td>
 					</tr>
 					
@@ -180,8 +180,8 @@ var GV = {
 	</div>
 </form>
 </div>
-<script type="text/javascript" src="http://wenhui.anhuinews.com/statics/js/common.js"></script>
-<script type="text/javascript" src="http://wenhui.anhuinews.com/statics/js/content_addtop.js"></script>
+<script type="text/javascript" src="http://www.ahwenhui.com/statics/js/common.js"></script>
+<script type="text/javascript" src="http://www.ahwenhui.com/statics/js/content_addtop.js"></script>
 <script type="text/javascript">
 $(function () {
 	//setInterval(function(){public_lock_renewal();}, 10000);

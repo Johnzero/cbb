@@ -8,7 +8,7 @@
 			<div class="caption-wraper">
 				<div class="caption">{$vo.slide_name}</div>
 			</div>
-			<a href="{$vo.slide_url}"><img src="{:sp_get_asset_upload_path($vo['slide_pic'])}" alt=""></a>
+			<a href="{$vo.slide_url}" target="_blank"><img src="{:sp_get_asset_upload_path($vo['slide_pic'])}" alt=""></a>
 		</li>
 		</foreach>
 	</ul>
@@ -21,7 +21,7 @@
 		<hr>
 		<ul>
 			<foreach name="hot_articles" item="vo">
-			<li><a title="{$vo.post_title}" href="{:leuu('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a></li>
+			<li><a target="_blank" title="{$vo.post_title}" href="{:leuu('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a></li>
 			</foreach>
 		</ul>
 	</div>
@@ -33,7 +33,7 @@
 			<ul>
 				<volist name="companys" id="vo">
 					<li>
-						<a title="{$vo.name}" href="{:u('company/detail',array('id'=>$vo['id']))}">{$vo.name}</a>
+						<a  target="_blank" title="{$vo.name}" href="{:u('company/detail',array('id'=>$vo['id']))}">{$vo.name}</a>
 					</li>
 				</volist>
 			</ul>
@@ -48,7 +48,7 @@
 			<ul>
 				<volist name="xm" id="vo">
 					<li>
-						<a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
+						<a target="_blank" title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
 					</li>
 				</volist>
 			</ul>
@@ -62,7 +62,7 @@
 			<ul>
 				<volist name="hd" id="vo">
 					<li>
-						<a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
+						<a target="_blank" title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
 					</li>
 				</volist>
 			</ul>
@@ -73,12 +73,12 @@
 	<div class="row-fluid">
 	 	<div class="w790 pull-left">
 	 		<ul class="cats">
-				<li><a ui-sref="index.content({Id:14})">电商新闻</a></li>
-				<li><a ui-sref="index.content({Id:15})">行业数据</a></li>
-				<li><a ui-sref="index.content({Id:16})">人物观点</a></li>
-				<li><a ui-sref="index.content({Id:17})">典型案例</a></li>
-				<li><a ui-sref="index.content({Id:18})">电商干货</a></li>
-				<li><a ui-sref="index.content({Id:19})">电商专题</a></li>
+				<li><a ng-class="{active: $stateParams.Id == '14'}" ui-sref="index.content({Id:14})">电商新闻</a></li>
+				<li><a ng-class="{active: $stateParams.Id == '15'}" ui-sref="index.content({Id:15})">行业数据</a></li>
+				<li><a ng-class="{active: $stateParams.Id == '16'}" ui-sref="index.content({Id:16})">人物观点</a></li>
+				<li><a ng-class="{active: $stateParams.Id == '17'}" ui-sref="index.content({Id:17})">典型案例</a></li>
+				<li><a ng-class="{active: $stateParams.Id == '18'}" ui-sref="index.content({Id:18})">电商干货</a></li>
+				<li><a ng-class="{active: $stateParams.Id == '19'}" ui-sref="index.content({Id:19})">电商专题</a></li>
 	 		</ul>
 	        <div class="j-hotspotWrap ml20 slide-left" ui-view="subview">
 	        	<tc_include file="Portal/content"/>
@@ -94,7 +94,7 @@
 				<ul>
 					<volist name="dt" id="vo">
 						<li>
-							<a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
+							<a target="_blank" title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
 						</li>
 					</volist>
 				</ul>
@@ -106,7 +106,7 @@
 				<ul>
 					<volist name="zc" id="vo">
 						<li>
-							<a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
+							<a target="_blank" title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
 						</li>
 					</volist>
 				</ul>
@@ -121,7 +121,7 @@
 							$smeta = json_decode($vo['smeta'],true);
 						</php>
 						<li>
-							<a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">
+							<a target="_blank" title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">
 							<?php if ($smeta['thumb']) { ?>
 								<img src="/data/upload/{$smeta.thumb}">
 							<?php } else { ?>
@@ -133,7 +133,7 @@
 				<ul>
 					<volist name="gg" id="vo" offset="1">
 						<li>
-							<a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
+							<a target="_blank" title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
 						</li>
 					</volist>
 				</ul>
@@ -145,12 +145,12 @@
 				<ul>
 					<volist name="fw" id="vo">
 						<li>
-							<a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
+							<a target="_blank" title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
 						</li>
 					</volist>
 				</ul>
 			</div>
-			<a href="{:u('user/register/index')}">
+			<a target="_blank" href="{:u('user/register/index')}">
 				<img src="__ROOT__/statics/images/wl.png" width="100%">
 			</a>
 			<div class="contact">
@@ -172,17 +172,17 @@
 			$jcsj = sp_getslide("jcsj");
 		</php>
 		<foreach name="jcsj" item="vo">
-			<a href="{$vo.slide_url}"><img src="{:sp_get_asset_upload_path($vo['slide_pic'])}" alt="{$vo.slide_name}"></a>
+			<a target="_blank" href="{$vo.slide_url}"><img src="{:sp_get_asset_upload_path($vo['slide_pic'])}" alt="{$vo.slide_name}"></a>
 		</foreach>
     </div>
 
     <div class="link">
-		<a href=""><img src="__ROOT__/statics/images/y1.png"></a>
-		<a href=""><img src="__ROOT__/statics/images/y2.png"></a>
-		<a href=""><img src="__ROOT__/statics/images/y3.png"></a>
-		<a href=""><img src="__ROOT__/statics/images/y4.png"></a>
-		<a href=""><img src="__ROOT__/statics/images/y5.png"></a>
-		<a href=""><img src="__ROOT__/statics/images/y6.png"></a>
+		<a target="_blank" href=""><img src="__ROOT__/statics/images/y1.png"></a>
+		<a target="_blank" href=""><img src="__ROOT__/statics/images/y2.png"></a>
+		<a target="_blank" href=""><img src="__ROOT__/statics/images/y3.png"></a>
+		<a target="_blank" href=""><img src="__ROOT__/statics/images/y4.png"></a>
+		<a target="_blank" href=""><img src="__ROOT__/statics/images/y5.png"></a>
+		<a target="_blank" href=""><img src="__ROOT__/statics/images/y6.png"></a>
     </div>
 </div>
 <link href="__ROOT__/statics/js/slippry/slippry.css" rel="stylesheet">

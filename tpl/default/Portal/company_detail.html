@@ -8,7 +8,22 @@
 		margin: 10px;
 		margin-bottom: 0;
 	}
+	.showimg img {
+		background: #fff;
+		color: #3498db;
+		font-size: 36px;
+		line-height: 100px;
+		margin: 10px;
+		padding: 10px;
+		position: relative;
+		text-align: center;
+	}
 </style>
+
+<link href="__ROOT__/statics/slick/slick.css" rel="stylesheet">
+<link href="__ROOT__/statics/slick/slick-theme.css" rel="stylesheet">
+<script src="__ROOT__/statics/slick/slick.min.js"></script>
+
 <div class="container tc-main">
 	<div class="row">
 		<div class="span12">
@@ -32,13 +47,13 @@
 							</tbody>
 						</table>
 						<?php if ($company['logo']) { ?>
-							<img src="{$company.logo}" width="80%">
+							<img class="clogo" src="{$company.logo}" width="80%">
 						<?php } else { ?>
-							<img src="__ROOT__/statics/images/default_tupian1.png">
+							<img class="clogo" src="__ROOT__/statics/images/default_tupian1.png">
 						<?php } ?>
-						<p class="des_content">
+						<span class="des_content">
 							{$company.description}
-						</p>
+						</span>
 					</div>
 
 					<div class="description">
@@ -55,9 +70,9 @@
 								</tr>
 							</tbody>
 						</table>
-						<p>
+						<div id="article_content">
 							{$company.xm}
-						</p>
+						</div>
 					</div>
 
 					<div class="description">
@@ -75,10 +90,44 @@
 							</tbody>
 						</table>
 						<p>
-							{$company.show}
+							<div class="companyshow" >
+							  <volist name="company.show" id="vo">
+									<div class="showimg"><img src="{$vo}"></div>
+							  </volist>
+							</div>
 						</p>
 					</div>
-
+						<script type="text/javascript">
+						    $(document).ready(function(){
+						      $('.companyshow').slick({
+									autoplay: true,
+									autoplaySpeed: 2000,
+									centerMode: true,
+									centerPadding: '60px',
+									slidesToShow: 3,
+									responsive: [
+									{
+									  breakpoint: 768,
+									  settings: {
+									    arrows: false,
+									    centerMode: true,
+									    centerPadding: '40px',
+									    slidesToShow: 3
+									  }
+									},
+									{
+									  breakpoint: 480,
+									  settings: {
+									    arrows: false,
+									    centerMode: true,
+									    centerPadding: '40px',
+									    slidesToShow: 1
+									  }
+									}
+									]
+						      });
+						    });
+					  	</script>
 					<div class="description">
 						<table cellspacing="0" cellpadding="0" width="100%" border="0">
 							<tbody>

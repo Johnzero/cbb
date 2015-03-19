@@ -2,7 +2,7 @@
 	<div class="headtopNav">
 		<div class="pull-left">
 			<span>欢迎访问 <a href="__ROOT__">{$site_name}</a></span>
-			<php>$days = array('星期天','星期一','星期二','星期三','星期四','星期五','星期六');$today = date('w')-1;</php>
+			<php>$days = array('星期天','星期一','星期二','星期三','星期四','星期五','星期六');$today = date('w');</php>
 			<span class="date"><php>echo date(Y年m月d日);</php> <php>echo $days[$today];</php></span>
 		</div>
 		<div class="right-bar">

@@ -19,6 +19,7 @@
 			};
 		</script>
 		<!--[if IE]>
+			<script src="http://ahwenhui.com/statics/js/respond.min.js"></script>
 			<script src="http://ahwenhui.com/statics/js/angular/es5-shim.min.js"></script>
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 			<script>
@@ -43,13 +44,13 @@
 	</head>
 	<body ng-app="cultural" class="ng-app:cultural" id="ng-app">
 		<!--[if lt IE 8]>
-	        <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+	        <div class="alert alert-danger" style="margin-bottom: 0">您正在使用 <strong>过时的</strong> 浏览器. 是时候 <a target="_blank" href="http://browsehappy.com/">更换一个更好的浏览器</a> 来提升用户体验.</div>
 	    <![endif]-->
 		<div class="tophead">
 	<div class="headtopNav">
 		<div class="pull-left">
 			<span>欢迎访问 <a href="http://ahwenhui.com"><?php echo ($site_name); ?></a></span>
-			<?php $days = array('星期天','星期一','星期二','星期三','星期四','星期五','星期六');$today = date('w')-1; ?>
+			<?php $days = array('星期天','星期一','星期二','星期三','星期四','星期五','星期六');$today = date('w'); ?>
 			<span class="date"><?php echo date(Y年m月d日); ?> <?php echo $days[$today]; ?></span>
 		</div>
 		<div class="right-bar">
@@ -191,11 +192,11 @@
 				views: {
 					'subview': {
 						templateUrl: function ($stateParams){
-							$('html, body').animate({
-								scrollTop : 900
-							}, 500,function(){
-								scrolling=false;
-							});
+							// $('html, body').animate({
+							// 	scrollTop : 900
+							// }, 500,function(){
+							// 	scrolling=false;
+							// });
 							return '/index/page/p/' + $stateParams.pageId + '.html';
 						}
 					}
@@ -206,11 +207,11 @@
 				views: {
 					'subview': {
 						templateUrl: function ($stateParams){
-							$('html, body').animate({
-								scrollTop : 900
-							}, 500,function(){
-								scrolling=false;
-							});
+							// $('html, body').animate({
+							// 	scrollTop : 900
+							// }, 500,function(){
+							// 	scrolling=false;
+							// });
 							return '/index/content/id/' + $stateParams.Id + '.html';
 						}
 					}
@@ -221,11 +222,11 @@
 				views: {
 					'subview': {
 						templateUrl: function ($stateParams){
-							$('html, body').animate({
-								scrollTop : 900
-							}, 500,function(){
-								scrolling=false;
-							});
+							// $('html, body').animate({
+							// 	scrollTop : 900
+							// }, 500,function(){
+							// 	scrolling=false;
+							// });
 							return '/index/content/id/' + $stateParams.Id +'/p/' + $stateParams.pageId + '.html'
 						}
 					}
@@ -287,7 +288,7 @@
 			.state("article", {
 				url: "/article/index/id/:articleId.html",
 				templateUrl: function ($stateParams){
-					$('html, body').scrollTop(0);
+					// $('html, body').scrollTop(0);
 					return '/article/index/id/' + $stateParams.articleId + '.html';
 				},
 				controller: function($scope) {
@@ -768,8 +769,10 @@
 	            });
 	        });
 	    }  
-	});
-
+	});	
+</script>
+<!--[if gt IE 8]><!--> 
+<script type="text/javascript">
 	$(document).ready(function () {
 		fadeto = function (){
 	    	var value = Math.random();
@@ -783,8 +786,8 @@
 	    };
 		setInterval("fadeto()",2000);
 	})
-	
 </script>
+<!--<![endif]-->
 
 <!-- Footer -->
 <div class="footer">

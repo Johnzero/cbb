@@ -2,6 +2,9 @@
 	#layout {
 		background: #E4E4E4 !important;
 	}
+	.detail {
+		height: 115px;
+	}
 </style>
 <div class="container tc-main list">
 	<div class="row">
@@ -26,7 +29,7 @@
 				            <a title="{$vo.name}" href="{:u('company/detail',array('id'=>$vo['id']))}">{$vo.name}</a></h3>
 					        <div>
 					            <p class="detail">
-					            	{$vo.description}
+					            	<php>echo mb_substr($vo['description'],0,180,'utf-8');</php>
 					            </p>
 					        </div>
 					    </div>

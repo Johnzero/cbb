@@ -48,11 +48,11 @@
 				views: {
 					'subview': {
 						templateUrl: function ($stateParams){
-							$('html, body').animate({
-								scrollTop : 900
-							}, 500,function(){
-								scrolling=false;
-							});
+							// $('html, body').animate({
+							// 	scrollTop : 900
+							// }, 500,function(){
+							// 	scrolling=false;
+							// });
 							return '/index/page/p/' + $stateParams.pageId + '.html';
 						}
 					}
@@ -63,11 +63,11 @@
 				views: {
 					'subview': {
 						templateUrl: function ($stateParams){
-							$('html, body').animate({
-								scrollTop : 900
-							}, 500,function(){
-								scrolling=false;
-							});
+							// $('html, body').animate({
+							// 	scrollTop : 900
+							// }, 500,function(){
+							// 	scrolling=false;
+							// });
 							return '/index/content/id/' + $stateParams.Id + '.html';
 						}
 					}
@@ -78,11 +78,11 @@
 				views: {
 					'subview': {
 						templateUrl: function ($stateParams){
-							$('html, body').animate({
-								scrollTop : 900
-							}, 500,function(){
-								scrolling=false;
-							});
+							// $('html, body').animate({
+							// 	scrollTop : 900
+							// }, 500,function(){
+							// 	scrolling=false;
+							// });
 							return '/index/content/id/' + $stateParams.Id +'/p/' + $stateParams.pageId + '.html'
 						}
 					}
@@ -144,7 +144,7 @@
 			.state("article", {
 				url: "/article/index/id/:articleId.html",
 				templateUrl: function ($stateParams){
-					$('html, body').scrollTop(0);
+					// $('html, body').scrollTop(0);
 					return '/article/index/id/' + $stateParams.articleId + '.html';
 				},
 				controller: function($scope) {
@@ -625,8 +625,10 @@
 	            });
 	        });
 	    }  
-	});
-
+	});	
+</script>
+<!--[if gt IE 8]><!--> 
+<script type="text/javascript">
 	$(document).ready(function () {
 		fadeto = function (){
 	    	var value = Math.random();
@@ -640,5 +642,5 @@
 	    };
 		setInterval("fadeto()",2000);
 	})
-	
 </script>
+<!--<![endif]-->
