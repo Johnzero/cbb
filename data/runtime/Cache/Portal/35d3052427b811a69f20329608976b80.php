@@ -18,7 +18,7 @@
 					        	<?php if ($smeta['thumb']) { ?>
 									<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
 								<?php } else { ?>
-									<img src="http://ahwenhui.com/statics/images/default_tupian1.png">
+									<img src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
 								<?php } ?>
 					        </a>
 					    </div>
@@ -77,7 +77,7 @@
 					<?php if ($smeta['thumb']) { ?>
 					<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
 					<?php } else { ?>
-					<img src="http://ahwenhui.com/statics/images/default_tupian1.png">
+					<img src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
 					<?php } ?>
 				</a>
 			</div>
@@ -101,7 +101,7 @@
 	</div>
 </div>
 <a href="<?php echo u('user/register/index');?>">
-	<img src="http://ahwenhui.com/statics/images/wl.png" width="100%">
+	<img src="http://www.ahwenhui.com/statics/images/wl.png" width="100%">
 </a>
 <div class="contact" style="margin-top: 10px">
 	<div class="common_block_title_right" style="display:inline-block;">
@@ -109,11 +109,11 @@
 	</div>
 	<span class="hx" style="width:250px;"></span>
 	<blockquote class="clearfix">
-		<span>频道总监：李星慧</span>
-		<span>策划、编辑：连晓佳、徐茜茜、宋丽娜</span>
-		<span>实习编辑：卓树理</span>
-		<span>热线：0571-85310598 0571-85311743</span>
-		<span>频道QQ：1753904095</span>
+		<span>地址：安徽省合肥市蜀山区潜山路1469号</span>
+		<span>电话：0551-65179957</span>
+		<span>联系人：阮晓昕</span>
+		<span>邮箱：ahciec@163.com</span>
+		<span>QQ群：159560648</span>
 	</blockquote>
 </div>
 		</div>

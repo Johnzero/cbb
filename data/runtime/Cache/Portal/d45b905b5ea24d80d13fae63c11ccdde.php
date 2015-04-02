@@ -59,6 +59,12 @@ var GV = {
 			padding: 10px;
 			background-color: #FFF;
 		}
+		.form-horizontal .form-actions {
+			padding-left: 85px;
+		}
+		#edui1_toolbarbox {
+			margin-bottom:10px;
+		}
 		body fieldset legend {
 		background-color: #F9F9F9;
 		border: 1px solid #D8D8D8;
@@ -90,7 +96,7 @@ var GV = {
 						</tr>
 						<tr>
 							<td>
-								<div  style="text-align: center;"><input type='hidden' name='smeta[thumb]' id='thumb' value="<?php echo ((isset($smeta["thumb"]) && ($smeta["thumb"] !== ""))?($smeta["thumb"]):''); ?>">
+								<div style="text-align: center;"><input type='hidden' name='smeta[thumb]' id='thumb' value="<?php echo ((isset($smeta["thumb"]) && ($smeta["thumb"] !== ""))?($smeta["thumb"]):''); ?>">
 								<a href='javascript:void(0);' onclick="flashupload('thumb_images', '附件上传','thumb',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','','','');return false;">
 									
 									<?php if(empty($smeta['thumb'])): ?><img src="http://www.ahwenhui.com/statics/images/icon/upload-pic.png" id='thumb_preview' width='135' height='113' style='cursor:hand' />
@@ -133,6 +139,10 @@ var GV = {
 			</div>
 		</div>
 		<div class="col-auto">
+			<div class="well form-actions">
+				<button class="btn btn_submit J_ajax_submit_btn"type="submit">提交</button>
+				<a class="btn" href="<?php echo U('AdminPost/index');?>">返回</a>
+			</div>
 			<div class="table_full">
 				<table width="100%"  cellpadding="2" cellspacing="2">
 					<?php if($term['name'] != ''): ?><tr>
@@ -155,6 +165,18 @@ var GV = {
 						</td>
 					</tr>
 					<tr>
+						<th width="80">来源 </th>
+						<td>
+							<input type="text" style="width:400px;" name="post[post_source]" value="<?php echo ($post["post_source"]); ?>" class="input input_hd J_title_color" placeholder="请输入来源"/>
+						</td>
+					</tr>
+					<tr>
+						<th width="80">作者 </th>
+						<td>
+							<input type="text" style="width:400px;" name="post[post_authorname]" class="input input_hd J_title_color" value="<?php echo ($post["post_authorname"]); ?>" placeholder="请输入作者" />
+						</td>
+					</tr>
+					<tr>
 						<th width="80">关键词</th>
 						<td><input type='text' name='post[post_keywords]' id='keywords' style='width:400px' value="<?php echo ($post['post_keywords']); ?>"  class='input' placeholder='请输入关键字'> 多关键词之间用空格隔开</td>
 					</tr>
@@ -171,7 +193,7 @@ var GV = {
 						var editorURL = GV.DIMAUB;
 						</script>
 						<script type="text/javascript"  src="http://www.ahwenhui.com/statics/js/ueditor/ueditor.config.js"></script>
-						<script type="text/javascript"  src="http://www.ahwenhui.com/statics/js/ueditor/ueditor.all.min.js"></script>
+						<script type="text/javascript"  src="http://www.ahwenhui.com/statics/js/ueditor/ueditor.all.js"></script>
 					</td>
 				</tr>
 				<tr>
@@ -195,7 +217,7 @@ var GV = {
 			</table>
 		</div>
 	</div>
-	<div class="form-actions">
+	<div class="well form-actions">
 		<button class="btn btn_submit J_ajax_submit_btn"type="submit">提交</button>
 		<a class="btn" href="<?php echo U('AdminPost/index');?>">返回</a>
 	</div>

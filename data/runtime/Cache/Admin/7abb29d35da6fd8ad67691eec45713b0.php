@@ -10,20 +10,20 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <![endif]-->
 
-	<link href="http://www.ahwenhui.com/statics/themes/<?php echo C('SP_ADMIN_STYLE');?>/theme.min.css" rel="stylesheet">
-    <link href="http://www.ahwenhui.com/statics/css/simplebootadmin.css" rel="stylesheet">
-    <link href="http://www.ahwenhui.com/statics/js/artDialog/skins/default.css" rel="stylesheet" />
-    <link href="http://www.ahwenhui.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
+	<link href="http://ahwenhui.com/statics/themes/<?php echo C('SP_ADMIN_STYLE');?>/theme.min.css" rel="stylesheet">
+    <link href="http://ahwenhui.com/statics/css/simplebootadmin.css" rel="stylesheet">
+    <link href="http://ahwenhui.com/statics/js/artDialog/skins/default.css" rel="stylesheet" />
+    <link href="http://ahwenhui.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
     <style>
 		.length_3{width: 180px;}
 	</style>
 	<!--[if IE 7]>
-	<link rel="stylesheet" href="http://www.ahwenhui.com/statics/font-awesome/css/font-awesome-ie7.min.css">
+	<link rel="stylesheet" href="http://ahwenhui.com/statics/font-awesome/css/font-awesome-ie7.min.css">
 	<![endif]-->
 <script type="text/javascript">
 //全局变量
 var GV = {
-    DIMAUB: "http://www.ahwenhui.com/",
+    DIMAUB: "http://ahwenhui.com/",
     JS_ROOT: "statics/js/",
     TOKEN: ""
 };
@@ -31,10 +31,10 @@ var GV = {
 <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="http://www.ahwenhui.com/statics/js/jquery.js"></script>
-    <script src="http://www.ahwenhui.com/statics/js/jquery-migrate-1.2.1.js"></script>
-    <script src="http://www.ahwenhui.com/statics/js/wind.js"></script>
-    <script src="http://www.ahwenhui.com/statics/bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://ahwenhui.com/statics/js/jquery.js"></script>
+    <script src="http://ahwenhui.com/statics/js/jquery-migrate-1.2.1.js"></script>
+    <script src="http://ahwenhui.com/statics/js/wind.js"></script>
+    <script src="http://ahwenhui.com/statics/bootstrap/js/bootstrap.min.js"></script>
 <?php if(APP_DEBUG): ?><style>
 		#think_page_trace_open{
 			z-index:9999;
@@ -87,21 +87,21 @@ var GV = {
 <style type="text/css">
 .hide{display:none;}
 .table_list tr.expanded td .expander{
-	background: url(http://www.ahwenhui.com/tpl/admin/assets/images/tv-collapsable.gif) center center no-repeat;
+	background: url(http://ahwenhui.com/tpl/admin/assets/images/tv-collapsable.gif) center center no-repeat;
 }
 .table_list tr.collapsed td .expander{
-	background: url(http://www.ahwenhui.com/tpl/admin/assets/images/tv-expandable.gif) center center no-repeat;
+	background: url(http://ahwenhui.com/tpl/admin/assets/images/tv-expandable.gif) center center no-repeat;
 }
 </style>
-<script src="http://www.ahwenhui.com/statics/js/common.js"></script>
+<script src="http://ahwenhui.com/statics/js/common.js"></script>
 <script>
 $(function(){
     $(".show_sub").click(function(){
         $(this).attr("src",function(){
-            if(this.src == 'http://www.ahwenhui.com/tpl/admin/assets/images/tv-expandable.gif'){
-                return 'http://www.ahwenhui.com/tpl/admin/assets/images/tv-collapsable.gif';
+            if(this.src == 'http://ahwenhui.com/tpl/admin/assets/images/tv-expandable.gif'){
+                return 'http://ahwenhui.com/tpl/admin/assets/images/tv-collapsable.gif';
             } else {
-                return 'http://www.ahwenhui.com/tpl/admin/assets/images/tv-expandable.gif';
+                return 'http://ahwenhui.com/tpl/admin/assets/images/tv-expandable.gif';
             }
         });
         var sub_id = $(this).attr('sub');

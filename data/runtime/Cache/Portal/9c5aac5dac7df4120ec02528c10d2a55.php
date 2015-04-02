@@ -11,7 +11,6 @@
 	<div class="lastnews">
 		<h3> 今日聚焦 </h3>
 		<span class="hr"></span>
-		<?php $hot_articles = sp_sql_posts("field:post_title,tid;order:post_hits desc;limit:7;"); ?>
 		<hr>
 		<ul>
 			<?php if(is_array($hot_articles)): foreach($hot_articles as $key=>$vo): ?><li><a target="_blank" title="<?php echo ($vo["post_title"]); ?>" href="<?php echo leuu('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a></li><?php endforeach; endif; ?>
@@ -20,8 +19,9 @@
 	<div class="clearfix"></div>
 	<div class="block1">
 		<div>
-			<h3> 企 业 </h3>
-			<img src="http://ahwenhui.com/statics/images/qy.png">
+			<h3><a target="_blank" href="<?php echo u('company/index');?>">企&nbsp;&nbsp;业</a></h3>
+			<?php $qy = sp_getslide("qy"); ?>
+			<?php if(is_array($qy)): foreach($qy as $key=>$vo): ?><a target="_blank" href="<?php echo ($vo["slide_url"]); ?>"><img src="<?php echo sp_get_asset_upload_path($vo['slide_pic']);?>" alt="<?php echo ($vo["slide_name"]); ?>"></a><?php endforeach; endif; ?>
 			<ul>
 				<?php if(is_array($companys)): $i = 0; $__LIST__ = $companys;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
 						<a  target="_blank" title="<?php echo ($vo["name"]); ?>" href="<?php echo u('company/detail',array('id'=>$vo['id']));?>"><?php echo ($vo["name"]); ?></a>
@@ -29,10 +29,10 @@
 			</ul>
 		</div>
 		<div>
-			<h3> 项 目 </h3>
-			<?php $xm = sp_sql_posts("cid:22;order:post_date DESC;",3); ?>
-			<img src="http://ahwenhui.com/statics/images/xmbg.png">
-			
+			<h3> <a target="_blank" href="<?php echo u('list/index',array('id'=>20));?>">快&nbsp;&nbsp;报</a> </h3>
+			<?php $kb = sp_getslide("kb"); ?>
+			<?php if(is_array($kb)): foreach($kb as $key=>$vo): ?><a target="_blank" href="<?php echo ($vo["slide_url"]); ?>"><img src="<?php echo sp_get_asset_upload_path($vo['slide_pic']);?>" alt="<?php echo ($vo["slide_name"]); ?>"></a><?php endforeach; endif; ?>
+			<?php $xm = sp_sql_posts("cid:20;order:listorder DESC,post_date DESC;limit:3"); ?>
 			<ul>
 				<?php if(is_array($xm)): $i = 0; $__LIST__ = $xm;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
 						<a target="_blank" title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a>
@@ -40,9 +40,10 @@
 			</ul>
 		</div>
 		<div>
-			<h3> 活 动 </h3>
-			<?php $hd = sp_sql_posts("cid:23;order:post_date DESC;",3); ?>
-			<img src="http://ahwenhui.com/statics/images/hdbg.png">
+			<h3><a target="_blank" href="<?php echo u('list/index',array('id'=>23));?>">项&nbsp;&nbsp;目</a></h3>
+			<?php $xm = sp_getslide("xm"); ?>
+			<?php if(is_array($xm)): foreach($xm as $key=>$vo): ?><a target="_blank" href="<?php echo ($vo["slide_url"]); ?>"><img src="<?php echo sp_get_asset_upload_path($vo['slide_pic']);?>" alt="<?php echo ($vo["slide_name"]); ?>"></a><?php endforeach; endif; ?>
+			<?php $hd = sp_sql_posts("cid:22;order:listorder DESC,post_date DESC;limit:3"); ?>
 			<ul>
 				<?php if(is_array($hd)): $i = 0; $__LIST__ = $hd;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
 						<a target="_blank" title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a>
@@ -50,10 +51,11 @@
 			</ul>
 		</div>
 	</div>
-	<a href=""><img src="http://ahwenhui.com/statics/images/adv.png" width="100%"></a>
+	<a href=""><img src="http://www.ahwenhui.com/statics/images/adv.png" width="100%"></a>
 
 	<div class="row-fluid">
 	 	<div class="w790 pull-left">
+	 		<a style="height: 35px;display: block;width: 155px;float: left;" ng-class="{active: $stateParams.Id == '3'}" ui-sref="index.content({Id:3})"></a>
 	 		<ul class="cats">
 				<li><a ng-class="{active: $stateParams.Id == '14'}" ui-sref="index.content({Id:14})">电商新闻</a></li>
 				<li><a ng-class="{active: $stateParams.Id == '15'}" ui-sref="index.content({Id:15})">行业数据</a></li>
@@ -63,9 +65,9 @@
 				<li><a ng-class="{active: $stateParams.Id == '19'}" ui-sref="index.content({Id:19})">电商专题</a></li>
 	 		</ul>
 	        <div class="j-hotspotWrap ml20 slide-left" ui-view="subview">
-	        	<?php $cat_id = intval($_GET['id']) ? intval($_GET['id']):3; $posts = sp_sql_posts_paged("cid:$cat_id;order:post_date DESC;",6); ?>
+	        	<?php $cat_id = intval($_GET['id']) ? intval($_GET['id']):3; $posts = sp_sql_posts_paged("cid:$cat_id;order:post_date DESC;",7); ?>
 <?php if (!empty($posts['posts'])) { ?>
-<?php if(is_array($posts['posts'])): foreach($posts['posts'] as $key=>$vo): $smeta = json_decode($vo['smeta'],true); $keywords = explode(" ",$vo['post_keywords']); ?>
+<?php if(is_array($posts['posts'])): foreach($posts['posts'] as $key=>$vo): $smeta = json_decode($vo['smeta'],true); $keywords = explode(" ",$vo['post_keywords']); $date = date('Y-m-d',strtotime($vo['post_date'])); $termid = $vo['term_id']; $term = M("Terms")->where("term_id='$termid'")->find(); ?>
 <div class="j-hotspot">
 	<div class="j-hotspotTil clearfix">
 		<h3 class="h3">
@@ -78,13 +80,20 @@
 				<?php if ($smeta['thumb']) { ?>
 					<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
 				<?php } else { ?>
-					<img src="http://ahwenhui.com/statics/images/default_tupian1.png">
+					<img src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
 				<?php } ?>
 			</a>
 		</div>
 		<div class="j-hotspotInfo">
+			<div>
+	            <span class="author">分类：<a href="/list/index/id/<?php echo ($term["term_id"]); ?>.html"> <?php echo ($term["name"]); ?> </a> </span>
+				<span class="author">时间：<?php echo ($date); ?> </span>
+				<span class="author">阅读：<?php echo ($vo["post_hits"]); ?> 次 </span>
+	        </div>
 			<p class="j-hotspotA">
-				<a target="_blank" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_excerpt"]); ?></a>
+				<a target="_blank" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>">
+					<?php echo mb_substr($vo['post_excerpt'],0,100,'utf-8'); ?>....
+				</a>
 			</p>
 			<p class="j-hotspotLink">
 				<?php foreach ($keywords as $key => $value): ?>
@@ -110,62 +119,69 @@
 	    </div>
 	    <div class="w380 pull-right">
 	    	<div class="content1">
-		 		<h3> 动 态 </h3>
+		 		<h3><a target="_blank" href="<?php echo u('list/index',array('id'=>25));?>">动&nbsp;&nbsp;态</a></h3>
 				<span class="hx"></span>
-				<?php $dt = sp_sql_posts("cid:25;order:post_date DESC;",8); ?>
-				<ul>
-					<?php if(is_array($dt)): $i = 0; $__LIST__ = $dt;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+				<?php $dt = sp_sql_posts("cid:25;order:listorder DESC,post_date DESC;limit:6"); ?>
+				<div class="imgblock clearfix">
+					<?php if(is_array($dt)): $i = 0; $__LIST__ = array_slice($dt,0,2,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; $smeta = json_decode($vo['smeta'],true); ?>
+						<a target="_blank" title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>">
+							<?php if ($smeta['thumb']) { ?>
+								<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
+							<?php } else { ?>
+								<img src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
+							<?php } ?>
+						</a><?php endforeach; endif; else: echo "" ;endif; ?>
+				</div>
+				<ul class="left-ul">
+					<?php if(is_array($dt)): $i = 0; $__LIST__ = array_slice($dt,2,null,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
 							<a target="_blank" title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a>
 						</li><?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>
-				<h3> 政 策 </h3>
+				<h3><a target="_blank" href="<?php echo u('list/index',array('id'=>26));?>">政&nbsp;&nbsp;策</a></h3>
 				<span class="hx"></span>
-				<?php $zc = sp_sql_posts("cid:26;order:post_date DESC;",8); ?>
-				<ul>
+				<?php $zc = sp_sql_posts("cid:26;order:listorder DESC,post_date DESC;limit:6"); ?>
+				<ul class="left-ul">
 					<?php if(is_array($zc)): $i = 0; $__LIST__ = $zc;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
 							<a target="_blank" title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a>
 						</li><?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>
-				<h3> 公 告 </h3>
+			</div>
+
+			<?php $sider_ad = sp_getslide("left"); ?>
+			<?php if(is_array($sider_ad)): foreach($sider_ad as $key=>$vo): ?><a target="_blank" href="<?php echo ($vo["slide_url"]); ?>" style="margin-bottom:20px;display: block;">
+					<img src="<?php echo sp_get_asset_upload_path($vo['slide_pic']);?>" width="100%">
+				</a><?php endforeach; endif; ?>
+
+			<div class="content1">
+				<h3><a target="_blank" href="<?php echo u('list/index',array('id'=>27));?>">公&nbsp;&nbsp;告</a></h3>
 				<span class="hx"></span>
-				<?php $gg = sp_sql_posts("cid:26;order:post_date DESC;",8); ?>
-				<div class="imgblock">
-					<?php if(is_array($gg)): $i = 0; $__LIST__ = array_slice($gg,0,1,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; $smeta = json_decode($vo['smeta'],true); ?>
-						<li>
-							<a target="_blank" title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>">
-							<?php if ($smeta['thumb']) { ?>
-								<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
-							<?php } else { ?>
-								<img src="http://ahwenhui.com/statics/images/default_tupian1.png">
-							<?php } ?></a>
-						</li><?php endforeach; endif; else: echo "" ;endif; ?>
-				</div>
-				<ul>
-					<?php if(is_array($gg)): $i = 0; $__LIST__ = array_slice($gg,1,null,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+				<?php $gg = sp_sql_posts("cid:27;order:listorder DESC,post_date DESC;limit:6"); ?>
+				<ul class="left-ul">
+					<?php if(is_array($gg)): $i = 0; $__LIST__ = $gg;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
 							<a target="_blank" title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a>
 						</li><?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>
-				<h3> 服 务 </h3>
+				<h3><a target="_blank" href="<?php echo u('list/index',array('id'=>29));?>">服&nbsp;&nbsp;务</a></h3>
 				<span class="hx"></span>
-				<?php $fw = sp_sql_posts("cid:29;order:post_date DESC;",8); ?>
-				<ul>
+				<?php $fw = sp_sql_posts("cid:29;order:listorder DESC,post_date DESC;limit:6"); ?>
+				<ul class="left-ul">
 					<?php if(is_array($fw)): $i = 0; $__LIST__ = $fw;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
 							<a target="_blank" title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a>
 						</li><?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>
 			</div>
 			<a target="_blank" href="<?php echo u('user/register/index');?>">
-				<img src="http://ahwenhui.com/statics/images/wl.png" width="100%">
+				<img src="http://www.ahwenhui.com/statics/images/wl.png" width="100%">
 			</a>
 			<div class="contact">
 				<h3> 联系方式 </h3>
 				<span class="hx" style="width:250px;"></span>
-				<blockquote class="clearfix">
-					<span>频道总监：李星慧</span>
-					<span>策划、编辑：连晓佳、徐茜茜、宋丽娜</span>
-					<span>实习编辑：卓树理</span>
-					<span>热线：0571-85310598 0571-85311743</span>
-					<span>频道QQ：1753904095</span>
+				<blockquote class="clearfix" style="margin-top: 15px;">
+					<span>地址：安徽省合肥市蜀山区潜山路1469号</span>
+					<span>电话：0551-65179957</span>
+					<span>联系人：阮晓昕</span>
+					<span>邮箱：ahciec@163.com</span>
+					<span>QQ群：159560648</span>
 				</blockquote>
 			</div>
 	    </div>
@@ -177,16 +193,16 @@
     </div>
 
     <div class="link">
-		<a target="_blank" href=""><img src="http://ahwenhui.com/statics/images/y1.png"></a>
-		<a target="_blank" href=""><img src="http://ahwenhui.com/statics/images/y2.png"></a>
-		<a target="_blank" href=""><img src="http://ahwenhui.com/statics/images/y3.png"></a>
-		<a target="_blank" href=""><img src="http://ahwenhui.com/statics/images/y4.png"></a>
-		<a target="_blank" href=""><img src="http://ahwenhui.com/statics/images/y5.png"></a>
-		<a target="_blank" href=""><img src="http://ahwenhui.com/statics/images/y6.png"></a>
+		<a target="_blank" href=""><img src="http://www.ahwenhui.com/statics/images/y1.png"></a>
+		<a target="_blank" href=""><img src="http://www.ahwenhui.com/statics/images/y2.png"></a>
+		<a target="_blank" href=""><img src="http://www.ahwenhui.com/statics/images/y3.png"></a>
+		<a target="_blank" href=""><img src="http://www.ahwenhui.com/statics/images/y4.png"></a>
+		<a target="_blank" href=""><img src="http://www.ahwenhui.com/statics/images/y5.png"></a>
+		<a target="_blank" href=""><img src="http://www.ahwenhui.com/statics/images/y6.png"></a>
     </div>
 </div>
-<link href="http://ahwenhui.com/statics/js/slippry/slippry.css" rel="stylesheet">
-<script src="http://ahwenhui.com/statics/js/slippry/slippry.min.js"></script>
+<link href="http://www.ahwenhui.com/statics/js/slippry/slippry.css" rel="stylesheet">
+<script src="http://www.ahwenhui.com/statics/js/slippry/slippry.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
 	var demo1 = $("#homeslider").slippry({

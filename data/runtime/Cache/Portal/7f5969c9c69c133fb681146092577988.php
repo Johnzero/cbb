@@ -78,16 +78,17 @@ var GV = {
                                 <th width="50">排序</th>
                                 <th>ID</th>
                                 <th>标题</th>
+                                <th width="140">栏目</th>
                                 <th width="45">点击量</th>
                                 <th width="50">摘要</th>
-                                <th width="50">缩略图</th>
+                                <!-- <th width="50">缩略图</th> -->
                                 <th width="80">发布人</th>
                                 <th width="120"><span>发布时间</span></th>
-                                <th width="45">状态</th>
+                                <th width="120">状态</th>
                                 <th width="120">操作</th>
                             </tr>
                         </thead>
-                        <?php $status=array("1"=>"已审核","0"=>"未审核"); $top_status=array("1"=>"已置顶","0"=>"未置顶"); $recommend_status=array("1"=>"已推荐","0"=>"未推荐"); ?>
+                        <?php $status=array("1"=>"已审核","0"=>"未审核"); $top_status=array("1"=>"已置顶","0"=>"未置顶"); $recommend_status=array("1"=>"<span style='color:red'>已推荐</span>","0"=>"未推荐"); ?>
                         <?php if(is_array($posts)): foreach($posts as $key=>$vo): ?><tr>
                             <td><input type="checkbox" class="J_check" data-yid="J_check_y" data-xid="J_check_x" name="ids[]" value="<?php echo ($vo["tid"]); ?>" ></td>
                             <td><input name='listorders[<?php echo ($vo["tid"]); ?>]' class="input input-order"  type='text' size='3' value='<?php echo ($vo["listorder"]); ?>'></td>
@@ -97,18 +98,19 @@ var GV = {
                                     <span><?php echo ($vo["post_title"]); ?></span>
                                 </a>
                             </td>
+                            <td><?php echo ($vo["term_c"]["name"]); ?></td>
                             <td><?php echo ($vo["post_hits"]); ?></td>
                             <td><?php $excerpt_status = empty($vo['post_excerpt'])?"未填写":'已填写'; echo ($excerpt_status); ?>
                             </td>
-                            <td>
+                            <!-- <td>
                                 <?php $smeta=json_decode($vo['smeta'],true); ?>
                                 <?php if(!empty($smeta['thumb'])): ?><a href="<?php echo sp_get_asset_upload_path($smeta['thumb']);?>" target='_blank'>查看</a><?php endif; ?>
-                            </td>
+                            </td> -->
                             <td><?php echo ($users[$vo['post_author']]['user_login']); ?></td>
                             <td><?php echo ($vo["post_date"]); ?></td>
-                            <td><?php echo ($status[$vo['post_status']]); ?><br><?php echo ($top_status[$vo['istop']]); ?><br><?php echo ($recommend_status[$vo['recommended']]); ?></td>
+                            <td><?php echo ($status[$vo['post_status']]); ?>&nbsp;&nbsp;<?php echo ($top_status[$vo['istop']]); ?>&nbsp;<?php echo ($recommend_status[$vo['recommended']]); ?></td>
                             <td>
-                                <a href="javascript:open_iframe_dialog('<?php echo u('comment/commentadmin/index',array('post_id'=>$vo['id']));?>','评论列表')">查看评论</a> | 
+                                <!-- <a href="javascript:open_iframe_dialog('<?php echo u('comment/commentadmin/index',array('post_id'=>$vo['id']));?>','评论列表')">查看评论</a> |  -->
                                 <a href="<?php echo U('AdminPost/edit',array('term'=>empty($term['term_id'])?'':$term['term_id'],'id'=>$vo['id']));?>">修改</a> | 
                                 <a href="<?php echo U('AdminPost/delete',array('term'=>empty($term['term_id'])?'':$term['term_id'],'tid'=>$vo['tid']));?>" class="J_ajax_del" >删除</a>
                             </td>

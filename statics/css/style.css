@@ -523,10 +523,9 @@ body.body-white {
 	-moz-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
-	border-top: solid 2px #fff;
 }
 .list-boxes:hover {
-	border-top: solid 2px rgb(188, 0, 0);
+	border-top: solid 1px rgb(188, 0, 0);
 }
 .list-boxes h2 a {
 	color: rgb(188, 0, 0);
@@ -840,20 +839,24 @@ ul.tc-photos {
 }
 .caption-wraper {
 	position: absolute;
-	left: 50%;
-	bottom: 2em;
+	left: 0%;
+	bottom: 5em;
+	width: 100%;
 }
 .caption-wraper .caption {
 	position: relative;
-	left: -50%;
+	left: 0%;
 	background-color: rgba(0, 0, 0, 0.54);
-	padding: 0.4em 1em;
+	padding: 10px;
 	color: #fff;
 	-webkit-border-radius: 1.2em;
 	-moz-border-radius: 1.2em;
 	-ms-border-radius: 1.2em;
 	-o-border-radius: 1.2em;
-	border-radius: 1.2em;
+	border-radius: 0;
+	font-weight: bold;
+	font-size: 16px;
+	padding-left: 25px;
 }
 @media (max-width:767px) {
 	.sy-box {
@@ -1186,6 +1189,7 @@ form .headicon {
 }
 .navbar-inner a {
 	margin-top: 50px;
+	margin-left: 25px;
 }
 .fa-search:hover {
 	cursor: pointer;
@@ -1217,7 +1221,7 @@ form .headicon {
 	display: inline-block;
 }
 .sub-menu a {
-	width: 90px;
+	width: 75px;
 	display: inline-block;
 	height: 25px;
 	line-height: 25px;
@@ -1241,11 +1245,15 @@ form .headicon {
 	font-size: 40px;
 	padding-bottom: 0px;
 }
+.menu-section:first-child a{
+	width: 50px;
+}
 .menu-section>a {
 	display: block;
 	float: left;
-	width: 110px;
+	width: 135px;
 	height: 70px;
+	margin-left: 20px;
 }
 .menu-section>a:hover {
 	color: white;
@@ -1296,7 +1304,7 @@ hr {
 	margin-top: 15px;
 }
 .block1 {
-	height: 260px;
+	height: 360px;
 	width: 100%;
 	background: white;
 	margin-top: 10px;
@@ -1318,6 +1326,7 @@ hr {
 }
 .block1 div img {
 	margin-top: 10px;
+	width: 300px;
 }
 .block1 div ul li {
 	background: url("../images/dot.png") no-repeat left;
@@ -1429,7 +1438,9 @@ hr {
 .j-hotspotInfo .j-hotspotA{
 	overflow:hidden;
 	position:relative;
-	margin-bottom: 20px;
+	margin-bottom: 12px;
+	margin-top: 10px;
+	text-indent: 2em;
 }
 .j-hotspotInfo .j-hotspotA em{
 	width:10px;
@@ -1441,6 +1452,12 @@ hr {
 .j-hotspotInfo .j-hotspotA a{
 	font-size: 14px;
 	line-height: 24px;
+	height: 90px;
+	text-overflow: ellipsis;
+	display: block;
+}
+.j-hotspotInfo .j-hotspotA a:hover{
+	color: #333333;
 }
 .j-hotspotInfo .j-hotspotA a:hover em{
 	background-position:0 -127px;
@@ -1469,7 +1486,7 @@ hr {
 	float: right;
 	height: 20px;
 	margin-top: 10px;
-	width: 290px;
+	width: 280px;
 }
 .row-fluid .w380 {
 	width: 380px;
@@ -1484,6 +1501,7 @@ hr {
 	background: white;
 	margin-bottom: 20px;
 	margin-top: -2px;
+	padding-bottom: 5px;
 }
 .contact {
 	padding: 20px;
@@ -1494,24 +1512,20 @@ hr {
 	display: inline-block;
 	font-weight: bold;
 }
-.w380 ul {
-	margin-left: 20px;
-	margin-bottom: 20px;
-}
-.w380 ul li {
-	list-style: inherit;
-	margin-top: 12px;
-	text-align: left;
-}
 .imgblock img {
-	width: 45%;
+	width: 48%;
+	height: 100px;
 }
-.imgblock img:first-child {
-	margin-right: 6%;
+.imgblock a:last-child img {
+	/*margin-right: 6%;*/
+	float: right
 }
 .contact blockquote span {
 	display: block;
 	margin-top: 5px;
+}
+.contact blockquote span:first-child{
+	margin-top: -5px;
 }
 .jcsj {
 	width: 100%;
@@ -1571,7 +1585,7 @@ hr {
 	margin: 5px 0 10px 15px;
 }
 .article-infobox {
-	font-size: 14px;
+	font-size: 12px;
 	color: #666;
 }
 .article-infobox a {
@@ -1868,6 +1882,7 @@ a.list-group-item:hover,a.list-group-item:focus {
 .des_content {
 	line-height: 32px;
 	font-size: 14px;
+	display: block;
 }
 .description table {
 	margin-bottom: 10px;
@@ -1883,4 +1898,27 @@ a.list-group-item:hover,a.list-group-item:focus {
 }
 .active{
 	color: rgb(188, 0, 0);
+}
+.pagination .current{
+	background: #dddddd !important;
+	color: rgb(188, 0, 0) !important;
+
+}
+.left-ul {
+	margin-left: 0px;
+	margin-bottom: 20px;
+}
+.left-ul li {
+	list-style: inherit;
+	margin-top: 12px;
+	text-align: left;
+}
+.left-ul li {
+	background: url("../images/dot.png") no-repeat left;
+	line-height: 30px;
+	text-indent: 15px;
+	height: 30px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }

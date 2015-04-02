@@ -1,7 +1,47 @@
-<?php if (!defined('THINK_PATH')) exit();?><style>
+<?php if (!defined('THINK_PATH')) exit(); $len = 6; ?>
+<style>
 	#layout {
 		background: #E4E4E4 !important;
 	}
+	.detail {
+		text-indent: 2em;
+	}
+	<?php if (in_array( $cat_id, array(25,26,27,28,29,20) )) { $len = 9; ?>
+		.blog_detail {
+			width: 100%;
+			margin-left: 0px; 
+			height: 40px;
+			line-height: 40px;
+			background: url(http://ahwenhui.com/statics/images/list_bg.jpg) no-repeat center left;
+		}
+		.author {
+			float:right;
+		}
+		p.detail {
+			font-size:14px;
+		}
+		.blog_detail .text-more {
+			width:80% !important;
+			white-space: nowrap;
+			line-height: 35px;
+			margin-left: 10px;
+		}
+		.media-heading a {
+			font-size: 16px;
+			font-weight: 600;
+		}
+		.list-boxes {
+			padding: 0px 15px;
+			margin-bottom: 0;
+		}
+		.list-boxes:hover {
+			border-top: none;
+		}
+		.detail_des {
+			margin-top:-5px;
+			margin-bottom: 15px;
+		}
+	<?php } ?>
 </style>
 <div class="container tc-main list">
 	<div class="row">
@@ -10,28 +50,39 @@
                 <div><?php echo ($name); ?></div>
             </div>
 			<div class="list-posts">
-				<?php $lists = sp_sql_posts_paged("cid:$cat_id;order:post_date DESC;",6); ?>
-				<?php if(is_array($lists['posts'])): $i = 0; $__LIST__ = $lists['posts'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; $smeta = json_decode($vo['smeta'], true); $keywords = explode(" ",$vo['post_keywords']); $date = date('Y-m-d',strtotime($vo['post_date'])); $termid = $vo['term_id']; $term = M("Terms")->where("term_id='$termid'")->find(); ?>
+				<?php $lists = sp_sql_posts_paged("cid:$cat_id;order:post_date DESC;",$len); ?>
+				<?php if(is_array($lists['posts'])): $i = 0; $__LIST__ = $lists['posts'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; $smeta = json_decode($vo['smeta'], true); $keywords = explode(" ",$vo['post_keywords']); $date = date('Y-m-d',strtotime($vo['post_date'])); $termid = $vo['term_id']; $term = M("Terms")->where("term_id='$termid'")->find(); $post_excerpt = trim($vo['post_excerpt']); ?>
 					<div class="list-boxes">
-					    <div class="leftimg">
-					        <a title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>">
-					        	<?php if ($smeta['thumb']) { ?>
-									<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
-								<?php } else { ?>
-									<img src="http://ahwenhui.com/statics/images/default_tupian1.png">
-								<?php } ?>
-					        </a>
-					    </div>
-					    <div class="blog_detail">
-				            <h3 class="text-more media-heading" style="width: 100%">
-				            <a title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a></h3>
-					        <div>
-					            <span class="author">分类：<a href="/list/index/id/<?php echo ($term["term_id"]); ?>.html"> <?php echo ($term["name"]); ?> </a> </span>
-								<span class="author">时间：<?php echo ($date); ?> </span>
-								<span class="author">阅读：<?php echo ($vo["post_hits"]); ?> 次 </span>
-					            <p class="detail"><?php echo ($vo["post_excerpt"]); ?></p>
-					        </div>
-					    </div>
+						<?php if (!in_array( $cat_id, array(25,26,27,28,29,20) )) { ?>
+						    <div class="leftimg">
+						        <a title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>">
+						        	<?php if ($smeta['thumb']) { ?>
+										<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
+									<?php } else { ?>
+										<img src="http://ahwenhui.com/statics/images/default_tupian1.png">
+									<?php } ?>
+						        </a>
+						    </div>
+						    <div class="blog_detail">
+					            <h3 class="text-more media-heading" style="width: 100%">
+					            <a title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a></h3>
+						        <div>
+						            <span class="author">分类：<a href="/list/index/id/<?php echo ($term["term_id"]); ?>.html"> <?php echo ($term["name"]); ?> </a> </span>
+									<span class="author">时间：<?php echo ($date); ?> </span>
+									<span class="author">阅读：<?php echo ($vo["post_hits"]); ?> 次 </span>
+						            <p class="detail"><?php echo ($post_excerpt); ?></p>
+						        </div>
+						    </div>
+						<?php } else { ?>
+						    <div class="blog_detail">
+					            <h3 class="text-more media-heading" style="width: 100%">
+					            	<a title="<?php echo ($vo["post_title"]); ?>" href="<?php echo u('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a></h3>
+								<span class="author"><?php echo ($date); ?> </span>
+						    </div>
+						    <div class="detail_des">
+						        <p class="detail"><?php echo ($post_excerpt); ?></p>
+						    </div>
+						<?php } ?>
 					</div>
 					<hr><?php endforeach; endif; else: echo "" ;endif; ?>
 			</div>
@@ -105,11 +156,11 @@
 	</div>
 	<span class="hx" style="width:250px;"></span>
 	<blockquote class="clearfix">
-		<span>频道总监：李星慧</span>
-		<span>策划、编辑：连晓佳、徐茜茜、宋丽娜</span>
-		<span>实习编辑：卓树理</span>
-		<span>热线：0571-85310598 0571-85311743</span>
-		<span>频道QQ：1753904095</span>
+		<span>地址：安徽省合肥市蜀山区潜山路1469号</span>
+		<span>电话：0551-65179957</span>
+		<span>联系人：阮晓昕</span>
+		<span>邮箱：ahciec@163.com</span>
+		<span>QQ群：159560648</span>
 	</blockquote>
 </div>
 		</div>

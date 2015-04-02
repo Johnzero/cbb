@@ -10,20 +10,20 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <![endif]-->
 
-	<link href="http://ahwenhui.com/statics/themes/<?php echo C('SP_ADMIN_STYLE');?>/theme.min.css" rel="stylesheet">
-    <link href="http://ahwenhui.com/statics/css/simplebootadmin.css" rel="stylesheet">
-    <link href="http://ahwenhui.com/statics/js/artDialog/skins/default.css" rel="stylesheet" />
-    <link href="http://ahwenhui.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
+	<link href="http://www.ahwenhui.com/statics/themes/<?php echo C('SP_ADMIN_STYLE');?>/theme.min.css" rel="stylesheet">
+    <link href="http://www.ahwenhui.com/statics/css/simplebootadmin.css" rel="stylesheet">
+    <link href="http://www.ahwenhui.com/statics/js/artDialog/skins/default.css" rel="stylesheet" />
+    <link href="http://www.ahwenhui.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
     <style>
 		.length_3{width: 180px;}
 	</style>
 	<!--[if IE 7]>
-	<link rel="stylesheet" href="http://ahwenhui.com/statics/font-awesome/css/font-awesome-ie7.min.css">
+	<link rel="stylesheet" href="http://www.ahwenhui.com/statics/font-awesome/css/font-awesome-ie7.min.css">
 	<![endif]-->
 <script type="text/javascript">
 //全局变量
 var GV = {
-    DIMAUB: "http://ahwenhui.com/",
+    DIMAUB: "http://www.ahwenhui.com/",
     JS_ROOT: "statics/js/",
     TOKEN: ""
 };
@@ -31,10 +31,10 @@ var GV = {
 <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="http://ahwenhui.com/statics/js/jquery.js"></script>
-    <script src="http://ahwenhui.com/statics/js/jquery-migrate-1.2.1.js"></script>
-    <script src="http://ahwenhui.com/statics/js/wind.js"></script>
-    <script src="http://ahwenhui.com/statics/bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://www.ahwenhui.com/statics/js/jquery.js"></script>
+    <script src="http://www.ahwenhui.com/statics/js/jquery-migrate-1.2.1.js"></script>
+    <script src="http://www.ahwenhui.com/statics/js/wind.js"></script>
+    <script src="http://www.ahwenhui.com/statics/bootstrap/js/bootstrap.min.js"></script>
 <?php if(APP_DEBUG): ?><style>
 		#think_page_trace_open{
 			z-index:9999;
@@ -60,16 +60,16 @@ var GV = {
 		background-color: #FFF;
 	}
 	body fieldset legend {
-	background-color: #F9F9F9;
-	border: 1px solid #D8D8D8;
-	font-weight: 700;
-	padding: 3px 8px;
+		background-color: #F9F9F9;
+		border: 1px solid #D8D8D8;
+		font-weight: 700;
+		padding: 3px 8px;
 	}
 	.list-dot{ padding-bottom:10px}
 	.list-dot li,.list-dot-othors li{padding:5px 0; border-bottom:1px dotted #c6dde0; font-family:"宋体"; color:#bbb; position:relative;_height:22px}
 	.list-dot li span,.list-dot-othors li span{color:#004499}
 	.list-dot li a.close span,.list-dot-othors li a.close span{display:none}
-	.list-dot li a.close,.list-dot-othors li a.close{ background: url("http://ahwenhui.com/statics/images/cross.png") no-repeat left 3px; display:block; width:16px; height:16px;position: absolute;outline:none;right:5px; bottom:5px}
+	.list-dot li a.close,.list-dot-othors li a.close{ background: url("http://www.ahwenhui.com/statics/images/cross.png") no-repeat left 3px; display:block; width:16px; height:16px;position: absolute;outline:none;right:5px; bottom:5px}
 	.list-dot li a.close:hover,.list-dot-othors li a.close:hover{background-position: left -46px}
 	.list-dot-othors li{float:left;width:24%;overflow:hidden;}
 	</style>
@@ -91,8 +91,8 @@ var GV = {
 							<td>
 								<div  style="text-align: center;"><input type='hidden' name='logo' id='thumb' value="<?php echo ($company["logo"]); ?>">
 									<a href='javascript:void(0);' onclick="flashupload('thumb_images', '附件上传','thumb',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','content','12','b6ba209759e147124653ac77362ef2bd');return false;">
-									<img src='http://ahwenhui.com/statics/images/icon/upload-pic.png' id='thumb_preview' width='135' height='113' style='cursor:hand' /></a>
-									<input type="button"  class="btn" onclick="$('#thumb_preview').attr('src','http://ahwenhui.com/statics/images/icon/upload-pic.png');$('#thumb').val('');return false;" value="取消图片">
+									<img src='http://www.ahwenhui.com/statics/images/icon/upload-pic.png' id='thumb_preview' width='135' height='113' style='cursor:hand' /></a>
+									<input type="button"  class="btn" onclick="$('#thumb_preview').attr('src','http://www.ahwenhui.com/statics/images/icon/upload-pic.png');$('#thumb').val('');return false;" value="取消图片">
 								</div>
 							</td>
 						</tr>
@@ -118,8 +118,8 @@ var GV = {
 								<script type="text/javascript">
 									var editorURL = GV.DIMAUB;
 								</script>
-								<script type="text/javascript"  src="http://ahwenhui.com/statics/js/ueditor/ueditor.config.js"></script>
-								<script type="text/javascript"  src="http://ahwenhui.com/statics/js/ueditor/ueditor.all.min.js"></script>
+								<script type="text/javascript"  src="http://www.ahwenhui.com/statics/js/ueditor/ueditor.config.js"></script>
+								<script type="text/javascript"  src="http://www.ahwenhui.com/statics/js/ueditor/ueditor.all.min.js"></script>
 							</td>
 						</tr>
 						<tr>
@@ -164,8 +164,8 @@ var GV = {
 		</div>
 	</form>
 </div>
-<script type="text/javascript" src="http://ahwenhui.com/statics/js/common.js"></script>
-<script type="text/javascript" src="http://ahwenhui.com/statics/js/content_addtop.js"></script>
+<script type="text/javascript" src="http://www.ahwenhui.com/statics/js/common.js"></script>
+<script type="text/javascript" src="http://www.ahwenhui.com/statics/js/content_addtop.js"></script>
 <script type="text/javascript">
 $(function () {
 
@@ -174,6 +174,9 @@ $(function () {
 
 		editorcontent1 = new baidu.editor.ui.Editor();
 		editorcontent1.render( 'ct' );
+
+		editorcontent3 = new baidu.editor.ui.Editor();
+		editorcontent3.render( 'description' );
 
 	//setInterval(function(){public_lock_renewal();}, 10000);
 	$(".J_ajax_close_btn").on('click', function (e) {

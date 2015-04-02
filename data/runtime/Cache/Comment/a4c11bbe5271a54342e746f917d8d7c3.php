@@ -192,11 +192,11 @@
 				views: {
 					'subview': {
 						templateUrl: function ($stateParams){
-							// $('html, body').animate({
-							// 	scrollTop : 900
-							// }, 500,function(){
-							// 	scrolling=false;
-							// });
+							$('html, body').animate({
+								scrollTop : 900
+							}, 500,function(){
+								scrolling=false;
+							});
 							return '/index/page/p/' + $stateParams.pageId + '.html';
 						}
 					}
@@ -264,6 +264,11 @@
 			.state("company/detail", {
 				url: "/company/detail/id/:dId.html",
 				templateUrl: function ($stateParams){
+					$('html, body').animate({
+						scrollTop : 0
+					}, 0,function(){
+						scrolling=false;
+					});
 					return '/company/detail/id/' + $stateParams.dId + '.html';
 				}
 			})
@@ -273,9 +278,14 @@
 					return '/list/index/id/' + $stateParams.listId + '.html';
 				}
 			})
-			.state("list/index", {
-				url: "/list/index/id/:listId/p/:pageId.html",
+			.state("list/page", {
+				url: "/list/page/id/:listId/p/:pageId.html",
 				templateUrl: function ($stateParams){
+					$('html, body').animate({
+						scrollTop : 100
+					}, 500,function(){
+						scrolling=false;
+					});
 					return '/list/index/id/' + $stateParams.listId +'/p/' + $stateParams.pageId + '.html';
 				}
 			})

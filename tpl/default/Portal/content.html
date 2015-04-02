@@ -1,12 +1,15 @@
 <php>
 	$cat_id = intval($_GET['id']) ? intval($_GET['id']):3;
-	$posts = sp_sql_posts_paged("cid:$cat_id;order:post_date DESC;",6);
+	$posts = sp_sql_posts_paged("cid:$cat_id;order:post_date DESC;",7);
 </php>
 <?php if (!empty($posts['posts'])) { ?>
 <foreach name="posts['posts']" item="vo">
 <php>
 	$smeta = json_decode($vo['smeta'],true);
 	$keywords = explode(" ",$vo['post_keywords']);
+	$date = date('Y-m-d',strtotime($vo['post_date']));
+	$termid = $vo['term_id'];
+	$term = M("Terms")->where("term_id='$termid'")->find();
 </php>
 <div class="j-hotspot">
 	<div class="j-hotspotTil clearfix">
@@ -25,8 +28,15 @@
 			</a>
 		</div>
 		<div class="j-hotspotInfo">
+			<div>
+	            <span class="author">分类：<a href="/list/index/id/{$term.term_id}.html"> {$term.name} </a> </span>
+				<span class="author">时间：{$date} </span>
+				<span class="author">阅读：{$vo.post_hits} 次 </span>
+	        </div>
 			<p class="j-hotspotA">
-				<a target="_blank" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_excerpt}</a>
+				<a target="_blank" href="{:u('article/index',array('id'=>$vo['tid']))}">
+					<php>echo mb_substr($vo['post_excerpt'],0,100,'utf-8');</php>....
+				</a>
 			</p>
 			<p class="j-hotspotLink">
 				<?php foreach ($keywords as $key => $value): ?>

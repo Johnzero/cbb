@@ -1,6 +1,5 @@
 <style>
-	#article_content img{height:auto !important}
-	#article_content {word-wrap: break-word;}
+	#description_content {word-wrap: break-word;}
 	#layout {
 		background: #E4E4E4 !important;
 	}
@@ -13,10 +12,18 @@
 		color: #3498db;
 		font-size: 36px;
 		line-height: 100px;
-		margin: 10px;
+		margin: 0px;
 		padding: 10px;
 		position: relative;
 		text-align: center;
+		width:300px !important;
+		height:205px !important;
+	}
+	.slick-slider {
+		margin-bottom: 15px !important;
+	}
+	#article_content td, th {
+		border: 1px solid #DDD;
 	}
 </style>
 
@@ -31,7 +38,7 @@
 				<div class="common_block_title">
 					<h2 style="margin-bottom: 0;padding-bottom: 0;text-align: center;">{$company.name}</h2>
 				</div>
-				<div id="article_content">
+				<div id="description_content">
 					<div class="description">
 						<table cellspacing="0" cellpadding="0" width="100%" border="0">
 							<tbody>
@@ -55,7 +62,7 @@
 							{$company.description}
 						</span>
 					</div>
-
+					<div class="clearfix" style="margin-bottom: 10px;"></div>
 					<div class="description">
 						<table cellspacing="0" cellpadding="0" width="100%" border="0">
 							<tbody>
@@ -101,30 +108,8 @@
 						    $(document).ready(function(){
 						      $('.companyshow').slick({
 									autoplay: true,
-									autoplaySpeed: 2000,
-									centerMode: true,
-									centerPadding: '60px',
-									slidesToShow: 3,
-									responsive: [
-									{
-									  breakpoint: 768,
-									  settings: {
-									    arrows: false,
-									    centerMode: true,
-									    centerPadding: '40px',
-									    slidesToShow: 3
-									  }
-									},
-									{
-									  breakpoint: 480,
-									  settings: {
-									    arrows: false,
-									    centerMode: true,
-									    centerPadding: '40px',
-									    slidesToShow: 1
-									  }
-									}
-									]
+									autoplaySpeed: 1000,
+									slidesToShow: 4,
 						      });
 						    });
 					  	</script>

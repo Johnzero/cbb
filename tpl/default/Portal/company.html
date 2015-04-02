@@ -3,7 +3,12 @@
 		background: #E4E4E4 !important;
 	}
 	.detail {
-		height: 115px;
+		height: 120px;
+		overflow: hidden;
+		font-size: 12px;
+		color: #4b4b4b!important;
+		line-height: 23px;
+		margin-top: 10px;
 	}
 </style>
 <div class="container tc-main list">
@@ -27,10 +32,8 @@
 					    <div class="blog_detail">
 				            <h3 class="text-more media-heading" style="width: 100%">
 				            <a title="{$vo.name}" href="{:u('company/detail',array('id'=>$vo['id']))}">{$vo.name}</a></h3>
-					        <div>
-					            <p class="detail">
-					            	<php>echo mb_substr($vo['description'],0,180,'utf-8');</php>
-					            </p>
+					        <div class="detail">
+					            <php>echo mb_substr($vo['description'],0,240,'utf-8');</php>...
 					        </div>
 					    </div>
 					</div>

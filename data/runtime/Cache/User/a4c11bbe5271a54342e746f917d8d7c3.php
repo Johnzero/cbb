@@ -93,12 +93,12 @@
 <div class="navbar navbar-menu headroom">
 	<div class="menu">
 		<div class="menu-section">
-			<a href="http://www.ahwenhui.com"><i class="fa fa-home"></i>首页</a>
+			<a href="http://www.ahwenhui.com"><i class="fa fa-home" style="font-size: 35px;margin-top: 2px;"></i>首页</a>
 		</div>
 
 		<div class="menu-section">
 			<a href="<?php echo u('list/index',array('id'=>3));?>" class="gesp">
-			<img src="http://www.ahwenhui.com/statics/images/dszx.png" width="40"><br/>
+			<img src="http://www.ahwenhui.com/statics/images/dszx.png" width="30" style="margin-top: 15px;"><br/>
 			电商资讯</a>
 			<ul class="sub-menu">
 				<li><a href="<?php echo u('list/index',array('id'=>14));?>">电商新闻</a></li>
@@ -112,7 +112,7 @@
 
 		<div class="menu-section">
 			<a href="<?php echo u('list/index',array('id'=>4));?>" class="gesp">
-			<img src="http://www.ahwenhui.com/statics/images/whcy.png" width="25"><br/>文化产业</a>
+			<img src="http://www.ahwenhui.com/statics/images/whcy.png" width="20" style="margin-top: 14px;"><br/>文化产业</a>
 			<ul class="sub-menu">
 				<li><a href="<?php echo u('list/index',array('id'=>20));?>">文产新闻</a></li>
 				<li><a href="<?php echo u('company/index');?>">文化企业</a></li><br/>
@@ -122,7 +122,7 @@
 		</div>
 
 		<div class="menu-section">
-			<a href="<?php echo u('list/index',array('id'=>13));?>" class="gesp"><img src="http://www.ahwenhui.com/statics/images/lmkj.png" width="30"><br/>联盟空间</a>
+			<a href="<?php echo u('list/index',array('id'=>13));?>" class="gesp"><img src="http://www.ahwenhui.com/statics/images/lmkj.png" width="25" style="margin-top: 12px;"><br/>联盟空间</a>
 			<ul class="sub-menu">
 				<li><a href="<?php echo u('page/index',array('id'=>47));?>">联盟简介</a></li>
 				<li><a href="<?php echo u('list/index',array('id'=>25));?>">联盟动态</a></li>
@@ -192,11 +192,11 @@
 				views: {
 					'subview': {
 						templateUrl: function ($stateParams){
-							// $('html, body').animate({
-							// 	scrollTop : 900
-							// }, 500,function(){
-							// 	scrolling=false;
-							// });
+							$('html, body').animate({
+								scrollTop : 900
+							}, 500,function(){
+								scrolling=false;
+							});
 							return '/index/page/p/' + $stateParams.pageId + '.html';
 						}
 					}
@@ -264,6 +264,11 @@
 			.state("company/detail", {
 				url: "/company/detail/id/:dId.html",
 				templateUrl: function ($stateParams){
+					$('html, body').animate({
+						scrollTop : 0
+					}, 0,function(){
+						scrolling=false;
+					});
 					return '/company/detail/id/' + $stateParams.dId + '.html';
 				}
 			})
@@ -273,9 +278,14 @@
 					return '/list/index/id/' + $stateParams.listId + '.html';
 				}
 			})
-			.state("list/index", {
-				url: "/list/index/id/:listId/p/:pageId.html",
+			.state("list/page", {
+				url: "/list/page/id/:listId/p/:pageId.html",
 				templateUrl: function ($stateParams){
+					$('html, body').animate({
+						scrollTop : 100
+					}, 500,function(){
+						scrolling=false;
+					});
 					return '/list/index/id/' + $stateParams.listId +'/p/' + $stateParams.pageId + '.html';
 				}
 			})

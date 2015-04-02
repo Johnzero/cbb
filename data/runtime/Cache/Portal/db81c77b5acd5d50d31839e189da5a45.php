@@ -1,6 +1,5 @@
 <?php if (!defined('THINK_PATH')) exit();?><style>
-	#article_content img{height:auto !important}
-	#article_content {word-wrap: break-word;}
+	#description_content {word-wrap: break-word;}
 	#layout {
 		background: #E4E4E4 !important;
 	}
@@ -13,16 +12,24 @@
 		color: #3498db;
 		font-size: 36px;
 		line-height: 100px;
-		margin: 10px;
+		margin: 0px;
 		padding: 10px;
 		position: relative;
 		text-align: center;
+		width:300px !important;
+		height:205px !important;
+	}
+	.slick-slider {
+		margin-bottom: 15px !important;
+	}
+	#article_content td, th {
+		border: 1px solid #DDD;
 	}
 </style>
 
-<link href="http://ahwenhui.com/statics/slick/slick.css" rel="stylesheet">
-<link href="http://ahwenhui.com/statics/slick/slick-theme.css" rel="stylesheet">
-<script src="http://ahwenhui.com/statics/slick/slick.min.js"></script>
+<link href="http://www.ahwenhui.com/statics/slick/slick.css" rel="stylesheet">
+<link href="http://www.ahwenhui.com/statics/slick/slick-theme.css" rel="stylesheet">
+<script src="http://www.ahwenhui.com/statics/slick/slick.min.js"></script>
 
 <div class="container tc-main">
 	<div class="row">
@@ -31,7 +38,7 @@
 				<div class="common_block_title">
 					<h2 style="margin-bottom: 0;padding-bottom: 0;text-align: center;"><?php echo ($company["name"]); ?></h2>
 				</div>
-				<div id="article_content">
+				<div id="description_content">
 					<div class="description">
 						<table cellspacing="0" cellpadding="0" width="100%" border="0">
 							<tbody>
@@ -40,7 +47,7 @@
 										<div class="intro_title_content_01">
 										公司介绍</div>
 									</td>
-									<td background="http://ahwenhui.com/statics/images/block.jpg">
+									<td background="http://www.ahwenhui.com/statics/images/block.jpg">
 										<div class="place_content_02">&nbsp;</div>
 									</td>
 								</tr>
@@ -49,13 +56,13 @@
 						<?php if ($company['logo']) { ?>
 							<img class="clogo" src="<?php echo ($company["logo"]); ?>" width="80%">
 						<?php } else { ?>
-							<img class="clogo" src="http://ahwenhui.com/statics/images/default_tupian1.png">
+							<img class="clogo" src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
 						<?php } ?>
 						<span class="des_content">
 							<?php echo ($company["description"]); ?>
 						</span>
 					</div>
-
+					<div class="clearfix" style="margin-bottom: 10px;"></div>
 					<div class="description">
 						<table cellspacing="0" cellpadding="0" width="100%" border="0">
 							<tbody>
@@ -64,7 +71,7 @@
 										<div class="intro_title_content_01">
 										项目介绍</div>
 									</td>
-									<td background="http://ahwenhui.com/statics/images/block.jpg">
+									<td background="http://www.ahwenhui.com/statics/images/block.jpg">
 										<div class="place_content_02">&nbsp;</div>
 									</td>
 								</tr>
@@ -83,7 +90,7 @@
 										<div class="intro_title_content_01">
 										企业展示</div>
 									</td>
-									<td background="http://ahwenhui.com/statics/images/block.jpg">
+									<td background="http://www.ahwenhui.com/statics/images/block.jpg">
 										<div class="place_content_02">&nbsp;</div>
 									</td>
 								</tr>
@@ -99,30 +106,8 @@
 						    $(document).ready(function(){
 						      $('.companyshow').slick({
 									autoplay: true,
-									autoplaySpeed: 2000,
-									centerMode: true,
-									centerPadding: '60px',
-									slidesToShow: 3,
-									responsive: [
-									{
-									  breakpoint: 768,
-									  settings: {
-									    arrows: false,
-									    centerMode: true,
-									    centerPadding: '40px',
-									    slidesToShow: 3
-									  }
-									},
-									{
-									  breakpoint: 480,
-									  settings: {
-									    arrows: false,
-									    centerMode: true,
-									    centerPadding: '40px',
-									    slidesToShow: 1
-									  }
-									}
-									]
+									autoplaySpeed: 1000,
+									slidesToShow: 4,
 						      });
 						    });
 					  	</script>
@@ -134,7 +119,7 @@
 										<div class="intro_title_content_01">
 										联系方式</div>
 									</td>
-									<td background="http://ahwenhui.com/statics/images/block.jpg">
+									<td background="http://www.ahwenhui.com/statics/images/block.jpg">
 										<div class="place_content_02">&nbsp;</div>
 									</td>
 								</tr>

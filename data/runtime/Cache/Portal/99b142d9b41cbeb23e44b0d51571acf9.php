@@ -3,7 +3,12 @@
 		background: #E4E4E4 !important;
 	}
 	.detail {
-		height: 115px;
+		height: 120px;
+		overflow: hidden;
+		font-size: 12px;
+		color: #4b4b4b!important;
+		line-height: 23px;
+		margin-top: 10px;
 	}
 </style>
 <div class="container tc-main list">
@@ -19,17 +24,15 @@
 					        	<?php if ($vo['logo']) { ?>
 									<img src="<?php echo ($vo["logo"]); ?>">
 								<?php } else { ?>
-									<img src="http://ahwenhui.com/statics/images/default_tupian1.png">
+									<img src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
 								<?php } ?>
 					        </a>
 					    </div>
 					    <div class="blog_detail">
 				            <h3 class="text-more media-heading" style="width: 100%">
 				            <a title="<?php echo ($vo["name"]); ?>" href="<?php echo u('company/detail',array('id'=>$vo['id']));?>"><?php echo ($vo["name"]); ?></a></h3>
-					        <div>
-					            <p class="detail">
-					            	<?php echo mb_substr($vo['description'],0,180,'utf-8'); ?>
-					            </p>
+					        <div class="detail">
+					            <?php echo mb_substr($vo['description'],0,240,'utf-8'); ?>...
 					        </div>
 					    </div>
 					</div>
@@ -68,7 +71,7 @@
 					<?php if ($smeta['thumb']) { ?>
 					<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
 					<?php } else { ?>
-					<img src="http://ahwenhui.com/statics/images/default_tupian1.png">
+					<img src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
 					<?php } ?>
 				</a>
 			</div>
@@ -92,7 +95,7 @@
 	</div>
 </div>
 <a href="<?php echo u('user/register/index');?>">
-	<img src="http://ahwenhui.com/statics/images/wl.png" width="100%">
+	<img src="http://www.ahwenhui.com/statics/images/wl.png" width="100%">
 </a>
 <div class="contact" style="margin-top: 10px">
 	<div class="common_block_title_right" style="display:inline-block;">
@@ -100,11 +103,11 @@
 	</div>
 	<span class="hx" style="width:250px;"></span>
 	<blockquote class="clearfix">
-		<span>频道总监：李星慧</span>
-		<span>策划、编辑：连晓佳、徐茜茜、宋丽娜</span>
-		<span>实习编辑：卓树理</span>
-		<span>热线：0571-85310598 0571-85311743</span>
-		<span>频道QQ：1753904095</span>
+		<span>地址：安徽省合肥市蜀山区潜山路1469号</span>
+		<span>电话：0551-65179957</span>
+		<span>联系人：阮晓昕</span>
+		<span>邮箱：ahciec@163.com</span>
+		<span>QQ群：159560648</span>
 	</blockquote>
 </div>
 		</div>

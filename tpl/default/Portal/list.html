@@ -1,7 +1,49 @@
+<php>$len = 6;</php>
 <style>
 	#layout {
 		background: #E4E4E4 !important;
 	}
+	.detail {
+		text-indent: 2em;
+	}
+	<?php if (in_array( $cat_id, array(25,26,27,28,29,20) )) { 
+		$len = 9;
+	?>
+		.blog_detail {
+			width: 100%;
+			margin-left: 0px; 
+			height: 40px;
+			line-height: 40px;
+			background: url(__ROOT__/statics/images/list_bg.jpg) no-repeat center left;
+		}
+		.author {
+			float:right;
+		}
+		p.detail {
+			font-size:14px;
+		}
+		.blog_detail .text-more {
+			width:80% !important;
+			white-space: nowrap;
+			line-height: 35px;
+			margin-left: 10px;
+		}
+		.media-heading a {
+			font-size: 16px;
+			font-weight: 600;
+		}
+		.list-boxes {
+			padding: 0px 15px;
+			margin-bottom: 0;
+		}
+		.list-boxes:hover {
+			border-top: none;
+		}
+		.detail_des {
+			margin-top:-5px;
+			margin-bottom: 15px;
+		}
+	<?php } ?>
 </style>
 <div class="container tc-main list">
 	<div class="row">
@@ -11,7 +53,7 @@
             </div>
 			<div class="list-posts">
 				<php>
-					$lists = sp_sql_posts_paged("cid:$cat_id;order:post_date DESC;",6);
+					$lists = sp_sql_posts_paged("cid:$cat_id;order:post_date DESC;",$len);
 				</php>
 				<volist name="lists['posts']" id="vo">
 					<php>
@@ -20,27 +62,39 @@
 						$date = date('Y-m-d',strtotime($vo['post_date']));
 						$termid = $vo['term_id'];
 				    	$term = M("Terms")->where("term_id='$termid'")->find();
+				    	$post_excerpt = trim($vo['post_excerpt']);
 					</php>
 					<div class="list-boxes">
-					    <div class="leftimg">
-					        <a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">
-					        	<?php if ($smeta['thumb']) { ?>
-									<img src="/data/upload/{$smeta.thumb}">
-								<?php } else { ?>
-									<img src="__ROOT__/statics/images/default_tupian1.png">
-								<?php } ?>
-					        </a>
-					    </div>
-					    <div class="blog_detail">
-				            <h3 class="text-more media-heading" style="width: 100%">
-				            <a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a></h3>
-					        <div>
-					            <span class="author">分类：<a href="/list/index/id/{$term.term_id}.html"> {$term.name} </a> </span>
-								<span class="author">时间：{$date} </span>
-								<span class="author">阅读：{$vo.post_hits} 次 </span>
-					            <p class="detail">{$vo.post_excerpt}</p>
-					        </div>
-					    </div>
+						<?php if (!in_array( $cat_id, array(25,26,27,28,29,20) )) { ?>
+						    <div class="leftimg">
+						        <a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">
+						        	<?php if ($smeta['thumb']) { ?>
+										<img src="/data/upload/{$smeta.thumb}">
+									<?php } else { ?>
+										<img src="__ROOT__/statics/images/default_tupian1.png">
+									<?php } ?>
+						        </a>
+						    </div>
+						    <div class="blog_detail">
+					            <h3 class="text-more media-heading" style="width: 100%">
+					            <a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a></h3>
+						        <div>
+						            <span class="author">分类：<a href="/list/index/id/{$term.term_id}.html"> {$term.name} </a> </span>
+									<span class="author">时间：{$date} </span>
+									<span class="author">阅读：{$vo.post_hits} 次 </span>
+						            <p class="detail">{$post_excerpt}</p>
+						        </div>
+						    </div>
+						<?php } else { ?>
+						    <div class="blog_detail">
+					            <h3 class="text-more media-heading" style="width: 100%">
+					            	<a title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a></h3>
+								<span class="author">{$date} </span>
+						    </div>
+						    <div class="detail_des">
+						        <p class="detail">{$post_excerpt}</p>
+						    </div>
+						<?php } ?>
 					</div>
 					<hr>
 				</volist>

@@ -19,10 +19,10 @@
 		background-color: #FFF;
 	}
 	body fieldset legend {
-	background-color: #F9F9F9;
-	border: 1px solid #D8D8D8;
-	font-weight: 700;
-	padding: 3px 8px;
+		background-color: #F9F9F9;
+		border: 1px solid #D8D8D8;
+		font-weight: 700;
+		padding: 3px 8px;
 	}
 	.list-dot{ padding-bottom:10px}
 	.list-dot li,.list-dot-othors li{padding:5px 0; border-bottom:1px dotted #c6dde0; font-family:"宋体"; color:#bbb; position:relative;_height:22px}
@@ -135,6 +135,9 @@ $(function () {
 
 		editorcontent1 = new baidu.editor.ui.Editor();
 		editorcontent1.render( 'ct' );
+
+		editorcontent3 = new baidu.editor.ui.Editor();
+		editorcontent3.render( 'description' );
 
 	//setInterval(function(){public_lock_renewal();}, 10000);
 	$(".J_ajax_close_btn").on('click', function (e) {

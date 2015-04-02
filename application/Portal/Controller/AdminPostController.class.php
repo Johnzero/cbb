@@ -105,7 +105,7 @@ class AdminPostController extends AdminbaseController {
 		}
 	}
 	
-	private  function _lists($status=1){
+	private function _lists($status=1){
 		$term_id=0;
 		if(!empty($_REQUEST["term"])){
 			$term_id=intval($_REQUEST["term"]);
@@ -178,6 +178,12 @@ class AdminPostController extends AdminbaseController {
 		$this->assign("current_page",$page->GetCurrentPage());
 		unset($_GET[C('VAR_URL_PARAMS')]);
 		$this->assign("formget",$_GET);
+		foreach ($posts as $key => $value) {
+			// $term_id = M("terms_relationship")->where(array("object_id"=>$value['id']))->find();
+			// $term_id = $term_id['term_id'];
+			$term_n = M("terms")->where(array("term_id"=>$value['term_id']))->find();
+			$posts[$key]['term_c'] = $term_n;
+		}
 		$this->assign("posts",$posts);
 	}
 	

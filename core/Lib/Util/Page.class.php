@@ -160,7 +160,7 @@ class Page {
         	if($this->searching){
         		$url=leuu(MODULE_NAME  . "/" . CONTROLLER_NAME . "/" . ACTION_NAME)."?".http_build_query ($arg);
         	}else{
-                if (MODULE_NAME == 'Portal') {
+                if (MODULE_NAME == 'Portal' && CONTROLLER_NAME !="AdminPost") {
                     if ( ACTION_NAME == 'index' || ACTION_NAME == 'page') {
                         $url=leuu( strtolower(CONTROLLER_NAME) . "/" . strtolower('page'),$arg);
                     }else {

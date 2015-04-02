@@ -15,21 +15,23 @@
 	<div class="lastnews">
 		<h3> 今日聚焦 </h3>
 		<span class="hr"></span>
-		<php>
-			$hot_articles = sp_sql_posts("field:post_title,tid;order:post_hits desc;limit:7;");
-		</php>
 		<hr>
 		<ul>
 			<foreach name="hot_articles" item="vo">
-			<li><a target="_blank" title="{$vo.post_title}" href="{:leuu('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a></li>
+				<li><a target="_blank" title="{$vo.post_title}" href="{:leuu('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a></li>
 			</foreach>
 		</ul>
 	</div>
 	<div class="clearfix"></div>
 	<div class="block1">
 		<div>
-			<h3> 企 业 </h3>
-			<img src="__ROOT__/statics/images/qy.png">
+			<h3><a target="_blank" href="{:u('company/index')}">企&nbsp;&nbsp;业</a></h3>
+			<php>
+				$qy = sp_getslide("qy");
+			</php>
+			<foreach name="qy" item="vo">
+				<a target="_blank" href="{$vo.slide_url}"><img src="{:sp_get_asset_upload_path($vo['slide_pic'])}" alt="{$vo.slide_name}"></a>
+			</foreach>
 			<ul>
 				<volist name="companys" id="vo">
 					<li>
@@ -39,12 +41,16 @@
 			</ul>
 		</div>
 		<div>
-			<h3> 项 目 </h3>
+			<h3> <a target="_blank" href="{:u('list/index',array('id'=>20))}">快&nbsp;&nbsp;报</a> </h3>
 			<php>
-				$xm = sp_sql_posts("cid:22;order:post_date DESC;",3);
+				$kb = sp_getslide("kb");
 			</php>
-			<img src="__ROOT__/statics/images/xmbg.png">
-			
+			<foreach name="kb" item="vo">
+				<a target="_blank" href="{$vo.slide_url}"><img src="{:sp_get_asset_upload_path($vo['slide_pic'])}" alt="{$vo.slide_name}"></a>
+			</foreach>
+			<php>
+				$xm = sp_sql_posts("cid:20;order:listorder DESC,post_date DESC;limit:3");
+			</php>
 			<ul>
 				<volist name="xm" id="vo">
 					<li>
@@ -54,11 +60,16 @@
 			</ul>
 		</div>
 		<div>
-			<h3> 活 动 </h3>
+			<h3><a target="_blank" href="{:u('list/index',array('id'=>23))}">项&nbsp;&nbsp;目</a></h3>
 			<php>
-				$hd = sp_sql_posts("cid:23;order:post_date DESC;",3);
+				$xm = sp_getslide("xm");
 			</php>
-			<img src="__ROOT__/statics/images/hdbg.png">
+			<foreach name="xm" item="vo">
+				<a target="_blank" href="{$vo.slide_url}"><img src="{:sp_get_asset_upload_path($vo['slide_pic'])}" alt="{$vo.slide_name}"></a>
+			</foreach>
+			<php>
+				$hd = sp_sql_posts("cid:22;order:listorder DESC,post_date DESC;limit:3");
+			</php>
 			<ul>
 				<volist name="hd" id="vo">
 					<li>
@@ -72,6 +83,7 @@
 
 	<div class="row-fluid">
 	 	<div class="w790 pull-left">
+	 		<a style="height: 35px;display: block;width: 155px;float: left;" ng-class="{active: $stateParams.Id == '3'}" ui-sref="index.content({Id:3})"></a>
 	 		<ul class="cats">
 				<li><a ng-class="{active: $stateParams.Id == '14'}" ui-sref="index.content({Id:14})">电商新闻</a></li>
 				<li><a ng-class="{active: $stateParams.Id == '15'}" ui-sref="index.content({Id:15})">行业数据</a></li>
@@ -86,63 +98,74 @@
 	    </div>
 	    <div class="w380 pull-right">
 	    	<div class="content1">
-		 		<h3> 动 态 </h3>
+		 		<h3><a target="_blank" href="{:u('list/index',array('id'=>25))}">动&nbsp;&nbsp;态</a></h3>
 				<span class="hx"></span>
 				<php>
-					$dt = sp_sql_posts("cid:25;order:post_date DESC;",8);
+					$dt = sp_sql_posts("cid:25;order:listorder DESC,post_date DESC;limit:6");
 				</php>
-				<ul>
-					<volist name="dt" id="vo">
+				<div class="imgblock clearfix">
+					<volist name="dt" id="vo" offset="0" length='2'>
+						<php>
+							$smeta = json_decode($vo['smeta'],true);
+						</php>
+						<a target="_blank" title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">
+							<?php if ($smeta['thumb']) { ?>
+								<img src="/data/upload/{$smeta.thumb}">
+							<?php } else { ?>
+								<img src="__ROOT__/statics/images/default_tupian1.png">
+							<?php } ?>
+						</a>
+					</volist>
+				</div>
+				<ul class="left-ul">
+					<volist name="dt" id="vo" offset="2">
 						<li>
 							<a target="_blank" title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
 						</li>
 					</volist>
 				</ul>
-				<h3> 政 策 </h3>
+				<h3><a target="_blank" href="{:u('list/index',array('id'=>26))}">政&nbsp;&nbsp;策</a></h3>
 				<span class="hx"></span>
 				<php>
-					$zc = sp_sql_posts("cid:26;order:post_date DESC;",8);
+					$zc = sp_sql_posts("cid:26;order:listorder DESC,post_date DESC;limit:6");
 				</php>
-				<ul>
+				<ul class="left-ul">
 					<volist name="zc" id="vo">
 						<li>
 							<a target="_blank" title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
 						</li>
 					</volist>
 				</ul>
-				<h3> 公 告 </h3>
+			</div>
+
+			<php>
+				$sider_ad = sp_getslide("left");
+			</php>
+			<foreach name="sider_ad" item="vo" length="1">
+				<a target="_blank" href="{$vo.slide_url}" style="margin-bottom:20px;display: block;">
+					<img src="{:sp_get_asset_upload_path($vo['slide_pic'])}" width="100%">
+				</a>
+			</foreach>
+
+			<div class="content1">
+				<h3><a target="_blank" href="{:u('list/index',array('id'=>27))}">公&nbsp;&nbsp;告</a></h3>
 				<span class="hx"></span>
 				<php>
-					$gg = sp_sql_posts("cid:26;order:post_date DESC;",8);
+					$gg = sp_sql_posts("cid:27;order:listorder DESC,post_date DESC;limit:6");
 				</php>
-				<div class="imgblock">
-					<volist name="gg" id="vo" offset="0" length='1'>
-						<php>
-							$smeta = json_decode($vo['smeta'],true);
-						</php>
-						<li>
-							<a target="_blank" title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">
-							<?php if ($smeta['thumb']) { ?>
-								<img src="/data/upload/{$smeta.thumb}">
-							<?php } else { ?>
-								<img src="__ROOT__/statics/images/default_tupian1.png">
-							<?php } ?></a>
-						</li>
-					</volist>
-				</div>
-				<ul>
-					<volist name="gg" id="vo" offset="1">
+				<ul class="left-ul">
+					<volist name="gg" id="vo">
 						<li>
 							<a target="_blank" title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
 						</li>
 					</volist>
 				</ul>
-				<h3> 服 务 </h3>
+				<h3><a target="_blank" href="{:u('list/index',array('id'=>29))}">服&nbsp;&nbsp;务</a></h3>
 				<span class="hx"></span>
 				<php>
-					$fw = sp_sql_posts("cid:29;order:post_date DESC;",8);
+					$fw = sp_sql_posts("cid:29;order:listorder DESC,post_date DESC;limit:6");
 				</php>
-				<ul>
+				<ul class="left-ul">
 					<volist name="fw" id="vo">
 						<li>
 							<a target="_blank" title="{$vo.post_title}" href="{:u('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a>
@@ -156,12 +179,12 @@
 			<div class="contact">
 				<h3> 联系方式 </h3>
 				<span class="hx" style="width:250px;"></span>
-				<blockquote class="clearfix">
-					<span>频道总监：李星慧</span>
-					<span>策划、编辑：连晓佳、徐茜茜、宋丽娜</span>
-					<span>实习编辑：卓树理</span>
-					<span>热线：0571-85310598 0571-85311743</span>
-					<span>频道QQ：1753904095</span>
+				<blockquote class="clearfix" style="margin-top: 15px;">
+					<span>地址：安徽省合肥市蜀山区潜山路1469号</span>
+					<span>电话：0551-65179957</span>
+					<span>联系人：阮晓昕</span>
+					<span>邮箱：ahciec@163.com</span>
+					<span>QQ群：159560648</span>
 				</blockquote>
 			</div>
 	    </div>
