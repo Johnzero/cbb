@@ -6,9 +6,9 @@
 return array(
     'DB_TYPE' => 'mysql',
     'DB_HOST' => 'localhost',
-    'DB_NAME' => 'cultural',
-    'DB_USER' => 'cultural',
-    'DB_PWD' => 'cultural',
+    'DB_NAME' => '',
+    'DB_USER' => '',
+    'DB_PWD' => '',
     'DB_PORT' => '3306',
     'DB_PREFIX' => 'cultural_',
     //密钥
