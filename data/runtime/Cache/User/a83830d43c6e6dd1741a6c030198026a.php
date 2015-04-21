@@ -20,7 +20,7 @@
                 <div class="tab-pane active" id="one">
                     <div class="span2">
                         <a class="userhead" href="<?php echo u('user/profile/avatar');?>">
-                            <?php if(empty($avatar)): ?><img src="http://wenhui.anhuinews.com/statics/images/headicon_128.png" class="headicon"/>
+                            <?php if(empty($avatar)): ?><img src="http://www.ahwenhui.com/statics/images/headicon_128.png" class="headicon"/>
                             <?php else: ?>
                             <img src="<?php echo sp_get_user_avatar_url($avatar);?>" class="headicon"/><?php endif; ?>
                         </a>

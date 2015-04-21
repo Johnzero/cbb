@@ -6,7 +6,7 @@ class CompanyController extends HomeBaseController {
 
 	public function index() {
 		$where['authorize'] = 1;
-		$companys = D("Company")->order("create_time desc")->where($where)->select();
+		$companys = D("Company")->order("order_num asc")->where($where)->select();
 		$this->assign("companys",$companys);
     	$this->render(":company");
 	}

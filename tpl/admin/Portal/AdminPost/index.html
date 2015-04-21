@@ -23,6 +23,23 @@
                         -->
                         &nbsp; &nbsp;关键字：
                         <input type="text" class="input length_2" name="keyword" style="width:200px;" value="{$formget.keyword}" placeholder="请输入关键字...">
+
+                        &nbsp; &nbsp;已推荐：
+                        <input type="checkbox" name="tj" onclick="recommend(this);"  <eq name="Think.get.recommend" value="checked">checked</eq> >
+                        <script>
+                            function recommend(o) {
+                                location.href="/AdminPost/index.html?recommend=" + $("input[name='tj']").attr("checked");
+                            }
+                        </script>
+
+                        &nbsp; &nbsp;未审核：
+                        <input type="checkbox" name="status" onclick="sh(this);" <eq name="Think.get.status" value="checked">checked</eq> >
+                        <script>
+                            function sh(o) {
+                                location.href="/AdminPost/index.html?status=" + $("input[name='status']").attr("checked");
+                            }
+                        </script>
+
                         <input type="submit" class="btn" value="搜索"/>
                         </span>
                     </div>

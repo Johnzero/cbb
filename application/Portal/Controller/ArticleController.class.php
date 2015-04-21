@@ -22,9 +22,9 @@ class ArticleController extends HomeBaseController {
     		$posts_model=M("Posts");
     		$posts_model->save(array("id"=>$article_id,"post_hits"=>array("exp","post_hits+1")));
     	}
-    	$smeta=json_decode($article['smeta'],true);
-    	$content_data=sp_content_page($article['post_content']);
-    	$article['post_content']=$content_data['content'];
+    	$smeta = json_decode($article['smeta'],true);
+    	$content_data = sp_content_page($article['post_content']);
+    	$article['post_content'] = $content_data['content'];
     	$this->assign("page",$content_data['page']);
     	$this->assign($article);
     	$this->assign("smeta",$smeta);

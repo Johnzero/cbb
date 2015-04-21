@@ -8,15 +8,9 @@ class IndexController extends HomeBaseController {
 	
 	public function index() {
 		$where['authorize'] = 1;
-		$companys = D("Company")->order("id desc")->where($where)->limit(3)->select();
+		$companys = D("Company")->order("order_num asc")->where($where)->limit(3)->select();
 		$this->assign("companys",$companys);
-		$hot_articles = D("Common/Posts")->where(array("recommended"=>1))->limit(7)->order("post_modified DESC,post_date DESC")->select();
-    	foreach ($hot_articles as $key => $value) {
-    		$relationship = D("Common/TermRelationships")->where(array("object_id"=>$value['id']))->find();
-    		$hot_articles[$key]['tid'] = $relationship['tid'];
-            $hot_articles[$key]['listorder'] = $relationship['listorder'];
-    	}
-        $hot_articles = $this->array_sort($hot_articles,'listorder');
+		$hot_articles = D("Common/Focus")->limit(7)->order("orders ASC")->select();
     	$this->assign('hot_articles',$hot_articles);
     	$this->render(":index");
     }

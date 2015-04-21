@@ -34,7 +34,7 @@
 									<td><?php echo ($vo["content"]); ?></td>
 									<td><?php echo ($vo["createtime"]); ?></td>
 									<td>
-										<a href="http://wangsong.com/<?php echo ($vo["url"]); ?>#comment<?php echo ($vo["id"]); ?>">查看原文</a>
+										<a href="http://www.ahwenhui.com/<?php echo ($vo["url"]); ?>#comment<?php echo ($vo["id"]); ?>">查看原文</a>
 										<!-- | <a class="J_ajax_dialog_btn" href="<?php echo u('user/favorite/delete_favorite',array('id'=>$vo['id']));?>" data-msg="您确定要取消收藏吗？" data-ok="" data-cacel="取消">取消收藏</a> -->
 									</td>
 								</tr><?php endforeach; endif; ?>

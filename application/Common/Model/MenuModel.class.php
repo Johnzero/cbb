@@ -96,16 +96,19 @@ class MenuModel extends CommonModel {
                 	
                 	$action = $_match[1];
                 }
-                   
+
                 $r = $privdb->where(array('g' => $v['app'], 'm' => $v['model'], 'a' => $action, 'role_id' => session("roleid")))->find();
                 
                 if ($r){
                 	$array[] = $v;
                 }
+
+                if ($v['model'] == 'Focus') {
+                    $array[] = $v;
+                } 
                    
             }
         } 
-        
         return $array;
     }
 

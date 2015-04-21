@@ -10,6 +10,11 @@
 		line-height: 23px;
 		margin-top: 10px;
 	}
+	.leftimg a {
+		display: block;
+		width: 200px;
+  		height: 146px;
+	}
 </style>
 <div class="container tc-main list">
 	<div class="row">
@@ -24,7 +29,7 @@
 					        	<?php if ($vo['logo']) { ?>
 									<img src="<?php echo ($vo["logo"]); ?>">
 								<?php } else { ?>
-									<img src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
+									<img src="http://ahwenhui.com/statics/images/default_tupian1.png">
 								<?php } ?>
 					        </a>
 					    </div>
@@ -32,7 +37,8 @@
 				            <h3 class="text-more media-heading" style="width: 100%">
 				            <a title="<?php echo ($vo["name"]); ?>" href="<?php echo u('company/detail',array('id'=>$vo['id']));?>"><?php echo ($vo["name"]); ?></a></h3>
 					        <div class="detail">
-					            <?php echo mb_substr($vo['description'],0,240,'utf-8'); ?>...
+					        		<?php echo ($vo['description']); ?>
+					            <!-- <?php echo mb_substr($vo['description'],0,240,'utf-8'); ?>... -->
 					        </div>
 					    </div>
 					</div>
@@ -71,7 +77,7 @@
 					<?php if ($smeta['thumb']) { ?>
 					<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
 					<?php } else { ?>
-					<img src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
+					<img src="http://ahwenhui.com/statics/images/default_tupian1.png">
 					<?php } ?>
 				</a>
 			</div>
@@ -95,7 +101,7 @@
 	</div>
 </div>
 <a href="<?php echo u('user/register/index');?>">
-	<img src="http://www.ahwenhui.com/statics/images/wl.png" width="100%">
+	<img src="http://ahwenhui.com/statics/images/wl.png" width="100%">
 </a>
 <div class="contact" style="margin-top: 10px">
 	<div class="common_block_title_right" style="display:inline-block;">

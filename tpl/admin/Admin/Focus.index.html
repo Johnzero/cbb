@@ -1,0 +1,83 @@
+<admintpl file="header" />
+<style>
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+</style>
+    <body class="J_scroll_fixed">
+        <div class="wrap J_check_wrap">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="{:U('Focus/index')}">今日聚焦</a></li>
+                <li><a href="{:U('Focus/set')}">添加新闻</a></li>
+            </ul>
+        <form class="J_ajaxForm" action="" method="post">
+            <div class="table_list">
+                <table width="100%" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th width="50">ID</th>
+                            <th>标题</th>
+                            <th>链接</th>
+                            <th width="120">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody class="sortable">
+                        <foreach name="focus" item="vo">
+                            <tr data-value="{$vo.id}">
+                                <td>{$vo.id}</td>
+                                <td><a href="{$vo.url}" target="_blank">{$vo.title}</a></td>
+                                <td>{$vo.url}</td>
+                                <td>
+                                    <a href="{:U('Focus/set',array('id'=>$vo['id']))}">修改</a> |
+                                    <a href="{:U('Focus/delete',array('id'=>$vo['id']))}" class="J_ajax_del" >删除</a>
+                                </td>
+                            </tr>
+                        </foreach>
+                    </tbody>
+            </table>
+            <div class="p10"><div class="pages">  </div> </div>
+            
+        </div>
+    </form>
+</div>
+<script src="__ROOT__/statics/js/common.js?"></script>
+<link href="__ROOT__/statics/js/jquery-ui/jquery-ui.css" rel="stylesheet">
+<script src="__ROOT__/statics/js/jquery-ui/jquery-ui.js"></script>
+<script>
+    $(function  () {
+        var orders = new Array();
+        $(".sortable").sortable({stop: function( event, ui ) {
+            $(".sortable tr").each(function () {
+                orders.push($(this).data("value"));
+            })
+            $.post("{:U('Focus/listorders')}", { 'orders[]': orders }, function(data) {
+            });
+            orders = new Array();
+        }}).disableSelection();
+    })
+</script>
+
+<script>
+setCookie('refersh_time', 0);
+function refersh_window() {
+var refersh_time = getCookie('refersh_time');
+if (refersh_time == 1) {
+window.location.reload();
+}
+}
+setInterval(function(){
+refersh_window()
+}, 3000);
+$(function () {
+$("#selected_cid").change(function(){
+$("#cid_form").submit();
+});
+});
+</script>
+</body>
+</html>

@@ -17,7 +17,7 @@ class CompanyController extends AdminbaseController{
 		$page=$this->page($count,10);
 		$page->setLinkWraper("li");
 		
-		$companys=$this->company_model->order("create_time desc")
+		$companys=$this->company_model->order("order_num asc")
 		->limit($page->firstRow . ',' . $page->listRows)
 		->select();
 		

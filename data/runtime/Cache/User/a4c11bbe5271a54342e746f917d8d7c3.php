@@ -4,6 +4,7 @@
 		<title><?php echo ($name); ?> <?php echo ($seo_title); ?> <?php echo ($site_name); ?></title>
 		<meta name="keywords" content="<?php echo ($seo_keywords); ?>" />
 		<meta name="description" content="<?php echo ($seo_description); ?>">
+		<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
 		<?php $portal_index_lastnews=2; $portal_hot_articles="1,2"; $portal_last_post="1,2"; $tmpl=sp_get_theme_path(); ?>
 		<base href="/">
 		<meta charset="utf-8">
@@ -72,7 +73,7 @@
 				</li>
 				<li>
 					<form class="form-search active" ng-submit="onSearchSubmit()" ng-controller="searchCtl">
-						<input type="text" ng-model="searchForm.keyword" placeholder="搜索..." name="keyword" value="<?php echo I('get.keyword');?>"/>
+						<input type="text" ng-model="searchForm.keyword" placeholder="站内搜索..." name="keyword" value="<?php echo I('get.keyword');?>"/>
 						<i class="fa fa-search" type="submit" ng-click="onSearchSubmit()"></i>
 					</form>
 				</li>
@@ -90,7 +91,7 @@
 		<img src="http://www.ahwenhui.com/statics/images/top.png" class="pull-right">
 	</div>
 </div>
-<div class="navbar navbar-menu headroom">
+<div class="navbar navbar-menu headroom" style="min-width:1170px !important;margin:0 auto">
 	<div class="menu">
 		<div class="menu-section">
 			<a href="http://www.ahwenhui.com"><i class="fa fa-home" style="font-size: 35px;margin-top: 2px;"></i>首页</a>
@@ -111,7 +112,7 @@
 		</div>
 
 		<div class="menu-section">
-			<a href="<?php echo u('list/index',array('id'=>4));?>" class="gesp">
+			<a class="gesp">
 			<img src="http://www.ahwenhui.com/statics/images/whcy.png" width="20" style="margin-top: 14px;"><br/>文化产业</a>
 			<ul class="sub-menu">
 				<li><a href="<?php echo u('list/index',array('id'=>20));?>">文产新闻</a></li>
@@ -122,7 +123,7 @@
 		</div>
 
 		<div class="menu-section">
-			<a href="<?php echo u('list/index',array('id'=>13));?>" class="gesp"><img src="http://www.ahwenhui.com/statics/images/lmkj.png" width="25" style="margin-top: 12px;"><br/>联盟空间</a>
+			<a class="gesp"><img src="http://www.ahwenhui.com/statics/images/lmkj.png" width="25" style="margin-top: 12px;"><br/>联盟空间</a>
 			<ul class="sub-menu">
 				<li><a href="<?php echo u('page/index',array('id'=>47));?>">联盟简介</a></li>
 				<li><a href="<?php echo u('list/index',array('id'=>25));?>">联盟动态</a></li>
@@ -152,6 +153,7 @@
 <script src="http://www.ahwenhui.com/statics/js/angular/angular.js"></script>
 <script src="http://www.ahwenhui.com/statics/js/angular/angular-ui-router.js"></script>
 <script src="http://www.ahwenhui.com/statics/js/angular/angular-animate.js"></script>
+<script src="http://www.ahwenhui.com/statics/slick/slick.min.js"></script>
 <!--[if IE]>
 <script>
     window.FileAPI = {
@@ -298,7 +300,7 @@
 			.state("article", {
 				url: "/article/index/id/:articleId.html",
 				templateUrl: function ($stateParams){
-					// $('html, body').scrollTop(0);
+					$('html, body').scrollTop(0);
 					return '/article/index/id/' + $stateParams.articleId + '.html';
 				},
 				controller: function($scope) {

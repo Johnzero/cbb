@@ -277,7 +277,9 @@ h4{font-size: 16px;}
     left: 0;
     top: 0px;
 }
-
+.jcsj a {
+	display: inline-block;
+}
 .jcsj img:hover{
 	outline: none;
 	-moz-box-shadow: 3px 3px 5px #000;
@@ -517,7 +519,7 @@ body.body-white {
 .list-boxes {
 	overflow: hidden;
 	padding: 15px 20px;
-	margin-bottom: 25px;
+	/*margin-bottom: 25px;*/
 	background: #fff;
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
@@ -1373,6 +1375,8 @@ hr {
 }
 .j-hotspotTil{
 	margin:10px 0;
+	margin-bottom: 8px;
+	margin-top: 0;
 }
 .j-hotspotTil .h3{
 	float:left;
@@ -1451,7 +1455,7 @@ hr {
 }
 .j-hotspotInfo .j-hotspotA a{
 	font-size: 14px;
-	line-height: 24px;
+	line-height: 23px;
 	height: 90px;
 	text-overflow: ellipsis;
 	display: block;
@@ -1529,22 +1533,32 @@ hr {
 }
 .jcsj {
 	width: 100%;
-	height: 200px;
 	background: white;
 	clear: both;
 	background-image: url(../images/jcsj.png);
 	background-repeat: no-repeat;
 	margin-bottom: 20px;
+	padding: 30px;
 	padding-top: 70px;
 	text-align: center;
+	overflow: hidden;
+/*	padding-left: 20px;
+	padding-right: 20px;*/
+}
+.slick-prev {display: none !important;}
+.slick-next {display: none !important;}
+
+.slick-list {
+	overflow: hidden;
 }
 .jcsj a {
 	display: inline-block;
 	margin: 10px;
+	margin-left: 0
 }
 .link {
 	width: 100%;
-	height: 100px;
+	height: 180px;
 	background: white;
 	clear: both;
 	background-image: url(../images/links.png);
@@ -1555,6 +1569,11 @@ hr {
 .link a {
 	display: inline-block;
 	margin: 10px;
+	width: 160px;
+	height: 70px;
+}
+.link img {
+	width: 160px;
 }
 .footer {
 	background: none repeat scroll 0 0 #ededed;
@@ -1912,6 +1931,7 @@ a.list-group-item:hover,a.list-group-item:focus {
 	list-style: inherit;
 	margin-top: 12px;
 	text-align: left;
+	list-style: none;
 }
 .left-ul li {
 	background: url("../images/dot.png") no-repeat left;
@@ -1921,4 +1941,13 @@ a.list-group-item:hover,a.list-group-item:focus {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+}
+.ad {
+	margin-bottom: 15px;
+	display: none;
+}
+#adBig {
+	position: absolute;
+  	top: 30px;
+  	z-index: 9999;
 }

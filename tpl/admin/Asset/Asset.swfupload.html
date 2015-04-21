@@ -302,6 +302,9 @@ var swfu = '';
         </div>
         <div class="eidt_uphoto">
           <ul id="fsUploadProgress" class="cc">
+          	<volist name="images" id="vo">
+          		<li class="uploaded" id="SWFUpload_0_{$i}"><div class="get" id="aid-{$i}"><a class="del" href="javascript:;">删除</a> <img onclick="att_cancel(this,{$i},'upload')" width="87" height="98" src="{$vo}" data-id="1" data-path="{$vo}" alt="上传完成"><input type="text" class="J_file_desc" name="flashatt[{$i}][desc]" placeholder="请输入描述" value="{$vo}" style="width:68px"></div></li>
+          	</volist>
             <!--<li class="J_empty"><div class="no">暂无</div></li>-->
           </ul>
         </div>

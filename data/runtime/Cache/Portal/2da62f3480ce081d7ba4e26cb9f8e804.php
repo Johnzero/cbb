@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit();?><div class="container tc-main">
+<?php if (!defined('THINK_PATH')) exit();?><div class="container tc-main">	
 	<div class="row">
 		<div class="span8">
 			<div class="main-title">

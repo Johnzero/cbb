@@ -77,7 +77,7 @@
                         </form>
                         <div class="control-group" id="avatar" ng-controller="avatarCtl">
                             <div class="tab-pane active">
-                                <?php if(empty($avatar)): ?><img src="http://wenhui.anhuinews.com/statics/images/headicon_128.png" class="headicon"/>
+                                <?php if(empty($avatar)): ?><img src="http://www.ahwenhui.com/statics/images/headicon_128.png" class="headicon"/>
                                 <?php else: ?>
                                     <img src="<?php echo sp_get_user_avatar_url($avatar);?>" class="headicon"/><?php endif; ?>
                                 <input type="file" name="file" value="<?php echo ($avatar); ?>" ng-model="profileForm.avatar" id="avatar_uploder" ng-multiple="false" ng-accept="'image/*'" ng-file-select ng-file-change="upload($files)"/>

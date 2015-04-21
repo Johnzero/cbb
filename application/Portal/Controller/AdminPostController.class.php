@@ -150,8 +150,15 @@ class AdminPostController extends AdminbaseController {
 		}
 		
 		$where= join(" and ", $where_ands);
-			
-			
+	
+		if ( $_GET['recommend'] ) {
+			$where = $where." and recommended = 1";
+		}	
+
+		if ( $_GET['status'] && $_GET['status']!= "undefined") {
+			$where = $where." and post_status <> 1";
+		}
+
 		$count=$this->terms_relationship
 		->alias("a")
 		->join(C ( 'DB_PREFIX' )."posts b ON a.object_id = b.id")
@@ -166,7 +173,7 @@ class AdminPostController extends AdminbaseController {
 		->join(C ( 'DB_PREFIX' )."posts b ON a.object_id = b.id")
 		->where($where)
 		->limit($page->firstRow . ',' . $page->listRows)
-		->order("a.listorder ASC,b.post_modified DESC")->select();
+		->order("a.listorder DESC,b.post_modified DESC")->select();
 		$users_obj = M("Users");
 		$users_data=$users_obj->field("id,user_login,role_id")->where("user_status=1")->select();
 		$users=array();
@@ -309,10 +316,18 @@ class AdminPostController extends AdminbaseController {
 			$objectids=$this->terms_relationship->field("object_id")->where("tid in ($tids)")->select();
 			$ids=array();
 			foreach ($objectids as $id){
-				$ids[]=$id["object_id"];
+				$ids[] = $id["object_id"];
 			}
-			$ids=join(",", $ids);
-			if ( $this->posts_obj->where("id in ($ids)")->save($data)!==false) {
+			$tmpid = $ids;
+			$ids = join(",", $ids);
+			if ( $this->posts_obj->where("id in ($ids)")->save($data)!==false) {				
+				foreach ($tmpid as $key => $value) {
+					$thisP = $this->posts_obj->where(array('id'=>$value))->find();
+					$title = $thisP['post_title'];
+					$thisR = $this->terms_relationship->where(array('object_id'=>$value))->find();
+					$tid = $thisR['tid'];
+					D("Common/Focus")->add(array("title"=>$title,"url"=>U('article/index',array('id'=>$tid))));
+				}
 				$this->success("推荐成功！");
 			} else {
 				$this->error("推荐失败！");

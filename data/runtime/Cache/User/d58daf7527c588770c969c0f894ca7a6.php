@@ -74,4 +74,4 @@
 </div>
 <script src="/statics/js/jquery-migrate-1.2.1.js"></script>
 <script src="/statics/js/wind.js"></script>
-<script src="http://wangsong.com/statics/js/common.js"></script>
+<script src="http://www.ahwenhui.com/statics/js/common.js"></script>

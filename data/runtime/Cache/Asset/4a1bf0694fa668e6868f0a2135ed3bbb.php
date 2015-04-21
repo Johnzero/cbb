@@ -10,20 +10,20 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <![endif]-->
 
-	<link href="http://www.ahwenhui.com/statics/themes/<?php echo C('SP_ADMIN_STYLE');?>/theme.min.css" rel="stylesheet">
-    <link href="http://www.ahwenhui.com/statics/css/simplebootadmin.css" rel="stylesheet">
-    <link href="http://www.ahwenhui.com/statics/js/artDialog/skins/default.css" rel="stylesheet" />
-    <link href="http://www.ahwenhui.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
+	<link href="http://ahwenhui.com/statics/themes/<?php echo C('SP_ADMIN_STYLE');?>/theme.min.css" rel="stylesheet">
+    <link href="http://ahwenhui.com/statics/css/simplebootadmin.css" rel="stylesheet">
+    <link href="http://ahwenhui.com/statics/js/artDialog/skins/default.css" rel="stylesheet" />
+    <link href="http://ahwenhui.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
     <style>
 		.length_3{width: 180px;}
 	</style>
 	<!--[if IE 7]>
-	<link rel="stylesheet" href="http://www.ahwenhui.com/statics/font-awesome/css/font-awesome-ie7.min.css">
+	<link rel="stylesheet" href="http://ahwenhui.com/statics/font-awesome/css/font-awesome-ie7.min.css">
 	<![endif]-->
 <script type="text/javascript">
 //全局变量
 var GV = {
-    DIMAUB: "http://www.ahwenhui.com/",
+    DIMAUB: "http://ahwenhui.com/",
     JS_ROOT: "statics/js/",
     TOKEN: ""
 };
@@ -31,10 +31,10 @@ var GV = {
 <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="http://www.ahwenhui.com/statics/js/jquery.js"></script>
-    <script src="http://www.ahwenhui.com/statics/js/jquery-migrate-1.2.1.js"></script>
-    <script src="http://www.ahwenhui.com/statics/js/wind.js"></script>
-    <script src="http://www.ahwenhui.com/statics/bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://ahwenhui.com/statics/js/jquery.js"></script>
+    <script src="http://ahwenhui.com/statics/js/jquery-migrate-1.2.1.js"></script>
+    <script src="http://ahwenhui.com/statics/js/wind.js"></script>
+    <script src="http://ahwenhui.com/statics/bootstrap/js/bootstrap.min.js"></script>
 <?php if(APP_DEBUG): ?><style>
 		#think_page_trace_open{
 			z-index:9999;
@@ -123,7 +123,7 @@ var GV = {
     text-align: center;
 }
 .eidt_uphoto .no {
-    background: url("http://www.ahwenhui.com/tpl/admin/assets/images/upload_pic.jpg") no-repeat scroll center center #FBFBFB;
+    background: url("http://ahwenhui.com/tpl/admin/assets/images/upload_pic.jpg") no-repeat scroll center center #FBFBFB;
     border: 1px solid #CCCCCC;
     height: 98px;
     overflow: hidden;
@@ -176,7 +176,7 @@ var GV = {
 	position:absolute;
 	width:15px;
 	height:15px;
-	background:url("http://www.ahwenhui.com/tpl/admin/assets/images/upload_del.png") no-repeat;
+	background:url("http://ahwenhui.com/tpl/admin/assets/images/upload_del.png") no-repeat;
 	right:1px;
 	top:1px;
 	overflow:hidden;
@@ -219,13 +219,13 @@ var GV = {
 }
 /*上传选择按钮*/
 #btupload,.addnew{
-	background: url("http://www.ahwenhui.com/statics/js/swfupload/images/swfBnt.png") no-repeat; float:left; margin-right:10px;width:75px; height:28px; line-height:28px;font-weight:700; color:#fff;
+	background: url("http://ahwenhui.com/statics/js/swfupload/images/swfBnt.png") no-repeat; float:left; margin-right:10px;width:75px; height:28px; line-height:28px;font-weight:700; color:#fff;
 }
 #btupload{ 
     vertical-align:middle;border:none;cursor: hand;!important;cursor: pointer;
 }
 .addnew{
-	background: url("http://www.ahwenhui.com/statics/js/swfupload/images/swfBnt.png") no-repeat; float:left; margin-right:10px;width:75px; height:28px; line-height:28px;font-weight:700; color:#fff;
+	background: url("http://ahwenhui.com/statics/js/swfupload/images/swfBnt.png") no-repeat; float:left; margin-right:10px;width:75px; height:28px; line-height:28px;font-weight:700; color:#fff;
 }
 .addnew{
 	background-position: left bottom;
@@ -288,7 +288,7 @@ var swfu = '';
 	$(document).ready(function(){
 		Wind.use("swfupload",GV.DIMAUB+"statics/js/swfupload/handlers.js",function(){
 		      swfu = new SWFUpload({
-			flash_url:"http://www.ahwenhui.com/statics/js/swfupload/swfupload.swf",
+			flash_url:"http://ahwenhui.com/statics/js/swfupload/swfupload.swf",
 			upload_url:"<?php echo u('asset/swfupload');?>",
 			file_post_name : "Filedata",
 			post_params:{
@@ -343,6 +343,7 @@ var swfu = '';
         </div>
         <div class="eidt_uphoto">
           <ul id="fsUploadProgress" class="cc">
+          	<?php if(is_array($images)): $i = 0; $__LIST__ = $images;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="uploaded" id="SWFUpload_0_<?php echo ($i); ?>"><div class="get" id="aid-<?php echo ($i); ?>"><a class="del" href="javascript:;">删除</a> <img onclick="att_cancel(this,<?php echo ($i); ?>,'upload')" width="87" height="98" src="<?php echo ($vo); ?>" data-id="1" data-path="<?php echo ($vo); ?>" alt="上传完成"><input type="text" class="J_file_desc" name="flashatt[<?php echo ($i); ?>][desc]" placeholder="请输入描述" value="<?php echo ($vo); ?>" style="width:68px"></div></li><?php endforeach; endif; else: echo "" ;endif; ?>
             <!--<li class="J_empty"><div class="no">暂无</div></li>-->
           </ul>
         </div>
@@ -360,7 +361,7 @@ var swfu = '';
 <div id="att-status" style="display:none"></div>
 <div id="att-status-del" style="display:none"></div>
 <div id="att-name" style="display:none"></div>
-<script src="http://www.ahwenhui.com/statics/js/common.js"></script> 
+<script src="http://ahwenhui.com/statics/js/common.js"></script> 
 <script>
 $(function(){
     $("#att-status").html("");

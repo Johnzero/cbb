@@ -27,9 +27,8 @@
 	}
 </style>
 
-<link href="http://www.ahwenhui.com/statics/slick/slick.css" rel="stylesheet">
-<link href="http://www.ahwenhui.com/statics/slick/slick-theme.css" rel="stylesheet">
-<script src="http://www.ahwenhui.com/statics/slick/slick.min.js"></script>
+<link href="http://ahwenhui.com/statics/slick/slick.css" rel="stylesheet">
+<link href="http://ahwenhui.com/statics/slick/slick-theme.css" rel="stylesheet">
 
 <div class="container tc-main">
 	<div class="row">
@@ -47,7 +46,7 @@
 										<div class="intro_title_content_01">
 										公司介绍</div>
 									</td>
-									<td background="http://www.ahwenhui.com/statics/images/block.jpg">
+									<td background="http://ahwenhui.com/statics/images/block.jpg">
 										<div class="place_content_02">&nbsp;</div>
 									</td>
 								</tr>
@@ -56,7 +55,7 @@
 						<?php if ($company['logo']) { ?>
 							<img class="clogo" src="<?php echo ($company["logo"]); ?>" width="80%">
 						<?php } else { ?>
-							<img class="clogo" src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
+							<img class="clogo" src="http://ahwenhui.com/statics/images/default_tupian1.png">
 						<?php } ?>
 						<span class="des_content">
 							<?php echo ($company["description"]); ?>
@@ -71,7 +70,7 @@
 										<div class="intro_title_content_01">
 										项目介绍</div>
 									</td>
-									<td background="http://www.ahwenhui.com/statics/images/block.jpg">
+									<td background="http://ahwenhui.com/statics/images/block.jpg">
 										<div class="place_content_02">&nbsp;</div>
 									</td>
 								</tr>
@@ -90,7 +89,7 @@
 										<div class="intro_title_content_01">
 										企业展示</div>
 									</td>
-									<td background="http://www.ahwenhui.com/statics/images/block.jpg">
+									<td background="http://ahwenhui.com/statics/images/block.jpg">
 										<div class="place_content_02">&nbsp;</div>
 									</td>
 								</tr>
@@ -119,7 +118,7 @@
 										<div class="intro_title_content_01">
 										联系方式</div>
 									</td>
-									<td background="http://www.ahwenhui.com/statics/images/block.jpg">
+									<td background="http://ahwenhui.com/statics/images/block.jpg">
 										<div class="place_content_02">&nbsp;</div>
 									</td>
 								</tr>

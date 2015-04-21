@@ -4,23 +4,24 @@
 		<title><?php echo ($name); ?> <?php echo ($seo_title); ?> <?php echo ($site_name); ?></title>
 		<meta name="keywords" content="<?php echo ($seo_keywords); ?>" />
 		<meta name="description" content="<?php echo ($seo_description); ?>">
+		<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
 		<?php $portal_index_lastnews=2; $portal_hot_articles="1,2"; $portal_last_post="1,2"; $tmpl=sp_get_theme_path(); ?>
 		<base href="/">
 		<meta charset="utf-8">
-		<link href="http://www.ahwenhui.com/statics/bootstrap/css/bootstrap.css" rel="stylesheet">
-		<link href="http://www.ahwenhui.com/statics/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-		<link href="http://www.ahwenhui.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
-		<link href="http://www.ahwenhui.com/statics/css/style.css" rel="stylesheet">
+		<link href="http://ahwenhui.com/statics/bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link href="http://ahwenhui.com/statics/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="http://ahwenhui.com/statics/font-awesome/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
+		<link href="http://ahwenhui.com/statics/css/style.css" rel="stylesheet">
 		<script type="text/javascript">
 			var GV = {
-				DIMAUB: "http://www.ahwenhui.com/",
+				DIMAUB: "http://ahwenhui.com/",
 				JS_ROOT: "statics/js/",
 				TOKEN: ""
 			};
 		</script>
 		<!--[if IE]>
-			<script src="http://www.ahwenhui.com/statics/js/respond.min.js"></script>
-			<script src="http://www.ahwenhui.com/statics/js/angular/es5-shim.min.js"></script>
+			<script src="http://ahwenhui.com/statics/js/respond.min.js"></script>
+			<script src="http://ahwenhui.com/statics/js/angular/es5-shim.min.js"></script>
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 			<script>
 				document.createElement('ng-include');
@@ -33,14 +34,14 @@
 		<![endif]-->
 
 		<!--[if lt IE 7]>
-            <script src="http://www.ahwenhui.com/statics/js/IE7.js"></script>
+            <script src="http://ahwenhui.com/statics/js/IE7.js"></script>
         <![endif]-->
         <!--[if lt IE 8]>
-            <script src="http://www.ahwenhui.com/statics/js/IE8.js"></script>
-		 	<script src="http://www.ahwenhui.com/statics/js/json3.min.js"></script>
+            <script src="http://ahwenhui.com/statics/js/IE8.js"></script>
+		 	<script src="http://ahwenhui.com/statics/js/json3.min.js"></script>
         <![endif]-->
-		<script src="http://www.ahwenhui.com/statics/js/jquery.js"></script>
-		<script src="http://www.ahwenhui.com/statics/bootstrap/js/bootstrap.min.js"></script>
+		<script src="http://ahwenhui.com/statics/js/jquery.js"></script>
+		<script src="http://ahwenhui.com/statics/bootstrap/js/bootstrap.min.js"></script>
 	</head>
 	<body ng-app="cultural" class="ng-app:cultural" id="ng-app">
 		<!--[if lt IE 8]>
@@ -49,7 +50,7 @@
 		<div class="tophead">
 	<div class="headtopNav">
 		<div class="pull-left">
-			<span>欢迎访问 <a href="http://www.ahwenhui.com"><?php echo ($site_name); ?></a></span>
+			<span>欢迎访问 <a href="http://ahwenhui.com"><?php echo ($site_name); ?></a></span>
 			<?php $days = array('星期天','星期一','星期二','星期三','星期四','星期五','星期六');$today = date('w'); ?>
 			<span class="date"><?php echo date(Y年m月d日); ?> <?php echo $days[$today]; ?></span>
 		</div>
@@ -57,7 +58,7 @@
 			<ul>
 				<li class="li-after">
 					<?php if(sp_is_user_login()): ?><a class="dropdown-toggle user" data-toggle="dropdown" href="javaScript:void(0);">
-						<?php if(empty($user['avatar'])): ?><img src="http://www.ahwenhui.com/statics/images/headicon.png" class="headicon"/>
+						<?php if(empty($user['avatar'])): ?><img src="http://ahwenhui.com/statics/images/headicon.png" class="headicon"/>
 						<?php else: ?>
 							<img src="<?php echo sp_get_user_avatar_url($user['avatar']);?>" class="headicon"/><?php endif; ?>
 						<?php echo ($user["user_nicename"]); ?><b class="caret"></b></a>
@@ -72,7 +73,7 @@
 				</li>
 				<li>
 					<form class="form-search active" ng-submit="onSearchSubmit()" ng-controller="searchCtl">
-						<input type="text" ng-model="searchForm.keyword" placeholder="搜索..." name="keyword" value="<?php echo I('get.keyword');?>"/>
+						<input type="text" ng-model="searchForm.keyword" placeholder="站内搜索..." name="keyword" value="<?php echo I('get.keyword');?>"/>
 						<i class="fa fa-search" type="submit" ng-click="onSearchSubmit()"></i>
 					</form>
 				</li>
@@ -82,23 +83,23 @@
 </div>
 <div class="navbar">
 	<div class="navbar-inner">
-		<a class="pull-left" href="http://www.ahwenhui.com/"><img src="http://www.ahwenhui.com/statics/images/logo.png"/></a>
-		<img src="http://www.ahwenhui.com/statics/images/1.png" class="pull-left wz1">
-		<img src="http://www.ahwenhui.com/statics/images/2.png" class="pull-left wz2">
-		<img src="http://www.ahwenhui.com/statics/images/3.png" class="pull-left wz3">
-		<img src="http://www.ahwenhui.com/statics/images/4.png" class="pull-left wz4">
-		<img src="http://www.ahwenhui.com/statics/images/top.png" class="pull-right">
+		<a class="pull-left" href="http://ahwenhui.com/"><img src="http://ahwenhui.com/statics/images/logo.png"/></a>
+		<img src="http://ahwenhui.com/statics/images/1.png" class="pull-left wz1">
+		<img src="http://ahwenhui.com/statics/images/2.png" class="pull-left wz2">
+		<img src="http://ahwenhui.com/statics/images/3.png" class="pull-left wz3">
+		<img src="http://ahwenhui.com/statics/images/4.png" class="pull-left wz4">
+		<img src="http://ahwenhui.com/statics/images/top.png" class="pull-right">
 	</div>
 </div>
-<div class="navbar navbar-menu headroom">
+<div class="navbar navbar-menu headroom" style="min-width:1170px !important;margin:0 auto">
 	<div class="menu">
 		<div class="menu-section">
-			<a href="http://www.ahwenhui.com"><i class="fa fa-home" style="font-size: 35px;margin-top: 2px;"></i>首页</a>
+			<a href="http://ahwenhui.com"><i class="fa fa-home" style="font-size: 35px;margin-top: 2px;"></i>首页</a>
 		</div>
 
 		<div class="menu-section">
 			<a href="<?php echo u('list/index',array('id'=>3));?>" class="gesp">
-			<img src="http://www.ahwenhui.com/statics/images/dszx.png" width="30" style="margin-top: 15px;"><br/>
+			<img src="http://ahwenhui.com/statics/images/dszx.png" width="30" style="margin-top: 15px;"><br/>
 			电商资讯</a>
 			<ul class="sub-menu">
 				<li><a href="<?php echo u('list/index',array('id'=>14));?>">电商新闻</a></li>
@@ -111,8 +112,8 @@
 		</div>
 
 		<div class="menu-section">
-			<a href="<?php echo u('list/index',array('id'=>4));?>" class="gesp">
-			<img src="http://www.ahwenhui.com/statics/images/whcy.png" width="20" style="margin-top: 14px;"><br/>文化产业</a>
+			<a class="gesp">
+			<img src="http://ahwenhui.com/statics/images/whcy.png" width="20" style="margin-top: 14px;"><br/>文化产业</a>
 			<ul class="sub-menu">
 				<li><a href="<?php echo u('list/index',array('id'=>20));?>">文产新闻</a></li>
 				<li><a href="<?php echo u('company/index');?>">文化企业</a></li><br/>
@@ -122,7 +123,7 @@
 		</div>
 
 		<div class="menu-section">
-			<a href="<?php echo u('list/index',array('id'=>13));?>" class="gesp"><img src="http://www.ahwenhui.com/statics/images/lmkj.png" width="25" style="margin-top: 12px;"><br/>联盟空间</a>
+			<a class="gesp"><img src="http://ahwenhui.com/statics/images/lmkj.png" width="25" style="margin-top: 12px;"><br/>联盟空间</a>
 			<ul class="sub-menu">
 				<li><a href="<?php echo u('page/index',array('id'=>47));?>">联盟简介</a></li>
 				<li><a href="<?php echo u('list/index',array('id'=>25));?>">联盟动态</a></li>
@@ -143,27 +144,28 @@
 
 <!-- JavaScript -->
 <!-- Javascript -->
-<script src="http://www.ahwenhui.com/statics/js/headroom/headroom.js"></script>
-<script src="http://www.ahwenhui.com/statics/js/headroom/jQuery.headroom.js"></script>
-<link rel="stylesheet" href="http://www.ahwenhui.com/statics/js/sweetalert/sweet-alert.css">
-<script src="http://www.ahwenhui.com/statics/js/sweetalert/sweet-alert.min.js"></script>
+<script src="http://ahwenhui.com/statics/js/headroom/headroom.js"></script>
+<script src="http://ahwenhui.com/statics/js/headroom/jQuery.headroom.js"></script>
+<link rel="stylesheet" href="http://ahwenhui.com/statics/js/sweetalert/sweet-alert.css">
+<script src="http://ahwenhui.com/statics/js/sweetalert/sweet-alert.min.js"></script>
 <script type="text/javascript" src="http://ueditor.baidu.com/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" src="http://ueditor.baidu.com/ueditor/ueditor.all.js"></script>
-<script src="http://www.ahwenhui.com/statics/js/angular/angular.js"></script>
-<script src="http://www.ahwenhui.com/statics/js/angular/angular-ui-router.js"></script>
-<script src="http://www.ahwenhui.com/statics/js/angular/angular-animate.js"></script>
+<script src="http://ahwenhui.com/statics/js/angular/angular.js"></script>
+<script src="http://ahwenhui.com/statics/js/angular/angular-ui-router.js"></script>
+<script src="http://ahwenhui.com/statics/js/angular/angular-animate.js"></script>
+<script src="http://ahwenhui.com/statics/slick/slick.min.js"></script>
 <!--[if IE]>
 <script>
     window.FileAPI = {
-        jsUrl: 'http://www.ahwenhui.com/statics/js/angular/FileAPI.min.js',
-        flashUrl: 'http://www.ahwenhui.com/statics/js/angular/FileAPI.flash.swf',
+        jsUrl: 'http://ahwenhui.com/statics/js/angular/FileAPI.min.js',
+        flashUrl: 'http://ahwenhui.com/statics/js/angular/FileAPI.flash.swf',
     }
 </script>
-<script src="http://www.ahwenhui.com/statics/js/angular/angular-file-upload-shim.min.js"></script>
+<script src="http://ahwenhui.com/statics/js/angular/angular-file-upload-shim.min.js"></script>
 <![endif]-->
-<script src="http://www.ahwenhui.com/statics/js/angular/angular-file-upload.min.js"></script>
-<script src="http://www.ahwenhui.com/statics/js/angular/loading-bar.js"></script>
-<link href='http://www.ahwenhui.com/statics/js/angular/loading-bar.css' rel='stylesheet' />
+<script src="http://ahwenhui.com/statics/js/angular/angular-file-upload.min.js"></script>
+<script src="http://ahwenhui.com/statics/js/angular/loading-bar.js"></script>
+<link href='http://ahwenhui.com/statics/js/angular/loading-bar.css' rel='stylesheet' />
 <script type="text/javascript">
 	
 	var cultural = angular.module('cultural',['ui.router','angular-loading-bar','angularFileUpload','ngAnimate']);
@@ -300,6 +302,18 @@
 				templateUrl: function ($stateParams){
 					$('html, body').scrollTop(0);
 					return '/article/index/id/' + $stateParams.articleId + '.html';
+				},
+				controller: function($scope) {
+					if (window._bd_share_main != undefined) {
+						window._bd_share_main.init();
+					}
+			    }
+			})
+			.state("article/page", {
+				url: "/article/page/id/:articleId/p/:pageId.html",
+				templateUrl: function ($stateParams){
+					$('html, body').scrollTop(0);
+					return '/article/index/id/' + $stateParams.articleId + '/p/' + $stateParams.pageId + '.html';
 				},
 				controller: function($scope) {
 					if (window._bd_share_main != undefined) {

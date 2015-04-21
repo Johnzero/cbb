@@ -18,6 +18,7 @@
 	}
 	#article_content p {
 		font: 16px/28px Microsoft YaHei, Arial;
+		margin-top: 15px !important;
 	}
 	/*#article_content * {
 		max-width:;
@@ -34,28 +35,34 @@
 						<?php if ($post_source) { ?>
 							<span>来源：<a><?php echo ($post_source); ?></a></span>
 						<?php }?>
-						<span>分类：<a href="/list/index/id/<?php echo ($term["term_id"]); ?>.html"><?php echo ($term["name"]); ?></a> </span>
 						<?php if ($post_authorname) { ?>
 						<span>作者：<a><?php echo ($post_authorname); ?></a></span>
 						<?php }?>
+						<span>分类：<a href="/list/index/id/<?php echo ($term["term_id"]); ?>.html"><?php echo ($term["name"]); ?></a> </span>
 						<span>时间：<a><?php echo ($date); ?></a> </span>
 						<span>阅读：<a><?php echo ($post_hits); ?></a> 次 </span>
 					</div>
 				</div>
 				<hr/>
 				<div class="font9blue">
-					【<b>字体：<a href="javascript:fontZoom(20)"><font color="#008000">大</font></a>&nbsp;<a href="javascript:fontZoom(16)"><font color="#008000">中</font></a>&nbsp;<a href="javascript:fontZoom(12)"><font color="#008000">小</font></a></b>】【<b>视力保护：</b><a href="javascript:divbgColor('#ffffff')" style="color:#ffffff;">■</a> 
-	            	<a href="javascript:divbgColor('#F6F6F6')" style="color:#F6F6F6;">■</a> 
-	            	<a href="javascript:divbgColor('#CCCCCC')" style="color:#CCCCCC;">■</a> 
-	            	<a href="javascript:divbgColor('#E7FAEC')" style="color:#E7FAEC;">■</a> 
-	            	<a href="javascript:divbgColor('#AFE3A8')" style="color:#AFE3A8;">■</a> 
-	            	<a href="javascript:divbgColor('#FFFFE1')" style="color:#FFFFE1;">■</a> 
-	            	<a href="javascript:divbgColor('#DFCCD8')" style="color:#DFCCD8;">■</a> 
+					【<b>字体：<a href="javascript:fontZoom(20)"><font style="color:rgb(188, 0, 0)">大</font></a>&nbsp;<a href="javascript:fontZoom(16)"><font style="color:rgb(188, 0, 0)">中</font></a>&nbsp;<a href="javascript:fontZoom(12)"><font style="color:rgb(188, 0, 0)">小</font></a></b>】【<b>视力保护：</b><a href="javascript:divbgColor('#ffffff')" style="color:#ffffff;font-size: 20px">■</a> 
+	            	<a href="javascript:divbgColor('#F6F6F6')" style="color:#F6F6F6;font-size: 20px">■</a> 
+	            	<a href="javascript:divbgColor('#CCCCCC')" style="color:#CCCCCC;font-size: 20px">■</a> 
+	            	<a href="javascript:divbgColor('#E7FAEC')" style="color:#E7FAEC;font-size: 20px">■</a> 
+	            	<a href="javascript:divbgColor('#AFE3A8')" style="color:#AFE3A8;font-size: 20px">■</a> 
+	            	<a href="javascript:divbgColor('#FFFFE1')" style="color:#FFFFE1;font-size: 20px">■</a> 
+	            	<a href="javascript:divbgColor('#DFCCD8')" style="color:#DFCCD8;font-size: 20px">■</a> 
 	            】</div>
 				<div id="article_content">
 					<?php echo ($post_content); ?>
 					<div class="clearfix"></div>
 				</div>
+				<div class="pagination text-center">
+					<ul>
+						<?php echo ($page); ?>
+					</ul>
+				</div>
+				<br>
 				<div class="article-infobox" style="float:left;">
 					<span>关键词：
 						<?php foreach ($keywords as $key => $value): ?>
@@ -63,7 +70,7 @@
 						<?php endforeach ?>
 					</span>
 				</div>
-				<div class="bdsharebuttonbox bdshare-button-style0-16" style="float:right;"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+				<div class="bdsharebuttonbox bdshare-button-style0-16" style="float:right;"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_tqf" data-cmd="tqf" title="分享到腾讯朋友"></a><a href="#" class="bds_ty" data-cmd="ty" title="分享到天涯社区"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
 				<div class="clearfix"></div>
 				<hr/>
 			</div>
@@ -100,7 +107,7 @@
 					<?php if ($smeta['thumb']) { ?>
 					<img src="/data/upload/<?php echo ($smeta["thumb"]); ?>">
 					<?php } else { ?>
-					<img src="http://www.ahwenhui.com/statics/images/default_tupian1.png">
+					<img src="http://ahwenhui.com/statics/images/default_tupian1.png">
 					<?php } ?>
 				</a>
 			</div>
@@ -124,7 +131,7 @@
 	</div>
 </div>
 <a href="<?php echo u('user/register/index');?>">
-	<img src="http://www.ahwenhui.com/statics/images/wl.png" width="100%">
+	<img src="http://ahwenhui.com/statics/images/wl.png" width="100%">
 </a>
 <div class="contact" style="margin-top: 10px">
 	<div class="common_block_title_right" style="display:inline-block;">
@@ -142,7 +149,7 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="http://www.ahwenhui.com/statics/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="http://ahwenhui.com/statics/js/jquery.cookie.js"></script>
 <script type="text/javascript">
 	$(document).ready(function () {
 		window._bd_share_config={"common":{"bdSnsKey":{},"bdDesc":'<?php echo ($post_excerpt); ?>',"bdText":"<?php echo ($post_title); ?>","bdMini":"2","bdMiniList":false,"bdPic":location.origin+"/data/upload/post/<?php echo ($smeta["thumb"]); ?>","bdStyle":"0","bdSize":"22"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];

@@ -43,6 +43,21 @@ class AssetController extends AdminbaseController {
                 exit("0," . $upload->getError());
             }
         } else {
+            $path = $_SERVER["DOCUMENT_ROOT"]."/data/upload/";
+            $tmp = array();
+            $i = 0;
+            if ($handle = opendir($path))
+            {  
+                while (false !== ($file = readdir($handle)))
+                {
+                    if (!is_dir($path.$file))  {
+                        $tmp[] = "/data/upload/".$file;
+                    }
+                }
+            }
+            $tmp = array_slice($tmp, -16,16);
+            $tmp = array_reverse($tmp);
+            $this->assign("images",$tmp);
             $this->display();
         }
     }

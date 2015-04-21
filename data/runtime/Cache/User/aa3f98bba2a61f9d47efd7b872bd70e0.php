@@ -68,9 +68,9 @@
                             <div class="control-group">
                                 <label class="control-label"><span class="text-error">*</span>营业执照电子版：</label>
                                 <div class="controls">
-                                    <?php if(empty($companyForm['code_pic'])): ?><img src="http://ciec.anhuinews.com/statics/images/headicon_128.png" class="headicon"/>
+                                    <?php if(empty($companyForm['code_pic'])): ?><img src="http://www.ahwenhui.com/statics/images/headicon_128.png" class="headicon"/>
                                     <?php else: ?>
-                                        <img src="http://ciec.anhuinews.com/data/upload/company/<?php echo ($companyForm["code_pic"]); ?>" class="headicon"/><?php endif; ?>
+                                        <img src="http://www.ahwenhui.com/data/upload/company/<?php echo ($companyForm["code_pic"]); ?>" class="headicon"/><?php endif; ?>
 
                                     <input type="file" name="code_pic" value="<?php echo ($companyForm["code_pic"]); ?>" ng-model="companyForm.code_pic" ng-multiple="false" ng-accept="'image/*'" ng-file-select ng-file-change="code($files)" id="code_pic"/>
 
@@ -92,9 +92,9 @@
                             <div class="control-group">
                                 <label class="control-label"><span class="text-error">*</span>组织机构代码证电子版：</label>
                                 <div class="controls">
-                                    <?php if(empty($companyForm['group_pic'])): ?><img src="http://ciec.anhuinews.com/statics/images/headicon_128.png" class="headicon"/>
+                                    <?php if(empty($companyForm['group_pic'])): ?><img src="http://www.ahwenhui.com/statics/images/headicon_128.png" class="headicon"/>
                                     <?php else: ?>
-                                        <img src="http://ciec.anhuinews.com/data/upload/company/<?php echo ($companyForm["group_pic"]); ?>" class="headicon"/><?php endif; ?>
+                                        <img src="http://www.ahwenhui.com/data/upload/company/<?php echo ($companyForm["group_pic"]); ?>" class="headicon"/><?php endif; ?>
                                     <input type="file" name="group_pic" value="<?php echo ($companyForm["group_pic"]); ?>" ng-model="companyForm.group_pic" ng-multiple="false" ng-accept="'image/*'" ng-file-select ng-file-change="group($files)" id="group_pic"/>
                                     <span class="help-block">请确保图片清晰，文字可辨并有清晰的红色公章。</span>
                                     <div class="progress">

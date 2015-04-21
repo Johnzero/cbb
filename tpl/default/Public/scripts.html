@@ -8,6 +8,7 @@
 <script src="__ROOT__/statics/js/angular/angular.js"></script>
 <script src="__ROOT__/statics/js/angular/angular-ui-router.js"></script>
 <script src="__ROOT__/statics/js/angular/angular-animate.js"></script>
+<script src="__ROOT__/statics/slick/slick.min.js"></script>
 <!--[if IE]>
 <script>
     window.FileAPI = {
@@ -156,6 +157,18 @@
 				templateUrl: function ($stateParams){
 					$('html, body').scrollTop(0);
 					return '/article/index/id/' + $stateParams.articleId + '.html';
+				},
+				controller: function($scope) {
+					if (window._bd_share_main != undefined) {
+						window._bd_share_main.init();
+					}
+			    }
+			})
+			.state("article/page", {
+				url: "/article/page/id/:articleId/p/:pageId.html",
+				templateUrl: function ($stateParams){
+					$('html, body').scrollTop(0);
+					return '/article/index/id/' + $stateParams.articleId + '/p/' + $stateParams.pageId + '.html';
 				},
 				controller: function($scope) {
 					if (window._bd_share_main != undefined) {
